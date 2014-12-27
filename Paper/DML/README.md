@@ -2,15 +2,15 @@
 
 	We present an approach to enriching the type system of ML with a restricted form of dependent types, where type index terms are required to be drawn from a given type index language L that is completely separate from run-time programs, leading to the DML(L) language schema.
 
-	私たちは、DMLにつながる、タイプインデックス用語がランタイムプログラムから完全に分離され、指定されたタイプのインデックス言語Lから引き出されることが要求される依存型の制限された形で、MLの型システムの充実へのアプローチを提示する（L）言語スキーマ。
+	私たちは、DML（L）言語スキーマにつながる、型インデックス項がランタイムプログラムから完全に分離され、指定された型インデックス言語Lから取り出されることが要求される依存型の制限された形で、MLの型システムの拡張のアプローチを提示する。
 
 	This enrichment allows for specification and inference of significantly more precise type information, facilitating program error detection and compiler optimization.
 
-	この濃縮は、プログラムエラー検出およびコンパイラの最適化を容易にする、本明細書および著しくより正確なタイプ情報の推論を可能にする。
+	この拡張は、プログラムエラー検出およびコンパイラの最適化を容易にし、仕様および有意でより正確な型情報の推論を可能にする。
 
 	The primary contribution of the paper lies in our language design, which can effectively support the use of dependent types in practical programming.
 
-	論文の主要な貢献は、効果的に実践的なプログラミングの依存型の使用をサポートすることができる、私たちの言語設計にあります。
+	本論文の主要な貢献は、効果的に実践的なプログラミングの依存型の使用をサポートすることができる、私たちの言語設計にあります。
 
 	In particular, this design makes it both natural and straightforward to accommodate dependent types in the presence of effects such as references and exceptions.
 
@@ -20,30 +20,38 @@
 
 	In this paper, we report some research on supporting the use of dependent types in practical programming, drawing most of the results from (Xi, 1998).
 
-	本稿では、実用的なプログラミングで依存型の使用をサポートしている（西、1998）からの結果のほとんどを描く上でいくつかの研究を報告している。
+	本論文では、実用的なプログラミングで依存型の使用をサポートした（Xi、1998）からの結果を最大限に生かした上でいくつかの研究を報告している。
 
 	We do not attempt to incorporate into this paper some recent, closely related results (e.g., guarded recursive datatypes (Xi et al., 2003), Applied Type System (Xi, 2004)), with which we only provide certain comparison.
 
-	我々は唯一の特定の比較を提供するとともに、本論文いくつかの最近の、密接に関連した結果（例えば、保護された再帰的なデータ型（XIら、2003）、応用型システム（XI、2004））、組み込むしようとしないでください。
+
+	私たちはこの論文にいくつかの最近の、密接に関連した結果（例えば、ガードされた再帰的なデータ型（Xi et al., 2003）、Applied Type System （XI、2004））を組み込まない。
 
 	Type systems for functional languages can be broadly classified into those for rich, realistic programming languages such as Standard ML (Milner et al., 1997), Objective Caml (INRIA, n.d.), or Haskell (Peyton Jones et al. , 1999), and those for small, pure languages such as the ones underlying Coq (Dowek et al., 1993), NuPrl (Constable et al. , 1986), or PX (Hayashi & Nakano, 1988).
 
-	関数型言語の型システムは、広くそのような標準ML（ミルナーら、1997）、目的Camlのような豊かな、現実的なプログラミング言語のためのものとに分類された（INRIA、ND）、またはすることができハスケル（ペイトン·ジョーンズら、1999）、そのようなコックの基礎をなすものと小さな、純粋な言語のためのもの（Dowekら、1993）、NuPrl（巡査ら、1986）、またはPX（林·中野、1988）。
+	関数型言語の型システムが広くStandard ML（Milnerら, 1997）、Objective Caml (INRIA, n.d.)
+	、またはHaskell（Peyton Jones ら、1999）などリッチな、現実的なプログラミング言語のためのものと、そしてそのようなものが根底にあるような小さな、純粋な言語のためのものCoq（Dowekら、1993）、NuPrl（Constableら、1986）、またはPX（林·中野、1988）に分類することができます
 
 	In practical programming, type-checking should be theoretically decidable as well as practically feasible for typical programs without requiring an overwhelmingly large number of type annotations.
 
-	実用的なプログラミングでは、型チェックは、理論的には型注釈の圧倒的多数を必要とすることなく、典型的なプログラムのための実用的に実現可能なだけでなく、決定可能べきである。
+	実用的なプログラミングでは、型チェックは、理論的には型注釈の大部分を必要とすることなく、典型的なプログラムのための実用的に実行可能なだけでなく、決定可能であるべきである。
 
 	In order to achieve this, the type systems for realistic programming languages are often relatively simple, and only relatively elementary properties　of programs can be expressed and thus checked by a type-checker.
 
-	これを達成するために、現実的なプログラミング言語の型システムは、多くの場合、比較的簡単で、プログラムだけの比較的基本の特性を発現させることができるので、型チェッカによって確認ある。
+	これを達成するために、現実的なプログラミング言語の型システムは、多くの場合、型チェッカによって確認されているので比較的簡単に、プログラムだけの比較的基本の特性を発現させることができる。
 
 	For instance, the error of taking the first element out of an empty list cannot be prevented by the type system of ML since it does not distinguish an empty list from a non-empty one.
 
+	例えば、空のリストから最初の要素を取得するエラーは空でないリストと空のリストを区別していないので、MLの型システムによって防止することができない。
+
 	Richer type theories such as the Calculus of Inductive Constructions (underlying Coq) or Martin-L¨of type theories (underlying NuPrl) allow full specifications to be formulated, which means that type-checking becomes undecidable or requires excessively verbose type annotations.
+
+
+	（コックの基礎をなす）帰納的構造の計算法または（NuPrlの基礎をなす）マーティン-L型理論など豊かな型理論は、完全な仕様が策定されることを可能にし、これは型チェックが決定不能になったり、過度に冗長な型注釈が必要なことを意味する。
 
 	It also constrains the underlying functional language to remain relatively pure, so that it is possible to effectively reason about program properties within a type theory.
 
+	また、効果的に型理論内のプログラムのプロパティについて推論することが可能となるように、基礎となる関数型言語では、比較的純粋なままに制約する。
 
 		datatype ’a list (int) =
 		    nil(0) | {n:nat} cons(n+1) of ’a * ’a list(n)
