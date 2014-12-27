@@ -352,35 +352,75 @@
 
 	We introduce a simply typed programming language λpat, which essentially extends the simply typed λ-calculus with pattern matching.
 
+	私たちは、基本的にパターンマッチングと単純に型指定されたλ計算を拡張し、単純に型付けされたプログラミング言語λpatを、ご紹介します。
+
 	We emphasize that there are no new contributions in this section. Instead, we primarily use λpat as an example
 	to show how a type system is developed.
 
+	我々は、このセクションに新たな貢献がないことを強調する。その代わりに、私たちは主に例としてλpat使用
+	型システムが開発されているかを表示します。
+
 	In particularly, we show how various properties of λpat are chained together in order to establish the type soundness of λpat. 
+
+	特に、我々はλpatの様々な特性がλpatのタイプの健全性を確立するために、一緒に連鎖される方法を示しています。
 
 	The subsequent development of the dependent type system in Section 4 and all of its extensions will be done in parallel to the development of λpat.
 
-	Except Lemma 2.14, all the results in this section are well-known and thus their proofs are
-	omitted.
+	セクション4とその拡張のすべての従属型システムのその後の開発はλpatの発展に並行して行われる。
+
+	Except Lemma 2.14, all the results in this section are well-known and thus their proofs are　omitted.
+
+
+	補題2.14を除いて、このセクションのすべての結果は、よく知られているので、それらの証明である省略。
+
 
 	The syntax of λpat is given in Figure 3. We use δ for base types such as int and bool and τ for types.
 
+	図3に与えられているλpatの構文は、私たちは、タイプのint型とブール値とτなどの基本型用のδを使用しています。
+
 	We use x for lam-bound variables and f for fix-bound variables, and xf for either x or f.
+
+	我々は、XまたはfのどちらかのためにLAM-バインド変数とFIX-バインドされた変数のためのF、およびXF用のXを使用しています。
 
 	Given an expression e, we write FV(e) for the set of free variables xf in e, which is defined as usual.
 
+	式eを考えると、私たちはいつものように定義されている電子で自由変数のXFのセット、のためにFV（e）を書く。
+
 	A lam-bound variable is considered a value but a fix-bound variable is not.
+
+	LAM-バインドされた変数は、値と考えたが修正バインド変数がありません。
 
 	We use the name observable value for a closed value that does not contain a lambda expression lamx. e as its substructure.
 
+	私たちは、ラムダ式のlamxが含まれていない、閉じた値の名前に観察値を使用します。その基礎として、電子。
+
 	We use c for a constant, which is either a constant constructor cc or a constant function cf .
+
+	当社は、一定のコンストラクタCCまたは定数関数のCFのどちらかである定数、C言語を使用します。
 
 	Each constant c is assigned a constant type (or c-type, for short) of the form τ ⇒ δ. Note that a c-type is not regarded as a (regular) type.
 
-	For each constant constructor cc assigned the type 1 ⇒ δ, we may write cc as a shorthand for cc(hi), where hi stands for the unit of the unit type 1. In the following presentation, we assume that the boolean values true and false are assigned the type 1 ⇒ bool and every integer i is assigned the type 1 ⇒ int.
+	各定数cは、フォーム、τ⇒δの（略して、またはC型）定数型が割り当てられます。 C型は（レギュラー）型とはみなされないことに注意してください。
+
+	For each constant constructor cc assigned the type 1 ⇒ δ, we may write cc as a shorthand for cc(hi), where hi stands for the unit of the unit type 1.
+
+	型1。⇒δを割り当てられた各定数コンストラクタCCのために、我々は、CCの省略形として、CCを書き込むことが（HI）、HIでユニットタイプ1の単位を表します。
+
+	In the following presentation, we assume that the boolean values true and false are assigned the type 1 ⇒ bool and every integer i is assigned the type 1 ⇒ int.
+
+	以下の発表では、trueとfalseのブール値は、型1⇒ブールが割り当てられ、すべての整数iが型1⇒INTを割り当てられていることを前提としています。
 
 	Note that we do not treat the tuple constructor h·, ·i as a special case of constructors.
 
-	Instead, we introduce tuples into λpat explicitly. The primary reason for this decision is that tuples are to be handled specially in Section 5, where an elaboration procedure is presented for supporting a form of partial type inference in the presence of dependent types.
+	私たちは、コンストラクタの特殊なケースとして、·、·私はタプルコンストラクタhを治療しないことに注意してください。
+
+	Instead, we introduce tuples into λpat explicitly.
+
+	その代わりに、我々は、明示的にλpatにタプルを紹介する。
+
+	The primary reason for this decision is that tuples are to be handled specially in Section 5, where an elaboration procedure is presented for supporting a form of partial type inference in the presence of dependent types.
+
+	この決定の主な理由は、タプルが精緻化手順は依存型の存在下で、部分的な型推論の形式をサポートするために提示されている第5節、に特別に扱われるべきであるということである。
 
 		x ↓ τ ⇒ x : τ
 		(pat-var)
@@ -394,22 +434,35 @@
 		(pat-const)
 		Fig. 4. The typing rules for patterns in λpat
 
-
-
 	We use θ for a substitution, which is a finite mapping that maps lam-bound variables x to values and fix-bound variables to fixed-point expressions.
 
+	我々は、固定小数点式に値と固定し、バインドされた変数にLAM-バインドされた変数xをマッピング有限マッピングである置換、のためにθを使用しています。
+
 	We use [] for the empty substitution and θ[xf 7→ e] for the substitution that extends θ with a link from xf to e, where it is assumed that xf is not in the domain dom(θ) of θ.
+
+	私たちは、それがXFはθのドメインDOM（θ）になっていないことを想定しているeまでXFからのリンク、とθを拡張置換のための空の置換及びθ[E→XF7]で[]を使用します。
 
 	Also, we may write [xf 1
 	7→ e1, . . . , xf n
 	7→ en] for a substitution that maps xf i
 	to ei
-	for 1 ≤ i ≤ n. We omit the further details on substitution, which are completely
-	standard. Given a piece of syntax • (representing expressions, evaluation contexts,
-	etc.), we use •[θ] for the result of applying θ to •.
-	We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with
-	one additional declaration xf : τ , where we assume that xf is not already declared
-	in Γ. A context Γ = ∅, xf 1
+
+	for 1 ≤ i ≤ n.
+
+	We omit the further details on substitution, which are completely standard.
+
+	私たちは完全に標準装備されています置換に関するさらなる詳細は、省略します。
+
+
+	Given a piece of syntax • (representing expressions, evaluation contexts, etc.), we use •[θ] for the result of applying θ to •.
+
+	（などの表現、評価コンテキストを表す）の構文•の作品、我々は•使用を考えると[θ]•するθを適用した結果のために。
+	
+	We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with one additional declaration xf : τ , where we assume that xf is not already declared in Γ.
+
+	私たちは、空の文脈とΓ、XFのため∅使用：τを1追加の宣言XFとΓを拡張コンテキスト用：τ、私たちはそのXFがすでにΓで宣言されていませんと仮定します。
+
+	A context Γ = ∅, xf 1
 	: τ1, . . . , xf n
 	: τn may also be treated as a finite mapping
 	that maps xf i
@@ -444,21 +497,38 @@
 	1
 	, . . . , xf 0
 	n0 are distinct.
-	As a form of syntactic sugar, we may write let hx1, x2i = e1 in e2 end for the
-	following expression:
-	let x = e1 in let x1 = fst(x) in let x2 = snd(x) in e2 end end end
+
+	As a form of syntactic sugar, we may write let hx1, x2i = e1 in e2 end for the following expression:
+
+	構文糖の形として、我々は次の式のためのE2最後にHX1、X2I= E1を聞かせて書くことがあります:
+
+		let x = e1 in let x1 = fst(x) in let x2 = snd(x) in e2 end end end
+
 	where x is assumed to have no free occurrences in e1, e2.
+
+	ここで、xは、E2をE1に空き出現がないと仮定される。
 
 - 2.1 Static semantics
 
 	We use p for patterns and require that a variable occur at most once in a pattern.
-	Given a pattern p and a type τ , we can derive a judgment of the form p ↓ τ ⇒ Γ
-	with the rules in Figure 4, which reads that checking pattern p against type τ
-	yields a context Γ. Note that the rule (pat-prod) is unproblematic since p1 and p2
-	cannot share variables. Also note that we write ` cc(τ ) : δ in the rule (pat-const)
-	to indicate that cc is a constant constructor of c-type τ ⇒ δ. As an example, let
-	us assume that intlist is a base type, and nil and cons are constructors of c-types
-	1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively; then the following judgments
+
+	私たちは、パターン用のpを使用し、変数がパターン内に最大1回出現していることが必要です。
+
+	Given a pattern p and a type τ , we can derive a judgment of the form p ↓ τ ⇒ Γ with the rules in Figure 4, which reads that checking pattern p against type τ yields a context Γ.
+
+	パターンpと型τを考えると、我々は、型τに対してパターンpをチェックするコンテキストΓが得られること読み込む図4のルールを持つフォームP↓のτの⇒Γ、の判断を導き出すことができます。
+
+	Note that the rule (pat-prod) is unproblematic since p1 and p2 cannot share variables.
+
+	p1およびp2は、変数を共有することができないので、ルール(pat-prod)は問題がないことに注意してください。
+
+	Also note that we write ` cc(τ ) : δ in the rule (pat-const) to indicate that cc is a constant constructor of c-type τ ⇒ δ.
+
+	そのCCはC型τの定数コンストラクタはδを⇒であることを示すために、ルール（PAT-定数）でδ：また、我々は`CC（τ）を書くことに注意してください。
+
+	As an example, let us assume that intlist is a base type, and nil and cons are constructors of c-types 1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively; then the following judgments
+
+	例として、私たちはそのintlistがベース型であり、ゼロと短所がC-種類それぞれ1⇒のintlistとINT* intlist。⇒intlist、のコンストラクタであると仮定しましょう。次の判決
 
 	Γ(xf ) = τ
 	Γ ` xf : τ
@@ -498,20 +568,42 @@
 	Γ ` e1 : τ1 Γ, x : τ1 ` e2 : τ2
 	Γ ` let x = e1 in e2 end : τ2
 	(ty-let)
+
 	Fig. 5. The typing rules for expressions in λpat
+
 	are derivable:
-	cons (hx, xsi) ↓ intlist ⇒ x : int, xs : intlist
-	cons (hx, nil(hi)i) ↓ intlist ⇒ x : int
-	We present the typing rules for expressions in Figure 5. The rule (ty-clause) is
-	for assigning types to clauses. Generally speaking, a clause p ⇒ e can be assigned
-	the type τ1 → τ2 if e can be assigned the type τ2 under the assumption that p is
-	given the type τ1.
-	In the following presentation, given some form of judgment J, we use D :: J for
-	a derivation of J. The structure of a derivation D is a tree, and we use height(D)
-	for its height, which is defined as usual.
-	The following standard lemma simply reflects that extra assumptions can beJournal of Functional Programming 9
-	discarded in intuitionistic reasoning. It is needed, for instance, in the proof of
-	Lemma 2.3, the Substitution Lemma for λpat.
+
+		cons (hx, xsi) ↓ intlist ⇒ x : int, xs : intlist
+		cons (hx, nil(hi)i) ↓ intlist ⇒ x : int
+
+	We present the typing rules for expressions in Figure 5.
+
+	私たちは、図5の式の型付け規則を提示する。
+
+	The rule (ty-clause) is for assigning types to clauses.
+
+	（TY-句）ルールが句に型を割り当てるためです。
+
+	Generally speaking, a clause p ⇒ e can be assigned the type τ1 → τ2 if e can be assigned the type τ2 under the assumption that p is given the type τ1.
+
+	一般的に言えば、句のp⇒eはタイプを割り当てることができるτ1→τ2電子は、p型のτ1が与えられているという仮定の下型τ2を割り当てることができる場合。
+
+	In the following presentation, given some form of judgment J, we use D :: J for a derivation of J.
+
+	判定J何らかの形の所与の次のプレゼンテーションでは、我々は、Jの導出D:: Jを使用
+
+	The structure of a derivation D is a tree, and we use height(D) for its height, which is defined as usual.
+
+	派生Dの構造は木であり、我々はいつものように定義され、その高さ、のために高さ（D）を使用します。
+
+	The following standard lemma simply reflects that extra assumptions can beJournal of Functional Programming 9 discarded in intuitionistic reasoning.
+
+	次の標準補題は単に余分な仮定がbeJournalは関数型プログラミングの9は直観主義的推論に廃棄されたことを反映している。
+
+	It is needed, for instance, in the proof of Lemma 2.3, the Substitution Lemma for λpat.
+
+	それは、補題2.3、λpatの置換補題の証明では、例えば、必要とされる。
+
 	Lemma 2.1 (Thinning)
 	Assume D :: Γ ` e : τ . Then there is a derivation D0
 	:: Γ, xf : τ
@@ -520,11 +612,19 @@
 	), where τ
 	0
 	is any well-formed type.
-	The following lemma indicates a close relation between the type of a closed value
-	and the form of the value. This lemma is needed to establish Theorem 2.9, the
-	Progress Theorem for λpat.
+
+	The following lemma indicates a close relation between the type of a closed value and the form of the value.
+
+	次の補題は、閉じた値の型と値の形の間には密接な関係を示している。
+
+	This lemma is needed to establish Theorem 2.9, the Progress Theorem for λpat.
+
+	この補題はλpatのため定理2.9、進捗定理を確立するために必要とされる。
+
 	Lemma 2.2 (Canonical Forms)
+
 	Assume that ∅ ` v : τ is derivable.
+
 	1. If τ = δ for some base type δ, then v is of the form cc(v0), where cc is a
 	constant constructor assigned a c-type of the form τ0 ⇒ δ.
 	2. If τ = 1, then v is hi.
@@ -547,99 +647,118 @@
 
 - 2.2 Dynamic semantics
 
-	We assign dynamic semantics to expressions in λpat through the use of evaluation
-	contexts defined as follows.
+	We assign dynamic semantics to expressions in λpat through the use of evaluation contexts defined as follows.
+
+	私たちは次のように定義された評価コンテキストを使用することによりλpatにおける式への動的なセマンティクスを割り当てる。
+
 	Definition 2.4 (Evaluation Contexts)
-	evaluation contexts E ::= [] | c(E) | hE, ei | hv, Ei | fst(E) | snd(E) |
-	case E of ms | E(e) | v(E) | let x = E in e end
-	We use FV(E) for the set of free variables xf in E. Note that every evaluation
-	context contains exactly one hole [] in it. Given an evaluation context E and an
-	expression e, we use E[e] for the expression obtained from replacing the hole []
-	in E with e. As the hole [] in no evaluation context can appear in the scope of a10 Hongwei Xi
-	match(v, x) ⇒ [x 7→ v]
-	(mat-var)
-	match(hi, hi) ⇒ [] (mat-unit)
-	match(v1, p1) ⇒ θ1 match(v2, p2) ⇒ θ2
-	match(hv1, v2i, hp1, p2i) ⇒ θ1 ∪ θ2
-	(mat-prod)
-	match(v, p) ⇒ θ
-	match(c(v), c(p)) ⇒ θ
-	(mat-const)
+
+	定義2.4（評価コンテキスト）
+
+		evaluation contexts E ::= [] | c(E) | hE, ei | hv, Ei | fst(E) | snd(E) |
+		case E of ms | E(e) | v(E) | let x = E in e end
+
+	We use FV(E) for the set of free variables xf in E.
+
+	私たちは、Eにおける自由変数のXFのセットFV（E）を使用します
+
+	Note that every evaluation context contains exactly one hole [] in it.
+
+	すべての評価コンテキストがそれに正確に一つの穴[]が含まれていることに注意してください。
+
+	Given an evaluation context E and an expression e, we use E[e] for the expression obtained from replacing the hole [] in E with e.
+
+	評価コンテキストEと式eを考えると、我々が使用するE [E]の穴を交換から得られた発現のために[] EとE中。
+
+	As the hole [] in no evaluation context can appear in the scope of a lam-binder or a fix-binder, there is no issue of capturing free variables in such a replacement.
+
+	無評価コンテキストの穴[]は、LAM-バインダーまたはFIX-バインダーのスコープに表示できるように、このような交換に自由変数をキャプチャは問題ありません。
+
+		match(v, x) ⇒ [x 7→ v]
+		(mat-var)
+		match(hi, hi) ⇒ [] (mat-unit)
+		match(v1, p1) ⇒ θ1 match(v2, p2) ⇒ θ2
+		match(hv1, v2i, hp1, p2i) ⇒ θ1 ∪ θ2
+		(mat-prod)
+		match(v, p) ⇒ θ
+		match(c(v), c(p)) ⇒ θ
+		(mat-const)
+
 	Fig. 6. The pattern matching rules for λpat
-	lam-binder or a fix-binder, there is no issue of capturing free variables in such a
-	replacement.
-	Given a pattern p and a value v, a judgment of the form match(v, p) ⇒ θ,
-	which means that matching a value v against a pattern p yields a substitution for
-	the variables in p, can be derived through the application of the rules in Figure 6.
-	Note that the rule (mat-prod) is unproblematic because p1 and p2 can share no
-	common variables as hp1, p2i is a pattern.
+
+	図6.λpatためのルールのパターンマッチング
+
+	Given a pattern p and a value v, a judgment of the form match(v, p) ⇒ θ, which means that matching a value v against a pattern p yields a substitution for the variables in p, can be derived through the application of the rules in Figure 6.
+
+	パターンpに対する値vに一致するページ内の変数の置換を生じることを意味するパターンpと値v、フォーム一致の判定（V、P）θを⇒を、所与のアプリケーションを介して誘導することができる図6のルール。
+	
+	Note that the rule (mat-prod) is unproblematic because p1 and p2 can share no common variables as hp1, p2i is a pattern.
+
+	P1およびP2はHP1として共通の変数を共有することはできませんので、ルール（マット-PROD）は問題がないことに注意してください、P2Iはパターンです。
+
 	Definition 2.5
-	We define evaluation redexes (or ev-redex, for short) and their reducts in λpat as
-	follows:
+
+	定義2.5
+	
+	We define evaluation redexes (or ev-redex, for short) and their reducts in λpat as follows:
+
+	次のように我々は、評価redexes（またはEV-可約式、ショート用）とλpatでの縮約を定義します。	
+
 	• fst(hv1, v2i) is an ev-redex, and its reduct is v1.
 	• snd(hv1, v2i) is an ev-redex, and its reduct is v2.
 	• (lam x. e)(v) is an ev-redex, and its reduct is e[x 7→ v].
 	• fix f. e is an ev-redex, and its reduct is e[f 7→ fix f. e].
 	• let x = v in e end is an ev-redex, and its reduct is e[x 7→ v].
-	• case v of (p1 ⇒ e1 | · · · | pn ⇒ en) is an ev-redex if match(v, pk) ⇒ θ is
-	derivable for some 1 ≤ k ≤ n, and its reduct is ek[θ].
-	• cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined
-	to be some value v
-	0
-	. In this case, the reduct of cf(v) is v
-	0
-	. Note that a value
-	is observable if it does not contain any lambda expression lamx. e as its
+	• case v of (p1 ⇒ e1 | · · · | pn ⇒ en) is an ev-redex if match(v, pk) ⇒ θ is derivable for some 1 ≤ k ≤ n, and its reduct is ek[θ].
+	• cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined to be some value v0. In this case, the reduct of cf(v) is v0. Note that a value is observable if it does not contain any lambda expression lamx. e as its
 	substructure.
-	The one-step evaluation relation ,→ev is defined as follows: We write e1 ,→ev e2 if
-	e1 = E[e] for some evaluation context E and ev-redex e, and e2 = E[e
-	0
-	], where e
-	0
-	is
-	a reduct of e. We use ,→∗
-	ev for the reflexive and transitive closure of ,→ev and say
-	that e1 ev-reduces (or evaluates) to e2 if e1 ,→∗
-	ev e2 holds. There is certain amount
-	of nondeterminism in the evaluation of expressions: case v of ms may reduce to
-	e[θ] for any clause p ⇒ e in ms such that match(v, p) ⇒ θ is derivable. This form
-	of nondeterminism can cause various complications, which we want to avoid in the
-	first place. In this paper, we require that the patterns p1, . . . , pn in a matching clause
-	sequence (p1 ⇒ e1 | · · · | pn ⇒ en) be disjoint, that is, for 1 ≤ i 6= j ≤ n, there are
-	no values v that can match both pi and pj .Journal of Functional Programming 11
-	In the actual implementation, we do allow overlapping patterns in a matching
-	clause sequence, and we avoid nondeterminism by performing pattern matching in a
-	deterministic sequential manner. We could certainly do the same in the theoretical
-	development, but this may complicate the evaluation of open programs, that is,
-	programs containing free variables. For instance, let e1 and e2 be the following
-	expressions case cons(x, xs) of (nil ⇒ true | x
-	0 ⇒ false) and case x of (nil ⇒
-	true | x
-	0 ⇒ false), respectively. Clearly, we should evaluate e1 to false, but we
-	should not evaluate e2 to false as we do not know whether x matches nil or not.
-	This complication is simply avoided when patterns in a matching clause sequence
-	are required to be disjoint.
-	The meaning of a judgment of the form p ↓ τ ⇒ Γ is captured precisely by
-	following lemma.
+	
+	The one-step evaluation relation ,→ev is defined as follows: We write e1 ,→ev e2 if e1 = E[e] for some evaluation context E and ev-redex e, and e2 = E[e0], where e0 is a reduct of e.
+
+	We use ,→∗ ev for the reflexive and transitive closure of ,→ev and say that e1 ev-reduces (or evaluates) to e2 if e1 ,→∗ ev e2 holds.
+
+	There is certain amount of nondeterminism in the evaluation of expressions: case v of ms may reduce to e[θ] for any clause p ⇒ e in ms such that match(v, p) ⇒ θ is derivable.
+
+	This form of nondeterminism can cause various complications, which we want to avoid in the first place.
+
+	In this paper, we require that the patterns p1, . . . , pn in a matching clause sequence (p1 ⇒ e1 | · · · | pn ⇒ en) be disjoint, that is, for 1 ≤ i 6= j ≤ n, there are no values v that can match both pi and pj .
+
+	Journal of Functional Programming 11 In the actual implementation, we do allow overlapping patterns in a matching clause sequence, and we avoid nondeterminism by performing pattern matching in a deterministic sequential manner.
+
+	We could certainly do the same in the theoretical development, but this may complicate the evaluation of open programs, that is, programs containing free variables.
+
+	For instance, let e1 and e2 be the following expressions case cons(x, xs) of (nil ⇒ true | x 0 ⇒ false) and case x of (nil ⇒
+	true | x 0 ⇒ false), respectively.
+
+	Clearly, we should evaluate e1 to false, but we should not evaluate e2 to false as we do not know whether x matches nil or not.
+
+	This complication is simply avoided when patterns in a matching clause sequence are required to be disjoint.
+
+	The meaning of a judgment of the form p ↓ τ ⇒ Γ is captured precisely by following lemma.
+	
 	Lemma 2.6
-	Assume that the typing judgment ∅ ` v : τ is derivable. If p ↓ τ ⇒ Γ and
-	match(v, p) ⇒ θ are derivable, then ∅ ` θ : Γ holds.
+	
+	Assume that the typing judgment ∅ ` v : τ is derivable. If p ↓ τ ⇒ Γ and match(v, p) ⇒ θ are derivable, then ∅ ` θ : Γ holds.
+
 	Definition 2.7
-	We introduce some forms to classify closed expressions in λpat. Given a closed
-	expression e in λpat, which may or may not be well-typed,
+
+	定義2.7
+
+	We introduce some forms to classify closed expressions in λpat.
+
+	私たちは、λpatで、閉じた表現を分類するためにいくつかのフォームをご紹介します。
+
+	Given a closed expression e in λpat, which may or may not be well-typed,
+
+	または十分に型付けされてもされなくてもよいλpatで、閉じた式eが与えられると、
+	
 	• e is in V-form if e is a value.
-	• e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So
-	if e is in R-form, then it can be evaluated further.
-	• e is in M-form if e = E[case v of ms] such that case v of ms is not an
-	ev-redex. This is a case where pattern matching fails because none of the
-	involved patterns match v.
-	• e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division
-	by zero is such a case.
-	• e is in E-form otherwise. We will prove that this is a case that can never occur
-	during the evaluation of a well-typed program.
-	We introduce three symbols Error, Match and Undefined, and use EMU for the
-	set {Error,Match, Undefined} and EMUV for the union of EMU and the set
-	of observable values. We write e ,→∗
+	• e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So if e is in R-form, then it can be evaluated further.
+	• e is in M-form if e = E[case v of ms] such that case v of ms is not an ev-redex. This is a case where pattern matching fails because none of the involved patterns match v.
+	• e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division by zero is such a case.
+	• e is in E-form otherwise. We will prove that this is a case that can never occur during the evaluation of a well-typed program.
+	
+	We introduce three symbols Error, Match and Undefined, and use EMU for the set {Error,Match, Undefined} and EMUV for the union of EMU and the set of observable values. We write e ,→∗
 	ev Error, e ,→∗
 	ev Match and e ,→∗
 	ev Undefined
@@ -649,11 +768,18 @@
 	for some e
 	0
 	in E-form, M-form and U-form, respectively.
-	It can be readily checked that the evaluation of a (not necessarily well-typed)
-	program in λpat may either continue forever or reach an expression in V-form, Mform,
-	U-form, or E-form. We will show that an expression in E-form can never
-	be encountered if the evaluation starts with a well-typed program in λpat. This is
-	precisely the type soundness of λpat.
+
+	It can be readily checked that the evaluation of a (not necessarily well-typed) program in λpat may either continue forever or reach an expression in V-form, Mform, U-form, or E-form.
+
+	それは容易になりλpatでの評価（必ずしも十分に型付けされた）プログラムは永遠に継続するか、V-形、Mform、U-フォーム、またはE-形で式に達する可能性がどちらかことを確認することができます。
+
+	We will show that an expression in E-form can never be encountered if the evaluation starts with a well-typed program in λpat.
+
+	我々は、評価がλpatではよく型付けされたプログラムで始まる場合は、E-形で式に遭遇することはできませんと表示されます。
+
+	This is precisely the type soundness of λpat.
+
+	これは正確にλpatのタイプの健全性である。
 
 - 2.3 Type soundness
 
