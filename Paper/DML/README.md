@@ -2,7 +2,7 @@
 
 	We present an approach to enriching the type system of ML with a restricted form of dependent types, where type index terms are required to be drawn from a given type index language L that is completely separate from run-time programs, leading to the DML(L) language schema.
 
-	私たちは、DML（L）言語スキーマにつながる、型インデックス項がランタイムプログラムから完全に分離され、指定された型インデックス言語Lから取り出されることが要求される依存型の制限された形で、MLの型システムの拡張のアプローチを提示する。
+	我々は、DML（L）言語スキーマにつながる、型インデックス項がランタイムプログラムから完全に分離され、指定された型インデックス言語Lから取り出されることが要求される依存型の制限された形で、MLの型システムの拡張のアプローチを提示する。
 
 	This enrichment allows for specification and inference of significantly more precise type information, facilitating program error detection and compiler optimization.
 
@@ -10,7 +10,7 @@
 
 	The primary contribution of the paper lies in our language design, which can effectively support the use of dependent types in practical programming.
 
-	本論文の主要な貢献は、効果的に実践的なプログラミングの依存型の使用をサポートすることができる、私たちの言語設計にあります。
+	本論文の主要な貢献は、効果的に実践的なプログラミングの依存型の使用をサポートすることができる、我々の言語設計にあります。
 
 	In particular, this design makes it both natural and straightforward to accommodate dependent types in the presence of effects such as references and exceptions.
 
@@ -25,7 +25,7 @@
 	We do not attempt to incorporate into this paper some recent, closely related results (e.g., guarded recursive datatypes (Xi et al., 2003), Applied Type System (Xi, 2004)), with which we only provide certain comparison.
 
 
-	私たちはこの論文にいくつかの最近の、密接に関連した結果（例えば、ガードされた再帰的なデータ型（Xi et al., 2003）、Applied Type System （XI、2004））を組み込まない。
+	我々はこの論文にいくつかの最近の、密接に関連した結果（例えば、ガードされた再帰的なデータ型（Xi et al., 2003）、Applied Type System （XI、2004））を組み込まない。
 
 	Type systems for functional languages can be broadly classified into those for rich, realistic programming languages such as Standard ML (Milner et al., 1997), Objective Caml (INRIA, n.d.), or Haskell (Peyton Jones et al. , 1999), and those for small, pure languages such as the ones underlying Coq (Dowek et al., 1993), NuPrl (Constable et al. , 1986), or PX (Hayashi & Nakano, 1988).
 
@@ -74,7 +74,7 @@
 
 	We conservatively extend the type system of ML by allowing some dependencies while maintaining practical and unintrusive type-checking.
 
-	私たちは、保守的に実用的とunintrusive型チェックを維持しながら、いくつかの依存関係を可能にすることにより、MLの型システムを拡張する。
+	我々は、保守的に実用的とunintrusive型チェックを維持しながら、いくつかの依存関係を可能にすることにより、MLの型システムを拡張する。
 
 	It will be shown that a program that is typable in the extended type system is already typable in ML.
 
@@ -90,7 +90,7 @@
 
 	We now present a short example from our implementation before going into further details.
 
-	私たちは、ここでさらに詳細に入る前に、当社の実装から短い例を提示する。
+	我々は、ここでさらに詳細に入る前に、当社の実装から短い例を提示する。
 
 	A correct implementation of the append function on lists should return a list of length m + n when given two lists of length m and n, respectively.
 
@@ -98,7 +98,7 @@
 
 	This property, however, cannot be captured by the type system of ML, and the inadequacy can be remedied if we introduce a restricted form of dependent types.
 
-	このプロパティは、しかし、MLの型システムによって捕獲することができない、と私たちは依存型の制限された形を導入した場合に不備が改善することができます。
+	このプロパティは、しかし、MLの型システムによって捕獲することができない、と我々は依存型の制限された形を導入した場合に不備が改善することができます。
 
 	The code in Figure 1 is written in the style of ML with a type annotation.
 
@@ -155,7 +155,7 @@
 
 	which we often call a universal dependent type.
 
-	その私たちはしばしばユニバーサル依存型を呼び出します。
+	その我々はしばしばユニバーサル依存型を呼び出します。
 
 	In general, the programmer is responsible for assigning dependent types to value constructors associated with a declared datatype constructor; he or she is also responsible for providing type annotations against which programs are automatically checked.
 	
@@ -171,7 +171,7 @@
 
 	We briefly summarize our results and design choices as follows.
 	
-	次のように私たちは簡単に我々の結果と設計上の選択を要約。
+	次のように我々は簡単に我々の結果と設計上の選択を要約。
 
 	The first question that arises is the meaning of expressions with effects when they occur as type index terms.
 
@@ -183,7 +183,7 @@
 
 	In fact, our type system is parameterized over a pure type index language from which type index terms are drawn.
 
-	実際には、私たちの型システムは、型インデックス用語が描画されるから純粋なタイプインデックス言語上のパラメータ化されている。
+	実際には、我々の型システムは、型インデックス用語が描画されるから純粋なタイプインデックス言語上のパラメータ化されている。
 
 	We can maintain this purity and still make the connection to run-time values by using singleton types, such as int(n), which is the type for integer expressions of value equal to n.
 
@@ -228,7 +228,7 @@
 
 	where {a : nat | a ≤ m} is a sort for natural numbers that are less than or equal to m.
 
-	ここで、{：NATは|≤mは}メートル以下の自然数のソートです。
+	ここで、{a : nat | a ≤ m} はm以下の自然数のソートです。
 
 	The type Σn:{a : nat | a ≤ m}. (α)list(n), which is for lists of length less than or equal to m, is what we call an existential dependent type.
 
@@ -240,7 +240,7 @@
 
 	Without existential dependent types, in order to assign a type to filter, we may have to compute in the type system the exact length of the output list returned by filter in terms of the input list and the predicate taken by filter.
 
-	実存依存型がなければ、フィルタに型を割り当てるために、私たちは型システムに入力リストとフィルタが撮影した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
+	実存依存型がなければ、フィルタに型を割り当てるために、我々は型システムに入力リストとフィルタが撮影した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
 
 	This would most likely make the type system too complicated for practical programming.
 
@@ -256,7 +256,7 @@
 
 	We have also implemented our design for a fragment of ML that encompasses all these features. In addition, we have experimented with different constraint domains and applications.
 
-	また、これらすべての機能を包含し、MLの断片のために私たちのデザインを実装しました。加えて、我々は別の制約ドメインおよびアプリケーションで実験してきた。
+	また、これらすべての機能を包含し、MLの断片のために我々のデザインを実装しました。加えて、我々は別の制約ドメインおよびアプリケーションで実験してきた。
 
 	Many non-trivial examples can be found in (Xi, 1999).
 
@@ -297,7 +297,7 @@
 
 	We then formally describe in Section 3 how type index languages can be formed.
 
-	タイプインデックス言語を形成することができるどのように私たちは、その後正式に第3章で説明します。
+	タイプインデックス言語を形成することができるどのように我々は、その後正式に第3章で説明します。
 
 	In particular, we explain how constraint relations can be properly defined in type index languages.
 
@@ -317,7 +317,7 @@
 
 	We present a set of elaboration rules and then justify these rules by proving that they preserve the dynamic semantics of programs.
 
-	私たちは、推敲ルールのセットを提示し、その後、彼らはプログラムの動的なセマンティクスを維持することを証明することによって、これらの規則を正当化する。
+	我々は、推敲ルールのセットを提示し、その後、彼らはプログラムの動的なセマンティクスを維持することを証明することによって、これらの規則を正当化する。
 
 	In support of the practicality of λΠ,Σ pat , we extend λΠ,Σ pat in Section 6 with parametric polymorphism (as is supported in ML), exceptions and references.
 
@@ -327,15 +327,15 @@
 
 	また、我々は、依存型ができますどのように読者に感じを与えるために第7節では、いくつかの興味深い例を提示
 
-		base types δ ::= bool | int | . . .
-		types τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
-		patterns p ::= x | f | hi | hp1, p2i | cc(p)
+		base types    δ ::= bool | int | . . .
+		types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
+		patterns      p ::= x | f | hi | hp1, p2i | cc(p)
 		matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
-		constants c ::= cc | cf
-		expressions e ::= xf | c(e) | hi | he1, e2i | fst(e) | snd(e) | case e of ms |
-		lamx. e | e1(e2) | fix f. e | let x = e1 in e2 end
-		values v ::= x | cc(v) | hi | hv1, v2i | lamx. e
-		contexts Γ ::= · | Γ, xf : τ
+		constants     c ::= cc | cf
+		expressions   e ::= xf | c(e) | hi | he1, e2i | fst(e) | snd(e) | case e of ms |
+		                    lamx. e | e1(e2) | fix f. e | let x = e1 in e2 end
+		values        v ::= x | cc(v) | hi | hv1, v2i | lamx. e
+		contexts      Γ ::= · | Γ, xf : τ
 		substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
 
 	Fig. 3. The syntax for λpat
@@ -346,23 +346,25 @@
 
 	We mention some closely related work in Section 8 and then conclude.
 
-	私たちは、第8章のいくつかの密接に関連した仕事を言及してから結論付けている。
+	我々は、第8章のいくつかの密接に関連した仕事を言及してから結論付けている。
 
 - 2 λpat: A starting point
 
 	We introduce a simply typed programming language λpat, which essentially extends the simply typed λ-calculus with pattern matching.
 
-	私たちは、基本的にパターンマッチングと単純に型指定されたλ計算を拡張し、単純に型付けされたプログラミング言語λpatを、ご紹介します。
+	我々は基本的にパターンマッチングと単純に型付けされたλ計算を拡張し、単純に型付けされたプログラミング言語λpatを、紹介します。
 
-	We emphasize that there are no new contributions in this section. Instead, we primarily use λpat as an example
-	to show how a type system is developed.
+	We emphasize that there are no new contributions in this section.
 
-	我々は、このセクションに新たな貢献がないことを強調する。その代わりに、私たちは主に例としてλpat使用
-	型システムが開発されているかを表示します。
+	我々は、このセクションに新たな貢献がないことを強調する。
+
+	Instead, we primarily use λpat as an example to show how a type system is developed.
+
+	その代わりに、我々は主に例としてλpat使用型システムが開発されているかを表示します。
 
 	In particularly, we show how various properties of λpat are chained together in order to establish the type soundness of λpat. 
 
-	特に、我々はλpatの様々な特性がλpatのタイプの健全性を確立するために、一緒に連鎖される方法を示しています。
+	特に、我々はλpatの様々な特性がλpatの型の健全性を確立するために、一緒に連鎖される方法を示しています。
 
 	The subsequent development of the dependent type system in Section 4 and all of its extensions will be done in parallel to the development of λpat.
 
@@ -370,37 +372,46 @@
 
 	Except Lemma 2.14, all the results in this section are well-known and thus their proofs are　omitted.
 
+	補題2.14を除いて、このセクションのすべての結果は、よく知られているので、それらの証明は省略します。
 
-	補題2.14を除いて、このセクションのすべての結果は、よく知られているので、それらの証明である省略。
+	The syntax of λpat is given in Figure 3.
+
+	λpatの構文は、図3に示されている。
 
 
-	The syntax of λpat is given in Figure 3. We use δ for base types such as int and bool and τ for types.
+	We use δ for base types such as int and bool and τ for types.
 
-	図3に与えられているλpatの構文は、私たちは、タイプのint型とブール値とτなどの基本型用のδを使用しています。
+	我々は型のint型とブールとτなどの基本型用のδを使用しています。
 
 	We use x for lam-bound variables and f for fix-bound variables, and xf for either x or f.
 
-	我々は、XまたはfのどちらかのためにLAM-バインド変数とFIX-バインドされた変数のためのF、およびXF用のXを使用しています。
+	我々は、xの為のlam-バインド変数とfにfix-バインドされた変数、およびxかfのいずれかのためにxfを使用しています。
 
 	Given an expression e, we write FV(e) for the set of free variables xf in e, which is defined as usual.
 
-	式eを考えると、私たちはいつものように定義されている電子で自由変数のXFのセット、のためにFV（e）を書く。
+	式eを考えると、我々はいつものように定義されているe内の自由変数の集合 xfをFV（e）と書く。
 
 	A lam-bound variable is considered a value but a fix-bound variable is not.
 
-	LAM-バインドされた変数は、値と考えたが修正バインド変数がありません。
+	lam-バインドされた変数は、値と考えたがfix-バインド変数はありません。
 
-	We use the name observable value for a closed value that does not contain a lambda expression lamx. e as its substructure.
+	We use the name observable value for a closed value that does not contain a lambda expression lam x. e as its substructure.
 
-	私たちは、ラムダ式のlamxが含まれていない、閉じた値の名前に観察値を使用します。その基礎として、電子。
+-------->
+
+	我々は、ラムダ式のlam x.が含まれていない、閉じた値の名前に観察値を使用します。その基礎として、電子。
 
 	We use c for a constant, which is either a constant constructor cc or a constant function cf .
 
 	当社は、一定のコンストラクタCCまたは定数関数のCFのどちらかである定数、C言語を使用します。
 
-	Each constant c is assigned a constant type (or c-type, for short) of the form τ ⇒ δ. Note that a c-type is not regarded as a (regular) type.
+	Each constant c is assigned a constant type (or c-type, for short) of the form τ ⇒ δ.
 
-	各定数cは、フォーム、τ⇒δの（略して、またはC型）定数型が割り当てられます。 C型は（レギュラー）型とはみなされないことに注意してください。
+	各定数cは、フォーム、τ⇒δの（略して、またはC型）定数型が割り当てられます。
+	
+	Note that a c-type is not regarded as a (regular) type.
+
+	C型は（レギュラー）型とはみなされないことに注意してください。
 
 	For each constant constructor cc assigned the type 1 ⇒ δ, we may write cc as a shorthand for cc(hi), where hi stands for the unit of the unit type 1.
 
@@ -412,7 +423,7 @@
 
 	Note that we do not treat the tuple constructor h·, ·i as a special case of constructors.
 
-	私たちは、コンストラクタの特殊なケースとして、·、·私はタプルコンストラクタhを治療しないことに注意してください。
+	我々は、コンストラクタの特殊なケースとして、·、·私はタプルコンストラクタhを治療しないことに注意してください。
 
 	Instead, we introduce tuples into λpat explicitly.
 
@@ -422,17 +433,22 @@
 
 	この決定の主な理由は、タプルが精緻化手順は依存型の存在下で、部分的な型推論の形式をサポートするために提示されている第5節、に特別に扱われるべきであるということである。
 
+		------------- (pat-var)
 		x ↓ τ ⇒ x : τ
-		(pat-var)
+
+		------------- (pat-unit)
 		hi ↓ 1 ⇒ ∅
-		(pat-unit)
+
 		p1 ↓ τ1 ⇒ Γ1 p2 ↓ τ2 ⇒ Γ2
+		--------------------------- (pat-prod)
 		hp1, p2i ↓ τ1 ∗ τ2 ⇒ Γ1, Γ2
-		(pat-prod)
+
 		` cc(τ ) : δ p ↓ τ ⇒ Γ
+		----------------------- (pat-const)
 		cc(p) ↓ δ ⇒ Γ
-		(pat-const)
+
 		Fig. 4. The typing rules for patterns in λpat
+		図.4. λpatにおけるパターンの型付け規則
 
 	We use θ for a substitution, which is a finite mapping that maps lam-bound variables x to values and fix-bound variables to fixed-point expressions.
 
@@ -440,63 +456,27 @@
 
 	We use [] for the empty substitution and θ[xf 7→ e] for the substitution that extends θ with a link from xf to e, where it is assumed that xf is not in the domain dom(θ) of θ.
 
-	私たちは、それがXFはθのドメインDOM（θ）になっていないことを想定しているeまでXFからのリンク、とθを拡張置換のための空の置換及びθ[E→XF7]で[]を使用します。
+	我々は、それがXFはθのドメインDOM（θ）になっていないことを想定しているeまでXFからのリンク、とθを拡張置換のための空の置換及びθ[E→XF7]で[]を使用します。
 
-	Also, we may write [xf 1
-	7→ e1, . . . , xf n
-	7→ en] for a substitution that maps xf i
-	to ei
+	Also, we may write [xf1 |-> e1,..., xf n |-> en] for a substitution that maps xf i to ei for 1 ≤ i ≤ n.
 
-	for 1 ≤ i ≤ n.
+	iがn≤1≤用EIへのI XFマップする置換のための[> EN| | - - > E1、...、XF nはXF1】また、我々は書き込むことができる。
 
 	We omit the further details on substitution, which are completely standard.
 
-	私たちは完全に標準装備されています置換に関するさらなる詳細は、省略します。
-
+	我々は完全に標準装備されています置換に関するさらなる詳細は、省略します。
 
 	Given a piece of syntax • (representing expressions, evaluation contexts, etc.), we use •[θ] for the result of applying θ to •.
 
-	（などの表現、評価コンテキストを表す）の構文•の作品、我々は•使用を考えると[θ]•するθを適用した結果のために。
+	（などの表現、評価コンテキストを表す）の構文•の作品、我々は•使用を考えると[θ]• する θ を適用した結果のために。
 	
 	We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with one additional declaration xf : τ , where we assume that xf is not already declared in Γ.
 
-	私たちは、空の文脈とΓ、XFのため∅使用：τを1追加の宣言XFとΓを拡張コンテキスト用：τ、私たちはそのXFがすでにΓで宣言されていませんと仮定します。
+	我々は、空の文脈とΓ、XFのため∅使用：τを1追加の宣言XFとΓを拡張コンテキスト用：τ、我々はそのXFがすでにΓで宣言されていませんと仮定します。
 
-	A context Γ = ∅, xf 1
-	: τ1, . . . , xf n
-	: τn may also be treated as a finite mapping
-	that maps xf i
-	to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. Also, we
-	may use Γ, Γ
-	0
-	for the context ∅, xf 1
-	: τ1, . . . , xf n : τn, xf 0
-	1
-	: τ
-	0
-	1
-	, . . . , xf 0
-	n
-	: τ
-	0
-	n0 , where
-	Γ = ∅, xf 1
-	: τ1, . . . , xf n : τn and Γ
-	0 = ∅, xf 0
-	1
-	: τ
-	0
-	1
-	, . . . , xf 0
-	n
-	: τ
-	0
-	n0 and all variables
-	xf 1
-	, . . . , xf n, xf 0
-	1
-	, . . . , xf 0
-	n0 are distinct.
+	A context Γ = ∅, xf: τ1,...,xfn: τn may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. Also, we may use Γ, Γ0 for the context ∅, xf': τ1, ..., xf n : τn, xf' 1 : τ'1,..., xfn: τ n0 , where Γ = ∅, xf 1: τ1, . . . , xf n : τn and Γ0 = ∅, xf'1: τ'1,..., xf' n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
+
+	コンテキストΓ=∅、XF：τ1、...、XFN：τNもiがn≤1≤用τiはするXFIにマップ有限マッピングとして処理することができる、と我々はΓのドメインのDOM（Γ）を使用します。また、我々は、コンテキスト∅、XFのためΓ、Γ0を使用することができます'：τ1、...、XFのN：τN、XF' 1：τ'1、...、XFN：τN0と、どこΓ=∅、XF 1：τ1、。 。 。 、XFのN：τNとΓ0=∅、xf'1：τ'1、...、XF'N：τ'n'とすべての変数XF1、...、XFN、xf'1、...、XF 'N'は異なります。
 
 	As a form of syntactic sugar, we may write let hx1, x2i = e1 in e2 end for the following expression:
 
@@ -506,13 +486,13 @@
 
 	where x is assumed to have no free occurrences in e1, e2.
 
-	ここで、xは、E2をE1に空き出現がないと仮定される。
+	ここで、xは、e2をe1に空き出現がないと仮定される。
 
 - 2.1 Static semantics
 
 	We use p for patterns and require that a variable occur at most once in a pattern.
 
-	私たちは、パターン用のpを使用し、変数がパターン内に最大1回出現していることが必要です。
+	我々は、パターン用のpを使用し、変数がパターン内に最大1回出現していることが必要です。
 
 	Given a pattern p and a type τ , we can derive a judgment of the form p ↓ τ ⇒ Γ with the rules in Figure 4, which reads that checking pattern p against type τ yields a context Γ.
 
@@ -528,57 +508,74 @@
 
 	As an example, let us assume that intlist is a base type, and nil and cons are constructors of c-types 1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively; then the following judgments
 
-	例として、私たちはそのintlistがベース型であり、ゼロと短所がC-種類それぞれ1⇒のintlistとINT* intlist。⇒intlist、のコンストラクタであると仮定しましょう。次の判決
+	例として、我々はそのintlistがベース型であり、ゼロと短所がC-種類それぞれ1⇒のintlistとINT* intlist。⇒intlist、のコンストラクタであると仮定しましょう。次の判決
 
-	Γ(xf ) = τ
-	Γ ` xf : τ
-	(ty-var)
-	` c(τ ) : δ Γ ` e : τ
-	Γ ` c(e) : δ
-	(ty-const)
-	Γ ` hi : 1
-	(ty-unit)
-	Γ ` e1 : τ1 Γ ` e2 : τ2
-	Γ ` he1, e2i : τ1 ∗ τ2
-	(ty-prod)
-	Γ ` e : τ1 ∗ τ2
-	Γ ` fst(e) : τ1
-	(ty-fst)
-	Γ ` e : τ1 ∗ τ2
-	Γ ` snd(e) : τ2
-	(ty-snd)
-	p ↓ τ1 ⇒ Γ1 Γ, Γ1 ` e : τ2
-	Γ ` p ⇒ e : τ1 → τ2
-	(ty-clause)
-	Γ ` pi ⇒ ei : τ1 → τ2 for i = 1, . . . , n
-	Γ ` (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
-	(ty-clause-seq)
-	Γ ` e : τ1 Γ ` ms : τ1 → τ2
-	Γ ` case e of ms : τ2
-	(ty-case)
-	Γ, x : τ1 ` e : τ2
-	Γ ` lamx. e : τ1 → τ2
-	(ty-lam)
-	Γ ` e1 : τ1 → τ2 Γ ` e2 : τ1
-	Γ ` e1(e2) : τ2
-	(ty-app)
-	Γ, f : τ ` e : τ
-	Γ ` fix f. e : τ
-	(ty-fix)
-	Γ ` e1 : τ1 Γ, x : τ1 ` e2 : τ2
-	Γ ` let x = e1 in e2 end : τ2
-	(ty-let)
+		Γ(xf) = τ
+		------------- (ty-var)
+		Γ ` xf : τ
 
-	Fig. 5. The typing rules for expressions in λpat
+		` c(τ ) : δ Γ ` e : τ
+		--------------------- (ty-const)
+		Γ ` c(e) : δ
+
+		----------- (ty-unit)
+		Γ ` hi : 1
+
+		Γ ` e1 : τ1 Γ ` e2 : τ2
+		----------------------- (ty-prod)
+		Γ ` he1, e2i : τ1 ∗ τ2
+
+		Γ ` e : τ1 ∗ τ2
+		--------------- (ty-fst)
+		Γ ` fst(e) : τ1
+
+		Γ ` e : τ1 ∗ τ2
+		--------------- (ty-snd)
+		Γ ` snd(e) : τ2
+
+		p ↓ τ1 ⇒ Γ1 Γ, Γ1 ` e : τ2
+		-------------------------- (ty-clause)
+		Γ ` p ⇒ e : τ1 → τ2
+
+		Γ ` pi ⇒ ei : τ1 → τ2 for i = 1, . . . , n
+		------------------------------------------ (ty-clause-seq)
+		Γ ` (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
+
+		Γ ` e : τ1 Γ ` ms : τ1 → τ2
+		--------------------------- (ty-case)
+		Γ ` case e of ms : τ2
+
+		Γ, x : τ1 ` e : τ2
+		--------------------- (ty-lam)
+		Γ ` lamx. e : τ1 → τ2
+
+		Γ ` e1 : τ1 → τ2 Γ ` e2 : τ1
+		---------------------------- (ty-app)
+		Γ ` e1(e2) : τ2
+
+		Γ, f : τ ` e : τ
+		---------------- (ty-fix)
+		Γ ` fix f. e : τ
+
+		Γ ` e1 : τ1 Γ, x : τ1 ` e2 : τ2
+		------------------------------- (ty-let)
+		Γ ` let x = e1 in e2 end : τ2
+
+		Fig. 5. The typing rules for expressions in λpat
+
+		図5.λpatにおける式の型付け規則
+
 
 	are derivable:
+
+	導出以下のとおりです。
 
 		cons (hx, xsi) ↓ intlist ⇒ x : int, xs : intlist
 		cons (hx, nil(hi)i) ↓ intlist ⇒ x : int
 
 	We present the typing rules for expressions in Figure 5.
 
-	私たちは、図5の式の型付け規則を提示する。
+	我々は、図5の式の型付け規則を提示する。
 
 	The rule (ty-clause) is for assigning types to clauses.
 
@@ -596,7 +593,7 @@
 
 	派生Dの構造は木であり、我々はいつものように定義され、その高さ、のために高さ（D）を使用します。
 
-	The following standard lemma simply reflects that extra assumptions can beJournal of Functional Programming 9 discarded in intuitionistic reasoning.
+	The following standard lemma simply reflects that extra assumptions can be discarded in intuitionistic reasoning.
 
 	次の標準補題は単に余分な仮定がbeJournalは関数型プログラミングの9は直観主義的推論に廃棄されたことを反映している。
 
@@ -604,52 +601,72 @@
 
 	それは、補題2.3、λpatの置換補題の証明では、例えば、必要とされる。
 
-	Lemma 2.1 (Thinning)
-	Assume D :: Γ ` e : τ . Then there is a derivation D0
-	:: Γ, xf : τ
-	0 ` e : τ such that
-	height(D) = height(D0
-	), where τ
-	0
-	is any well-formed type.
+	- Lemma 2.1 (Thinning)
 
-	The following lemma indicates a close relation between the type of a closed value and the form of the value.
+		Assume D :: Γ ` e : τ .
+	
+		D :: Γ ` e : τ を想定。
 
-	次の補題は、閉じた値の型と値の形の間には密接な関係を示している。
+		Then there is a derivation D0:: Γ, xf : τ0 ` e : τ such that height(D) = height(D0), where τ0 is any well-formed type.
 
-	This lemma is needed to establish Theorem 2.9, the Progress Theorem for λpat.
+		その後、派生D0::Γ、XFがある：E`τ0：τよう高さ（D）=高さτ0は任意の整形タイプです（D0）、。
 
-	この補題はλpatのため定理2.9、進捗定理を確立するために必要とされる。
+		The following lemma indicates a close relation between the type of a closed value and the form of the value.
 
-	Lemma 2.2 (Canonical Forms)
+		次の補題は、閉じた値の型と値の形の間には密接な関係を示している。
 
-	Assume that ∅ ` v : τ is derivable.
+		This lemma is needed to establish Theorem 2.9, the Progress Theorem for λpat.
 
-	1. If τ = δ for some base type δ, then v is of the form cc(v0), where cc is a
-	constant constructor assigned a c-type of the form τ0 ⇒ δ.
-	2. If τ = 1, then v is hi.
-	3. If τ = τ1 ∗ τ2 for some types τ1 and τ2, then v is of the form hv1, v2i.
-	4. If τ = τ1 → τ2 for some types τ1 and τ2, then v is of the form lam x. e.
-	Note the need for c-types in the proof of Lemma 2.2 when the last case is handled.
-	If c-types are not introduced, then a (primitive) constant function needs to be
-	assigned a type of the form τ1 → τ2 for some τ1 and τ2. As a consequence, we can
-	no longer claim that a value of the type τ1 → τ2 for some τ1 and τ2 must be of the
-	form lamx. e as the value may also be a constant function. So the precise purpose
-	of introducing c-types is to guarantee that only a value of the form lam x. e can be
-	assigned a type of the form τ1 → τ2.
-	Given Γ, Γ0 and θ, we write Γ ` θ : Γ0 to indicate that Γ ` θ(xf) : Γ0(xf) is
-	derivable for each xf in dom(θ) = dom(Γ0). The following lemma is often given
-	the name Substitution Lemma, which is needed in the proof of Theorem 2.8, the
-	Subject Reduction Theorem for λpat.
-	Lemma 2.3 (Substitution)
-	Assume that Γ ` θ : Γ0 holds. If Γ, Γ0 ` e : τ is derivable, then Γ ` e[θ] : τ is also
-	derivable.
+		この補題はλpatのため定理2.9、進捗定理を確立するために必要とされる。
+
+	- Lemma 2.2 (Canonical Forms)
+
+		Assume that ∅ ` v : τ is derivable.
+
+		1. If τ = δ for some base type δ, then v is of the form cc(v0), where cc is a constant constructor assigned a c-type of the form τ0 ⇒ δ.
+		2. If τ = 1, then v is hi.
+		3. If τ = τ1 ∗ τ2 for some types τ1 and τ2, then v is of the form hv1, v2i.
+		4. If τ = τ1 → τ2 for some types τ1 and τ2, then v is of the form lam x. e.
+
+		Note the need for c-types in the proof of Lemma 2.2 when the last case is handled.
+
+		最後のケースが処理されるとき補題2.2の証明におけるc-タイプの必要性を注意してください。
+
+		If c-types are not introduced, then a (primitive) constant function needs to be assigned a type of the form τ1 → τ2 for some τ1 and τ2.
+
+		のc型が導入されない場合は、（プリミティブ）定数関数は、いくつかのτ1とτ2のフォームτ1→τ2のタイプを割り当てる必要がある。
+
+		As a consequence, we can no longer claim that a value of the type τ1 → τ2 for some τ1 and τ2 must be of the form lamx. e as the value may also be a constant function. 
+
+		結果として、我々はもはや一部τ1とτ2の型τ1→τ2の値がフォームlamxでなければならないと主張することはできません。値として電子も一定関数であってもよい。
+
+		So the precise purpose of introducing c-types is to guarantee that only a value of the form lam x. e can be assigned a type of the form τ1 → τ2.
+
+		だから、C-タイプを導入する正確な目的は、フォームのラメxのその値だけを保証することです。 eはフォームτ1→τ2のタイプを割り当てることができます。
+
+		Given Γ, Γ0 and θ, we write Γ ` θ : Γ0 to indicate that Γ ` θ(xf) : Γ0(xf) is derivable for each xf in dom(θ) = dom(Γ0).
+
+		Γ、Γ0を考えると、θ、我々はΓは`θ書く：Γ0（XF）はDOM（θ）= DOMの各XF（Γ0）のために誘導可能である：Γ0はΓは`θ（XF）があることを示すために。
+
+		The following lemma is often given the name Substitution Lemma, which is needed in the proof of Theorem 2.8, the Subject Reduction Theorem for λpat.
+
+		次の補題は、多くの場合、定理2.8、λpatための件名削減定理の証明で必要とされる名置換補題を、与えられている。
+
+	- Lemma 2.3 (Substitution)
+
+		Assume that Γ ` θ : Γ0 holds.
+
+		Γ0が成り立つ：Γ`θがあるとします。
+
+		If Γ, Γ0 ` e : τ is derivable, then Γ ` e[θ] : τ is also derivable.
+
+		τ導出され、その後Γ`E [θ]：Γ、Γ0` eがあればτも誘導可能である。
 
 - 2.2 Dynamic semantics
 
 	We assign dynamic semantics to expressions in λpat through the use of evaluation contexts defined as follows.
 
-	私たちは次のように定義された評価コンテキストを使用することによりλpatにおける式への動的なセマンティクスを割り当てる。
+	我々は次のように定義された評価コンテキストを使用することによりλpatにおける式への動的なセマンティクスを割り当てる。
 
 	Definition 2.4 (Evaluation Contexts)
 
@@ -660,7 +677,7 @@
 
 	We use FV(E) for the set of free variables xf in E.
 
-	私たちは、Eにおける自由変数のXFのセットFV（E）を使用します
+	我々は、Eにおける自由変数のXFのセットFV（E）を使用します
 
 	Note that every evaluation context contains exactly one hole [] in it.
 
@@ -710,285 +727,403 @@
 	• fix f. e is an ev-redex, and its reduct is e[f 7→ fix f. e].
 	• let x = v in e end is an ev-redex, and its reduct is e[x 7→ v].
 	• case v of (p1 ⇒ e1 | · · · | pn ⇒ en) is an ev-redex if match(v, pk) ⇒ θ is derivable for some 1 ≤ k ≤ n, and its reduct is ek[θ].
-	• cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined to be some value v0. In this case, the reduct of cf(v) is v0. Note that a value is observable if it does not contain any lambda expression lamx. e as its
-	substructure.
+	• cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined to be some value v0.
+
+	In this case, the reduct of cf(v) is v0.
+	この場合、CFの縮約(reduct)（v）はV0である。
+
+	Note that a value is observable if it does not contain any lambda expression lamx. e as its substructure.
 	
-	The one-step evaluation relation ,→ev is defined as follows: We write e1 ,→ev e2 if e1 = E[e] for some evaluation context E and ev-redex e, and e2 = E[e0], where e0 is a reduct of e.
+	それは、その下部構造などの任意のラムダ式のlam x.e が含まれていない場合、値が観測可能であることに注意してください。
+
+	The one-step evaluation relation ,→ev is defined as follows:
+	以下の通りのev→ワンステップ評価関係が定義される：
+
+	We write e1 ,→ev e2 if e1 = E[e] for some evaluation context E and ev-redex e, and e2 = E[e0], where e0 is a reduct of e.
+
+	我々は、E1、→EV E2書くとE0はEの縮約(reduct)であるいくつかの評価コンテキストEとEV-可約式E、とe2= E [E0]、のためのE1= E[E]が。
 
 	We use ,→∗ ev for the reflexive and transitive closure of ,→ev and say that e1 ev-reduces (or evaluates) to e2 if e1 ,→∗ ev e2 holds.
 
+	我々は、EV→、の反射的と推移閉包のために→* EV、使用して保持→* EV E2、E1場合にE1のE2にEVは-削減（または評価する）と言う。
+
 	There is certain amount of nondeterminism in the evaluation of expressions: case v of ms may reduce to e[θ] for any clause p ⇒ e in ms such that match(v, p) ⇒ θ is derivable.
+
+	非決定性の一定量は、式の評価にあります：MSの場合Vは、MS内の任意の句pは⇒Eの[θ]メールにそのようなマッチ（V、P）は、θが導出可能である⇒ことを減らすことができる。
 
 	This form of nondeterminism can cause various complications, which we want to avoid in the first place.
 
+	非決定性のこの形式は、我々は最初の場所で避けたいさまざまな合併症を引き起こす可能性があります。
+
 	In this paper, we require that the patterns p1, . . . , pn in a matching clause sequence (p1 ⇒ e1 | · · · | pn ⇒ en) be disjoint, that is, for 1 ≤ i 6= j ≤ n, there are no values v that can match both pi and pj .
 
-	Journal of Functional Programming 11 In the actual implementation, we do allow overlapping patterns in a matching clause sequence, and we avoid nondeterminism by performing pattern matching in a deterministic sequential manner.
+	本稿では、パターンがP1いる必要があります。 。 。 、マッチング句シーケンスのpn（P1。⇒e1は|···| PN⇒JA）1≤I 6= Jの≤nについて、PIとPJの両方を一致させることができない値Vが存在しない、つまり、互いに素である。
+
+	In the actual implementation, we do allow overlapping patterns in a matching clause sequence, and we avoid nondeterminism by performing pattern matching in a deterministic sequential manner.
+
+	実際の実装では、関数型プログラミング11のジャーナルは、我々は、一致する句シーケンスでパターンの重複が可能か、と我々は決定論順次パターンマッチングを実行することによって、非決定性を避ける。
 
 	We could certainly do the same in the theoretical development, but this may complicate the evaluation of open programs, that is, programs containing free variables.
+
+	我々は確かに理論的な発展に同じ行うことができますが、これは開いているプログラムの評価を複雑にする、それは自由な変数を含むプログラムは、です。
 
 	For instance, let e1 and e2 be the following expressions case cons(x, xs) of (nil ⇒ true | x 0 ⇒ false) and case x of (nil ⇒
 	true | x 0 ⇒ false), respectively.
 
+	例えば、E1せ、E2は（nil以外の真⇒| X 0⇒偽）の以下の式ケース短所（X、XS）であること（NILの⇒のXとケース
+	真|それぞれx偽0⇒）、。
+
 	Clearly, we should evaluate e1 to false, but we should not evaluate e2 to false as we do not know whether x matches nil or not.
+
+	明らかに、我々はfalseにE1を評価する必要がありますが、我々は、Xがnilかどう一致するかどうかわからないように、我々はfalseにE2を評価するべきではありません。
 
 	This complication is simply avoided when patterns in a matching clause sequence are required to be disjoint.
 
+	マッチング句シーケンスのパターンが互いに素であることが要求される場合、この合併症は、単純に回避される。
+
 	The meaning of a judgment of the form p ↓ τ ⇒ Γ is captured precisely by following lemma.
 	
-	Lemma 2.6
+	フォームのp↓τの判断の意味は、Γが補題に追従して正確に捕捉される⇒。
+
+	- Lemma 2.6
 	
-	Assume that the typing judgment ∅ ` v : τ is derivable. If p ↓ τ ⇒ Γ and match(v, p) ⇒ θ are derivable, then ∅ ` θ : Γ holds.
+		Assume that the typing judgment ∅ ` v : τ is derivable. If p ↓ τ ⇒ Γ and match(v, p) ⇒ θ are derivable, then ∅ ` θ : Γ holds.
 
-	Definition 2.7
+	- Definition 2.7
 
-	定義2.7
+	- 定義2.7
 
-	We introduce some forms to classify closed expressions in λpat.
+		We introduce some forms to classify closed expressions in λpat.
 
-	私たちは、λpatで、閉じた表現を分類するためにいくつかのフォームをご紹介します。
+		我々は、λpatで、閉じた表現を分類するためにいくつかのフォームをご紹介します。
 
-	Given a closed expression e in λpat, which may or may not be well-typed,
+		Given a closed expression e in λpat, which may or may not be well-typed,
 
-	または十分に型付けされてもされなくてもよいλpatで、閉じた式eが与えられると、
-	
-	• e is in V-form if e is a value.
-	• e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So if e is in R-form, then it can be evaluated further.
-	• e is in M-form if e = E[case v of ms] such that case v of ms is not an ev-redex. This is a case where pattern matching fails because none of the involved patterns match v.
-	• e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division by zero is such a case.
-	• e is in E-form otherwise. We will prove that this is a case that can never occur during the evaluation of a well-typed program.
-	
-	We introduce three symbols Error, Match and Undefined, and use EMU for the set {Error,Match, Undefined} and EMUV for the union of EMU and the set of observable values. We write e ,→∗
-	ev Error, e ,→∗
-	ev Match and e ,→∗
-	ev Undefined
-	if e ,→∗
-	ev e
-	0
-	for some e
-	0
-	in E-form, M-form and U-form, respectively.
+		または十分に型付けされてもされなくてもよいλpatで、閉じた式eが与えられると、
+		
+		• e is in V-form if e is a value.
+		• e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So if e is in R-form, then it can be evaluated further.
+		• e is in M-form if e = E[case v of ms] such that case v of ms is not an ev-redex. This is a case where pattern matching fails because none of the involved patterns match v.
+		• e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division by zero is such a case.
+		• e is in E-form otherwise. We will prove that this is a case that can never occur during the evaluation of a well-typed program.
+		
+		We introduce three symbols Error, Match and Undefined, and use EMU for the set {Error,Match, Undefined} and EMUV for the union of EMU and the set of observable values. We write e ,→∗
+		ev Error, e ,→∗
+		ev Match and e ,→∗
+		ev Undefined
+		if e ,→∗
+		ev e
+		0
+		for some e
+		0
+		in E-form, M-form and U-form, respectively.
 
-	It can be readily checked that the evaluation of a (not necessarily well-typed) program in λpat may either continue forever or reach an expression in V-form, Mform, U-form, or E-form.
+		It can be readily checked that the evaluation of a (not necessarily well-typed) program in λpat may either continue forever or reach an expression in V-form, Mform, U-form, or E-form.
 
-	それは容易になりλpatでの評価（必ずしも十分に型付けされた）プログラムは永遠に継続するか、V-形、Mform、U-フォーム、またはE-形で式に達する可能性がどちらかことを確認することができます。
+		それは容易になりλpatでの評価（必ずしも十分に型付けされた）プログラムは永遠に継続するか、V-形、Mform、U-フォーム、またはE-形で式に達する可能性がどちらかことを確認することができます。
 
-	We will show that an expression in E-form can never be encountered if the evaluation starts with a well-typed program in λpat.
+		We will show that an expression in E-form can never be encountered if the evaluation starts with a well-typed program in λpat.
 
-	我々は、評価がλpatではよく型付けされたプログラムで始まる場合は、E-形で式に遭遇することはできませんと表示されます。
+		我々は、評価がλpatではよく型付けされたプログラムで始まる場合は、E-形で式に遭遇することはできませんと表示されます。
 
-	This is precisely the type soundness of λpat.
+		This is precisely the type soundness of λpat.
 
-	これは正確にλpatのタイプの健全性である。
+		これは正確にλpatのタイプの健全性である。
 
 - 2.3 Type soundness
 
 	We are now ready to state the subject reduction theorem for λpat, which implies that the evaluation of a well-typed expression in λpat does not alter the type of the expression.
 
-	For each constant function cf of c-type τ ⇒ δ, if ∅ ` v : τ is derivable and c(v) is
-	defined to be v
-	0
-	, then we require that ∅ ` v
-	0
-	: δ be also derivable. In other words,
-	we require that each constant function meet its specification, that is, the c-type
-	assigned to it.
-	Theorem 2.8 (Subject Reduction)
-	Assume that ∅ ` e1 : τ is derivable and e1 ,→ev e2 holds. Then ∅ ` e2 : τ is also
-	derivable.
-	Lemma 2.3 is used in the proof of Theorem 2.8.
-	Theorem 2.9 (Progress)
-	Assume that ∅ ` e1 : τ is derivable. Then there are only four possibilities:
-	• e1 is a value, or
-	• e1 is in M-form, or
-	• e1 is in U-form, or
-	• e1 ,→ev e2 holds for some expression e2.
-	Note that it is implied here that e1 cannot be in E-form.
-	Lemma 2.2 is needed in the proof of Theorem2.9.
-	By Theorem 2.8 and Theorem 2.9, we can readily claim that for a well-typed
-	closed expression e, either e evaluates to a value, or e evaluates to an expression
-	in M-form, or e evaluates to an expression in U-form, or e evaluates forever. In
-	particular, it is guaranteed that e ,→∗
-	ev Error can never happen for any well-typed
-	expression e in λpat.
-	2.4 Operational equivalence
-	We will present an elaboration procedure in Section 5, which maps a program
-	written in an external language into one in an internal language. We will need
-	to show that the elaboration of a program preserves the operational semantics of
-	the program. For this purpose, we first introduce the notion of general contexts as
-	follows:
-	general contexts G ::=
-	[] | c(G) | hG, ei | he, Gi | fst(G) | snd(G) | lam x. G | G(e) | e(G) |
-	case G of (p1 ⇒ e1 | · · · | pn ⇒ en) |
-	case e of (p1 ⇒ e1 | · · · | pi−1 ⇒ ei−1 | pi ⇒ G | pi+1 ⇒ ei+1 | · · · | pn ⇒ en) |
-	fix f. G | let x = G in e end | let x = e in G end
-	Given a general context G and an expression e, G[e] stands for the expression
-	obtained from replacing with e the hole [] in G. We emphasize that this replacement
-	may capture free variables in e. For instance, G[x] = lamx. x if G = lam x. []. The
-	notion of operational equivalence can then be defined as follows.
-	Definition 2.10
-	Given two expressions e1 and e2 in λpat, which may contain free variables, we say
-	that e1 is operationally equivalent to e2 if the following holds.Journal of Functional Programming 13
-	• Given any context G, G[e1] ,→∗
-	ev v
-	∗ holds if and only if G[e2] ,→∗
-	ev v
-	∗
-	, where
-	v
-	∗
-	ranges over EMUV, that is, the union of EMU and the set of observable
-	values.
-	We write e1
-	∼= e2 if e1 is operationally equivalent to e2, which is clearly an equivalence
-	relation.
-	Unfortunately, this operational equivalence relation is too strong to suit our purpose.
-	The reason can be explained with a simple example. Suppose we have a
-	program lamx : int ∗ int. x in which the type int ∗ int is provided by the programmer;
-	for some reason (to be made clear later), we may elaborate the program into
-	the following one:
-	e = lamx. let hx1, x2i = x in hx1, x2i end
-	Note that if we erase the type int ∗ int in the original program, we obtain the
-	expression lamx. x, which is not operationally equivalent to e; for instance they are
-	distinguished by the simple context G = [](hi). To address this rather troublesome
-	issue, we introduce a reflexive and transitive relation ≤dyn on expressions in λpat.
-	Definition 2.11
-	Given two expressions e1 and e2 in λpat, which may contain free variables, we say
-	that e1 ≤dyn e2 holds if for any context G,
-	• either G[e2] ,→∗
-	ev Error holds, or
-	• G[e1] ,→∗
-	ev v
-	∗
-	if and only if G[e2] ,→∗
-	ev v
-	∗
-	, where v
-	∗
-	ranges over EMUV, that
-	is, the union of EMU and the set of observable values.
-	It is straightforward to verify the reflexivity and transitivity of ≤dyn.
-	Corollary 2.12
-	Assume that e1 ≤dyn e2 holds. For any context G such that G[e2] is a closed welltyped
-	expression in λpat, G[e1] evaluates to v
-	∗
-	if and only if G[e2] evaluates to v
-	∗
-	,
-	where v
-	∗
-	ranges over EMUV.
-	Proof
-	This simply follows the definition of ≤dyn and Theorem 2.9.
-	In other words, e1 ≤dyn e2 implies that e1 and e2 are operationally indistinguishable
-	in a typed setting. We now present an approach to establishing the relation ≤dyn
-	in certain special cases.
-	Definition 2.13
-	We define general redexes (or g-redexes, for short) and their reducts in λpat as
-	follows:
-	• An ev-redex is a g-redex, and the reduct of the ev-redex is also the reduct of
-	the g-redex.
-	• let x = e in E[x] end is a g-redex if x has no free occurrences in E, and its
-	reduct is E[e].
-	• hfst(v), snd(v)i is a g-redex and its reduct is v.14 Hongwei Xi
-	index signatures S ::= ∅ | S, C : (s1, . . . , sn) ⇒ s
-	index base sorts b ::= bool | . . .
-	index sorts s ::= b | s1 ∗ s2 | s1 → s2
-	index terms I ::= a | C(I1, . . . , In) | hI1, I2i | π1(I) | π2(I) |
-	λa : s. I | I1(I2)
-	index contexts φ ::= ∅ | φ, a : s
-	index substitutions Θ ::= [] | Θ[a 7→ I]
-	Fig. 7. The syntax for a generic type index language
-	φ(a) = s
-	φ ` a : s
-	(st-var)
-	S(C) = (s1, . . . , sn) ⇒ s φ ` Ik : sk for 1 ≤ k ≤ n
-	φ ` C(I1, . . . , In) : s
-	(st-const)
-	φ ` I1 : s1 φ ` I2 : s2
-	φ ` hI1, I2i : s1 ∗ s2
-	(st-prod)
-	φ ` I : s1 ∗ s2
-	φ ` π1(I) : s1
-	(st-fst) φ ` I : s1 ∗ s2
-	φ ` π2(I) : s2
-	(st-snd)
-	φ, a : s1 ` I : s2
-	φ ` λa : s1. I : s1 → s2
-	(st-lam)
-	φ ` I1 : s1 → s2 φ ` I2 : s1
-	φ ` I1(I2) : s2
-	(st-app)
-	Fig. 8. The sorting rules for type index terms
-	• lamx. v(x) is a g-redex and its reduct is v.
-	We write e1 ,→g e2 if e1 = G[e] for some general context G and g-redex e, and
-	e2 = G[e
-	0
-	], where e
-	0
-	is a reduct of e. We use ,→∗
-	g
-	for the reflexive and transitive
-	closure of ,→g and say that e1 g-reduces to e2 if e1 ,→∗
-	g
-	e2 holds. We now mention
-	a lemma as follows:
-	Lemma 2.14
-	Given two expressions e and e
-	0
-	in λpat that may contain free variables, e ,→∗
-	g
-	e
-	0
-	implies e
-	0 ≤dyn e.
-	Proof
-	A (lengthy) proof of the lemma is given in Appendix A.
-	This lemma is to be of important use in Section 5, where we need to establish that
-	the dynamic semantics of a program cannot be altered by elaboration.
+	現在λpatではよく型付けされた式の評価が式の型を変更しないことを意味しているλpatの件名削減定理を、明記する準備が整いました。
+
+	For each constant function cf of c-type τ ⇒ δ, if ∅ ` v : τ is derivable and c(v) is defined to be v0, then we require that ∅ ` v0 : δ be also derivable.
+
+	τ導出であり、cは、（V）はV0であると定義され、その後、我々は∅`V0があることを必要とする、：：導出もなけれδ∅` vがあれば、C型τの各定数関数のCFの場合は、δ。⇒。
+
+	In other words, we require that each constant function meet its specification, that is, the c-type assigned to it.
+
+	言い換えれば、我々は、各定数関数、すなわち、c-型が割り当てられ、その仕様を満たしていることを必要とする。
+
+	- Theorem 2.8 (Subject Reduction)
+	
+		Assume that ∅ ` e1 : τ is derivable and e1 ,→ev e2 holds. Then ∅ ` e2 : τ is also derivable.
+
+		τ保持し、→EV E2導出およびE1です：E1は`∅と仮定します。その後∅`e2は：τも誘導可能である。
+
+		Lemma 2.3 is used in the proof of Theorem 2.8.
+
+		補題2.3は定理2.8の証明に使用されている。
+
+	- Theorem 2.9 (Progress)
+
+		Assume that ∅ ` e1 : τ is derivable.
+
+		τ誘導可能である：E1は`∅と仮定します。
+
+		Then there are only four possibilities:
+
+		その後、4つだけの可能性がある。
+
+		- e1 is a value, or
+		- e1 is in M-form, or
+		- e1 is in U-form, or
+		- e1 ,→ev e2 holds for some expression e2.
+
+		Note that it is implied here that e1 cannot be in E-form.
+
+		それはE1は、E-形態であることができないことをここで暗示されていることに注意してください。
+
+		Lemma 2.2 is needed in the proof of Theorem2.9.
+
+
+		補題2.2はTheorem2.9の証明で必要とされる。
+
+		By Theorem 2.8 and Theorem 2.9, we can readily claim that for a well-typed closed expression e, either e evaluates to a value, or e evaluates to an expression in M-form, or e evaluates to an expression in U-form, or e evaluates forever.
+
+		定理2.8と定理2.9により、我々は容易に十分に型付けされたクローズド式eのため、どちらかEが値に評価される、またはEはM-形で表現と評価された、または電子は、U-形で式に評価されていることを主張することができ、またはeは永遠に評価します。
+
+		In particular, it is guaranteed that e ,→∗ ev Error can never happen for any well-typed expression e in λpat.
+
+		特に、E、→* EVエラーがλpatで任意のよく型付けされた式eのために決して起こらないことが保証されている。
+
+- 2.4 Operational equivalence
+
+	We will present an elaboration procedure in Section 5, which maps a program written in an external language into one in an internal language.
+
+	我々は、内部の言語で一つに外部言語で書かれたプログラムをマッピング節5に推敲手順を紹介します。
+
+	We will need to show that the elaboration of a program preserves the operational semantics of the program.
+
+	我々は、プログラムの精緻化は、プログラムの操作的意味を保持していることを示す必要があります。
+
+	For this purpose, we first introduce the notion of general contexts as follows:
+
+	次のように、この目的のために、まず一般的なコンテキストの概念を導入する。
+
+		general contexts G ::=
+			[] | c(G) | hG, ei | he, Gi | fst(G) | snd(G) | lam x. G | G(e) | e(G) |
+			case G of (p1 ⇒ e1 | · · · | pn ⇒ en) |
+			case e of (p1 ⇒ e1 | · · · | pi−1 ⇒ ei−1 | pi ⇒ G | pi+1 ⇒ ei+1 | · · · | pn ⇒ en) |
+			fix f. G | let x = G in e end | let x = e in G end
+
+	Given a general context G and an expression e, G[e] stands for the expression obtained from replacing with e the hole [] in G.
+
+	一般的な文脈Gおよび式eを考えると、Gは、[E]はG.で電子とホール[]に置き換えるから得られる発現の略
+
+	We emphasize that this replacement may capture free variables in e.
+
+	我々は、この置換はEで自由変数を取り込むことができることを強調。
+
+	For instance, G[x] = lamx. x if G = lam x. [].
+
+	例えば、G [X]= lamx。 X Gは=ラメxの場合。 []。
+
+	The notion of operational equivalence can then be defined as follows.
+
+	次のように運用等価の概念は、次に定義することができる。
+
+	- Definition 2.10
+
+		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 is operationally equivalent to e2 if the following holds.
+
+		二つの式E1を考えると自由変数を含むことができるλpat、中E2、我々はe1は以下が保持している場合E2に操作上等価であると言う。
+
+		• Given any context G, G[e1] ,→∗
+		ev v
+		∗ holds if and only if G[e2] ,→∗
+		ev v
+		∗
+		, where
+		v
+		∗
+
+		ranges over EMUV, that is, the union of EMU and the set of observable values.
+
+		We write e1 ∼= e2 if e1 is operationally equivalent to e2, which is clearly an equivalence relation.
+
+		Unfortunately, this operational equivalence relation is too strong to suit our purpose.
+
+		The reason can be explained with a simple example. Suppose we have a program lamx : int ∗ int. x in which the type int ∗ int is provided by the programmer;
+
+		for some reason (to be made clear later), we may elaborate the program into the following one:
+
+			e = lamx. let hx1, x2i = x in hx1, x2i end
+
+		Note that if we erase the type int ∗ int in the original program, we obtain the expression lamx. x, which is not operationally equivalent to e; for instance they are distinguished by the simple context G = [](hi).
+
+		我々は、元のプログラムで型にint * int型を消去した場合、我々は表現lamxを得ることに注意してください。 X、Eに操作上等価でされていない。例えば、それらは、単純なコンテキストG=[]（ハイ）で区別される。
+
+		To address this rather troublesome issue, we introduce a reflexive and transitive relation ≤dyn on expressions in λpat.
+
+		このかなり厄介な問題に対処するために、我々はλpatの式に≤dyn反射的かつ推移的な関係を紹介する。
+
+	- Definition 2.11
+
+		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 ≤dyn e2 holds if for any context G,
+
+		二つの式E1を考えると自由変数を含むことができるλpatでE2、我々は、E1≤dynE2はG任意のコンテキストのための場合、保持していることを言う
+
+		• either G[e2] ,→∗
+		ev Error holds, or
+		• G[e1] ,→∗
+		ev v
+		∗
+		if and only if G[e2] ,→∗
+		ev v
+		∗
+		, where v
+		∗
+		ranges over EMUV, that is, the union of EMU and the set of observable values.
+
+		つまり、EMUVの上の範囲、EMUの労働組合と観測可能な値のセット。
+
+		It is straightforward to verify the reflexivity and transitivity of ≤dyn.
+
+		それは≤dynの反射性と推移性を検証することは簡単である。
+
+	- Corollary 2.12
+
+		Assume that e1 ≤dyn e2 holds. For any context G such that G[e2] is a closed welltyped expression in λpat, G[e1] evaluates to v
+		∗
+		if and only if G[e2] evaluates to v
+		∗
+		,
+		where v
+		∗
+		ranges over EMUV.
+
+	- Proof
+
+		This simply follows the definition of ≤dyn and Theorem 2.9.
+
+		これは、単に≤dynと定理2.9の定義を以下の通り。
+
+		In other words, e1 ≤dyn e2 implies that e1 and e2 are operationally indistinguishable in a typed setting.
+
+		つまり、E1≤dynE2ではe1とe2が型付き設定で操作上区別できないことを意味している。
+
+		We now present an approach to establishing the relation ≤dyn in certain special cases.
+
+		我々は現在、特定の特別な場合には関係≤dynの確立へのアプローチを提示する。
+
+	- Definition 2.13
+
+		We define general redexes (or g-redexes, for short) and their reducts in λpat as follows:
+
+		- An ev-redex is a g-redex, and the reduct of the ev-redex is also the reduct of the g-redex.
+		- let x = e in E[x] end is a g-redex if x has no free occurrences in E, and its reduct is E[e].
+
+		- hfst(v), snd(v)i is a g-redex and its reduct is v.
+
+			index signatures S ::= ∅ | S, C : (s1, . . . , sn) ⇒ s
+			index base sorts b ::= bool | . . .
+			index sorts s ::= b | s1 ∗ s2 | s1 → s2
+			index terms I ::= a | C(I1, . . . , In) | hI1, I2i | π1(I) | π2(I) |
+			λa : s. I | I1(I2)
+			index contexts φ ::= ∅ | φ, a : s
+			index substitutions Θ ::= [] | Θ[a 7→ I]
+
+		- Fig. 7. The syntax for a generic type index language
+
+				φ(a) = s
+				φ ` a : s
+				(st-var)
+				S(C) = (s1, . . . , sn) ⇒ s φ ` Ik : sk for 1 ≤ k ≤ n
+				φ ` C(I1, . . . , In) : s
+				(st-const)
+				φ ` I1 : s1 φ ` I2 : s2
+				φ ` hI1, I2i : s1 ∗ s2
+				(st-prod)
+				φ ` I : s1 ∗ s2
+				φ ` π1(I) : s1
+				(st-fst) φ ` I : s1 ∗ s2
+				φ ` π2(I) : s2
+				(st-snd)
+				φ, a : s1 ` I : s2
+				φ ` λa : s1. I : s1 → s2
+				(st-lam)
+				φ ` I1 : s1 → s2 φ ` I2 : s1
+				φ ` I1(I2) : s2
+				(st-app)
+
+		- Fig. 8. The sorting rules for type index terms
+
+		- lamx. v(x) is a g-redex and its reduct is v.
+
+		We write e1 ,→g e2 if e1 = G[e] for some general context G and g-redex e, and e2 = G[e0], where e0 is a reduct of e. We use ,→∗ g for the reflexive and transitive closure of ,→g and say that e1 g-reduces to e2 if e1 ,→∗ g e2 holds.
+
+		我々は、E1、→G E2書くE1= G [E]場合E0はEの縮約であるいくつかの一般的な文脈GおよびG-可約式E、とe2= G [E0]、のために。我々は→gを、の反射的と推移閉包のために、→* Gを使用して、→* GのE2が保持して、E1場合にE1のE2にgは-軽減言う。
+
+		We now mention a lemma as follows:
+
+		次のように我々は現在、補題に言及：
+
+	- Lemma 2.14
+
+		Given two expressions e and e0 in λpat that may contain free variables, e ,→∗ g e0 implies e0 ≤dyn e.
+
+		、二つの式eと自由変数、Eを含むことができるλpatでE0を考える→* GのE0は、E0の≤dynEを意味します。
+
+	- Proof
+
+		A (lengthy) proof of the lemma is given in Appendix A.
+
+		補題の（長い）証明は付録Aに記載されている
+
+		This lemma is to be of important use in Section 5, where we need to establish that the dynamic semantics of a program cannot be altered by elaboration.
+
+		この補題は、我々はプログラムの動的な意味論を精緻化することによって変更することができないことを確立する必要がある第5節、中の重要な用途であることがある。
 
 - 3 Type index language
 
-	We are to enrich λpat with a restricted form of dependent types. The enrichment is
-	to parameterize over a type index language from which type index terms are drawn.Journal of Functional Programming 15
-	φ; P~ |= true
-	(reg-true)
-	φ; P~ , false |= P
-	(reg-false)
-	φ; P~ |= P0
-	φ, a : s; P~ |= P0
-	(reg-var-thin)
-	φ ` P : bool φ; P~ |= P0
-	φ; P~ , P |= P0
-	(reg-prop-thin)
-	φ, a : s; P~ |= P φ ` I : s
-	φ; P~ [a 7→ I] |= P[a 7→ I]
-	(reg-subst)
-	φ; P~ |= P0 φ; P~ , P0 |= P1
-	φ; P~ |= P1
-	(reg-cut)
-	φ ` I : s
-	φ; P~ |= I
-	.
-	=s I
-	(reg-eq-refl)
-	φ;P~ |= I1
-	.=s I2
-	φ;P~ |= I2
-	.
-	=s I1
-	(reg-eq-symm)
-	φ; P~ |= I1
-	.=s I2 φ; P~ |= I2
-	.=s I3
-	φ; P~ |= I1
-	.=s I3
-	(reg-eq-tran)
-	Fig. 9. The regularity rules
+	We are to enrich λpat with a restricted form of dependent types.
+
+	我々は、依存型の制限された形でλpat豊かにするである。
+
+	The enrichment is to parameterize over a type index language from which type index terms are drawn.
+
+	濃縮は、タイプの索引語が描画されるからタイプインデックスの言語を上にパラメータ化することです。
+
+		φ; P~ |= true
+		(reg-true)
+		φ; P~ , false |= P
+		(reg-false)
+		φ; P~ |= P0
+		φ, a : s; P~ |= P0
+		(reg-var-thin)
+		φ ` P : bool φ; P~ |= P0
+		φ; P~ , P |= P0
+		(reg-prop-thin)
+		φ, a : s; P~ |= P φ ` I : s
+		φ; P~ [a 7→ I] |= P[a 7→ I]
+		(reg-subst)
+		φ; P~ |= P0 φ; P~ , P0 |= P1
+		φ; P~ |= P1
+		(reg-cut)
+		φ ` I : s
+		φ; P~ |= I
+		.
+		=s I
+		(reg-eq-refl)
+		φ;P~ |= I1
+		.=s I2
+		φ;P~ |= I2
+		.
+		=s I1
+		(reg-eq-symm)
+		φ; P~ |= I1
+		.=s I2 φ; P~ |= I2
+		.=s I3
+		φ; P~ |= I1
+		.=s I3
+		(reg-eq-tran)
+
+		Fig. 9. The regularity rules
 
 	In this section, we show how a generic type index language L can be formed and then present some concrete examples of type index languages. 
 
 	For generality, we will include both tuples and functions in L.
+
 	However, we emphasize that a type index language can but does not necessarily have to support tuples or functions.
 
 	The generic type index language L itself is typed. In order to avoid potential confusion, we call the types in L type index sorts (or sorts, for short).
@@ -996,10 +1131,11 @@
 
 	fig 7.
 
-	b: base sorts. bool or ...
-	C: constant sort = c-sort = (s1, . . ., sn) -> b 
+		b: base sorts. bool or ...
+		C: constant sort = c-sort = (s1, . . ., sn) -> b 
 
 	We use a for index variables and C for constants, which are either constant functions or constant constructors.
+	
 	Each constant is assigned a constant sort (or c-sort, for short) of the form (s1, . . . , sn) ⇒ b, which means that C(I1, . . . , In) is an index term of sort b if Ii are of sorts si for i = 1, . . . , n.
 
 
@@ -1018,16 +1154,27 @@
 	Fig 8.
 
 	We present the sorting rules for type index terms in Figure 8, which are mostly standard.
+
+	我々は、ほとんどが標準的である図8のタイプインデックスの用語、のソートルールを提示する。
+
 	We use P for index propositions, which are index terms that can be assigned the sort bool (under some index context φ), and P~ for a sequence of propositions, where the ordering of the terms in this sequence is of no significance.
 
+	我々は、このシーケンスの条件の順序は重要ではない命題のシーケンスのために（いくつかの指標のコンテキストφ下）ソートBOOLを割り当てることができますインデックス用語であるインデックス命題、およびP〜のためにPを使用しています。
+
 	We may write φ |- P~ : bool to mean that φ |- P : bool is derivable for every P in P~.
+
+	BOOLがP内のすべてのP〜のために誘導可能である：P - |それはφ意味するBOOL：P〜 - |我々は、φを書き込むことができる。
+
 	In addition, we may use φ |- Θ : φ0 to indicate that φ |- Θ(a) : φ0(a) holds for each a in dom(Θ) = dom(φ0).
+
+	また、我々はφを使用することがあります| - Θ：φ0はそれがφを示すために| - Θ（A）：φ0（a）の各AのDOM（Θ）= DOM（φ0）についても同様である。
 
 - 3.1 Regular constraint relation
 
+- 3.1 正規制約関係
+
 	A constraint relation φ; P~ |= P0 is defined on triples φ, P~, P0 such that both φ |-
 	P~ : bool and φ |- P0 : bool are derivable.
-
 
 	制約関係（ φ ; P 〜 | = P0 ）は３つの（ φ 、 P 〜 、 P0）で定義されており、（ φ| - 
 	P 〜：ブール値）と（ φ| - P0：ブール値）両方が導出可能である。
@@ -1038,72 +1185,73 @@
 
 	We say that a constraint relation φ; P~ |= P0 is　regular if all the regularity rules in Figure 9 are valid, that is, the conclusion of a　regularity rule holds whenever all the premises of the regularity rule do.
 
-	図9のすべての規則性の規則が有効であるか|; （ = P0 P 〜 φ ）それは、規則性ルールの結論は規則性ルールのすべての施設が行うたびに保持され、規則的である私たちは、制約関係があることを言う。
+	図9のすべての規則性の規則が有効であるか|; （ = P0 P 〜 φ ）それは、規則性ルールの結論は規則性ルールのすべての施設が行うたびに保持され、規則的である我々は、制約関係があることを言う。
 
-	私たちは、図9のすべての規則性の規則が有効な場合、制約関係 φ; P~ |= P0 はつまり、規則性ルールの結論は規則性ルールのすべての施設が行うたびに保持され、定期的であると言う。
+	我々は、図9のすべての規則性の規則が有効な場合、制約関係 φ; P~ |= P0 はつまり、規則性ルールの結論は規則性ルールのすべての施設が行うたびに保持され、定期的であると言う。
 
-	----------------(reg-true)
-	φ; P~ |= true
+		----------------(reg-true)
+		φ; P~ |= true
 
 	命題の集まりPはtrueが導出出来る。
 
-	----------------(reg-false)
-	φ; P~,false |= P
+		----------------(reg-false)
+		φ; P~,false |= P
 
 	P~,falseは存在する。
 
-	φ; P~ |= P0
-	----------------(reg-var-thin)
-	φ,a:s; P~ |= P0
+		φ; P~ |= P0
+		----------------(reg-var-thin)
+		φ,a:s; P~ |= P0
 
 
 	変数が加わっても同じ。
 
 
-	φ|- P:bool      φ;P~ |= P0
-	--------------------------(reg-prop-thin)
-	φ,a:s; P~ |= P0
+		φ|- P:bool      φ;P~ |= P0
+		--------------------------(reg-prop-thin)
+		φ,a:s; P~ |= P0
 
 	Pが命題で、制約関係φでP~にP0の制約関係があるならば
 	変数が加わっても制約関係φでP~にP0は変わらない。
 
 
-	φ,a:s;P~ |= P        φ |- I:s
-	-----------------------------(reg-subst)
-	φ; P~[a |-> I ] |= P[a |-> I]
+		φ,a:s;P~ |= P        φ |- I:s
+		-----------------------------(reg-subst)
+		φ; P~[a |-> I ] |= P[a |-> I]
 
 	型がsの変数aが環境内にあってP~ |= Pで φ 内に変数 I:sがあるとき
 
-	φ; P~[a |-> I ] |= P[a |-> I]
+		φ; P~[a |-> I ] |= P[a |-> I]
 
 	命題の集合のP~内のaがIならP内のaもIだ。 
 
 
-	φ;P~ |= P0      φ;P~,P0 |- P1
-	-----------------------------(reg-cut)
-	φ; P~ |= P1
+		φ;P~ |= P0      φ;P~,P0 |- P1
+		-----------------------------(reg-cut)
+		φ; P~ |= P1
 
 	φ;P~ |= P0かつφ;P~,P0 |- P1ならφ; P~ |= P1だ。
 
 
-	Note that　the rules (reg-eq-refl), (reg-eq-symm) and (reg-eq-tran) indicate that for each　sort s,
-	.=s needs to be interpreted as an equivalence relation on expressions of the　sort s.
+	Note that　the rules (reg-eq-refl), (reg-eq-symm) and (reg-eq-tran) indicate that for each　sort s, .=s needs to be interpreted as an equivalence relation on expressions of the　sort s.
 
-	φ |- I:s
-	----------------(reg-eq-refl)
-	φ; P~ |= I .= I
+	ルール（REG-EQ-REFL）、（REG-EQ-SYMM）と（REG-EQ-TRAN）は各ソート s、.= Sはソートsの式に同値関係として解釈される必要があることを示していることに注意してください。
+
+		φ |- I:s
+		----------------(reg-eq-refl)
+		φ; P~ |= I .= I
 
 	反射率
 
-	φ;P~ |= I1 .= I2
-	----------------(reg-eq-symm)
-	φ;P~ |= I2 .= I1
+		φ;P~ |= I1 .= I2
+		----------------(reg-eq-symm)
+		φ;P~ |= I2 .= I1
 
 	対称律
 
-	φ;P~ |= I1 .= I2     φ;P~|= I2 .= I3
-	------------------------------------(reg-eq-tran)
-	φ; P~ |= I1 .= I3
+		φ;P~ |= I1 .= I2     φ;P~|= I2 .= I3
+		------------------------------------(reg-eq-tran)
+		φ; P~ |= I1 .= I3
 
 	推移律
 
@@ -1111,489 +1259,596 @@
 
 	Essentially, we want to treat a constraint relation as an abstract notion. 
 
+	基本的に、我々は、抽象概念としての制約関係を扱いたい。
+
 	However,　in order to use it, we need to specify certain properties it possesses, and this is　precisely the motivation for introducing regularity rules.
+
+	しかし、それを使用するために、我々はそれが有する特定のプロパティを指定する必要があり、これは正確に規則性ルールを導入するための動機である。
 
 	For instance, we need the regularity rules to prove the following lemma.
 
+	たとえば、我々は次の補題を証明するために規則の規則を必要とする。
 
-	Lemma 3.1 (Substitution)
 
-		• Assume φ, φ0; P~ |= P0
-		     and φ |- Θ : φ0.        Then φ; P~ [Θ] |= P0[Θ] holds.
-		• Assume φ; P~ , P~0 |= P0
-		     and φ; P~       |= P~0. Then φ; P~     |= P0    holds.
+	- Lemma 3.1 (Substitution)
+
+		- Assume φ, φ0; P~ |= P0
+			and φ |- Θ : φ0.        Then φ; P~ [Θ] |= P0[Θ] holds.
+		- Assume φ; P~ , P~0 |= P0
+			and φ; P~       |= P~0. Then φ; P~     |= P0    holds.
 
 	Note that these two properties are just simple iterations of the rules (reg-subst) and (reg-cut).
 
+	これらの2つのプロパティのルール（REG-SUBST）と（REGカット）の単純な繰り返しがあることに注意してください。
+
 	In the rest of this section, we first present a model-theoretic approach to establishing the consistency of a regular constraint relation, and then show some concrete examples of type index languages.
+
+	このセクションの残りの部分では、まず、通常の制約関係の整合性を確立するモデル理論アプローチを提示してから、タイプインデックス言語のいくつかの具体例を示している。
 
 	At this point, an alternative is for the reader to proceed directly to the next section and then return at a later time.
 
+	読者は、次のセクションに直接進むと、後で返すようにするためにこの時点で、代替案がある。
+
 - 3.2 Models for type index languages
 
-	We now present an approach to constructing regular constraint relations for type
-	index languages. The approach, due to Henkin (Henkin, 1950), is commonly used
-	in the construction of models for simple type theories. The presentation of this approach
-	given below is entirely adopted from Chapter 5 (Andrews, 1986). Also, some
-	details on constructing Henkin models can be found in (Andrews, 1972; Mitchell &
-	Scott, 1989).
-	We use D for domains (sets). Given two domains D1 and D2, we use D1 × D2
-	for the usual product set {ha1, a2i | a1 ∈ D1 and a2 ∈ D2}, and π1 and π2 for the
-	standard projection functions from D1 × D2 to D1 and D2, respectively.
-	Let sort be the (possibly infinite) set of all sorts in L. A frame is a collection
-	{Ds}s∈sort of nonempty domains Ds, one for each sort s. We require that
-	Dbool = {tt, ff}, where tt and ff refer to two distinct elements representing truth
-	and falsehood, respectively, and Ds1∗s2 = Ds1 × Ds2 and Ds1→s2 be some collection
-	of functions from Ds1
-	to Ds2
-	(but not necessarily all the functions from Ds1
-	to
-	Ds2
-	). An interpretation h{Ds}s∈sort, Ii of L consists of a frame {Ds}s∈sort and a
-	function I that maps each constant C of c-sort (s1, . . . , sn) ⇒ b to a function I(C)
-	from Ds1 × . . . × Dsn
-	into Db (or to an element in Db if n = 0), where b stands for
-	a base sort. In particular, we require that
-	• I(true) = tt and I(false) = ff, and
-	• I(
-	.=s) be the equality function of the domain Ds for each sort s.
-	Assume that the arity of a constructor C is n. Then C(I1, . . . , In)
-	.= C(I
-	0
-	1
-	, . . . , I
-	0
-	n)Journal of Functional Programming 17
-	implies that Ii
-	.= I
-	0
-	i
-	for 1 ≤ i ≤ n. Therefore, for each constructor C, we require
-	that I(C) be an injective (a.k.a. 1-1) function.
-	An assignment η is a finite mapping from index variables to D = ∪s∈sortDs, and
-	we use dom(η) for the domain of η. As usual, we use [] for the empty mapping
-	and η[a 7→ a] for the mapping that extends η with one additional link from a to
-	a, where a 6∈ dom(η) is assumed. We write η : φ if η(a) ∈ Dφ(a) holds for each
-	a ∈ dom(η) = dom(φ).
-	An interpretation M = h{Ds}s∈sort, Ii of S, which is the signature associated
-	with L, is a model for L if there exists a (partial) binary function VM such that
-	for each assignment η satisfying η : φ for some φ and each index term I, VM(η, I)
-	is properly defined such that VM(η, I) ∈ Ds holds whenever φ ` I : s is derivable
-	for some sort s, and the following conditions are also met:
+	We now present an approach to constructing regular constraint relations for type index languages.
+
+	現在タイプインデックス言語の定期的な制約関係を構築するためのアプローチを提示。
+
+	The approach, due to Henkin (Henkin, 1950), is commonly used in the construction of models for simple type theories.
+
+	ヘン（ヘン、1950）によるアプローチは、一般的に単純型理論のモデルの作成に使用される。
+
+	The presentation of this approach given below is entirely adopted from Chapter 5 (Andrews, 1986).
+
+	下記のこのアプローチのプレゼンテーションでは、完全に、第5章（アンドリュース、1986）から採用されている。
+
+	Also, some details on constructing Henkin models can be found in (Andrews, 1972; Mitchell & Scott, 1989).
+
+	（;ミッチェル＆スコット、1989アンドリュース、1972）。また、ヘンケンモデルを構築する上で、いくつかの詳細が記載されています。
+
+	We use D for domains (sets).
+
+	我々は、ドメイン（セット）のためにDを使用しています。
+
+	Given two domains D1 and D2, we use D1 × D2 for the usual product set {ha1, a2i | a1 ∈ D1 and a2 ∈ D2}, and π1 and π2 for the standard projection functions from D1 × D2 to D1 and D2, respectively.
+
+	それぞれD1およびD2、D1から×D2から標準の投影機能用、およびπ1とπ2|つのドメインD1およびD2を考えると、我々は通常の製品セット{A1∈D1とa2∈D2 HA1、a2i}のためにD1×D2を使用。
+
+	Let sort be the (possibly infinite) set of all sorts in L.
+
+	ソートL.におけるあらゆる種類の（おそらく無限の）集合とする
+
+	A frame is a collection {Ds}s∈sort of nonempty domains Ds, one for each sort s.
+
+
+	フレームが空でないドメインのDS、各ソートsの1のコレクション{Dsは}s∈sortです。
+
+	We require that Dbool = {tt, ff}, where tt and ff refer to two distinct elements representing truth and falsehood, respectively, and Ds1∗s2 = Ds1 × Ds2 and Ds1→s2 be some collection of functions from Ds1 to Ds2 (but not necessarily all the functions from Ds1 to Ds2).
+
+	我々は、Dbool={TTは、FF}、TTはとFFそれぞれ、真実と虚偽を表す2つの異なる要素を参照してくださいどこにする必要があり、およびDS1* S2 = Ds1を×Ds2におよびDS1→S2（Ds2とのDs1をから機能の一部収集をすることが、 Ds1がからDs2のに必ずしもすべての機能）。
+
+	An interpretation h{Ds}s∈sort, Ii of L consists of a frame {Ds}s∈sort and a function I that maps each constant C of c-sort (s1, . . . , sn) ⇒ b to a function I(C) from Ds1 × . . . × Dsn into Db (or to an element in Db if n = 0), where b stands for a base sort.
+
+	In particular, we require that
+	
+	- I(true) = tt and I(false) = ff, and
+	- I(.=s) be the equality function of the domain Ds for each sort s.
+		Assume that the arity of a constructor C is n. Then C(I1, . . . , In) .= C(I0 1, . . . , I0 n)
+
+	implies that Ii .= I0 i for 1 ≤ i ≤ n. Therefore, for each constructor C, we require that I(C) be an injective (a.k.a. 1-1) function.
+
+	An assignment η is a finite mapping from index variables to D = ∪s∈sortDs, and we use dom(η) for the domain of η. As usual, we use [] for the empty mapping and η[a 7→ a] for the mapping that extends η with one additional link from a to a, where a 6∈ dom(η) is assumed.
+
+	We write η : φ if η(a) ∈ Dφ(a) holds for each a ∈ dom(η) = dom(φ).
+
+	An interpretation M = h{Ds}s∈sort, Ii of S, which is the signature associated with L, is a model for L if there exists a (partial) binary function VM such that for each assignment η satisfying η : φ for some φ and each index term I, VM(η, I) is properly defined such that VM(η, I) ∈ Ds holds whenever φ ` I : s is derivable for some sort s, and the following conditions are also met:
+
 	1. VM(η, a) = η(a) for each a ∈ dom(η), and
 	2. VM(η, C(I1, . . . , In)) = I(C)(VM(η, I1), . . . , VM(η, In)), and
 	3. VM(η,hI1, I2i) = hVM(η, I1), VM(η, I2)i, and
-	4. VM(η, π1(I)) = π1(VM(η, I)) whenever φ ` I : s1 ∗ s2 is derivable for some
-	sorts s1 and s2, and
-	5. VM(η, π2(I)) = π2(VM(η, I)), whenever φ ` I : s1 ∗ s2 is derivable for some
-	sorts s1 and s2, and
-	6. VM(η, I1(I2)) = VM(η, I1)(VM(η, I2)) whenever φ ` I1(I2) : s is derivable for
-	some sort s, and
-	7. VM(η, λa : s1.I) is the function that maps each element a in the domain Ds1
-	to VM(η[a 7→ a], I) whenever φ ` λa : s1.I : s1 → s2 is derivable for some
-	sort s2.
-	Note that not all interpretations are models (Andrews, 1972). Given a model M for
-	L, we can define a constraint relation |=M as follows: φ; P~ |=M P0 holds if and only
-	if for each assignment η such that η : φ holds, VM(η, P0) = tt or VM(η, P) = ff for
-	some P ∈ P~ .
-	Proposition 3.2
-	The constraint relation |=M is regular.
-	Proof
-	It is a simple routine to verify that each of the regularity rules listed in Figure 9 is
-	valid.
-	Therefore, we have shown that for any given type index language L, there always
-	exists a regular constraint relation if a model can be constructed for L. Of course,
-	in practice, we need to focus on regular constraint relations that can be decided in
-	an algorithmically effective manner.
+	4. VM(η, π1(I)) = π1(VM(η, I)) whenever φ ` I : s1 ∗ s2 is derivable for some sorts s1 and s2, and
+	5. VM(η, π2(I)) = π2(VM(η, I)), whenever φ ` I : s1 ∗ s2 is derivable for some sorts s1 and s2, and
+	6. VM(η, I1(I2)) = VM(η, I1)(VM(η, I2)) whenever φ ` I1(I2) : s is derivable for some sort s, and
+	7. VM(η, λa : s1.I) is the function that maps each element a in the domain Ds1 to VM(η[a 7→ a], I) whenever φ ` λa : s1.I : s1 → s2 is derivable for some sort s2.
+
+	Note that not all interpretations are models (Andrews, 1972).
+
+	Given a model M for L, we can define a constraint relation |=M as follows: φ; P~ |=M P0 holds if and only if for each assignment η such that η : φ holds, VM(η, P0) = tt or VM(η, P) = ff for some P ∈ P~ .
+
+	- Proposition 3.2
+
+		The constraint relation |=M is regular.
+
+	- Proof
+
+		It is a simple routine to verify that each of the regularity rules listed in Figure 9 is valid.
+		
+		Therefore, we have shown that for any given type index language L, there always exists a regular constraint relation if a model can be constructed for L.
+
+		Of course, in practice, we need to focus on regular constraint relations that can be decided in an algorithmically effective manner.
 
 - 3.3 Some examples of type index languages
 
 - 3.3.1 A type index language Lalg
 
-	We now describe a type index language Lalg in which only algebraic terms can be
-	formed. Suppose that there are some base sorts in Lalg . For each base sort b, there18 Hongwei Xi
-	exists some constructors of c-sorts (b1, . . . , bn) ⇒ b for constructing terms of the
-	base sort b, and we say that these constructors are associated with the sort b. In
-	general, the terms in Lalg can be formed as follows,
-	index terms I ::= a | C(I1, . . . , In)
-	where C is a constructor or an equality constant function .=s for some sort s. For
-	instance, we may have a sort Nat and two constructors Z and S of c-sorts () ⇒ Nat
-	and (Nat) ⇒ Nat, respectively, for constructing terms of sort Nat. A constraint in
-	Lalg is of the following form:
-	a1 : b1, . . . , an : bn; I1
-	.= I
-	0
-	1
-	, . . . , In
-	.= I
-	0
-	n |= I
-	.= I
-	0
-	where each
-	.= is .=s for some sort s. A simple rule-based algorithm for solving this
-	kind of constraints can be found in (Xi et al., 2003), where algebraic terms are used
-	to represent types.
-	In practice, we can provide a mechanism for adding into Lalg a new base sort b as
-	well as the constructors associated with b. As an example, we may use the following
-	concrete syntax:
-	datasort stp =
-	Bool | Integer | Arrow of (stp, stp) | Pair of (stp, stp)
-	to introduce a sort stp and then associate with it some constructors of the following
-	c-sorts:
-	Bool : () ⇒ stp
-	Integer : () ⇒ stp
-	Arrow : (stp, stp) ⇒ stp
-	Pair : (stp, stp) ⇒ stp
-	We can then use index terms of the sort stp to represent the types in a simply typed
-	λ-calculus where tuples are supported and there are also base types for booleans and
-	integers. In Section 7.3, we will present a concrete programming example involving
-	the type index language Lalg .
+	We now describe a type index language Lalg in which only algebraic terms can be formed.
+
+	Suppose that there are some base sorts in Lalg .
+
+	For each base sort b, there exists some constructors of c-sorts (b1, . . . , bn) ⇒ b for constructing terms of the base sort b, and we say that these constructors are associated with the sort b.
+
+	In general, the terms in Lalg can be formed as follows, index terms I ::= a | C(I1, . . . , In) where C is a constructor or an equality constant function .=s for some sort s.
+
+	For instance, we may have a sort Nat and two constructors Z and S of c-sorts () ⇒ Nat and (Nat) ⇒ Nat, respectively, for constructing terms of sort Nat.
+
+	A constraint in Lalg is of the following form:
+
+		a1 : b1, . . . , an : bn; I1
+		.= I
+		0
+		1
+		, . . . , In
+		.= I
+		0
+		n |= I
+		.= I
+		0
+
+	where each .= is .=s for some sort s.
+
+	A simple rule-based algorithm for solving this kind of constraints can be found in (Xi et al., 2003), where algebraic terms are used to represent types.
+
+	In practice, we can provide a mechanism for adding into Lalg a new base sort b as well as the constructors associated with b.
+
+	As an example, we may use the following concrete syntax:
+
+		datasort stp =
+		Bool | Integer | Arrow of (stp, stp) | Pair of (stp, stp)
+
+	to introduce a sort stp and then associate with it some constructors of the following c-sorts:
+
+		Bool : () ⇒ stp
+		Integer : () ⇒ stp
+		Arrow : (stp, stp) ⇒ stp
+		Pair : (stp, stp) ⇒ stp
+
+	We can then use index terms of the sort stp to represent the types in a simply typed λ-calculus where tuples are supported and there are also base types for booleans and integers.
+
+	In Section 7.3, we will present a concrete programming example involving the type index language Lalg .
 
 - 3.3.2 Another type index language Lint
 
-	We now formally describe another type index language Lint in which we can form
-	integer expressions. The syntax for Lint is given as follows:
-	index sorts s ::= bool | int
-	index terms I ::= a | C(I1, . . . , In)
-	There are no tuples and functions (formed through λ-abstraction) in Lint, and the
-	constants C in Lint together with their c-sorts are listed in Figure 10. Let Dint
-	be the domain (set) of integers and Mint be h{Dbool , Dint}, Iinti, where Iint maps
-	each constant in Lint to its standard interpretation. For instance, I(+) and I(−)
-	are the standard addition and subtraction functions on integers, respectively. It can
-	be readily verified that Mint is a model for Lint. Therefore, the constraint relation
-	|=Mint is regular.Journal of Functional Programming 19
-	true : () → bool
-	false : () → bool
-	i : () → int for every integer i
-	¬ : (bool) → bool negation
-	∧ : (bool, bool) → bool conjunction
-	∨ : (bool, bool) → bool disjunction
-	+ : (int, int) → int
-	− : (int, int) → int
-	: (int, int) → int
-	/ : (int, int) → int
-	max : (int, int) → int
-	min : (int, int) → int
-	mod : (int, int) → int modulo operation
-	≥ : (int, int) → bool
-	> : (int, int) → bool
-	≤ : (int, int) → bool
-	< : (int, int) → bool
-	= : (int, int) → bool
-	6= : (int, int) → bool
-	. . . : . . .
-	Fig. 10. The constants and their c-sorts in Lint
-	datasort typ = Arrow of (typ, typ) | All of (typ -> typ)
-	datatype EXP (typ) =
-	| {a1:typ, a2:typ} EXPlam (Arrow (a1, a2)) of (EXP (a1) -> EXP (a2))
-	| {a1:typ, a2:typ} EXPapp (a2) of (EXP (Arrow (a1, a2)), EXP (a1))
-	| {f:typ -> typ} EXPalli (All (f)) of ({a:typ} EXP (f a))
-	| {f:typ -> typ,a:typ} EXPalle (f a) of (EXP (All f))
-	Fig. 11. An example involving higher-order type index terms
-	Given a constraint φ; P~ |=Mint P0, where φ = a1 : int, . . . , an : int, and each P in
-	P~ is a linear inequality on integers, and P0 is also a linear inequality on integers,
-	we can use linear integer programming to solve such a constraint. We will mention
-	later that we can make use of the type index language Lint in the design of a
-	dependently type functional programming language where type equality between
-	two types can be decided through linear integer programming. Though the problem
-	of linear integer programming itself is NP-complete, we have observed that the
-	overwhelming majority of constraints encountered in practice can be solved in a
-	manner that is efficient enough to support realistic programming.
+	We now formally describe another type index language Lint in which we can form integer expressions.
+
+	The syntax for Lint is given as follows:
+	
+		index sorts s ::= bool | int
+		index terms I ::= a | C(I1, . . . , In)
+	
+	There are no tuples and functions (formed through λ-abstraction) in Lint, and the constants C in Lint together with their c-sorts are listed in Figure 10.
+
+	Let Dint be the domain (set) of integers and Mint be h{Dbool , Dint}, Iinti, where Iint maps each constant in Lint to its standard interpretation.
+
+	For instance, I(+) and I(−) are the standard addition and subtraction functions on integers, respectively.
+
+	It can be readily verified that Mint is a model for Lint. Therefore, the constraint relation |=Mint is regular.
+
+		true : () → bool
+		false : () → bool
+		i : () → int for every integer i
+		¬ : (bool) → bool negation
+		∧ : (bool, bool) → bool conjunction
+		∨ : (bool, bool) → bool disjunction
+		+ : (int, int) → int
+		− : (int, int) → int
+		: (int, int) → int
+		/ : (int, int) → int
+		max : (int, int) → int
+		min : (int, int) → int
+		mod : (int, int) → int modulo operation
+		≥ : (int, int) → bool
+		> : (int, int) → bool
+		≤ : (int, int) → bool
+		< : (int, int) → bool
+		= : (int, int) → bool
+		6= : (int, int) → bool
+		. . . : . . .
+
+	- Fig. 10. The constants and their c-sorts in Lint
+
+		datasort typ = Arrow of (typ, typ) | All of (typ -> typ)
+		datatype EXP (typ) =
+		| {a1:typ, a2:typ} EXPlam (Arrow (a1, a2)) of (EXP (a1) -> EXP (a2))
+		| {a1:typ, a2:typ} EXPapp (a2) of (EXP (Arrow (a1, a2)), EXP (a1))
+		| {f:typ -> typ} EXPalli (All (f)) of ({a:typ} EXP (f a))
+		| {f:typ -> typ,a:typ} EXPalle (f a) of (EXP (All f))
+
+	- Fig. 11. An example involving higher-order type index terms
+
+	Given a constraint φ; P~ |=Mint P0, where φ = a1 : int, . . . , an : int, and each P in P~ is a linear inequality on integers, and P0 is also a linear inequality on integers, we can use linear integer programming to solve such a constraint.
+
+	制約φを考える。 P〜|=ミントP0、どこに、φ=のA1：int型、。 。 。 、：int型、およびP〜の各Pは整数に対する線形不等式であり、P0は、我々はそのような制約を解決するために、線形整数計画を使用することができ、また、整数上の線形不等式です。
+
+	We will mention later that we can make use of the type index language Lint in the design of a dependently type functional programming language where type equality between two types can be decided through linear integer programming.
+
+	我々はの設計タイプインデックス言語リントを利用することができ、後に言及します依存して二種類のタイプの平等は線形整数計画を経て決定することができる機能的なプログラミング言語を入力します。
+
+	Though the problem of linear integer programming itself is NP-complete, we have observed that the overwhelming majority of constraints encountered in practice can be solved in a manner that is efficient enough to support realistic programming.
+
+	線形整数計画自体の問題は、NP完全であるが、我々は、実際に遭遇する制約の圧倒的多数は、現実的なプログラミングをサポートするのに十分に効率的な方法で解決することができることを観察した。
 
 - 3.3.3 Higher-order type index terms
 
-	There are no higher-order type indexes, that is, type index terms of function sorts, in
-	either Lalg or Lint. In general, the constraint relation involving higher-order type
-	indexes are often difficult or simply intractable to solve. We now present a type20 Hongwei Xi
-	index language Lλ, which extends Lalg with higher-order type indexes as follows:
-	index terms I ::= . . . | λa : s.I | I1(I2)
+	There are no higher-order type indexes, that is, type index terms of function sorts, in either Lalg or Lint.
+
+	高次タイプのインデックスはLalgや糸くずのどちらかの関数の種類、のタイプインデックスの用語は、つまり、全くありません。
+
+	In general, the constraint relation involving higher-order type indexes are often difficult or simply intractable to solve.
+
+	一般に、高次型索引付けに関連する制約関係は、しばしば困難または解決することが簡単に難治性である。
+
+	We now present a type index language Lλ, which extends Lalg with higher-order type indexes as follows:
+
+	我々は現在、次のように高次タイプのインデックスとLalgを拡張タイプインデックス言語Lλを提示：
+
+		index terms I ::= . . . | λa : s.I | I1(I2)
+
 	Like in Lalg , a constraint in Lλ is of the following form:
-	a1 : b1, . . . , an : bn; I1
-	.= I
-	0
-	1
-	, . . . , In
-	.= I
-	0
-	n
-	|= I
-	.= I
-	0
+
+	Lalgのように、Lλで制約は以下の形式は次のとおりです。
+
+		a1 : b1, . . . , an : bn; I1
+		.= I
+		0
+		1
+		, . . . , In
+		.= I
+		0
+		n
+		|= I
+		.= I
+		0
+
 	For instance, we may ask whether the following constraint holds:
-	a1 : b → b, a2 : b; a1(a1(a2)) .= a1(a2) |= a1(a2) = a2
-	If there are two distinct constants C1 and C2 of sort b, then the answer is negative
-	since a counterexample can be constructed by letting a1 and a2 be λa : b.C1 and
-	C2, respectively. Clearly, the problem of solving constraints in Lλ is undecidable as
-	(a special case of) it can be reduced to the problem of higher-order unification. For
-	instance, φ; I1
-	.= I2 |= false holds if and only if there exists no substitution Θ : φ
-	such that I1[Θ] and I2[Θ] are βη-equivalent.
-	In practice, we can decide to only handle constraints of the following simplified
-	form:
-	φ; a1
-	.= I1, . . . , an
-	.= In |= I
-	.= I
-	0
-	where for 1 ≤ i ≤ j ≤ n, there are no free occurrences of aj in Ii
-	. Solving such
-	a constraint can essentially be reduced to deciding the βη-equality on two simply
-	typed λ-terms, which is done by comparing whether the two λ-terms have the same
-	long βη-normal form.
-	We now present an example that makes use of higher-order type indexes. The
-	constraints on type indexes involved in this example have the above simplified
-	form and thus can be easily solved using βη-normalization. The concrete syntax in
-	Figure 11 declares a sort typ and a type constructor EXP that takes an index term
-	I of sort typ to form a type EXP(I). The value constructors associated with EXP
-	are assigned the following c-types:
-	EXPlam : Πa1 :typ.Πa2 :typ.
-	(EXP(a1) → EXP(a2)) ⇒ EXP(Arrow(a1, a2))
-	EXPapp : Πa1 :typ.Πa2 :typ.
-	(EXP(Arrow(a1, a2)), EXP(a1)) ⇒ EXP(a2)
-	EXPalli : Πf :typ → typ.
-	(Πa:typ. EXP(f(a))) ⇒ EXP(All(f))
-	EXPalle : Πf :typ → typ.Πa:typ.
-	(EXP(All(f))) ⇒ EXP(f(a))
-	The intent is to use an index term I of sort typ to represent a type in the secondorder
-	polymorphic λ-calculus λ2 (a.k.a. system F), and a value of type EXP(I)
-	to represent a λ-term in λ2 that can be assigned the type represented by I. For
-	instance, the type ∀α. α → α is represented as All(λa : typ. Arrow(a, a)), and the
-	following term:
-	EXPalli(Π+(EXPalli(Π+(EXPlam(lamx. EXPlam(lamy. EXPapp(y, x)))))))Journal of Functional Programming 21
-	types τ ::= . . . | δ(
-	~I) | P ⊃ τ | P ∧ τ | Πa:s. τ | Σa:s. τ
-	expressions e ::= . . . | ⊃
-	+(v) | ⊃
-	−(e) | Π
-	+(v) | Π
-	−(e) |
-	∧(e) | let ∧ (x) = e1 in e2 end |
-	Σ(e) | let Σ(x) = e1 in e2 end
-	values v ::= . . . | ⊃
-	+(v) | Π
-	+(v) | ∧(v) | Σ(v)
-	Fig. 12. The syntax for λ
-	Π,Σ
-	pat
+
+	たとえば、我々は以下の制約が成立するかどうか尋ねる場合があります:
+
+		a1 : b → b, a2 : b; a1(a1(a2)) .= a1(a2) |= a1(a2) = a2
+
+	If there are two distinct constants C1 and C2 of sort b, then the answer is negative since a counterexample can be constructed by letting a1 and a2 be λa : b.C1 and C2, respectively.
+
+	それぞれ、b.C1及びC2：つの異なる定数C1とソートbのC2がある場合反例をa1とa2をλaとすることがせることによって構築することができるので、答えは否定的である。
+
+	Clearly, the problem of solving constraints in Lλ is undecidable as (a special case of) it can be reduced to the problem of higher-order unification.
+
+
+	（特別な場合）には高次の統一の問題に還元することができるように明確に、Lλに制約を解決する問題が決定不能である。
+
+	For instance, φ; I1 .= I2 |= false holds if and only if there exists no substitution Θ : φ such that I1[Θ] and I2[Θ] are βη-equivalent.
+
+	例えば、φ。 I1= I2|=全く代替Θが存在しないとする場合にのみ場合はfalseが成り立つ：。そのようなφI1[Θ]とI2[Θ]はβη等価であること。
+
+	In practice, we can decide to only handle constraints of the following simplified form:
+
+	実際には、我々は唯一以下の簡略化した形の制約を処理するために決定することができます。
+
+		φ; a1
+		.= I1, . . . , an
+		.= In |= I
+		.= I
+		0
+
+	where for 1 ≤ i ≤ j ≤ n, there are no free occurrences of aj in Ii.
+
+	1≤のために、私はJの≤nを≤場所、井伊でAJの空き出現はありません。
+
+
+	Solving such a constraint can essentially be reduced to deciding the βη-equality on two simply typed λ-terms, which is done by comparing whether the two λ-terms have the same long βη-normal form.
+
+	解決そのような制約は、基本的に2つのλ-用語が同じ長いβη-正規形を持っているかどうかを比較することによって行われている2単に入力されたλ-条件でβη-平等を、決定に還元することができる。
+
+	We now present an example that makes use of higher-order type indexes.
+
+	我々は現在、高次タイプのインデックスを利用した例を提示する。
+
+	The constraints on type indexes involved in this example have the above simplified form and thus can be easily solved using βη-normalization.
+
+	この例では、関連するタイプのインデックスに対する制約は、上記の簡略化した形態を有し、したがって、容易にβη正規化を使用して解くことができる。
+
+	The concrete syntax in Figure 11 declares a sort typ and a type constructor EXP that takes an index term I of sort typ to form a type EXP(I).
+
+	図11の具体的な構文は、ソートTYPとタイプEXP（I）を形成するために、一種の標準索引用語Iをとり型コンストラクタのEXPを宣言します。
+
+	The value constructors associated with EXP are assigned the following c-types:
+
+	EXPに関連付けられた値コンストラクタは、次のC-タイプが割り当てられています。
+
+		EXPlam : Πa1 :typ.Πa2 :typ.
+			(EXP(a1) → EXP(a2)) ⇒ EXP(Arrow(a1, a2))
+		EXPapp : Πa1 :typ.Πa2 :typ.
+			(EXP(Arrow(a1, a2)), EXP(a1)) ⇒ EXP(a2)
+		EXPalli : Πf :typ → typ.
+			(Πa:typ. EXP(f(a))) ⇒ EXP(All(f))
+		EXPalle : Πf :typ → typ.Πa:typ.
+			(EXP(All(f))) ⇒ EXP(f(a))
+
+	The intent is to use an index term I of sort typ to represent a type in the secondorder polymorphic λ-calculus λ2 (a.k.a. system F), and a value of type EXP(I) to represent a λ-term in λ2 that can be assigned the type represented by I.
+
+	意図ができλ2におけるλ期を表現するためにsecondorder多型λ計算のλ2（別名システムF）を入力し、タイプEXP（I）の値を表すために、一種の標準索引用語Iを使用することですIで表さタイプが割り当て
+
+	For instance, the type ∀α. α → α is represented as All(λa : typ. Arrow(a, a)), and the following term:
+
+	例えば、タイプの∀α。 α→αはすべてのように表される（λaは：。TYP矢印（、a）参照）、および以下の言葉を。
+
+		EXPalli(Π+(EXPalli(Π+(EXPlam(lamx. EXPlam(lamy. EXPapp(y, x)))))))
+		types τ ::= . . . | δ(
+		~I) | P ⊃ τ | P ∧ τ | Πa:s. τ | Σa:s. τ
+		expressions e ::= . . . | ⊃
+		+(v) | ⊃
+		−(e) | Π
+		+(v) | Π
+		−(e) |
+		∧(e) | let ∧ (x) = e1 in e2 end |
+		Σ(e) | let Σ(x) = e1 in e2 end
+		values v ::= . . . | ⊃
+		+(v) | Π
+		+(v) | ∧(v) | Σ(v)
+
+		Fig. 12. The syntax for λ Π,Σ pat
+
 	which can be given the following type:
-	EXP(All(λa1 : typ. All(λa2 : typ. Arrow(a1, Arrow(Arrow(a1, a2), a2)))))
-	represents the λ-term Λα1.Λα2.λx : α1.λy : α1 → α2.y(x). This is a form of higherorder
-	abstract syntax (h.o.a.s.) representation for λ-terms (Church, 1940; Pfenning
-	& Elliott, 1988; Pfenning, n.d.). As there is some unfamiliar syntax involved in this
-	example, we suggest that the reader revisit it after studying Section 4.
+
+	これは、次の型を与えることができる：
+
+		EXP(All(λa1 : typ. All(λa2 : typ. Arrow(a1, Arrow(Arrow(a1, a2), a2)))))
+
+	represents the λ-term Λα1.Λα2.λx : α1.λy : α1 → α2.y(x).
+
+	λ長期Λα1.Λα2.λxが表す：α1.λy：α1は→α2.y（X）。
+
+	This is a form of higherorder abstract syntax (h.o.a.s.) representation for λ-terms (Church, 1940; Pfenning & Elliott, 1988; Pfenning, n.d.).
+
+	これはλ-用語（;プフェニング＆エリオット、1988;プフェニング、ND教会、1940）のためのhigherorder抽象構文（のHoA）表現の一形態である。
+
+	As there is some unfamiliar syntax involved in this example, we suggest that the reader revisit it after studying Section 4.
+
+	この例に関わるいくつかのなじみのない構文があるように、我々は読者が第4節を勉強した後にそれを再検討することを示唆している。
 
 - 4 λ Π,Σ pat : Extending λpat with dependent types
 
-	In this section, we introduce both universal and existential dependent types into
-	the type system of λpat, leading to the design of a programming language schema
-	λ
-	Π,Σ
-	pat (L) that parameterizes over a given type index language L.
+	In this section, we introduce both universal and existential dependent types into the type system of λpat, leading to the design of a programming language schema λΠ,Σ pat (L) that parameterizes over a given type index language L.
+
+	このセクションでは、与えられたタイプのインデックス言語L.上のパラメータ化プログラミング言語スキーマλΠ、Σパット（L）の設計につながる、λpatの型システムに両方のユニバーサルと実存依存型を導入
 
 - 4.1 Syntax
 
-	Let us fix a type index language L. We now present λ
-	Π,Σ
-	pat = λ
-	Π,Σ
-	pat (L), which is an
-	extension of λpat with universal and existential dependent types. The syntax of
-	λ
-	Π,Σ
-	pat is given in Figure 12, which extends the syntax in Figure 3. For instance, we
-	use . . . in the definition of types in λ
-	Π,Σ
-	pat for the following definition of types in λpat:
-	1 | τ1 ∗ τ2 | τ1 → τ2
-	We now use δ for base type families. We may write δ for δ(), which is just an
-	unindexed type. We do not specify here as to how new type families can actually
-	be declared. In our implementation, we do provide a means for the programmer to
-	declare type families. For instance, in Section 1, there is such a declaration in the
-	example presented in Figure 1.
-	We use the names universal (dependent) types, existential (dependent) types,
-	guarded types and asserting types for types of the forms Πa:s. τ , Σa:s. τ , P ⊃ τ and
-	P ∧ τ , respectively. Note that the type constructor ∧ is asymmetric. In addition,
-	we use the names universal expressions, existential expressions, guarded expressions
-	and asserting expressions for expressions of the forms Π+(v), Σ(e), ⊃+(v) and ∧(e),
-	respectively.
-	In the following presentation, we may write ~I for a (possibly empty) sequence
-	of index terms I1, . . . , In; P~ for a (possibly empty) sequence of index propositions
-	P1, . . . , Pn; Πφ for a (possibly empty) sequence of quantifiers: Πa1 : s1 . . . Πan : sn,22 Hongwei Xi
-	` δ(s1, . . . , sn) φ ` Ik : sk for 1 ≤ k ≤ n
-	φ ` δ(I1, . . . , In) [type]
-	(tp-base)
-	φ ` 1 [type]
-	(tp-unit)
-	φ ` τ1 [type] φ ` τ2 [type]
-	φ ` τ1 ∗ τ2 [type]
-	(tp-prod)
-	φ ` τ1 [type] φ ` τ2 [type]
-	φ ` τ1 → τ2 [type]
-	(tp-fun)
-	φ ` P : bool φ ` τ [type]
-	φ ` P ⊃ τ [type]
-	(tp-⊃)
-	φ, a : s ` τ [type]
-	φ ` Πa:s. τ [type]
-	(tp-Π)
-	φ ` P : bool φ ` τ [type]
-	φ ` P ∧ τ [type]
-	(tp-∧)
-	φ, a : s ` τ [type]
-	φ ` Σa:s. τ [type]
-	(tp-Σ)
-	φ ` ∅ [ctx]
-	(ctx-emp)
-	φ ` Γ [ctx] φ ` τ [type] xf 6∈ dom(Γ)
-	φ ` Γ, xf : τ [ctx]
-	(ctx-ext)
-	Fig. 13. The type and context formation rules in λ
-	Π,Σ
-	pat
+	Let us fix a type index language L.
+
+	我々はタイプインデックス言語Lを修正しましょう
+
+	We now present λΠ,Σ pat = λΠ,Σ pat (L), which is an extension of λpat with universal and existential dependent types.
+
+	我々はここで、本λΠ、普遍的で実存的依存型とλpatの拡張であるΣパット=λΠ、Σパット（L）、。
+
+	The syntax of λΠ,Σ pat is given in Figure 12, which extends the syntax in Figure 3.
+
+	λΠ、Σパットの構文は、図3の構文を拡張し、図12に与えられている。
+
+	For instance, we use . . . in the definition of types in λΠ,Σ pat for the following definition of types in λpat:
+
+
+	たとえば、使用しております。 。 。 λΠ、λpat内の型の次の定義のためのΣパット内の型の定義で：
+
+		1 | τ1 ∗ τ2 | τ1 → τ2
+	
+	We now use δ for base type families. We may write δ for δ(), which is just an unindexed type.
+
+	我々は現在、基本型家族のためにδを使用しています。私達はちょうどインデックスのないタイプであるδのためのδ（）を、書き込むことができる。
+
+	We do not specify here as to how new type families can actually be declared.
+
+	我々は、新しいタイプの家族が実際に宣言することができますどのように、ここで指定しないでください。
+
+	In our implementation, we do provide a means for the programmer to declare type families.
+
+	我々の実装では、プログラマがタイプファミリを宣言するための手段を提供します。
+
+	For instance, in Section 1, there is such a declaration in the example presented in Figure 1.
+
+	例えば、第1節では、図1に示す例では、そのような宣言があります。
+
+	We use the names universal (dependent) types, existential (dependent) types, guarded types and asserting types for types of the forms Πa:s. τ , Σa:s. τ , P ⊃ τ and P ∧ τ , respectively.
+
+	我々は、フォームπAの種類の名前のユニバーサル（依存）の種類、実存（依存）のタイプ、保護されたタイプと主張するタイプを使用します。■。 τ、ΣA：S。それぞれτ、P⊃τとP∧τ、。
+
+	Note that the type constructor ∧ is asymmetric.
+
+	型コンストラクタは∧非対称であることに注意してください。
+
+	In addition, we use the names universal expressions, existential expressions, guarded expressions and asserting expressions for expressions of the forms Π+(v), Σ(e), ⊃+(v) and ∧(e), respectively.
+
+	また、我々は形の表現のために名前を普遍的な表現、実存的表現、保護された式と主張する表現を使用Π+（V）、Σ（E）、⊃+（V）と∧（e）は、それぞれ。
+
+	In the following presentation, we may write ~I for a (possibly empty) sequence of index terms I1, . . . , In; P~ for a (possibly empty) sequence of index propositions P1, . . . , Pn; Πφ for a (possibly empty) sequence of quantifiers:
+
+	以下の発表では、書くことが〜私、索引語I1の（空）の配列について。 。 。 、では、用のP〜インデックス命題P1の（空）のシーケンス、。 。 。 、Pnは、数量詞の（空）の配列についてΠφ：
+
+		Πa1 : s1 . . . Πan : sn, ` δ(s1, . . . , sn) φ ` Ik : sk for 1 ≤ k ≤ n
+		φ ` δ(I1, . . . , In) [type]
+		(tp-base)
+		φ ` 1 [type]
+		(tp-unit)
+		φ ` τ1 [type] φ ` τ2 [type]
+		φ ` τ1 ∗ τ2 [type]
+		(tp-prod)
+		φ ` τ1 [type] φ ` τ2 [type]
+		φ ` τ1 → τ2 [type]
+		(tp-fun)
+		φ ` P : bool φ ` τ [type]
+		φ ` P ⊃ τ [type]
+		(tp-⊃)
+		φ, a : s ` τ [type]
+		φ ` Πa:s. τ [type]
+		(tp-Π)
+		φ ` P : bool φ ` τ [type]
+		φ ` P ∧ τ [type]
+		(tp-∧)
+		φ, a : s ` τ [type]
+		φ ` Σa:s. τ [type]
+		(tp-Σ)
+		φ ` ∅ [ctx]
+		(ctx-emp)
+		φ ` Γ [ctx] φ ` τ [type] xf 6∈ dom(Γ)
+		φ ` Γ, xf : τ [ctx]
+		(ctx-ext)
+
+		Fig. 13. The type and context formation rules in λΠ,Σ pat
+
 	where the index context φ is a1 : s1, . . . , an : sn; P~ ⊃ τ for P1 ⊃ (. . .(Pn ⊃ τ ). . .)
-	if P~ = P1, . . . , Pn.
-	Notice that a form of value restriction is imposed in λ
-	Π,Σ
-	pat : It is required that
-	e be a value in order to form expressions Π+(e) and ⊃ +(e). This form of value
-	restriction can in general greatly simplify the treatment of effectful features such
-	as references (Wright, 1995), which are to be added into λ
-	Π,Σ
-	pat in Section 6. We
-	actually need to slightly relax this form of value restriction in Section 6.3 by only
-	requiring that e be a value-equivalent expression (instead of a value) when Π+(e)
-	or ⊃+(e) is formed. Generally speaking, a value-equivalent expression, which is to
-	be formally defined later, refers to an expression that is operationally equivalent to
-	a value.
-	Intuitively, in order to turn a value of a guarded type P ⊃ τ into a value of
-	type τ , we must establish the proposition P; if a value of an asserting type P ∧ τ
-	is generated, then we can assume that the proposition P holds. For instance, the
-	following type can be assigned to the usual division function on integers,
-	Πa1 :int.Πa2 :int. (a2 6= 0) ⊃ (int(a1) ∗ int(a2) → int(a1/a2))
-	where / stands for the integer division function in some type index language. TheJournal of Functional Programming 23
-	φ; P~ |= I1
-	.
-	= I
-	0
-	1 · · · φ; P~ |= In
-	.
-	= I
-	0
-	n
-	φ;P~ |= δ(I1, . . . , In) ≤
-	s
-	tp δ(I
-	0
-	1, . . . , I
-	0
-	n)
-	(st-sub-base)
-	φ; P~ |= 1 ≤
-	s
-	tp 1
-	(st-sub-unit)
-	φ;P~ |= τ1 ≤
-	s
-	tp τ
-	0
-	1 φ; P~ |= τ2 ≤
-	s
-	tp τ
-	0
-	2
-	φ; P~ |= τ1 ∗ τ2 ≤
-	s
-	tp τ
-	0
-	1 ∗ τ
-	0
-	2
-	(st-sub-prod)
-	φ;P~ |= τ
-	0
-	1 ≤
-	s
-	tp τ1 φ; P~ |= τ2 ≤
-	s
-	tp τ
-	0
-	2
-	φ; P~ |= τ1 → τ2 ≤
-	s
-	tp τ
-	0
-	1 → τ
-	0
-	2
-	(st-sub-fun)
-	φ; P~ , P
-	0
-	|= P φ; P~ , P
-	0
-	|= τ ≤
-	s
-	tp τ
-	0
-	φ; P~ |= P ⊃ τ ≤
-	s
-	tp P
-	0 ⊃ τ
-	0
-	(st-sub-⊃)
-	φ, a : s; P~ |= τ ≤
-	s
-	tp τ
-	0
-	φ; P~ |= Πa:s. τ ≤
-	s
-	tp Πa:s. τ
-	0
-	(st-sub-Π)
-	φ; P~ , P |= P
-	0 φ; P~ , P |= τ ≤
-	s
-	tp τ
-	0
-	φ; P~ |= P ∧ τ ≤
-	s
-	tp P
-	0 ∧ τ
-	0
-	(st-sub-∧)
-	φ, a : s; P~ |= τ ≤
-	s
-	tp τ
-	0
-	φ; P~ |= Σa:s. τ ≤
-	s
-	tp Σa:s. τ
-	0
-	(st-sub-Σ)
-	Fig. 14. The static subtype rules in λ
-	Π,Σ
-	pat
-	x ↓ τ ⇒ (∅; ∅; x : τ )
-	(pat-var)
-	hi ↓ 1 ⇒ (∅; ∅; ∅)
-	(pat-unit)
-	p1 ↓ τ1 ⇒ (φ1; P~1; Γ1) p2 ↓ τ2 ⇒ (φ2; P~2; Γ2)
-	hp1, p2i ↓ τ1 ∗ τ2 ⇒ (φ1, φ2; P~1, P~2; Γ1, Γ2)
-	(pat-prod)
-	φ0; P~0 ` cc(τ ) : δ(I1, . . . , In) p ↓ τ ⇒ (φ; P~ ; Γ)
-	cc(p) ↓ δ(I
-	0
-	1, . . . , I
-	0
-	n) ⇒ (φ0, φ; P~0, P~ , I1
-	.= I
-	0
-	1, . . . , In
-	.= I
-	0
-	n; Γ)
-	(pat-const)
-	Fig. 15. The typing rules for patterns
+
+		if P~ = P1, . . . , Pn.
+
+	Notice that a form of value restriction is imposed in λΠ,Σ pat : It is required that e be a value in order to form expressions Π+(e) and ⊃ +(e).
+
+	This form of value restriction can in general greatly simplify the treatment of effectful features such as references (Wright, 1995), which are to be added into λΠ,Σ pat in Section 6.
+
+	We actually need to slightly relax this form of value restriction in Section 6.3 by only requiring that e be a value-equivalent expression (instead of a value) when Π+(e) or ⊃+(e) is formed.
+
+	Generally speaking, a value-equivalent expression, which is to be formally defined later, refers to an expression that is operationally equivalent to a value.
+
+	Intuitively, in order to turn a value of a guarded type P ⊃ τ into a value of type τ , we must establish the proposition P; if a value of an asserting type P ∧ τ is generated, then we can assume that the proposition P holds.
+
+	For instance, the following type can be assigned to the usual division function on integers,
+
+		Πa1 :int.Πa2 :int. (a2 6= 0) ⊃ (int(a1) ∗ int(a2) → int(a1/a2))
+
+	where / stands for the integer division function in some type index language. The
+
+		φ; P~ |= I1
+		.
+		= I
+		0
+		1 · · · φ; P~ |= In
+		.
+		= I
+		0
+		n
+		φ;P~ |= δ(I1, . . . , In) ≤
+		s
+		tp δ(I
+		0
+		1, . . . , I
+		0
+		n)
+		(st-sub-base)
+		φ; P~ |= 1 ≤
+		s
+		tp 1
+		(st-sub-unit)
+		φ;P~ |= τ1 ≤
+		s
+		tp τ
+		0
+		1 φ; P~ |= τ2 ≤
+		s
+		tp τ
+		0
+		2
+		φ; P~ |= τ1 ∗ τ2 ≤
+		s
+		tp τ
+		0
+		1 ∗ τ
+		0
+		2
+		(st-sub-prod)
+		φ;P~ |= τ
+		0
+		1 ≤
+		s
+		tp τ1 φ; P~ |= τ2 ≤
+		s
+		tp τ
+		0
+		2
+		φ; P~ |= τ1 → τ2 ≤
+		s
+		tp τ
+		0
+		1 → τ
+		0
+		2
+		(st-sub-fun)
+		φ; P~ , P
+		0
+		|= P φ; P~ , P
+		0
+		|= τ ≤
+		s
+		tp τ
+		0
+		φ; P~ |= P ⊃ τ ≤
+		s
+		tp P
+		0 ⊃ τ
+		0
+		(st-sub-⊃)
+		φ, a : s; P~ |= τ ≤
+		s
+		tp τ
+		0
+		φ; P~ |= Πa:s. τ ≤
+		s
+		tp Πa:s. τ
+		0
+		(st-sub-Π)
+		φ; P~ , P |= P
+		0 φ; P~ , P |= τ ≤
+		s
+		tp τ
+		0
+		φ; P~ |= P ∧ τ ≤
+		s
+		tp P
+		0 ∧ τ
+		0
+		(st-sub-∧)
+		φ, a : s; P~ |= τ ≤
+		s
+		tp τ
+		0
+		φ; P~ |= Σa:s. τ ≤
+		s
+		tp Σa:s. τ
+		0
+		(st-sub-Σ)
+
+	- Fig. 14. The static subtype rules in λ Π,Σ pat
+
+		x ↓ τ ⇒ (∅; ∅; x : τ )
+		(pat-var)
+		hi ↓ 1 ⇒ (∅; ∅; ∅)
+		(pat-unit)
+		p1 ↓ τ1 ⇒ (φ1; P~1; Γ1) p2 ↓ τ2 ⇒ (φ2; P~2; Γ2)
+		hp1, p2i ↓ τ1 ∗ τ2 ⇒ (φ1, φ2; P~1, P~2; Γ1, Γ2)
+		(pat-prod)
+		φ0; P~0 ` cc(τ ) : δ(I1, . . . , In) p ↓ τ ⇒ (φ; P~ ; Γ)
+		cc(p) ↓ δ(I
+		0
+		1, . . . , I
+		0
+		n) ⇒ (φ0, φ; P~0, P~ , I1
+		.= I
+		0
+		1, . . . , In
+		.= I
+		0
+		n; Γ)
+		(pat-const)
+
+	- Fig. 15. The typing rules for patterns
+
 	following type is a rather interesting one:
 	Πa:bool. bool(a) → (a
 	.= true) ∧ 1
@@ -1601,1351 +1856,1229 @@
 	expression holds. In the case where the boolean expression fails to hold, some form
 	of exception is to be raised. Therefore, this function acts as a verifier for run-time
 	assertions made in programs.
-	In practice, we also have a notion of subset sort. We use sˆ to range over subset24 Hongwei Xi
-	φ; P~ ; Γ ` e : τ1 φ;P~ |= τ1 ≤
-	s
-	tp τ2
-	φ;P~ ; Γ ` e : τ2
-	(ty-sub)
-	φ ` Γ [ctx] Γ(xf ) = τ
-	φ; P~ ; Γ ` xf : τ
-	(ty-var)
-	φ0; P~0 ` c(τ ) : δ(
-	~I0) φ ` Θ : φ0 φ; P~ |= P~0[Θ] φ; P~ ; Γ ` e : τ [Θ]
-	φ; P~ ; Γ ` c(e) : δ(
-	~I0[Θ])
-	(ty-const)
-	φ ` Γ [ctx]
-	φ; P~ ; Γ ` hi : 1
-	(ty-unit) φ; P~ ; Γ ` e1 : τ1 φ;P~ ; Γ ` e2 : τ2
-	φ; P~ ; Γ ` he1, e2i : τ1 ∗ τ2
-	(ty-prod)
-	φ; P~ ; Γ ` e : τ1 ∗ τ2
-	φ; P~ ; Γ ` fst(e) : τ1
-	(ty-fst) φ; P~ ; Γ ` e : τ1 ∗ τ2
-	φ; P~ ; Γ ` snd(e) : τ2
-	(ty-snd)
-	p ↓ τ1 ⇒ (φ0; P~0, Γ0) φ, φ0; P~ ; P~0; Γ, Γ0 ` e : τ2
-	φ;P~ ; Γ ` p ⇒ e : τ1 → τ2
-	(ty-clause)
-	φ; P~ ; Γ ` pk ⇒ ek : τ1 → τ2 for k = 1, . . . , n
-	φ; P~ ; Γ ` (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
-	(ty-clause-seq)
-	φ; P~ ; Γ ` e : τ1 φ;P~ ; Γ ` ms : τ1 → τ2
-	φ; P~ ; Γ ` case e of ms : τ2
-	(ty-case)
-	φ;P~ ; Γ, x : τ1 ` e : τ2
-	φ; P~ ; Γ ` lamx. e : τ1 → τ2
-	(ty-lam)
-	φ; P~ ; Γ ` e1 : τ1 → τ2 φ;P~ ; Γ ` e2 : τ1
-	φ; P~ ; Γ ` e1(e2) : τ2
-	(ty-app)
-	φ; P~ ; Γ, f : τ ` e : τ
-	φ; P~ ; Γ ` fix f. e : τ
-	(ty-fix)
-	φ; P~ ; Γ ` e1 : τ1 φ; P~ ; Γ, x : τ1 ` e2 : τ2
-	φ; P~ ; Γ ` let x = e1 in e2 end : τ2
-	(ty-let)
-	Fig. 16. The typing rules for λ
-	Π,Σ
-	pat (1)
+	In practice, we also have a notion of subset sort. We use sˆ to range over subset
+
+		φ; P~ ; Γ ` e : τ1 φ;P~ |= τ1 ≤
+		s
+		tp τ2
+		φ;P~ ; Γ ` e : τ2
+		(ty-sub)
+		φ ` Γ [ctx] Γ(xf ) = τ
+		φ; P~ ; Γ ` xf : τ
+		(ty-var)
+		φ0; P~0 ` c(τ ) : δ(
+		~I0) φ ` Θ : φ0 φ; P~ |= P~0[Θ] φ; P~ ; Γ ` e : τ [Θ]
+		φ; P~ ; Γ ` c(e) : δ(
+		~I0[Θ])
+		(ty-const)
+		φ ` Γ [ctx]
+		φ; P~ ; Γ ` hi : 1
+		(ty-unit) φ; P~ ; Γ ` e1 : τ1 φ;P~ ; Γ ` e2 : τ2
+		φ; P~ ; Γ ` he1, e2i : τ1 ∗ τ2
+		(ty-prod)
+		φ; P~ ; Γ ` e : τ1 ∗ τ2
+		φ; P~ ; Γ ` fst(e) : τ1
+		(ty-fst) φ; P~ ; Γ ` e : τ1 ∗ τ2
+		φ; P~ ; Γ ` snd(e) : τ2
+		(ty-snd)
+		p ↓ τ1 ⇒ (φ0; P~0, Γ0) φ, φ0; P~ ; P~0; Γ, Γ0 ` e : τ2
+		φ;P~ ; Γ ` p ⇒ e : τ1 → τ2
+		(ty-clause)
+		φ; P~ ; Γ ` pk ⇒ ek : τ1 → τ2 for k = 1, . . . , n
+		φ; P~ ; Γ ` (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
+		(ty-clause-seq)
+		φ; P~ ; Γ ` e : τ1 φ;P~ ; Γ ` ms : τ1 → τ2
+		φ; P~ ; Γ ` case e of ms : τ2
+		(ty-case)
+		φ;P~ ; Γ, x : τ1 ` e : τ2
+		φ; P~ ; Γ ` lamx. e : τ1 → τ2
+		(ty-lam)
+		φ; P~ ; Γ ` e1 : τ1 → τ2 φ;P~ ; Γ ` e2 : τ1
+		φ; P~ ; Γ ` e1(e2) : τ2
+		(ty-app)
+		φ; P~ ; Γ, f : τ ` e : τ
+		φ; P~ ; Γ ` fix f. e : τ
+		(ty-fix)
+		φ; P~ ; Γ ` e1 : τ1 φ; P~ ; Γ, x : τ1 ` e2 : τ2
+		φ; P~ ; Γ ` let x = e1 in e2 end : τ2
+		(ty-let)
+
+		Fig. 16. The typing rules for λΠ,Σ pat (1)
+
 	sorts, which are formally defined as follows:
-	subset sort sˆ ::= s | {a : sˆ | P}
+
+		subset sort sˆ ::= s | {a : sˆ | P}
+
 	where the index variable a in {a : sˆ | P} binds the free occurrences of a in P.
 	Note that subset sorts, which extend sorts, are just a form of syntactic sugar.
 	Intuitively, the subset sort {a : sˆ | P} is for index terms I of subset sort sˆ that
 	satisfy the proposition P[a 7→ I]. For instance, the subset sort nat is defined to be
 	{a : int | a ≥ 0}. In general, we may write {a : s | P1, . . . , Pn} for the subset sort
 	sˆn defined as follows:
-	sˆ0 = s sˆk = {a : sˆk−1 | Pk}Journal of Functional Programming 25
-	φ; P~ , P; Γ ` v : τ
-	φ; P~ ; Γ `⊃+(v) : P ⊃ τ
-	(ty-⊃-intro)
-	φ; P~ ; Γ ` e : P ⊃ τ φ; P~ |= P
-	φ; P~ ; Γ `⊃−(e) : τ
-	(ty-⊃-elim)
-	φ, a : s;P~ ; Γ ` v : τ
-	φ; P~ ; Γ ` Π
-	+(v) : Πa:s. τ
-	(ty-Π-intro)
-	φ; P~ ; Γ ` e : Πa:s. τ φ ` I : s
-	φ; P~ ; Γ ` Π
-	−(e) : τ [a 7→ I]
-	(ty-Π-elim)
-	φ; P~ ; Γ ` e : τ φ; P~ |= P
-	φ; P~ ; Γ ` ∧(e) : P ∧ τ
-	(ty-∧-intro)
-	φ; P~ ; Γ ` e1 : P ∧ τ1 φ; P~ , P; Γ, x : τ1 ` e2 : τ2
-	φ;P~ ; Γ ` let ∧ (x) = e1 in e2 end : τ2
-	(ty-∧-elim)
-	φ; P~ ; Γ ` e : τ [a 7→ I] φ ` I : s
-	φ; P~ ; Γ ` Σ(e) : Σa:s. τ
-	(ty-Σ-intro)
-	φ; P~ ; Γ ` e1 : Σa:s. τ1 φ, a : s; P~ ; Γ, x : τ1 ` e2 : τ2
-	φ; P~ ; Γ ` let Σ(x) = e1 in e2 end : τ2
-	(ty-Σ-elim)
-	Fig. 17. The typing rules for λ
-	Π,Σ
-	pat (2)
+
+		sˆ0 = s sˆk = {a : sˆk−1 | Pk}
+		φ; P~ , P; Γ ` v : τ
+		φ; P~ ; Γ `⊃+(v) : P ⊃ τ
+		(ty-⊃-intro)
+		φ; P~ ; Γ ` e : P ⊃ τ φ; P~ |= P
+		φ; P~ ; Γ `⊃−(e) : τ
+		(ty-⊃-elim)
+		φ, a : s;P~ ; Γ ` v : τ
+		φ; P~ ; Γ ` Π
+		+(v) : Πa:s. τ
+		(ty-Π-intro)
+		φ; P~ ; Γ ` e : Πa:s. τ φ ` I : s
+		φ; P~ ; Γ ` Π
+		−(e) : τ [a 7→ I]
+		(ty-Π-elim)
+		φ; P~ ; Γ ` e : τ φ; P~ |= P
+		φ; P~ ; Γ ` ∧(e) : P ∧ τ
+		(ty-∧-intro)
+		φ; P~ ; Γ ` e1 : P ∧ τ1 φ; P~ , P; Γ, x : τ1 ` e2 : τ2
+		φ;P~ ; Γ ` let ∧ (x) = e1 in e2 end : τ2
+		(ty-∧-elim)
+		φ; P~ ; Γ ` e : τ [a 7→ I] φ ` I : s
+		φ; P~ ; Γ ` Σ(e) : Σa:s. τ
+		(ty-Σ-intro)
+		φ; P~ ; Γ ` e1 : Σa:s. τ1 φ, a : s; P~ ; Γ, x : τ1 ` e2 : τ2
+		φ; P~ ; Γ ` let Σ(x) = e1 in e2 end : τ2
+		(ty-Σ-elim)
+
+		Fig. 17. The typing rules for λΠ,Σ pat (2)
+
 	where k = 1, . . . , n.
-	We use φ; P~ ` I : {a : s | P1, . . . , Pn} to mean that φ; P~ ` I : s is derivable and
-	φ; P~ ` Pi
-	[a 7→ I] hold for i = 1, . . . , n. Given a subset sort sˆ, we write Πa:sˆ. τ for
-	Πa:s. τ if sˆ is s, or for Πa:sˆ1. P ⊃ τ if sˆ is {a : sˆ1 | P}. Similarly, we write Σa:s. ˆ τ
+
+	We use φ; P~ ` I : {a : s | P1, . . . , Pn} to mean that φ; P~ ` I : s is derivable and φ; P~ ` Pi [a 7→ I] hold for i = 1, . . . , n.
+
+	Given a subset sort sˆ, we write Πa:sˆ. τ for Πa:s. τ if sˆ is s, or for Πa:sˆ1. P ⊃ τ if sˆ is {a : sˆ1 | P}. Similarly, we write Σa:s. ˆ τ
 	for Σa:s. τ if sˆ is s, or for Σa:sˆ1. P ∧ τ if sˆ is {a : sˆ1 | P}. For instance, we write
-	Πa1 :nat. int(a1) → Σa2 :nat. int(a2) for the following type:
-	Πa1 :int .(a1 ≥ 0) ⊃ (int(a1) → Σa2 :int .(a2 ≥ 0) ∧ int(a2)),
+
+		Πa1 :nat. int(a1) → Σa2 :nat. int(a2) for the following type:
+		Πa1 :int .(a1 ≥ 0) ⊃ (int(a1) → Σa2 :int .(a2 ≥ 0) ∧ int(a2)),
+
 	which is for functions that map natural numbers to natural numbers.
 
 - 4.2 Static semantics
 
-	We start with the rules for forming types and contexts, which are listed in Figure
-	13. We use the syntax ` δ(s1, . . . , sn) to indicate that we can construct a type
-	δ(I1, . . . , In) when given type index terms I1, . . . , In of sorts s1, . . . , sn, respectively.
-	A judgment of the form φ ` τ [type] means that τ is a well-formed type under
-	the index context φ, and a judgment of the form φ ` Γ [ctx] means that Γ is a
-	well-formed (expression) context under φ. The domain dom(Γ) of a context Γ is
-	defined to be the set of variables declared in Γ. We write φ; P~ |= P0 for a regular
-	constraint relation in the fixed type index language L.26 Hongwei Xi
-	In λ
-	Π,Σ
-	pat , type equality, that is, equality between types, is defined in terms of the
-	static subtype relation ≤s
-	tp: We say that τ and τ
-	0 are equal if both τ ≤s
-	tp τ
-	0 and
-	τ
-	0 ≤s
-	tp τ hold. By overloading |=, we use φ; P~ |= τ ≤s
-	tp τ
-	0
-	for a static subtype
-	judgment and present the rules for deriving such a judgment in Figure 14. Note
-	that all of these rules are syntax-directed.
-	The static subtype relation ≤s
-	tp is often too weak in practice. For instance, we may
-	need to use a function of the type τ1 = Πa:int. int(a) → int(a) as a function of the
-	type τ2 = (Σa :int. int(a)) → (Σa :int. int(a)), but it is clear that τ1 ≤s
-	tp τ2 does
-	not hold (as ≤s
-	tp is syntax-directed). We are to introduce in Section 4.6 another
-	subtype relation ≤d
-	tp, which is much stronger than ≤s
-	tp and is given the name
-	dynamic subtype relation.
-	The following lemma, which is parallel to Lemma 3.1, essentially states that the
-	rules in Figure 14 are closed under substitution.
-	Lemma 4.1
-	1. If φ, φ0; P~ |= τ ≤s
-	tp τ
-	0
-	is derivable and φ ` Θ : φ0 holds, then φ; P~ [Θ] |=
-	τ [Θ] ≤s
-	tp τ
-	0
-	[Θ] is also derivable.
-	2. If φ; P~ , P~
-	0 |= τ ≤s
-	tp τ
-	0
-	is derivable and φ; P~ |= P~
-	0 holds, then φ; P~ |= τ ≤s
-	tp τ
-	0
-	is also derivable.
-	Proof
-	(Sketch) (1) and (2) are proven by structural induction on the derivations of
-	φ, φ0; P~ |= τ ≤s
-	tp τ
-	0 and φ; P~ , P~
-	0 |= τ ≤s
-	tp τ
-	0
-	, respectively. Lemma 3.1 is needed
-	in the proof.
-	As can be expected, the static subtype relation is both reflexive and transitive.
-	Proposition 4.2 (Reflexitivity and Transitivity of ≤s
-	tp)
-	1. φ; P~ |= τ ≤s
-	tp τ holds for each τ such that φ ` τ [type] is derivable.
-	2. φ; P~ |= τ1 ≤s
-	tp τ3 holds if φ; P~ |= τ1 ≤s
-	tp τ2 and φ; P~ |= τ2 ≤s
-	tp τ3 do.
-	Proof
-	Straightforward.
-	We now present the typing rules for patterns in Figure 15 and then the typing
-	rules for expressions in Figure 16 and Figure 17.
-	The typing judgments for patterns are of the form p ↓ τ ⇒ (φ; P~; Γ), and the
-	rules for deriving such judgments are given in Figure 15. A judgment of the form
-	p ↓ τ ⇒ (φ; P~ ; Γ) means that for any value v of the type τ , if v matches p, that
-	is, match(v, p) ⇒ θ holds for some substitution θ, then there exists an index
-	substitution Θ such that ∅ ` Θ : φ, ∅; ∅ |= P~ [Θ] and (∅; ∅; ∅) ` θ : Γ[Θ]. This is
-	captured precisely by Lemma 4.10. In the rule (pat-prod), it is required that φ1
-	and φ2 share no common index variables in their domains. In the rule (pat-const),
-	we write φ0; P~
-	0 ` cc(τ ) : δ(I1, . . . , In) to mean that cc is a constant constructor
-	assigned (according to some signature for constants) the following c-type:
-	Πφ0.P~
-	0 ⊃ (τ ⇒ δ(I1, . . . , In))Journal of Functional Programming 27
-	In other words, given a constant constructor cc, we can form a rule (pat-const)
-	for this particular cc based on the c-type assigned to cc.
-	The typing rules given in Figure 16 are mostly expected. The rule (ty-clause)
-	requires that τ2 contain only type index variables declared in φ. For universal dependent
-	types, existential dependent types, guarded types, and assertion types, the
-	typing rules are given in Figure 17. Note that we have omitted certain obvious side
-	conditions that need to be attached to some of these rules. For instance, in the rule
-	(ty-Π-intro), the type index variable a is assumed to have no free occurrences in
-	either P~ or Γ. Also, in the rule (ty-Σ-elim), the type index variable a is assumed
-	to have no free occurrences in either P~, Γ or τ2. We now briefly go over some of the
-	typing rules in Figure 17.
-	• If a value v can be assigned a type τ under an assumption P, then the typing
-	rule (ty-⊃-intro) assigns ⊃+(v) the guarded type P ⊃ τ . Notice the presence
-	of value restriction here.
-	• Given an expression e of type P ⊃ τ , the typing rule (ty-⊃-elim) states that
-	the expression ⊃−(e) can be formed if the proposition P holds. Intuitively, a
-	guarded expression is useful only if the guard can be discharged.
-	• If e can be assigned a type τ and P holds, then the typing rule (ty-∧-intro)
-	assigns ∧(e) the asserting type P ∧ τ .
-	• The elimination rule for the type constructor ∧ is (ty-∧-elim). Assume that
-	e2 can be assigned a type τ2 under the assumption that P holds and x is of
-	type τ1. If e1 is given the asserting type P ∧ τ1, then the rule (ty-∧-elim)
-	assigns the type τ2 to the expression let ∧ (x) = e1 in e2 end. Clearly, this
-	rule resembles the treatment of existentially quantified packages (Mitchell &
-	Plotkin, 1988).
-	The following lemma is parallel to Lemma 2.1. We need to make use of the
-	assumption that the constraint relation involved here is regular when proving the
-	first two statements in this lemma.
-	Lemma 4.3 (Thinning)
-	Assume D :: φ; P~ ; Γ ` e : τ .
-	1. For every index variable a that is not declared in φ, we have a derivation
-	D0
-	:: φ, a : s; P~ ; Γ ` e : τ such that height(D) = height(D0
-	).
-	2. For every P such that φ ` P : bool is derivable, we have a derivation D0
-	::
-	φ; P~, P; Γ ` e : τ such that height(D) = height(D0
-	).
-	3. For every variable xf that is not declared in Γ and τ
-	0
-	such that φ ` τ
-	0
-	[type]
-	is derivable, we have a derivation D0
-	:: φ; P~ ; Γ, xf : τ
-	0 ` e : τ such that
-	height(D) = height(D0
-	).
-	Proof
-	Straightforward.
-	The following lemma indicates a close relation between the type of a closed value
-	in λ
-	Π,Σ
-	pat and the form of the value, which is needed in the proof of Theorem 4.12,
-	the Progress Theorem for λ
-	Π,Σ
-	pat .28 Hongwei Xi
-	Lemma 4.4 (Canonical Forms)
-	Assume that ∅; ∅; ∅ ` v : τ is derivable.
-	1. If τ = δ(
-	~I) for some type family δ, then v is of the form cc(v0), where cc is a
-	constant constructor assigned a c-type of the form Πφ.P~ ⊃ (τ0 ⇒ δ(
-	~I0)).
-	2. If τ = 1, then v is hi.
-	3. If τ = τ1 ∗ τ2, then v is of the form hv1, v2i.
-	4. If τ = τ1 → τ2, then v is of the form lamx. e.
-	5. If τ = P ⊃ τ0, then v is of the form ⊃+(v0).
-	6. If τ = Πa:s. τ0, then v is of the form Π+(v0).
-	7. If τ = P ∧ τ0, then v is of the form ∧(v0).
-	8. If τ = Σa:s. τ0, then v is of the form Σ(v0).
-	Proof
-	By a thorough inspection of the typing rules in Figure 16 and Figure 17.
-	Clearly, the following rule is admissible in λ
-	Π,Σ
-	pat as it is equivalent to the rule
-	(ty-var) followed by the rule (ty-sub):
-	φ ` Γ [ctx] Γ(xf) = τ φ; P~ |= τ ≤s
-	tp τ
-	0
-	φ; P~ ; Γ ` xf : τ
-	0
-	(ty-var’)
-	In the following presentation, we retire the rule (ty-var) and simply replace it with
-	the rule (ty-var’).
-	The following technical lemma is needed for establishing Lemma 4.6.
-	Lemma 4.5
-	Assume D :: φ; P~; Γ, xf : τ1 ` e : τ2. If φ; P~ |= τ
-	0
-	1 ≤s
-	tp τ1, then there exists D0
-	::
-	φ; P~ ; Γ, xf : τ
-	0
-	1 ` e : τ2 such that height(D) = height(D0
-	).
-	Proof
-	(Sketch) By structural induction on the derivation D. We need to make use of the
-	fact that the rule (ty-var) is replaced with the rule (ty-var’) in order to show
-	height(D) = height(D0
-	).
-	The following lemma is needed in the proof of Theorem 4.11, the Subject Reduction
-	Theorem for λ
-	Π,Σ
-	pat .
-	Lemma 4.6
-	Assume D :: φ; P~; Γ ` v : τ . Then there exists a derivation D0
-	:: φ; P~ ; Γ ` v : τ such
-	that height(D0
-	) ≤ height(D) and the last typing rule applied in D0
-	is not (ty-sub).
-	Proof
-	(Sketch) The proof proceeds by structural induction on D. When handling the case
-	where the last applied rule in D is (ty-lam), we make use of Lemma 4.5 and thus
-	see the need for replacing (ty-var) with (ty-var’).
-	Note that the value v in Lemma 4.6 cannot be replaced with an arbitrary expression.
-	For instance, if we replace v with an expression of the form Π−(e), then the lemma
-	cannot be proven.
-	The following lemma plays a key role in the proof of Theorem 4.11, the Subject
-	Reduction Theorem for λ
-	Π,Σ
-	pat .Journal of Functional Programming 29
-	Lemma 4.7 (Substitution)
-	1. Assume that φ, φ0; P~ ; Γ ` e : τ is derivable. If φ ` Θ : φ0 holds, then
-	φ; P~[Θ]; Γ[Θ] ` e : τ [Θ] is also derivable.
-	2. Assume that φ; P~ , P~
-	0; Γ ` e : τ is derivable. If φ; P~ |= P~
-	0 holds, then φ; P~ ; Γ `
-	e : τ is also derivable.
-	3. Assume that φ; P~ ; Γ, Γ0 ` e : τ is derivable. If φ; P~; Γ ` θ : Γ0 holds, then
-	φ; P~; Γ ` e[θ] : τ is also derivable.
-	Proof
-	(Sketch) All (1), (2) and (3) are proven straightforwardly by structural induction
-	on the derivations of the typing judgments φ, φ0; P~ ; Γ ` e : τ , and φ; P~ , P~
-	0; Γ ` e : τ ,
-	and φ; P~; Γ, Γ0 ` e : τ , respectively.
+	We start with the rules for forming types and contexts, which are listed in Figure 13.
+
+	We use the syntax ` δ(s1, . . . , sn) to indicate that we can construct a type δ(I1, . . . , In) when given type index terms I1, . . . , In of sorts s1, . . . , sn, respectively.
+
+	A judgment of the form φ ` τ [type] means that τ is a well-formed type under the index context φ, and a judgment of the form φ ` Γ [ctx] means that Γ is a well-formed (expression) context under φ.
+
+	The domain dom(Γ) of a context Γ is defined to be the set of variables declared in Γ.
+
+	We write φ; P~ |= P0 for a regular constraint relation in the fixed type index language L.
+
+	In λΠ,Σ pat , type equality, that is, equality between types, is defined in terms of the static subtype relation ≤s tp:
+
+	We say that τ and τ0 are equal if both τ ≤s tp τ0 and τ0 ≤s tp τ hold.
+
+	By overloading |=, we use φ; P~ |= τ ≤s tp τ0 for a static subtype judgment and present the rules for deriving such a judgment in Figure 14.
+
+	Note that all of these rules are syntax-directed.
+	
+	The static subtype relation ≤s tp is often too weak in practice.
+
+	For instance, we may need to use a function of the type τ1 = Πa:int. int(a) → int(a) as a function of the type τ2 = (Σa :int. int(a)) → (Σa :int. int(a)), but it is clear that τ1 ≤s tp τ2 does not hold (as ≤s tp is syntax-directed).
+
+	We are to introduce in Section 4.6 another subtype relation ≤d tp, which is much stronger than ≤s tp and is given the name dynamic subtype relation.
+
+	The following lemma, which is parallel to Lemma 3.1, essentially states that the rules in Figure 14 are closed under substitution.
+
+	- Lemma 4.1
+
+		1. If φ, φ0; P~ |= τ ≤s
+			tp τ
+			0
+			is derivable and φ ` Θ : φ0 holds, then φ; P~ [Θ] |=
+			τ [Θ] ≤s
+			tp τ
+			0
+			[Θ] is also derivable.
+		2. If φ; P~ , P~
+			0 |= τ ≤s
+			tp τ
+			0
+			is derivable and φ; P~ |= P~
+			0 holds, then φ; P~ |= τ ≤s
+			tp τ
+			0
+			is also derivable.
+
+	- Proof
+
+		(Sketch) (1) and (2) are proven by structural induction on the derivations of
+
+			φ, φ0; P~ |= τ ≤s
+			tp τ
+			0 and φ; P~ , P~
+			0 |= τ ≤s
+			tp τ
+			0
+
+		, respectively.
+		Lemma 3.1 is needed in the proof.
+		As can be expected, the static subtype relation is both reflexive and transitive.
+
+	- Proposition 4.2 (Reflexitivity and Transitivity of ≤s tp)
+
+		1. φ; P~ |= τ ≤s
+			tp τ holds for each τ such that φ ` τ [type] is derivable.
+		2. φ; P~ |= τ1 ≤s
+			tp τ3 holds if φ; P~ |= τ1 ≤s
+			tp τ2 and φ; P~ |= τ2 ≤s
+			tp τ3 do.
+	- Proof
+
+		Straightforward.
+
+		We now present the typing rules for patterns in Figure 15 and then the typing rules for expressions in Figure 16 and Figure 17.
+
+		The typing judgments for patterns are of the form p ↓ τ ⇒ (φ; P~; Γ), and the rules for deriving such judgments are given in Figure 15.
+
+		A judgment of the form p ↓ τ ⇒ (φ; P~ ; Γ) means that for any value v of the type τ , if v matches p, that is, match(v, p) ⇒ θ holds for some substitution θ, then there exists an index substitution Θ such that ∅ ` Θ : φ, ∅; ∅ |= P~ [Θ] and (∅; ∅; ∅) ` θ : Γ[Θ].
+
+		This is captured precisely by Lemma 4.10. In the rule (pat-prod), it is required that φ1 and φ2 share no common index variables in their domains.
+
+		In the rule (pat-const), we write φ0; P~0 ` cc(τ ) : δ(I1, . . . , In) to mean that cc is a constant constructor assigned (according to some signature for constants) the following c-type:
+
+			Πφ0.P~
+			0 ⊃ (τ ⇒ δ(I1, . . . , In))
+
+	In other words, given a constant constructor cc, we can form a rule (pat-const) for this particular cc based on the c-type assigned to cc.
+
+	The typing rules given in Figure 16 are mostly expected.
+
+	The rule (ty-clause) requires that τ2 contain only type index variables declared in φ.
+
+	For universal dependent types, existential dependent types, guarded types, and assertion types, the typing rules are given in Figure 17.
+
+	Note that we have omitted certain obvious side conditions that need to be attached to some of these rules.
+
+	For instance, in the rule (ty-Π-intro), the type index variable a is assumed to have no free occurrences in either P~ or Γ.
+
+	Also, in the rule (ty-Σ-elim), the type index variable a is assumed to have no free occurrences in either P~, Γ or τ2.
+
+	We now briefly go over some of the typing rules in Figure 17.
+
+	- If a value v can be assigned a type τ under an assumption P, then the typing rule (ty-⊃-intro) assigns ⊃+(v) the guarded type P ⊃ τ .
+		Notice the presence of value restriction here.
+	- Given an expression e of type P ⊃ τ , the typing rule (ty-⊃-elim) states that the expression ⊃−(e) can be formed if the proposition P holds.
+		Intuitively, a guarded expression is useful only if the guard can be discharged.
+	- If e can be assigned a type τ and P holds, then the typing rule (ty-∧-intro) assigns ∧(e) the asserting type P ∧ τ .
+
+	- The elimination rule for the type constructor ∧ is (ty-∧-elim).
+		Assume that e2 can be assigned a type τ2 under the assumption that P holds and x is of type τ1.
+	- If e1 is given the asserting type P ∧ τ1, then the rule (ty-∧-elim) assigns the type τ2 to the expression let ∧ (x) = e1 in e2 end.
+		Clearly, this rule resembles the treatment of existentially quantified packages (Mitchell & Plotkin, 1988).
+
+	The following lemma is parallel to Lemma 2.1. We need to make use of the assumption that the constraint relation involved here is regular when proving the first two statements in this lemma.
+
+	- Lemma 4.3 (Thinning)
+
+		Assume D :: φ; P~ ; Γ ` e : τ .
+
+		1. For every index variable a that is not declared in φ, we have a derivation D0 :: φ, a : s; P~ ; Γ ` e : τ such that height(D) = height(D0).
+		2. For every P such that φ ` P : bool is derivable, we have a derivation D0 :: φ; P~, P; Γ ` e : τ such that height(D) = height(D0).
+		3. For every variable xf that is not declared in Γ and τ0 such that φ ` τ0[type] is derivable, we have a derivation D0:: φ; P~ ; Γ, xf : τ0 ` e : τ such that height(D) = height(D0).
+
+	- Proof
+
+		Straightforward.
+		The following lemma indicates a close relation between the type of a closed value in λΠ,Σ pat and the form of the value, which is needed in the proof of Theorem 4.12, the Progress Theorem for λΠ,Σ pat .
+
+	- Lemma 4.4 (Canonical Forms)
+
+		Assume that ∅; ∅; ∅ ` v : τ is derivable.
+
+		1. If τ = δ(~I) for some type family δ, then v is of the form cc(v0), where cc is a constant constructor assigned a c-type of the form Πφ.P~ ⊃ (τ0 ⇒ δ(~I0)).
+		2. If τ = 1, then v is hi.
+		3. If τ = τ1 ∗ τ2, then v is of the form hv1, v2i.
+		4. If τ = τ1 → τ2, then v is of the form lamx. e.
+		5. If τ = P ⊃ τ0, then v is of the form ⊃+(v0).
+		6. If τ = Πa:s. τ0, then v is of the form Π+(v0).
+		7. If τ = P ∧ τ0, then v is of the form ∧(v0).
+		8. If τ = Σa:s. τ0, then v is of the form Σ(v0).
+
+	- Proof
+
+		By a thorough inspection of the typing rules in Figure 16 and Figure 17.
+		Clearly, the following rule is admissible in λΠ,Σ pat as it is equivalent to the rule (ty-var) followed by the rule (ty-sub):
+
+			φ ` Γ [ctx] Γ(xf) = τ φ; P~ |= τ ≤s
+			tp τ
+			0
+			φ; P~ ; Γ ` xf : τ
+			0
+			(ty-var’)
+
+		In the following presentation, we retire the rule (ty-var) and simply replace it with the rule (ty-var’).
+
+		The following technical lemma is needed for establishing Lemma 4.6.
+
+	- Lemma 4.5
+
+			Assume D :: φ; P~; Γ, xf : τ1 ` e : τ2. If φ; P~ |= τ
+			0
+			1 ≤s
+			tp τ1, then there exists D0
+			::
+			φ; P~ ; Γ, xf : τ
+			0
+			1 ` e : τ2 such that height(D) = height(D0
+			).
+
+	- Proof
+
+		(Sketch) By structural induction on the derivation D. We need to make use of the fact that the rule (ty-var) is replaced with the rule (ty-var’) in order to show height(D) = height(D0).
+
+		The following lemma is needed in the proof of Theorem 4.11, the Subject Reduction Theorem for λΠ,Σ pat .
+
+	- Lemma 4.6
+
+		Assume D :: φ; P~; Γ ` v : τ . Then there exists a derivation D0 :: φ; P~ ; Γ ` v : τ such that height(D0) ≤ height(D) and the last typing rule applied in D0 is not (ty-sub).
+
+	- Proof
+
+		(Sketch) The proof proceeds by structural induction on D.
+
+		When handling the case where the last applied rule in D is (ty-lam), we make use of Lemma 4.5 and thus see the need for replacing (ty-var) with (ty-var’).
+
+		Note that the value v in Lemma 4.6 cannot be replaced with an arbitrary expression.
+
+		For instance, if we replace v with an expression of the form Π−(e), then the lemma cannot be proven.
+
+		The following lemma plays a key role in the proof of Theorem 4.11, the Subject Reduction Theorem for λΠ,Σ pat .
+
+	- Lemma 4.7 (Substitution)
+
+		1. Assume that φ, φ0; P~ ; Γ ` e : τ is derivable. If φ ` Θ : φ0 holds, then φ; P~[Θ]; Γ[Θ] ` e : τ [Θ] is also derivable.
+		2. Assume that φ; P~ , P~0; Γ ` e : τ is derivable. If φ; P~ |= P~0 holds, then φ; P~ ; Γ `e : τ is also derivable.
+		3. Assume that φ; P~ ; Γ, Γ0 ` e : τ is derivable. If φ; P~; Γ ` θ : Γ0 holds, then φ; P~; Γ ` e[θ] : τ is also derivable.
+
+	- Proof
+
+		(Sketch) All (1), (2) and (3) are proven straightforwardly by structural induction on the derivations of the typing judgments φ, φ0; P~ ; Γ ` e : τ , and φ; P~ , P~0; Γ ` e : τ , and φ; P~; Γ, Γ0 ` e : τ , respectively.
 
 - 4.3 Dynamic semantics
 
-	We now need to extend the definition of evaluation contexts (Definition 2.4) as
-	follows.
-	Definition 4.8 (Evaluation Contexts)
-	evaluation contexts E ::= . . . | ⊃+(E) | ⊃−(E) | Π+(E) | Π−(E) |
-	∧(E) | let ∧(x) = E in e end |
-	Σ(E) | let Σ(x) = E in e end
-	We are also in need of extending the definition of redexes and their reducts (Defi-
-	nition 2.5).
-	Definition 4.9
-	In addition to the forms of redexes in Definition 2.5, we have the following new
-	forms of redexes:
-	• ⊃−(⊃+(v)) is a redex, and its reduct is v.
-	• Π−(Π+(v)) is a redex, and its reduct is v.
-	• let ∧(x) = ∧(v) in e end is a redex, and its reduct is e[x 7→ v].
-	• let Σ(x) = Σ(v) in e end is a redex, and its reduct is e[x 7→ v].
-	Note that Definition 2.7, where V-form, R-form, M-form, U-form and E-form are
-	defined, can be readily carried over from λpat into λ
-	Π,Σ
-	pat .
-	The following lemma captures the meaning of the typing judgments for patterns;
-	such judgments can be derived according to the rules in Figure 15.
-	Lemma 4.10
-	Assume that ∅; ∅; ∅ ` v : τ is derivable. If p ↓ τ ⇒ (φ; P~ ; Γ) and match(v, p) ⇒ θ are
-	also derivable, then there exists Θ satisfying ∅ ` Θ : φ such that both ∅; ∅ |= P~ [Θ]
-	and (∅; ∅; ∅) ` θ : Γ[Θ] hold.
-	Proof
-	(Sketch) By structural induction on the derivation of p ↓ τ ⇒ (φ; P~ ; Γ).30 Hongwei Xi
-	fun zip (nil, nil) = nil
-	| zip (cons (x, xs), cons (y, ys)) = (x, y) :: zip (xs, ys)
-	Fig. 18. An example of exhaustive pattern matching
+	We now need to extend the definition of evaluation contexts (Definition 2.4) as follows.
+
+	- Definition 4.8 (Evaluation Contexts)
+
+			evaluation contexts E ::= . . . | ⊃+(E) | ⊃−(E) | Π+(E) | Π−(E) |
+			∧(E) | let ∧(x) = E in e end |
+			Σ(E) | let Σ(x) = E in e end
+
+		We are also in need of extending the definition of redexes and their reducts (Defi-nition 2.5).
+
+	- Definition 4.9
+
+		In addition to the forms of redexes in Definition 2.5, we have the following new forms of redexes:
+
+		- ⊃−(⊃+(v)) is a redex, and its reduct is v.
+		- Π−(Π+(v)) is a redex, and its reduct is v.
+		- let ∧(x) = ∧(v) in e end is a redex, and its reduct is e[x 7→ v].
+		- let Σ(x) = Σ(v) in e end is a redex, and its reduct is e[x 7→ v].
+
+	Note that Definition 2.7, where V-form, R-form, M-form, U-form and E-form are defined, can be readily carried over from λpat into λΠ,Σ pat .
+
+	The following lemma captures the meaning of the typing judgments for patterns; such judgments can be derived according to the rules in Figure 15.
+
+	- Lemma 4.10
+
+		Assume that ∅; ∅; ∅ ` v : τ is derivable.
+		If p ↓ τ ⇒ (φ; P~ ; Γ) and match(v, p) ⇒ θ are also derivable, then there exists Θ satisfying ∅ ` Θ : φ such that both ∅; ∅ |= P~ [Θ] and (∅; ∅; ∅) ` θ : Γ[Θ] hold.
+	- Proof
+
+		(Sketch) By structural induction on the derivation of p ↓ τ ⇒ (φ; P~ ; Γ).
+
+			fun zip (nil, nil) = nil
+			| zip (cons (x, xs), cons (y, ys)) = (x, y) :: zip (xs, ys)
+
+		Fig. 18. An example of exhaustive pattern matching
 
 - 4.4 Type soundness
 
-	In order to establish the type soundness for λ
-	Π,Σ
-	pat , we make the following assumption:
-	For each constant function cf assigned c-type Πφ.P~ ⊃ (τ ⇒ δ(
-	~I)), if ∅; ∅ |= P~ [Θ]
-	holds for some substitution Θ satisfying ∅ ` Θ : φ and ∅; ∅; ∅ ` v : τ [Θ] is derivable
-	and cf(v) is defined to be v
-	0
-	, then ∅; ∅; ∅ ` v
-	0
-	: δ(
-	~I[Θ]) is also derivable. In other
-	words, we assume that each constant function meets its specification. That is, each
-	constant function respects its c-type assignment.
-	Theorem 4.11 (Subject Reduction)
-	Assume ∅; ∅; ∅ ` e1 : τ and e1 ,→ev e2. Then ∅; ∅; ∅ ` e2 : τ is also derivable.
-	Proof
-	A completed proof of this theorem is given in Appendix B.
-	Theorem 4.12 (Progress)
-	Assume that ∅; ∅; ∅ ` e1 : τ is derivable. Then there are only four possibilities:
-	• e1 is a value, or
-	• e1 is in M-form, or
-	• e1 is in U-form, or
-	• e1 ,→ev e2 holds for some expression e2.
-	In particular, this implies that e1 cannot be in E-form.
-	Proof
-	(Sketch) The proof immediately follows from structural induction on the derivation
-	of ∅; ∅; ∅ ` e1 : τ . Lemma 4.4 plays a key role in this proof.
-	By Theorem 4.11 and Theorem 4.12, we can readily claim that for a well-typed
-	closed expression e in λ
-	Π,Σ
-	pat , either e evaluates to a value, or e evaluates to an
-	expression in M-form, or e evaluates to an expression in U-form, or e evaluates
-	forever.
-	When compared to λpat, it is interesting to see what progress we have made
-	in λ
-	Π,Σ
-	pat . We may now assign a more accurate type to a constant functions cf to
-	eliminate the occurrences of undefined cf(v) for certain values v. For instance, if
-	the division function on integers is assigned the following c-type:
-	Πa1 :int.Πa2 :int. (a2 6= 0) ⊃ (int(a1) ∗ int(a2) ⇒ int(a1/a2))
+	In order to establish the type soundness for λΠ,Σ pat , we make the following assumption:
+
+	For each constant function cf assigned c-type Πφ.P~ ⊃ (τ ⇒ δ(~I)), if ∅; ∅ |= P~ [Θ] holds for some substitution Θ satisfying ∅ ` Θ : φ and ∅; ∅; ∅ ` v : τ [Θ] is derivable and cf(v) is defined to be v0, then ∅; ∅; ∅ ` v0 : δ(~I[Θ]) is also derivable.
+
+	In other words, we assume that each constant function meets its specification. That is, each constant function respects its c-type assignment.
+
+	- Theorem 4.11 (Subject Reduction)
+
+		Assume ∅; ∅; ∅ ` e1 : τ and e1 ,→ev e2. Then ∅; ∅; ∅ ` e2 : τ is also derivable.
+
+	- Proof
+
+		A completed proof of this theorem is given in Appendix B.
+
+	- Theorem 4.12 (Progress)
+
+		Assume that ∅; ∅; ∅ ` e1 : τ is derivable. Then there are only four possibilities:
+
+		- e1 is a value, or
+		- e1 is in M-form, or
+		- e1 is in U-form, or
+		- e1 ,→ev e2 holds for some expression e2.
+
+		In particular, this implies that e1 cannot be in E-form.
+
+	- Proof
+
+		(Sketch) The proof immediately follows from structural induction on the derivation of ∅; ∅; ∅ ` e1 : τ . Lemma 4.4 plays a key role in this proof.
+
+		By Theorem 4.11 and Theorem 4.12, we can readily claim that for a well-typed closed expression e in λΠ,Σ pat , either e evaluates to a value, or e evaluates to an expression in M-form, or e evaluates to an expression in U-form, or e evaluates forever.
+
+	When compared to λpat, it is interesting to see what progress we have made in λΠ,Σ pat .
+
+	We may now assign a more accurate type to a constant functions cf to eliminate the occurrences of undefined cf(v) for certain values v.
+
+	For instance, if the division function on integers is assigned the following c-type:
+
+		Πa1 :int.Πa2 :int. (a2 6= 0) ⊃ (int(a1) ∗ int(a2) ⇒ int(a1/a2))
+
 	then division by zero causes to a type error and thus can never occur at run-time.
-	Similarly, we may now assign a more accurate type to a function to eliminate some
-	occurrences of expressions of the form case v of ms that are not ev-redexes. For
-	instance, when applied to two lists of unequal length, the function zip in Figure 18
-	evaluates to some expression of the form E[case v of ms] where case v of ms is not
-	an ev-redex. If we annotate the definition of zip with the following type annotation,Journal of Functional Programming 31
-	withtype {n:nat} ’a list (n) * ’b list (n) -> (’a * ’b) list (n)
-	that is, we assign zip the following type (which requires the feature of parametric
-	polymorphism that we are to introduce in Section 6):
-	∀α1.∀α2.Πa:nat. (α1)list(a) ∗ (α2)list(a) → (α1 ∗ α2)list(a)
-	then zip can no longer be applied to two lists of unequal length. In short, we can
-	now use dependent types to eliminate various (but certainly not all) occurrences of
-	expressions in M-form or U-form, which would not have been possible previously.
-	Now suppose that we have two lists xs and ys of unknown length, that is, they
-	are of the type Σa:nat. (τ )list(a) for some type τ . In order to apply zip to xs and
+
+	Similarly, we may now assign a more accurate type to a function to eliminate some occurrences of expressions of the form case v of ms that are not ev-redexes.
+
+	For instance, when applied to two lists of unequal length, the function zip in Figure 18 evaluates to some expression of the form E[case v of ms] where case v of ms is not an ev-redex.
+
+	If we annotate the definition of zip with the following type annotation, withtype {n:nat} ’a list (n) * ’b list (n) -> (’a * ’b) list (n) that is, we assign zip the following type (which requires the feature of parametric polymorphism that we are to introduce in Section 6):
+
+		∀α1.∀α2.Πa:nat. (α1)list(a) ∗ (α2)list(a) → (α1 ∗ α2)list(a)
+
+	then zip can no longer be applied to two lists of unequal length.
+
+	In short, we can now use dependent types to eliminate various (but certainly not all) occurrences of expressions in M-form or U-form, which would not have been possible previously.
+
+	Now suppose that we have two lists xs and ys of unknown length, that is, they are of the type Σa:nat. (τ )list(a) for some type τ . In order to apply zip to xs and
 	ys, we can insert a run-time check as follows:
-	let
-	val m = length (xs) and n = length (ys)
-	in
-	if m = n then zip (xs, ys) else raise UnequalLength
-	end
-	where the integer equality function = and the list length function length are assumed
-	to be of the following types:
-	= : Πa1 :int.Πa2 :int. int(a1) ∗ int(a2) → bool(a1
-	.= a2)
-	length : ∀α.Πa:nat. (α)list(a) → int(a)
-	Of course, we also have the option to implement another zip function that can
-	directly handle lists of unequal length, but this implementation is less efficient than
+
+		let
+			val m = length (xs) and n = length (ys)
+		in
+			if m = n then zip (xs, ys) else raise UnequalLength
+		end
+
+	where the integer equality function = and the list length function length are assumed to be of the following types:
+
+		= : Πa1 :int.Πa2 :int. int(a1) ∗ int(a2) → bool(a1.= a2)
+		length : ∀α.Πa:nat. (α)list(a) → int(a)
+
+	Of course, we also have the option to implement another zip function that can directly handle lists of unequal length, but this implementation is less efficient than
 	the one given in Figure 18.
 
 - 4.5 Type index erasure
 
-	In general, there are two directions for extending a type system such as the one in
-	ML: One is to extend it so that more programs can be admitted as type-correct,
-	and the other is to extend it so that programs can be assigned more accurate types.
+	In general, there are two directions for extending a type system such as the one in ML:
+
+	One is to extend it so that more programs can be admitted as type-correct, and the other is to extend it so that programs can be assigned more accurate types.
+
 	In this paper, we are primarily interested in the latter as is shown below.
-	We can define a function | · | in Figure 19 that translates types, contexts and
-	expressions in λ
-	Π,Σ
-	pat into types, contexts and expressions in λpat, respectively. In
-	particular, for each type family δ in λ
-	Π,Σ
-	pat , we assume that there is a corresponding
-	type δ in λpat, and for each constant c of c-type Πφ.P~ ⊃ (τ ⇒ δ(
-	~I)) in λ
-	Π,Σ
-	pat , we
-	assume that c is assigned the c-type |τ | ⇒ δ in λpat.
-	Theorem 4.13
-	Assume that φ; P~ ; Γ ` e : τ is derivable in λ
-	Π,Σ
-	pat . Then |Γ| ` |e| : |τ | is derivable in
-	λpat.
-	Proof
-	(Sketch) By structural induction on the derivation of φ; P~; Γ ` e : τ .32 Hongwei Xi
-	|δ(
-	~I)| = δ
-	|1| = 1
-	|τ1 ∗ τ2| = |τ1| ∗ |τ2|
-	|τ1 → τ2| = |τ1| → |τ2|
-	|P ⊃ τ | = |τ |
-	|Πa:s. τ | = |τ |
-	|P ∧ τ | = |τ |
-	|Σa:s. τ | = |τ |
-	|∅| = ∅
-	|Γ, xf : τ | = |Γ|, xf : |τ |
-	|xf | = xf
-	|c(e)| = c(|e|)
-	|case e of (p1 ⇒ e1 | . . . | pn ⇒ en)| = case |e| of (p1 ⇒ |e1| | . . . | pn ⇒ |en|)
-	|hi| = hi
-	|he1, e2i| = h|e1|, |e2|i
-	|fst(e)| = fst(|e|)
-	|snd(e)| = snd(|e|)
-	|lam x. e| = lamx. |e|
-	|e1(e2)| = |e1|(|e2|)
-	|fix f. e| = fix f. |e|
-	|⊃
-	+(e)| = |e|
-	|⊃
-	−(e)| = |e|
-	|Π
-	+(e)| = |e|
-	|Π
-	−(e)| = |e|
-	| ∧(e)| = |e|
-	|let ∧(x) = e1 in e2 end| = let x = |e1| in |e2| end
-	|Σ(e)| = |e|
-	|let Σ(x) = e1 in e2 end| = let x = |e1| in |e2| end
-	Fig. 19. The erasure function | · | on types, contexts and expressions in λ
-	Π,Σ
-	pat
-	Given a closed expression e0 in λpat, we say that e0 is typable in λpat if ∅ ` e0 : τ0
-	is derivable for some type τ0; and we say that e0 is typable in λ
-	Π,Σ
-	pat if there exists
-	an expression e in λ
-	Π,Σ
-	pat such that |e| = e0 and ∅; ∅; ∅ ` e : τ is derivable for some
-	type τ . Then by Theorem 4.13, we know that if an expression e in λpat is typable
-	in λ
-	Π,Σ
-	pat then it is already typable in λpat. In other words, λ
-	Π,Σ
-	pat does not make more
-	expressions in λpat typable.
-	Theorem 4.14
-	Assume that ∅; ∅; ∅ ` e : τ is derivable.
-	1. If e ,→∗
-	ev v in λ
-	Π,Σ
-	pat , then |e| ,→∗
-	ev |v| in λpat.
-	2. If |e| ,→∗
-	ev v0 in λpat, then there is a value v such that e ,→∗
-	ev v in λ
-	Π,Σ
-	pat and
-	|v| = v0.Journal of Functional Programming 33
-	Proof
-	(Sketch) It is straightforward to prove (1). As for (2), it follows from structural
-	induction on the derivation of ∅; ∅; ∅ ` e : τ .
-	Theorem 4.14 indicates that we can evaluate a well-typed program in λ
-	Π,Σ
-	pat by first
-	erasing all the markers Π+(·), Π−(·), ⊃+(·), ⊃−(·), Σ(·) and ∧(·) in the program and
-	then evaluating the erasure in λpat. Combining Theorem 4.13 and Theorem 4.14,
-	we say that λ
-	Π,Σ
-	pat is a conservative extension of λpat in terms of both static and
-	dynamic semantics.
+
+	We can define a function | · | in Figure 19 that translates types, contexts and expressions in λΠ,Σ pat into types, contexts and expressions in λpat, respectively.
+
+	In particular, for each type family δ in λΠ,Σ pat , we assume that there is a corresponding type δ in λpat, and for each constant c of c-type Πφ.P~ ⊃ (τ ⇒ δ(~I)) in λΠ,Σ pat , we assume that c is assigned the c-type |τ | ⇒ δ in λpat.
+
+	- Theorem 4.13
+
+		Assume that φ; P~ ; Γ ` e : τ is derivable in λ Π,Σ pat .
+		Then |Γ| ` |e| : |τ | is derivable in λpat.
+
+	- Proof
+
+		(Sketch) By structural induction on the derivation of φ; P~; Γ ` e : τ .
+		|δ(
+		~I)| = δ
+		|1| = 1
+		|τ1 ∗ τ2| = |τ1| ∗ |τ2|
+		|τ1 → τ2| = |τ1| → |τ2|
+		|P ⊃ τ | = |τ |
+		|Πa:s. τ | = |τ |
+		|P ∧ τ | = |τ |
+		|Σa:s. τ | = |τ |
+		|∅| = ∅
+		|Γ, xf : τ | = |Γ|, xf : |τ |
+		|xf | = xf
+		|c(e)| = c(|e|)
+		|case e of (p1 ⇒ e1 | . . . | pn ⇒ en)| = case |e| of (p1 ⇒ |e1| | . . . | pn ⇒ |en|)
+		|hi| = hi
+		|he1, e2i| = h|e1|, |e2|i
+		|fst(e)| = fst(|e|)
+		|snd(e)| = snd(|e|)
+		|lam x. e| = lamx. |e|
+		|e1(e2)| = |e1|(|e2|)
+		|fix f. e| = fix f. |e|
+		|⊃
+		+(e)| = |e|
+		|⊃
+		−(e)| = |e|
+		|Π
+		+(e)| = |e|
+		|Π
+		−(e)| = |e|
+		| ∧(e)| = |e|
+		|let ∧(x) = e1 in e2 end| = let x = |e1| in |e2| end
+		|Σ(e)| = |e|
+		|let Σ(x) = e1 in e2 end| = let x = |e1| in |e2| end
+
+		Fig. 19. The erasure function | · | on types, contexts and expressions in λΠ,Σ pat
+
+	Given a closed expression e0 in λpat, we say that e0 is typable in λpat if ∅ ` e0 : τ0 is derivable for some type τ0; and we say that e0 is typable in λΠ,Σ pat if there exists an expression e in λΠ,Σ pat such that |e| = e0 and ∅; ∅; ∅ ` e : τ is derivable for some type τ .
+
+	Then by Theorem 4.13, we know that if an expression e in λpat is typable in λΠ,Σ pat then it is already typable in λpat. In other words, λΠ,Σ pat does not make more expressions in λpat typable.
+
+	- Theorem 4.14
+
+		Assume that ∅; ∅; ∅ ` e : τ is derivable.
+
+		1. If e ,→∗
+			ev v in λ
+			Π,Σ
+			pat , then |e| ,→∗
+			ev |v| in λpat.
+		2. If |e| ,→∗
+			ev v0 in λpat, then there is a value v such that e ,→∗
+			ev v in λ
+			Π,Σ
+			pat and
+			|v| = v0.
+
+	- Proof
+
+		(Sketch) It is straightforward to prove (1). As for (2), it follows from structural induction on the derivation of ∅; ∅; ∅ ` e : τ .
+
+		Theorem 4.14 indicates that we can evaluate a well-typed program in λΠ,Σ pat by first erasing all the markers Π+(·), Π−(·), ⊃+(·), ⊃−(·), Σ(·) and ∧(·) in the program and then evaluating the erasure in λpat.
+
+		Combining Theorem 4.13 and Theorem 4.14, we say that λΠ,Σ pat is a conservative extension of λpat in terms of both static and dynamic semantics.
 
 - 4.6 Dynamic subtype relation
 	
-	The dynamic subtype relation defined below is much stronger than the static subtype
-	relation ≤s
-	tp and it plays a key role in Section 5, where an elaboration process
-	is presented to facilitate program construction in λ
-	Π,Σ
-	pat .
-	Definition 4.15 (Dynamic Subtype Relation)
-	We write φ; P~ |= E : τ ≤d
-	tp τ
-	0
-	to mean that for any expression e and context Γ, if
-	φ; P~ ; Γ ` e : τ is derivable then both φ; P~ ; Γ ` E[e] : τ
-	0
-	is derivable and |e| ≤dyn
-	|E[e]| holds. We may write φ; P~ |= τ ≤d
-	tp τ
-	0
-	if, for some E, φ; P~ |= E : τ ≤d
-	tp τ
-	0
-	holds, where E can be thought of as a witness to τ ≤d
-	tp τ
-	0
-	.
-	As is desired, the dynamic subtype relation ≤d
-	tp is both reflexive and transitive.
-	Proposition 4.16 (Reflexitivity and Transitivity of ≤d
-	tp)
-	1. φ; P~ |= [] : τ ≤d
-	tp τ holds for each τ such that φ ` τ [type] is derivable.
-	2. φ; P~ |= E2[E1] : τ1 ≤d
-	tp τ3 holds if φ; P~ |= E1 : τ1 ≤d
-	tp τ2 and φ; P~ |= E2 :
-	τ2 ≤d
-	tp τ3 do, where E2[E1] is the evaluation context formed by replacing the
-	hole [] in E2 with E1.
-	Proof
-	(Sketch) The proposition follows from the fact that the relation ≤dyn is both re-
-	flexive and transitive.
+	The dynamic subtype relation defined below is much stronger than the static subtype relation ≤s tp and it plays a key role in Section 5, where an elaboration process is presented to facilitate program construction in λΠ,Σ pat .
+
+	- Definition 4.15 (Dynamic Subtype Relation)
+
+		We write φ; P~ |= E : τ ≤d tp τ0 to mean that for any expression e and context Γ, if φ; P~ ; Γ ` e : τ is derivable then both φ; P~ ; Γ ` E[e] : τ0 is derivable and |e| ≤dyn |E[e]| holds.
+
+		We may write φ; P~ |= τ ≤d tp τ0 if, for some E, φ; P~ |= E : τ ≤d tp τ0 holds, where E can be thought of as a witness to τ ≤d tp τ0.
+
+		As is desired, the dynamic subtype relation ≤d tp is both reflexive and transitive.
+
+	- Proposition 4.16 (Reflexitivity and Transitivity of ≤d tp)
+
+		1. φ; P~ |= [] : τ ≤d tp τ holds for each τ such that φ ` τ [type] is derivable.
+		2. φ; P~ |= E2[E1] : τ1 ≤d tp τ3 holds if φ; P~ |= E1 : τ1 ≤d tp τ2 and φ; P~ |= E2 : τ2 ≤d tp τ3 do, where E2[E1] is the evaluation context formed by replacing the hole [] in E2 with E1.
+
+	- Proof
+
+		(Sketch) The proposition follows from the fact that the relation ≤dyn is both re-flexive and transitive.
 
 - 4.7 A restricted form of dependent types
 	
-	Generally speaking, we use the name dependent types to refer to a form of types
-	that correspond to formulas in some first-order many-sorted logic. For instance, the
-	following type in λ
-	Π,Σ
-	pat :
-	Πa:int. a ≥ 0 ⊃ (int(a) → int(a + a))
+	Generally speaking, we use the name dependent types to refer to a form of types that correspond to formulas in some first-order many-sorted logic. For instance, the
+	following type in λΠ,Σ pat :
+
+		Πa:int. a ≥ 0 ⊃ (int(a) → int(a + a))
+
 	corresponds to the following first-order formula:
-	∀a : int.a ≥ 0 ⊃ (int(a) → int(a + a))
-	where int is interpreted as some predicate on integers, and both ⊃ and → stand
-	for the implication connective in logic. However, it is not possible in λ
-	Π,Σ
-	pat to form
-	a dependent type of the form Πa : τ1. τ2, which on the other hand is allowed in a34 Hongwei Xi
-	expressions e ::= x | c(e) | case e of (p1 ⇒ e1
-	| . . . pn ⇒ en
-	) |
-	hi | he1
-	, e2
-	i | fst(e) | snd(e) |
-	lamx. e | lamx : τ. e | e1
-	(e2
-	) |
-	fix f : τ. e | let x = e1
-	in e2
-	end |
-	λa : sˆ. e | e[I] | (e : τ )
-	Fig. 20. The syntax for DML0
-	(full) dependent type system such as λP (Barendregt, 1992). To see the difficulty in
-	supporting practical programming with such types that may depend on programs,
-	let us recall the following rule that is needed for determining the static subtype
-	relation ≤s
-	tp in λ
-	Π,Σ
-	pat :
-	φ; P~ |= I
-	.= I
-	0
-	φ; P~ |= δ(I) ≤s
-	tp δ(I
-	0
-	)
-	If I and I
-	0 are programs, then I
-	.= I
-	0
-	is an equality on programs. In general,
-	if recursion is allowed in program construction, then it is not just undecidable
-	to determine whether two programs are equal; it is simply intractable. In addition,
-	such a design means that the type system of a programming language can be rather
-	unstable as adding a new programming feature into the programming language
-	may significantly affect the type system. For instance, if some form of effect (e.g.,
-	exceptions, references) is added, then equality on programs can at best become
-	rather intricate to define and is in general impractical to reason about. Currently,
-	there are various studies aiming at addressing these difficulties in order to support
-	full dependent types in practical programming. For instance, a plausible design is
-	to separate pure expressions from potentially effectful ones by employing monads
-	and then require that only pure expressions be used to form types. As for deciding
-	equalities on (pure) expressions, the programmer may be asked to provide proofs
-	of these equalities. Please see (McBride, n.d.; Westbrook et al., 2005) for further
-	details.
-	We emphasize that the issue of supporting the use of dependent types in practical
-	programming is largely not shared by Martin-L¨of’s development of constructive
-	type theory (Martin-L¨of, 1984; Martin-L¨of, 1985), where the principal objective
-	is to give a constructive foundation of mathematics. In such a pure setting, it is
-	perfectly reasonable to define type equality in terms of equality on programs (or
-	more accurately, proofs).
+
+		∀a : int.a ≥ 0 ⊃ (int(a) → int(a + a))
+
+	where int is interpreted as some predicate on integers, and both ⊃ and → stand for the implication connective in logic. However, it is not possible in λΠ,Σ pat to form a dependent type of the form Πa : τ1. τ2, which on the other hand is allowed in a expressions
+
+		e ::= x | c(e) | case e of (p1 ⇒ e1
+		| . . . pn ⇒ en
+		) |
+		hi | he1
+		, e2
+		i | fst(e) | snd(e) |
+		lamx. e | lamx : τ. e | e1
+		(e2
+		) |
+		fix f : τ. e | let x = e1
+		in e2
+		end |
+		λa : sˆ. e | e[I] | (e : τ )
+		Fig. 20. The syntax for DML0
+
+	(full) dependent type system such as λP (Barendregt, 1992).
+
+	To see the difficulty in supporting practical programming with such types that may depend on programs, let us recall the following rule that is needed for determining the static subtype relation ≤s tp in λΠ,Σ pat :
+
+		φ; P~ |= I
+		.= I
+		0
+		φ; P~ |= δ(I) ≤s
+		tp δ(I
+		0
+		)
+		If I and I
+		0 are programs, then I
+		.= I
+		0
+
+	is an equality on programs.
+
+	In general, if recursion is allowed in program construction, then it is not just undecidable to determine whether two programs are equal; it is simply intractable.
+
+	In addition, such a design means that the type system of a programming language can be rather unstable as adding a new programming feature into the programming language may significantly affect the type system.
+
+	For instance, if some form of effect (e.g., exceptions, references) is added, then equality on programs can at best become rather intricate to define and is in general impractical to reason about.
+
+	Currently, there are various studies aiming at addressing these difficulties in order to support full dependent types in practical programming.
+
+	For instance, a plausible design is to separate pure expressions from potentially effectful ones by employing monads and then require that only pure expressions be used to form types.
+
+	As for deciding equalities on (pure) expressions, the programmer may be asked to provide proofs of these equalities. Please see (McBride, n.d.; Westbrook et al., 2005) for further details.
+	
+	We emphasize that the issue of supporting the use of dependent types in practical programming is largely not shared by Martin-L¨of’s development of constructive type theory (Martin-L¨of, 1984; Martin-L¨of, 1985), where the principal objective is to give a constructive foundation of mathematics.
+
+	In such a pure setting, it is perfectly reasonable to define type equality in terms of equality on programs (or more accurately, proofs).
 
 - 5 Elaboration
 
-	We have so far presented an explicitly typed language λ
-	Π,Σ
-	pat . This presentation has
-	a serious drawback from the point of view of a programmer: One may quickly be
-	overwhelmed with the need for writing types when programming in such a setting. It
-	then becomes apparent that it is necessary to provide an external language DML0
-	together with a mapping from DML0 to the internal language λ
-	Π,Σ
-	pat , and we callJournal of Functional Programming 35
-	such a mapping elaboration. We may also use the phrase type-checking loosely to
-	mean elaboration, sometimes.
-	We are to introduce a set of rules to perform elaboration. The elaboration process
-	itself is nondeterministic. Nonetheless, we can guarantee based on Theorem 5.3
-	that if e in DML0 can be elaborated into e in λ
-	Π,Σ
-	pat , then e and e are operationally
-	equivalent. In other words, elaboration cannot alter the dynamic semantics of a
-	program. This is what we call the soundness of elaboration, which is considered a
-	major contribution of the paper. We are to perform elaboration with bi-directional
-	strategy that casually resembles the one adopted by Pierce and Turner in their
-	study on local type inference (Pierce & Turner, 1998), where the primary focus is
-	on the interaction between polymorphism and subtyping.
-	We present the syntax for DML0 in Figure 20, which is rather similar to that
-	of λ
-	Π,Σ
-	pat . In general, it should not be difficult to relate the concrete syntax used in
-	our program examples to the formal syntax of DML0. We now briefly explain as to
-	how some concrete syntax can be used to provide type annotations for functions.
-	We essentially support two forms of type annotations for functions, both of which
-	are given below:
-	fun succ1 (x) = x + 1
-	withtype {a:int | a >= 0} int (a) -> int (a+1)
-	fun succ2 {a:int | a >= 0} (x: int(a)): int(a+1) = x + 1
-	The first form of annotation allows the programmer to easily read out the type of
-	the annotated function while the second form makes it more convenient to handle a
-	case where the body of a function needs to access some bound type index variables
-	in the type annotation. The concrete syntax for the definition of succ1 translates
-	into the following formal syntax,
-	fix f : τ. λa : s. ˆ lamx : int(a).(x + 1 : int(a + 1))
-	where sˆ = {a : int | a ≥ 0}, and so does the concrete syntax for the definition
-	of succ2. As an example, both forms of annotation are involved in the following
-	program, which computes the length of a given list:
-	fun length {n:nat} (xs: ’a list n): int n =
-	let // this is a tail-recursive implementation
-	fun aux xs j = case xs of
-	| nil => j
-	| cons (_, xs) => aux xs (j+1)
-	withtype {i:nat, j:nat | i+j=n} ’a list i -> int j -> int n
-	in
-	aux xs 0
-	end
-	Note that the type index variable n is used in the type annotation for the inner
-	auxiliary function aux .
-	In the following presentation, we may use ⊃ +
-	n (·) for ⊃ +(. . .(⊃ +(·)). . .), where36 Hongwei Xi
-	φ; P~ |= I1
-	.
-	= I
-	0
-	1 · · · φ; P~ |= In
-	.
-	= I
-	0
-	n
-	φ;P~ ` [] : δ(I1, . . . , In) ≤ δ(I
-	0
-	1, . . . , I
-	0
-	n)
-	(dy-sub-base)
-	φ; P~ ` [] : 1 ≤ 1
-	(dy-sub-unit)
-	φ; P~ ; x1 : τ1, x2 : τ2 ` hx1, x2i ↓ τ ⇒ e
-	φ;P~ ` let hx1, x2i = [] in e end : τ1 ∗ τ2 ≤ τ
-	(dy-sub-prod)
-	φ;P~ ; x : τ, x1 : τ1 ` x(x1) ↓ τ2 ⇒ e
-	φ; P~ ` let x = [] in lamx1. e end : τ ≤ τ1 → τ2
-	(dy-sub-fun)
-	sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
-	0
-	φ; P~ ` Π
-	+(⊃
-	+
-	n (E)) : τ ≤ Πa:sˆ. τ
-	0
-	(dy-sub-Π-r)
-	sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
-	0
-	φ; P~ ` let Σ(∧n(x)) = [] in E[x] end : Σa:s. ˆ τ ≤ τ
-	0
-	(dy-sub-Σ-l)
-	sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ [a 7→ I] ≤ τ
-	0
-	φ; P~ ` E[⊃
-	−
-	n (Π−([]))] : Πa:sˆ. τ ≤ τ
-	0
-	(dy-sub-Π-l)
-	sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ ≤ τ
-	0
-	[a 7→ I]
-	φ; P~ ` Σ(∧n(E)) : τ ≤ Σa:sˆ. τ
-	0
-	(dy-sub-Σ-r)
-	Fig. 21. The dynamic subtype rules in λ
-	Π,Σ
-	pat
-	.
-	there are n occurrences of ⊃ +, and ∧n(·) for ∧(. . .(∧(·)). . .), where there are n
-	occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end,
-	and let Σ(∧n+1(x)) = e1 in e2 end for the following expression:
-	let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end,
-	where n ranges over natural numbers.
-	Proposition 5.1
-	We have |let x = e1 in e2 end| ≤dyn |let Σ(∧n(x)) = e1 in e2 end|.
-	Proof
-	This immediately follows from Lemma 2.14 and the observation that
-	|let Σ(∧n(x)) = e1 in e2 end| ,→∗
-	g
-	|let x = e1 in e2 end|
-	holds.
+	We have so far presented an explicitly typed language λΠ,Σ pat .
+
+	This presentation has a serious drawback from the point of view of a programmer:
+
+	One may quickly be overwhelmed with the need for writing types when programming in such a setting.
+
+	It then becomes apparent that it is necessary to provide an external language DML0 together with a mapping from DML0 to the internal language λΠ,Σ pat , and we call such a mapping elaboration. We may also use the phrase type-checking loosely to mean elaboration, sometimes.
+
+	We are to introduce a set of rules to perform elaboration. The elaboration process itself is nondeterministic.
+
+	Nonetheless, we can guarantee based on Theorem 5.3 that if e in DML0 can be elaborated into e in λΠ,Σ pat , then e and e are operationally equivalent.
+
+	In other words, elaboration cannot alter the dynamic semantics of a program.
+
+	This is what we call the soundness of elaboration, which is considered a major contribution of the paper.
+
+	We are to perform elaboration with bi-directional strategy that casually resembles the one adopted by Pierce and Turner in their study on local type inference (Pierce & Turner, 1998), where the primary focus is on the interaction between polymorphism and subtyping.
+
+	We present the syntax for DML0 in Figure 20, which is rather similar to that of λΠ,Σ pat .
+
+	In general, it should not be difficult to relate the concrete syntax used in our program examples to the formal syntax of DML0.
+
+	We now briefly explain as to how some concrete syntax can be used to provide type annotations for functions.
+
+	We essentially support two forms of type annotations for functions, both of which are given below:
+	
+		fun succ1 (x) = x + 1
+		withtype {a:int | a >= 0} int (a) -> int (a+1)
+		fun succ2 {a:int | a >= 0} (x: int(a)): int(a+1) = x + 1
+
+	The first form of annotation allows the programmer to easily read out the type of the annotated function while the second form makes it more convenient to handle a case where the body of a function needs to access some bound type index variables in the type annotation.
+
+	The concrete syntax for the definition of succ1 translates into the following formal syntax,
+
+		fix f : τ. λa : s. ˆ lamx : int(a).(x + 1 : int(a + 1))
+
+	where sˆ = {a : int | a ≥ 0}, and so does the concrete syntax for the definition of succ2.
+
+	As an example, both forms of annotation are involved in the following program, which computes the length of a given list:
+
+		fun length {n:nat} (xs: ’a list n): int n =
+		let // this is a tail-recursive implementation
+		fun aux xs j = case xs of
+		| nil => j
+		| cons (_, xs) => aux xs (j+1)
+		withtype {i:nat, j:nat | i+j=n} ’a list i -> int j -> int n
+		in
+		aux xs 0
+		end
+
+	Note that the type index variable n is used in the type annotation for the inner auxiliary function aux .
+
+	In the following presentation, we may use ⊃ + n (·) for ⊃ +(. . .(⊃ +(·)). . .), where
+
+		φ; P~ |= I1
+		.
+		= I
+		0
+		1 · · · φ; P~ |= In
+		.
+		= I
+		0
+		n
+		φ;P~ ` [] : δ(I1, . . . , In) ≤ δ(I
+		0
+		1, . . . , I
+		0
+		n)
+		(dy-sub-base)
+		φ; P~ ` [] : 1 ≤ 1
+		(dy-sub-unit)
+		φ; P~ ; x1 : τ1, x2 : τ2 ` hx1, x2i ↓ τ ⇒ e
+		φ;P~ ` let hx1, x2i = [] in e end : τ1 ∗ τ2 ≤ τ
+		(dy-sub-prod)
+		φ;P~ ; x : τ, x1 : τ1 ` x(x1) ↓ τ2 ⇒ e
+		φ; P~ ` let x = [] in lamx1. e end : τ ≤ τ1 → τ2
+		(dy-sub-fun)
+		sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
+		0
+		φ; P~ ` Π
+		+(⊃
+		+
+		n (E)) : τ ≤ Πa:sˆ. τ
+		0
+		(dy-sub-Π-r)
+		sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
+		0
+		φ; P~ ` let Σ(∧n(x)) = [] in E[x] end : Σa:s. ˆ τ ≤ τ
+		0
+		(dy-sub-Σ-l)
+		sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ [a 7→ I] ≤ τ
+		0
+		φ; P~ ` E[⊃
+		−
+		n (Π−([]))] : Πa:sˆ. τ ≤ τ
+		0
+		(dy-sub-Π-l)
+		sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ ≤ τ
+		0
+		[a 7→ I]
+		φ; P~ ` Σ(∧n(E)) : τ ≤ Σa:sˆ. τ
+		0
+		(dy-sub-Σ-r)
+		Fig. 21. The dynamic subtype rules in λΠ,Σ pat.
+
+	there are n occurrences of ⊃ +, and ∧n(·) for ∧(. . .(∧(·)). . .), where there are n occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end, and let Σ(∧n+1(x)) = e1 in e2 end for the following expression: let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end, where n ranges over natural numbers.
+
+	- Proposition 5.1
+
+		We have |let x = e1 in e2 end| ≤dyn |let Σ(∧n(x)) = e1 in e2 end|.
+
+	- Proof
+
+		This immediately follows from Lemma 2.14 and the observation that
+
+			|let Σ(∧n(x)) = e1 in e2 end| ,→∗
+			g
+			|let x = e1 in e2 end|
+
+		holds.
 
 - 5.1 The judgments and rules for elaboration
 
-	We introduce a new form of judgment φ; P~ ` E : τ1 ≤ τ2, which we call dynamic
-	subtype judgment. We may write φ; P~ ` τ1 ≤ τ2 to mean φ; P~ ` E : τ1 ≤ τ2 for
-	some evaluation context E. The rules for deriving such a new form of judgmentJournal of Functional Programming 37
-	are given in Figure 21. We are to establish that if φ; P~ ` E : τ ≤ τ
-	0
-	is derivable,
-	then φ; P~ |= E : τ ≤d
-	tp τ
-	0 holds, that is, for any expression e of type τ , E[e] can be
-	assigned the type τ
-	0 and |e| ≤dyn |E[e]| holds.
-	There is another new form of judgment φ; P~; Γ ` e ↓ τ ⇒ e involved in the
-	rule (dy-sub-prod) and the rule (dy-sub-fun), and the rules for deriving such a
-	judgment, which we call analysis elaboration judgment, are to be presented next.
-	We actually have two forms of elaboration judgments involved in the process of
-	elaborating expressions from DML0 to λ
-	Π,Σ
-	pat .
-	• A synthesis elaboration judgment is of the form φ; P~; Γ ` e ↑ τ ⇒ e, which
-	means that given φ, P~ , Γ and e, we can find a type τ and an expression e such
-	that φ; P~ ; Γ ` e : τ is derivable and |e| ≤dyn |e| holds. Intuitively, τ can be
-	thought of as being synthesized through an inspection on the structure of e.
-	• An analysis elaboration judgment is of the form φ; P~ ; Γ ` e ↓ τ ⇒ e, which
-	means that given φ; P~ ; Γ, e and τ , we can find an expression e such that
-	φ; P~; Γ ` e : τ is derivable and |e| ≤dyn |e| holds.
-	We use |e| for the erasure of an expression e in DML0, which is obtained from
-	erasing in e all occurrences of the markers Π+(·), Π−(·), ⊃ +(·), ⊃ −(·), Σ(·) and
-	∧(·). The erasure function is formally defined in Figure 24.
-	The rules for deriving synthesis and analysis elaboration judgments are given in
-	Figure 22 and Figure 23, respectively. Note that there are various occasions where
-	the two forms of elaboration judgments meet. For instance, when using the rule
-	(elab-up-app-1) to elaborate e1(e2), we may first synthesize a type τ1 → τ2 for
-	e1 and then check e2 against τ1.
-	We next present some explanation on the elaboration rules. First and foremost,
-	we emphasize that many elaboration rules are not syntax-directed. If in a case
-	there are two or more elaboration rules applicable, the actual elaboration procedure
-	should determine (based on some implementation strategies) which elaboration rule
-	is to be chosen. We are currently not positioned to argue which implementation
-	strategies are better than others, though we shall mention some key points about
-	the strategies we have implemented. Given that the elaboration is not a form of
-	pure type inference,1
-	it is difficult to even formalize the question as to whether an
-	implementation of the elaboration is complete or not.
+	We introduce a new form of judgment φ; P~ ` E : τ1 ≤ τ2, which we call dynamic subtype judgment.
+
+	We may write φ; P~ ` τ1 ≤ τ2 to mean φ; P~ ` E : τ1 ≤ τ2 for some evaluation context E.
+
+	The rules for deriving such a new form of judgment are given in Figure 21.
+
+	We are to establish that if φ; P~ ` E : τ ≤ τ0 is derivable, then φ; P~ |= E : τ ≤d tp τ0 holds, that is, for any expression e of type τ , E[e] can be assigned the type τ0 and |e| ≤dyn |E[e]| holds.
+
+	There is another new form of judgment φ; P~; Γ ` e ↓ τ ⇒ e involved in the rule (dy-sub-prod) and the rule (dy-sub-fun), and the rules for deriving such a judgment, which we call analysis elaboration judgment, are to be presented next.
+	
+	We actually have two forms of elaboration judgments involved in the process of elaborating expressions from DML0 to λΠ,Σ pat .
+
+	- A synthesis elaboration judgment is of the form φ; P~; Γ ` e ↑ τ ⇒ e, which means that given φ, P~ , Γ and e, we can find a type τ and an expression e such that φ; P~ ; Γ ` e : τ is derivable and |e| ≤dyn |e| holds.
+		Intuitively, τ can be thought of as being synthesized through an inspection on the structure of e.
+	- An analysis elaboration judgment is of the form φ; P~ ; Γ ` e ↓ τ ⇒ e, which means that given φ; P~ ; Γ, e and τ , we can find an expression e such that φ; P~; Γ ` e : τ is derivable and |e| ≤dyn |e| holds.
+	
+	We use |e| for the erasure of an expression e in DML0, which is obtained from erasing in e all occurrences of the markers Π+(·), Π−(·), ⊃ +(·), ⊃ −(·), Σ(·) and ∧(·).
+
+	The erasure function is formally defined in Figure 24.
+
+	The rules for deriving synthesis and analysis elaboration judgments are given in Figure 22 and Figure 23, respectively.
+
+	Note that there are various occasions where the two forms of elaboration judgments meet.
+
+	For instance, when using the rule (elab-up-app-1) to elaborate e1(e2), we may first synthesize a type τ1 → τ2 for e1 and then check e2 against τ1.
+
+	We next present some explanation on the elaboration rules. First and foremost, we emphasize that many elaboration rules are not syntax-directed.
+
+	If in a case there are two or more elaboration rules applicable, the actual elaboration procedure should determine (based on some implementation strategies) which elaboration rule is to be chosen.
+
+	We are currently not positioned to argue which implementation strategies are better than others, though we shall mention some key points about the strategies we have implemented.
+
+	Given that the elaboration is not a form of pure type inference,1 it is difficult to even formalize the question as to whether an implementation of the elaboration is complete or not.
 	
 - 5.2 Some explanation on synthesis elaboration rules
 
-	The rules for synthesis elaboration judgments are presented in Figure 22. The purpose
-	of the rules (elab-up-Π-elim-1) and (elab-up-Π-elim-2) is for eliminating
-	Π quantifiers. For instance, let us assume that we are elaborating an expression
-	e1
-	(e2
-	), and a type of the form Πa : s. ˆ τ is already synthesized for e1
-	; then we
-	need to apply the rule (elab-up-Π-elim-1) so as to eliminate the Π quantifier in
-	1 By pure type inference, we refer to the question that asks whether a given expression in λpat is
-	typable in λ
-	Π,Σ
-	pat , that is, whether a given expression in λpat can be the erasure of some typable
-	expression in λ
-	Π,Σ
-	pat .38 Hongwei Xi
-	sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
-	φ; P~ ; Γ ` e ↑ τ [a 7→ I] ⇒⊃−
-	n (Π−(e))
-	(elab-up-Π-elim-1)
-	sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
-	φ;P~ ; Γ ` e[I] ↑ τ [a 7→ I] ⇒⊃−
-	n (Π−(e))
-	(elab-up-Π-elim-2)
-	sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ ` e ↑ τ ⇒ e
-	φ;P~ ; Γ ` λa : s. ˆ e ↑ Πa:s. ˆ τ ⇒ Π+(⊃
-	+
-	n (e))
-	(elab-up-Π-intro)
-	φ;P~ ; Γ ` e ↓ τ ⇒ e
-	φ; P~ ; Γ ` (e : τ ) ↑ τ ⇒ e
-	(elab-up-anno)
-	φ ` Γ [ctx] Γ(xf ) = τ
-	φ; P~ ; Γ ` xf ↑ τ ⇒ xf
-	(elab-up-var)
-	φ0; P~0 ` c(τ0) : δ(I~0) φ ` Θ : φ0 φ |= P~0[Θ] φ;P~ ; Γ ` e ↓ τ0[Θ] ⇒ e
-	φ; P~ ; Γ ` c(e) ↑ δ(I~0[Θ]) ⇒ c(e)
-	(elab-up-const)
-	φ;P~ ; Γ ` e1
-	↑ τ1 ⇒ e1 φ;P~ ; Γ ` e2
-	↑ τ2 ⇒ e2
-	φ;P~ ; Γ ` he1
-	, e2
-	i ↑ τ1 ∗ τ2 ⇒ he1, e2i
-	(elab-up-prod)
-	φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
-	φ;P~ ; Γ ` fst(e) ↑ τ1 ⇒ fst(e)
-	(elab-up-fst)
-	φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
-	φ;P~ ; Γ ` snd(e) ↑ τ2 ⇒ snd(e)
-	(elab-up-snd)
-	φ; P~ ; Γ, x : τ1 ` e ↑ τ2 ⇒ lamx. e
-	φ;P~ ; Γ ` lamx : τ1. e ↑ τ1 → τ2 ⇒ lamx. e
-	(elab-up-lam)
-	φ;P~ ; Γ ` e1
-	↑ τ1 → τ2 ⇒ e1 φ;P~ ; Γ ` e2
-	↓ τ1 ⇒ e2
-	φ;P~ ; Γ ` e1
-	(e2
-	) ↑ τ2 ⇒ e1(e2)
-	(elab-up-app-1)
-	φ;P~ ; Γ ` e1
-	↑ τ ⇒ e1 φ;P~ ; Γ ` e2
-	↑ τ1 ⇒ e2
-	φ;P~ ; x1 : τ, x2 : τ1 ` x1(x2) ↑ τ2 ⇒ e
-	φ; P~ ; Γ ` e1
-	(e2
-	) ↑ τ2 ⇒ let x1 = e1 in let x2 = e2 in e end end
-	(elab-up-app-2)
-	φ;P~ ; Γ, f : τ ` e ↓ τ ⇒ e
-	φ;P~ ; Γ ` fix f : τ. e ↑ τ ⇒ fix f. e
-	(elab-up-fix)
-	φ;P~ ; Γ ` e1
-	↑ τ1 ⇒ e1 φ;P~ ; Γ, x : τ1 ` e2
-	↑ τ2 ⇒ e2
-	φ;P~ ; Γ ` let x = e1
-	in e2
-	end ↑ τ2 ⇒ let x = e1 in e2 end
-	(elab-up-let)
-	φ;P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↑ τ ⇒ e
-	φ;P~ ; Γ, x : τ1 ∗ τ2 ` e ↑ τ ⇒ let hx1, x2i = x in e end
-	(elab-up-prod-left)
-	sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ, x : τ1 ` e ↑ τ2 ⇒ e
-	φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↑ Σa:s. ˆ τ2 ⇒ let Σ(∧n(x)) = x in Σ(∧n(e)) end
-	(elab-up-Σ-left)
-	Fig. 22. The rules for synthesis elaboration from DML0 to λ
-	Π,Σ
-	pat
-	Πa : s. ˆ τ ; we continue to do so until the synthesized type for e1 does not begin
-	with a Π quantifier. In some (rare) occasions, the programmer may write e[I] to
-	indicate an explicit elimination of a Π quantifier, and the rule (elab-up-Π-elim-2)
-	is designed for this purpose.
-	The rule (elab-up-anno) turns a need for a synthesis elaboration judgment intoJournal of Functional Programming 39
-	sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ ` e ↓ τ ⇒ e
-	φ; P~ ; Γ ` e ↓ Πa:s. ˆ τ ⇒ Π+(⊃
-	+
-	n (e))
-	(elab-dn-Π-intro)
-	φ;P~ ; Γ ` e1
-	↓ τ1 ⇒ e1 φ;P~ ; Γ ` e2
-	↓ τ2 ⇒ e2
-	φ; P~ ; Γ ` he1
-	, e2
-	i ↓ τ1 ∗ τ2 ⇒ he1, e2i
-	(elab-dn-prod)
-	φ;P~ ; Γ, x : τ1 ` e ↓ τ2 ⇒ lamx. e
-	φ;P~ ; Γ ` lamx. e ↓ τ1 → τ2 ⇒ lamx. e
-	(elab-dn-lam)
-	p ↓ τ1 ⇒ (φ0;P~0; Γ0) φ, φ0;P~ ,P~0; Γ, Γ0 ` e ↓ τ2 ⇒ e
-	φ; P~ ; Γ ` (p ⇒ e) ↓ (τ1 → τ2) ⇒ (p ⇒ e)
-	(elab-dn-clause)
-	φ; P~ ; Γ ` (pi ⇒ ei
-	) ↓ (τ1 → τ2) ⇒ (pi ⇒ ei) for 1 ≤ i ≤ n
-	ms = (p1 ⇒ e1
-	| . . . | pn ⇒ en
-	) ms = (p1 ⇒ e1 | . . . | pn ⇒ en)
-	φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
-	(elab-dn-clause-seq)
-	φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
-	φ; P~ ; Γ ` case e of ms ↓ τ2 ⇒ case e of ms
-	(elab-dn-case)
-	φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ` E : τ1 ≤ τ2
-	φ;P~ ; Γ ` e ↓ τ2 ⇒ E[e]
-	(elab-dn-up)
-	φ; P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↓ τ ⇒ e
-	φ; P~ ; Γ, x : τ1 ∗ τ2 ` e ↓ τ ⇒ let hx1, x2i = x in e end
-	(elab-dn-prod-left)
-	sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ, x : τ1 ` e ↓ τ2 ⇒ e
-	φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↓ τ2 ⇒ let Σ(∧n(x)) = x in e end
-	(elab-dn-Σ-left)
-	Fig. 23. The rules for analysis elaboration from DML0 to λ
-	Π,Σ
-	pat
-	|xf | = xf
-	|c(e)| = c(|e|)
-	|case e of (p1 ⇒ e1
-	| . . . | pn ⇒ en
-	)| = case |e| of (p1 ⇒ |e1
-	| | . . . | pn ⇒ |en
-	|)
-	|hi| = hi
-	|he1
-	, e2
-	i| = h|e1
-	|, |e2
-	|i
-	|fst(e)| = fst(|e|)
-	|snd(e)| = snd(|e|)
-	|lam x. e| = lamx. |e|
-	|lam x : τ. e| = lamx. |e|
-	|e1
-	(e2
-	)| = |e1
-	|(|e2
-	|)
-	|fix f : τ. e| = fix f. |e|
-	|let x = e1
-	in e2
-	end| = let x = |e1
-	| in |e2
-	| end
-	|(e : τ )| = |e|
-	|λa : sˆ. e| = |e|
-	|e[I]| = |e|
-	Fig. 24. The erasure function on expressions in DML040 Hongwei Xi
-	τ1 = Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
-	τ2(a) = int(a) → Σa2 :nat. int(a2)
-	τ3 = Σa2 :nat. int(a2)
-	e1 = ⊃−(Π−(f))(1)
-	e2 = ⊃−(Π−(x1))
-	e3 = let Σ(∧(x2)) = x2 in ⊃−(Π−(x1))(x2) end
-	e4 = let x1 = f in let x2 = e1 in e3 end end
-	D0 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ1 ⇒ f
-	(elab-up-var)
-	D0 ∅; ∅ ` 1 : nat
-	D1 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ2(1) ⇒⊃−(Π−(f))
-	(elab-up-Π-elim-1)
-	D2 :: ∅; ∅; ∅, f : τ1 ` 1 ↑ int(1) ⇒ 1
-	(elab-up-const)
-	D1
-	D2
-	∅; ∅ |= 1
-	.= 1
-	∅; ∅ ` [] : int(1) ≤ int(1)
-	(dy-sub-base)
-	∅; ∅; ∅, f : τ1 ` 1 ↓ int(1) ⇒ 1
-	(elab-dn-up)
-	D3 :: ∅; ∅; ∅, f : τ1 ` f(1) ↑ τ3 ⇒ e1
-	(elab-up-app-1)
-	D4 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ1 ⇒ x1
-	(elab-up-var)
-	D4 ∅, a2 : int; ∅, a2 ≥ 0 ` a2 : nat
-	D5 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ2(a2) ⇒ e2
-	(elab-up-Π-elim-1)
-	D6 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
-	(elab-up-var)
-	D5
-	D6
-	∅, a2 : int; ∅, a2 ≥ 0 |= a2
-	.
-	= a2
-	∅, a2 : int; ∅, a2 ≥ 0 ` [] : int(a2) ≤ int(a2)
-	(dy-sub-base)
-	∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
-	(elab-dn-up)
-	∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1(x2) ↑ τ3 ⇒ e2(x2)
-	(elab-up-app-1)
-	D7 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` x1(x2) ↑ Σa:nat. τ3 ⇒ e3
-	(elab-up-Σ-left)
-	D0 D3 D7
-	D8 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` f(f(1)) ↑ Σa:nat. τ3 ⇒ e4
-	(elab-up-app-2)
-	Fig. 25. An example of elaboration
-	a need for an analysis elaboration judgment. For instance, we may encounter a
-	situation where we need to synthesize a type for some expression lamx. e; however,
-	there is no rule for such a synthesis as the involved expression is a lam-expression;
-	to address the issue, the programmer may provide a type annotation by writing
-	(lamx. e : τ ) instead; synthesizing a type for (lamx. e : τ ) is then reduced to
-	analyzing whether lam x. e can be assigned the type τ .
-	The rule (elab-up-app-1) is fairly straightforward. When synthesizing a type
-	for e1
-	(e2
-	), we can first synthesize a type for e1
-	; if the type is of the form τ1 → τ2, we
-	can then analyze whether e2
-	can be assigned the type τ1; if the analysis succeeds,
-	then we claim that the type τ2 is synthesized for e2
-	.Journal of Functional Programming 41
-	The rule (elab-up-app-2) is rather intricate but of great importance in practice,
-	and we provide some explanation for it. When synthesizing a type for e1
-	(e2
-	), we
-	may first synthesize a type τ for e1
-	that is not of the form τ1 → τ2; for instance,
-	τ may be a universally quantified type; if this is the case, we can next synthesize
-	a type for e2 and then apply the rule (elab-up-app-2). Let us now see a concrete
-	example involving (elab-up-app-2). Suppose that f is given the following type:
-	Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
-	where nat = {a : int | a ≥ 0}, and we need to elaborate the expression f(1).
-	By applying the rule (elab-Π-elim-1) we can synthesize the type int(1) → Σa2 :
-	nat. int(a2) for f; then we can analyze that 1 has the type int(1) and thus synthesize
-	the type Σa2 :nat. int(a2) for f(1); note that f(1) elaborates into ⊃ −(Π−(f))(1),
-	which can be assigned the type Σa2 : nat. int(a2). Now suppose that we need to
-	elaborate the expression f(f(1)). If we simply synthesize a type of the form int(I) →
-	Σa2 :nat. int(a2) for the first occurrence of f in f(f(1)), then the elaboration for
-	f(f(1)) cannot succeed as it is impossible to elaborate f(1) into an expression in
-	λ
-	Π,Σ
-	pat of the type int(I) for any type index I. With the rule (elab-up-app-2), we
-	are actually able to elaborate f(f(1)) into the following expression e in λ
-	Π,Σ
-	pat :
-	let x1 = f in let x2 =⊃−(Π−(f))(1) in e
-	0 end end
-	where e
-	0 = let Σ(∧(x2)) = x2 in ⊃ −(Π−(x1))(x2) end. Please find that the
-	entire elaboration is formally carried out in Figure 25. Clearly, the erasure of e is
-	operationally equivalent to f(f(1)).
-	The rules (elab-up-prod-left) and (elab-up-Σ-left) are for simplifying the
-	types assigned to variables in a dynamic context. In practice, we apply these rules
-	during elaboration whenever possible.
+	The rules for synthesis elaboration judgments are presented in Figure 22.
+
+	The purpose of the rules (elab-up-Π-elim-1) and (elab-up-Π-elim-2) is for eliminating Π quantifiers.
+
+	For instance, let us assume that we are elaborating an expression e1 (e2), and a type of the form Πa : s. ˆ τ is already synthesized for e1; then we need to apply the rule (elab-up-Π-elim-1) so as to eliminate the Π quantifier in 1 By pure type inference, we refer to the question that asks whether a given expression in λpat is typable in λΠ,Σ pat , that is, whether a given expression in λpat can be the erasure of some typable expression in λΠ,Σ pat .
+
+		sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
+		φ; P~ ; Γ ` e ↑ τ [a 7→ I] ⇒⊃−
+		n (Π−(e))
+		(elab-up-Π-elim-1)
+		sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
+		φ;P~ ; Γ ` e[I] ↑ τ [a 7→ I] ⇒⊃−
+		n (Π−(e))
+		(elab-up-Π-elim-2)
+		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ ` e ↑ τ ⇒ e
+		φ;P~ ; Γ ` λa : s. ˆ e ↑ Πa:s. ˆ τ ⇒ Π+(⊃
+		+
+		n (e))
+		(elab-up-Π-intro)
+		φ;P~ ; Γ ` e ↓ τ ⇒ e
+		φ; P~ ; Γ ` (e : τ ) ↑ τ ⇒ e
+		(elab-up-anno)
+		φ ` Γ [ctx] Γ(xf ) = τ
+		φ; P~ ; Γ ` xf ↑ τ ⇒ xf
+		(elab-up-var)
+		φ0; P~0 ` c(τ0) : δ(I~0) φ ` Θ : φ0 φ |= P~0[Θ] φ;P~ ; Γ ` e ↓ τ0[Θ] ⇒ e
+		φ; P~ ; Γ ` c(e) ↑ δ(I~0[Θ]) ⇒ c(e)
+		(elab-up-const)
+		φ;P~ ; Γ ` e1
+		↑ τ1 ⇒ e1 φ;P~ ; Γ ` e2
+		↑ τ2 ⇒ e2
+		φ;P~ ; Γ ` he1
+		, e2
+		i ↑ τ1 ∗ τ2 ⇒ he1, e2i
+		(elab-up-prod)
+		φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
+		φ;P~ ; Γ ` fst(e) ↑ τ1 ⇒ fst(e)
+		(elab-up-fst)
+		φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
+		φ;P~ ; Γ ` snd(e) ↑ τ2 ⇒ snd(e)
+		(elab-up-snd)
+		φ; P~ ; Γ, x : τ1 ` e ↑ τ2 ⇒ lamx. e
+		φ;P~ ; Γ ` lamx : τ1. e ↑ τ1 → τ2 ⇒ lamx. e
+		(elab-up-lam)
+		φ;P~ ; Γ ` e1
+		↑ τ1 → τ2 ⇒ e1 φ;P~ ; Γ ` e2
+		↓ τ1 ⇒ e2
+		φ;P~ ; Γ ` e1
+		(e2
+		) ↑ τ2 ⇒ e1(e2)
+		(elab-up-app-1)
+		φ;P~ ; Γ ` e1
+		↑ τ ⇒ e1 φ;P~ ; Γ ` e2
+		↑ τ1 ⇒ e2
+		φ;P~ ; x1 : τ, x2 : τ1 ` x1(x2) ↑ τ2 ⇒ e
+		φ; P~ ; Γ ` e1
+		(e2
+		) ↑ τ2 ⇒ let x1 = e1 in let x2 = e2 in e end end
+		(elab-up-app-2)
+		φ;P~ ; Γ, f : τ ` e ↓ τ ⇒ e
+		φ;P~ ; Γ ` fix f : τ. e ↑ τ ⇒ fix f. e
+		(elab-up-fix)
+		φ;P~ ; Γ ` e1
+		↑ τ1 ⇒ e1 φ;P~ ; Γ, x : τ1 ` e2
+		↑ τ2 ⇒ e2
+		φ;P~ ; Γ ` let x = e1
+		in e2
+		end ↑ τ2 ⇒ let x = e1 in e2 end
+		(elab-up-let)
+		φ;P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↑ τ ⇒ e
+		φ;P~ ; Γ, x : τ1 ∗ τ2 ` e ↑ τ ⇒ let hx1, x2i = x in e end
+		(elab-up-prod-left)
+		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ, x : τ1 ` e ↑ τ2 ⇒ e
+		φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↑ Σa:s. ˆ τ2 ⇒ let Σ(∧n(x)) = x in Σ(∧n(e)) end
+		(elab-up-Σ-left)
+
+		Fig. 22. The rules for synthesis elaboration from DML0 to λΠ,Σ pat
+
+	Πa : s. ˆ τ ; we continue to do so until the synthesized type for e1 does not begin with a Π quantifier. 
+
+	In some (rare) occasions, the programmer may write e[I] to indicate an explicit elimination of a Π quantifier, and the rule (elab-up-Π-elim-2) is designed for this purpose.
+
+	The rule (elab-up-anno) turns a need for a synthesis elaboration judgment into
+	
+		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ ` e ↓ τ ⇒ e
+		φ; P~ ; Γ ` e ↓ Πa:s. ˆ τ ⇒ Π+(⊃
+		+
+		n (e))
+		(elab-dn-Π-intro)
+		φ;P~ ; Γ ` e1
+		↓ τ1 ⇒ e1 φ;P~ ; Γ ` e2
+		↓ τ2 ⇒ e2
+		φ; P~ ; Γ ` he1
+		, e2
+		i ↓ τ1 ∗ τ2 ⇒ he1, e2i
+		(elab-dn-prod)
+		φ;P~ ; Γ, x : τ1 ` e ↓ τ2 ⇒ lamx. e
+		φ;P~ ; Γ ` lamx. e ↓ τ1 → τ2 ⇒ lamx. e
+		(elab-dn-lam)
+		p ↓ τ1 ⇒ (φ0;P~0; Γ0) φ, φ0;P~ ,P~0; Γ, Γ0 ` e ↓ τ2 ⇒ e
+		φ; P~ ; Γ ` (p ⇒ e) ↓ (τ1 → τ2) ⇒ (p ⇒ e)
+		(elab-dn-clause)
+		φ; P~ ; Γ ` (pi ⇒ ei
+		) ↓ (τ1 → τ2) ⇒ (pi ⇒ ei) for 1 ≤ i ≤ n
+		ms = (p1 ⇒ e1
+		| . . . | pn ⇒ en
+		) ms = (p1 ⇒ e1 | . . . | pn ⇒ en)
+		φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
+		(elab-dn-clause-seq)
+		φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
+		φ; P~ ; Γ ` case e of ms ↓ τ2 ⇒ case e of ms
+		(elab-dn-case)
+		φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ` E : τ1 ≤ τ2
+		φ;P~ ; Γ ` e ↓ τ2 ⇒ E[e]
+		(elab-dn-up)
+		φ; P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↓ τ ⇒ e
+		φ; P~ ; Γ, x : τ1 ∗ τ2 ` e ↓ τ ⇒ let hx1, x2i = x in e end
+		(elab-dn-prod-left)
+		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ, x : τ1 ` e ↓ τ2 ⇒ e
+		φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↓ τ2 ⇒ let Σ(∧n(x)) = x in e end
+		(elab-dn-Σ-left)
+
+	- Fig. 23. The rules for analysis elaboration from DML0 to λ
+
+		Π,Σ
+		pat
+		|xf | = xf
+		|c(e)| = c(|e|)
+		|case e of (p1 ⇒ e1
+		| . . . | pn ⇒ en
+		)| = case |e| of (p1 ⇒ |e1
+		| | . . . | pn ⇒ |en
+		|)
+		|hi| = hi
+		|he1
+		, e2
+		i| = h|e1
+		|, |e2
+		|i
+		|fst(e)| = fst(|e|)
+		|snd(e)| = snd(|e|)
+		|lam x. e| = lamx. |e|
+		|lam x : τ. e| = lamx. |e|
+		|e1
+		(e2
+		)| = |e1
+		|(|e2
+		|)
+		|fix f : τ. e| = fix f. |e|
+		|let x = e1
+		in e2
+		end| = let x = |e1
+		| in |e2
+		| end
+		|(e : τ )| = |e|
+		|λa : sˆ. e| = |e|
+		|e[I]| = |e|
+
+	- Fig. 24. The erasure function on expressions in DML0
+
+		τ1 = Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
+		τ2(a) = int(a) → Σa2 :nat. int(a2)
+		τ3 = Σa2 :nat. int(a2)
+		e1 = ⊃−(Π−(f))(1)
+		e2 = ⊃−(Π−(x1))
+		e3 = let Σ(∧(x2)) = x2 in ⊃−(Π−(x1))(x2) end
+		e4 = let x1 = f in let x2 = e1 in e3 end end
+		D0 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ1 ⇒ f
+		(elab-up-var)
+		D0 ∅; ∅ ` 1 : nat
+		D1 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ2(1) ⇒⊃−(Π−(f))
+		(elab-up-Π-elim-1)
+		D2 :: ∅; ∅; ∅, f : τ1 ` 1 ↑ int(1) ⇒ 1
+		(elab-up-const)
+		D1
+		D2
+		∅; ∅ |= 1
+		.= 1
+		∅; ∅ ` [] : int(1) ≤ int(1)
+		(dy-sub-base)
+		∅; ∅; ∅, f : τ1 ` 1 ↓ int(1) ⇒ 1
+		(elab-dn-up)
+		D3 :: ∅; ∅; ∅, f : τ1 ` f(1) ↑ τ3 ⇒ e1
+		(elab-up-app-1)
+		D4 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ1 ⇒ x1
+		(elab-up-var)
+		D4 ∅, a2 : int; ∅, a2 ≥ 0 ` a2 : nat
+		D5 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ2(a2) ⇒ e2
+		(elab-up-Π-elim-1)
+		D6 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
+		(elab-up-var)
+		D5
+		D6
+		∅, a2 : int; ∅, a2 ≥ 0 |= a2
+		.
+		= a2
+		∅, a2 : int; ∅, a2 ≥ 0 ` [] : int(a2) ≤ int(a2)
+		(dy-sub-base)
+		∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
+		(elab-dn-up)
+		∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1(x2) ↑ τ3 ⇒ e2(x2)
+		(elab-up-app-1)
+		D7 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` x1(x2) ↑ Σa:nat. τ3 ⇒ e3
+		(elab-up-Σ-left)
+		D0 D3 D7
+		D8 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` f(f(1)) ↑ Σa:nat. τ3 ⇒ e4
+		(elab-up-app-2)
+
+	- Fig. 25. An example of elaboration
+
+	a need for an analysis elaboration judgment.
+
+	For instance, we may encounter a situation where we need to synthesize a type for some expression lamx. e; however, there is no rule for such a synthesis as the involved expression is a lam-expression; to address the issue, the programmer may provide a type annotation by writing (lamx. e : τ ) instead; synthesizing a type for (lamx. e : τ ) is then reduced to analyzing whether lam x. e can be assigned the type τ .
+
+	The rule (elab-up-app-1) is fairly straightforward. When synthesizing a type for e1(e2), we can first synthesize a type for e1; if the type is of the form τ1 → τ2, we can then analyze whether e2 can be assigned the type τ1; if the analysis succeeds, then we claim that the type τ2 is synthesized for e2.
+
+	The rule (elab-up-app-2) is rather intricate but of great importance in practice, and we provide some explanation for it. When synthesizing a type for e1(e2), we may first synthesize a type τ for e1 that is not of the form τ1 → τ2; for instance, τ may be a universally quantified type; if this is the case, we can next synthesize a type for e2 and then apply the rule (elab-up-app-2). Let us now see a concrete example involving (elab-up-app-2). Suppose that f is given the following type:
+
+		Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
+		where nat = {a : int | a ≥ 0}, and we need to elaborate the expression f(1).
+
+	By applying the rule (elab-Π-elim-1) we can synthesize the type int(1) → Σa2 : nat. int(a2) for f; then we can analyze that 1 has the type int(1) and thus synthesize
+	the type Σa2 :nat. int(a2) for f(1); note that f(1) elaborates into ⊃ −(Π−(f))(1), which can be assigned the type Σa2 : nat. int(a2).
+
+	Now suppose that we need to elaborate the expression f(f(1)).
+
+	If we simply synthesize a type of the form int(I) → Σa2 :nat. int(a2) for the first occurrence of f in f(f(1)), then the elaboration for f(f(1)) cannot succeed as it is impossible to elaborate f(1) into an expression in λΠ,Σ pat of the type int(I) for any type index I.
+
+	With the rule (elab-up-app-2), we are actually able to elaborate f(f(1)) into the following expression e in λΠ,Σ pat :
+
+		let x1 = f in let x2 =⊃−(Π−(f))(1) in e
+		0 end end
+		where e
+		0 = let Σ(∧(x2)) = x2 in ⊃ −(Π−(x1))(x2) end.
+
+	Please find that the entire elaboration is formally carried out in Figure 25.
+
+	Clearly, the erasure of e is operationally equivalent to f(f(1)).
+
+	The rules (elab-up-prod-left) and (elab-up-Σ-left) are for simplifying the types assigned to variables in a dynamic context. In practice, we apply these rules during elaboration whenever possible.
 
 - 5.3 Some explanation on analysis elaboration rules
 	
-	The rules for analysis elaboration judgments are presented in Figure 23. For instance,
-	if e = he1
-	, e2
-	i and τ = hτ1, τ2i, then the rule (elab-dn-prod) reduces the
-	question whether e can be assigned the type τ to the questions whether ei
-	can be
-	assigned the types τi for i = 1, 2. Most of analysis elaboration rules are straightforward.
-	In the rule (elab-dn-up), we see that the three forms of judgments (dynamic
-	subtype judgment, synthesis elaboration judgment and analysis elaboration judgment)
-	meet. This rule simply means that when analyzing whether an expression e
-	can be given a type τ2, we may first synthesize a type τ1 for e and then show that
-	τ1 is a dynamic subtype of τ2 (by showing that E : τ1 ≤ τ2 is derivable for some
-	evaluation context E). In practice, we apply the rule (elab-dn-up) only if all other
-	analysis elaboration rules are inapplicable.
-	We now show some actual use of analysis elaboration rules by presenting in
-	Figure 26 a derivation of the following judgment for some E:
-	∅; ∅ ` E : Nat ∗ Nat ≤ Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
-	where Nat = Σa : nat. int(a). In this derivation, we assume the existence of a42 Hongwei Xi
-	τ0 = int(a1) ∗ int(a2)
-	τ1 = Σa2 :nat. int(a1) ∗ int(a2)
-	τ2 = Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
-	φ1 = ∅, a1 : int
-	φ2 = ∅, a1 : int, a2 : int
-	P~1 = ∅, a1 ≥ 0
-	P~2 = ∅, a1 ≥ 0, a2 ≥ 0
-	E0 = Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
-	e1 = E0[hx1, x2i]
-	e2 = let Σ(∧(x2)) = x2 in e1 end
-	e3 = let Σ(∧(x1)) = x1 in e2 end
-	E = let hx1, x2i = [] in e3 end
-	D1 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x1 ↑ int(a1) ⇒ x1
-	(elab-var-up)
-	D2 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
-	(elab-var-up)
-	D1
-	φ2; P~2 |= a1
-	.
-	= a1
-	φ2; P~2 ` [] : int(a1) ≤ int(a1)
-	D3 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x1 ↓ int(a1) ⇒ x1
-	(elab-dn-up)
-	D2
-	φ2; P~2 |= a2
-	.= a2
-	φ2; P~2 ` [] : int(a2) ≤ int(a2)
-	D4 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
-	(elab-dn-up)
-	D3 D4
-	D5 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ0 ⇒ hx1, x2i
-	(elab-dn-prod)
-	D5 D0 :: φ2;P~2 ` E0 : τ0 ≤ τ2
-	D6 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ2 ⇒ e1
-	(elab-dn-up)
-	φ1; P~1; x1 : int(a1), x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e2
-	(elab-dn-Σ-left)
-	∅; ∅; x1 : Nat, x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e3
-	(elab-dn-Σ-left)
-	D7 :: ∅; ∅ ` E : Nat ∗ Nat ≤ τ2
-	(dy-sub-prod)
-	Fig. 26. Another example of elaboration
-	derivation D0 :: φ2; P~
-	2 ` E0 : τ0 ≤ τ2 for the following evaluation context E0:
-	Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
+	The rules for analysis elaboration judgments are presented in Figure 23.
+
+	For instance, if e = he1, e2 i and τ = hτ1, τ2i, then the rule (elab-dn-prod) reduces the question whether e can be assigned the type τ to the questions whether ei can be assigned the types τi for i = 1, 2. Most of analysis elaboration rules are straightforward.
+	
+	In the rule (elab-dn-up), we see that the three forms of judgments (dynamic subtype judgment, synthesis elaboration judgment and analysis elaboration judgment) meet.
+
+	This rule simply means that when analyzing whether an expression e can be given a type τ2, we may first synthesize a type τ1 for e and then show that τ1 is a dynamic subtype of τ2 (by showing that E : τ1 ≤ τ2 is derivable for some evaluation context E).
+
+	In practice, we apply the rule (elab-dn-up) only if all other analysis elaboration rules are inapplicable.
+
+	We now show some actual use of analysis elaboration rules by presenting in Figure 26 a derivation of the following judgment for some E:
+	
+		∅; ∅ ` E : Nat ∗ Nat ≤ Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
+
+	where Nat = Σa : nat. int(a). In this derivation, we assume the existence of a
+
+		τ0 = int(a1) ∗ int(a2)
+		τ1 = Σa2 :nat. int(a1) ∗ int(a2)
+		τ2 = Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
+		φ1 = ∅, a1 : int
+		φ2 = ∅, a1 : int, a2 : int
+		P~1 = ∅, a1 ≥ 0
+		P~2 = ∅, a1 ≥ 0, a2 ≥ 0
+		E0 = Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
+		e1 = E0[hx1, x2i]
+		e2 = let Σ(∧(x2)) = x2 in e1 end
+		e3 = let Σ(∧(x1)) = x1 in e2 end
+		E = let hx1, x2i = [] in e3 end
+		D1 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x1 ↑ int(a1) ⇒ x1
+		(elab-var-up)
+		D2 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
+		(elab-var-up)
+		D1
+		φ2; P~2 |= a1
+		.
+		= a1
+		φ2; P~2 ` [] : int(a1) ≤ int(a1)
+		D3 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x1 ↓ int(a1) ⇒ x1
+		(elab-dn-up)
+		D2
+		φ2; P~2 |= a2
+		.= a2
+		φ2; P~2 ` [] : int(a2) ≤ int(a2)
+		D4 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
+		(elab-dn-up)
+		D3 D4
+		D5 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ0 ⇒ hx1, x2i
+		(elab-dn-prod)
+		D5 D0 :: φ2;P~2 ` E0 : τ0 ≤ τ2
+		D6 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ2 ⇒ e1
+		(elab-dn-up)
+		φ1; P~1; x1 : int(a1), x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e2
+		(elab-dn-Σ-left)
+		∅; ∅; x1 : Nat, x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e3
+		(elab-dn-Σ-left)
+		D7 :: ∅; ∅ ` E : Nat ∗ Nat ≤ τ2
+		(dy-sub-prod)
+
+	- Fig. 26. Another example of elaboration
+
+	derivation D0 :: φ2; P~2 ` E0 : τ0 ≤ τ2 for the following evaluation context E0:
+
+		Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
+
 	which can be readily constructed.
-	As another example, the interested reader can readily derive the following judgment
-	for some E:
-	∅; ∅ ` E : Πa:int. int(a) → int(a) ≤ Int → Int
-	where Int = Σa : int. int(a). Therefore, we can always use a function of the type
-	Πa:int. int(a) → int(a) as a function of the type Int → Int.Journal of Functional Programming 43
+
+	As another example, the interested reader can readily derive the following judgment for some E:
+
+		∅; ∅ ` E : Πa:int. int(a) → int(a) ≤ Int → Int
+
+	where Int = Σa : int. int(a).
+
+	Therefore, we can always use a function of the type
+
+		Πa:int. int(a) → int(a) as a function of the type Int → Int.
 	
 - 5.4 The soundness of elaboration
 
-	We now prove the soundness of elaboration, that is, elaboration cannot alter the
-	dynamic semantics of a program. To make the statement more precise, we define in
-	Figure 24 an erasure function | · | from DML0 to λpat. The following lemma is the
-	key to establishing the soundness of elaboration.
-	Lemma 5.2
-	Given φ, P~, Γ, e, τ, τ
-	0 and e, we have the following:
-	1. If φ; P~ ` E : τ ≤ τ
-	0
-	is derivable, then φ; P~ |= E : τ ≤d
-	tp τ
-	0 holds.
-	2. If φ; P~; Γ ` e ↑ τ ⇒ e is derivable, then φ; P~ ; Γ ` e : τ is derivable in λ
-	Π,Σ
-	pat ,
-	and |e| ,→∗
-	g
-	|e| holds.
-	3. If φ; P~; Γ ` e ↓ τ ⇒ e is derivable, then φ; P~ ; Γ ` e : τ is derivable in λ
-	Π,Σ
-	pat ,
-	and |e| ,→∗
-	g
-	|e| holds.
-	Proof
-	(Sketch) (1), (2) and (3) are proven simultaneously by structural induction on the
-	derivations of φ; P~ ` E : τ ≤ τ
-	0
-	, φ; P~; Γ ` e ↑ τ ⇒ e and φ; P~; Γ ` e ↓ τ ⇒ e.
-	The soundness of elaboration is justified by the following theorem:
-	Theorem 5.3
-	Assume that ∅; ∅; ∅ ` e ↑ τ ⇒ e is derivable. Then ∅; ∅; ∅ ` e : τ is derivable and
-	|e| ≤dyn |e|.
-	Proof
-	This follows from Lemma 5.2 and Lemma 2.14 immediately.
+	We now prove the soundness of elaboration, that is, elaboration cannot alter the dynamic semantics of a program.
+
+	To make the statement more precise, we define in Figure 24 an erasure function | · | from DML0 to λpat. The following lemma is the key to establishing the soundness of elaboration.
+	
+	- Lemma 5.2
+	
+		Given φ, P~, Γ, e, τ, τ0 and e, we have the following:
+		
+		1. If φ; P~ ` E : τ ≤ τ0 is derivable, then φ; P~ |= E : τ ≤d tp τ0 holds.
+		2. If φ; P~; Γ ` e ↑ τ ⇒ e is derivable, then φ; P~ ; Γ ` e : τ is derivable in λ Π,Σ pat , and |e| ,→∗ g |e| holds.
+		3. If φ; P~; Γ ` e ↓ τ ⇒ e is derivable, then φ; P~ ; Γ ` e : τ is derivable in λ Π,Σ pat ,and |e| ,→∗ g |e| holds.
+
+	- Proof
+
+		(Sketch) (1), (2) and (3) are proven simultaneously by structural induction on the derivations of φ; P~ ` E : τ ≤ τ0, φ; P~; Γ ` e ↑ τ ⇒ e and φ; P~; Γ ` e ↓ τ ⇒ e.
+
+		The soundness of elaboration is justified by the following theorem:
+
+	- Theorem 5.3
+
+		Assume that ∅; ∅; ∅ ` e ↑ τ ⇒ e is derivable.
+
+		Then ∅; ∅; ∅ ` e : τ is derivable and |e| ≤dyn |e|.
+
+	- Proof
+
+		This follows from Lemma 5.2 and Lemma 2.14 immediately.
 
 - 5.5 Implementing elaboration
 
-	A typed programming language ATS is currently under development (Xi, 2005),
-	and its type system supports the form of dependent types in λ
-	Π,Σ
-	pat . The elaboration
-	process in ATS is implemented in a manner that follows the presented elaboration
-	rules closely, providing concrete evidence in support of the practicality of these
-	rules. We now mention some strategies adopted in this implementation to address
-	nondeterminism in elaboration.
-	• The dynamic subtype rules in Figure 21 are applied according to the order in
-	which they are listed. In other words, if two or more dynamic subtype rules are
-	applicable, then the one listed first is chosen. It is important to always choose
-	(dy-sub-Π-r) and (dy-sub-Σ-l) over (dy-sub-Π-l) and (dy-sub-Σ-r), respectively.
-	For instance, this is necessary when we prove ∅; ∅ ` τ ≤ τ for
-	τ = Πa:int. int(a) → int(a) and also for τ = Σa:int. int(a).
-	• The following ”left” rules:
-	— (elab-up-Σ-left) and (elab-dn-Σ-left)
-	— (elab-up-prod-left) and (elab-dn-prod-left)
-	are chosen whenever they are applicable.44 Hongwei Xi
-	• The rule (elab-up-app-2) is in general chosen over the rule (elab-up-app-1).
-	However, we also provide some special syntax to allow the programmer to indicate
-	that the rule (elab-up-app-1) is preferred in a particular case. For
-	instance, the special syntax for doing this in ATS is {...}: we write e1
-	{...}(e2
-	)
-	to indicate that a type of the form τ1 → τ2 needs to be synthesized out of e1
-	and then e2
-	is to be checked against τ1. This kind of elaboration is mostly
-	used in a case where the expression e1
-	is a higher-order function, saving the
-	need for explicitly annotating the expression e2
-	.
-	• We choose the rule (elab-dn-up), which turns analysis into synthesis, only
-	when no other analysis elaboration rules are applicable. The general principle
-	we follow is to prefer analysis over synthesis as the former often makes better
-	use of type annotations and yields more accurate error message report.
-	While the description of elaboration in terms of the rules in Figure 21, Figure 22
-	and Figure 23 is intuitively appealing, there is still a substantial gap between the
-	description and its implementation. For instance, the elaboration rules are further
-	refined in (Xi, 1998) to generate constraints when applied, and there are also various
-	issues of reporting error messages as informative as possible. As these issues
-	are mostly concerned with an actual implementation of elaboration, they are of
-	relatively little theoretical significance and thus we plan to address them elsewhere
-	in different contexts.
+	A typed programming language ATS is currently under development (Xi, 2005), and its type system supports the form of dependent types in λΠ,Σ pat .
+
+	The elaboration process in ATS is implemented in a manner that follows the presented elaboration rules closely, providing concrete evidence in support of the practicality of these rules.
+
+	We now mention some strategies adopted in this implementation to address nondeterminism in elaboration.
+
+	- The dynamic subtype rules in Figure 21 are applied according to the order in which they are listed.
+
+		In other words, if two or more dynamic subtype rules are applicable, then the one listed first is chosen. It is important to always choose (dy-sub-Π-r) and (dy-sub-Σ-l) over (dy-sub-Π-l) and (dy-sub-Σ-r), respectively.
+
+	For instance, this is necessary when we prove ∅; ∅ ` τ ≤ τ for τ = Πa:int. int(a) → int(a) and also for τ = Σa:int. int(a).
+
+	- The following ”left” rules:
+		— (elab-up-Σ-left) and (elab-dn-Σ-left)
+		— (elab-up-prod-left) and (elab-dn-prod-left)
+		are chosen whenever they are applicable.
+
+	- The rule (elab-up-app-2) is in general chosen over the rule (elab-up-app-1).
+
+	However, we also provide some special syntax to allow the programmer to indicate that the rule (elab-up-app-1) is preferred in a particular case.
+
+	For instance, the special syntax for doing this in ATS is {...}: we write e1 {...}(e2) to indicate that a type of the form τ1 → τ2 needs to be synthesized out of e1 and then e2 is to be checked against τ1.
+
+	This kind of elaboration is mostly used in a case where the expression e1 is a higher-order function, saving the need for explicitly annotating the expression e2.
+
+	- We choose the rule (elab-dn-up), which turns analysis into synthesis, only when no other analysis elaboration rules are applicable.
+
+	The general principle we follow is to prefer analysis over synthesis as the former often makes better use of type annotations and yields more accurate error message report.
+
+	While the description of elaboration in terms of the rules in Figure 21, Figure 22 and Figure 23 is intuitively appealing, there is still a substantial gap between the description and its implementation.
+
+	For instance, the elaboration rules are further refined in (Xi, 1998) to generate constraints when applied, and there are also various issues of reporting error messages as informative as possible.
+
+	As these issues are mostly concerned with an actual implementation of elaboration, they are of relatively little theoretical significance and thus we plan to address them elsewhere in different contexts.
 
 - 6 Extensions
 	
-	We extend λ
-	Π,Σ
-	pat with parametric polymorphism, exceptions and references in this
-	section, attesting to the adaptability and practicality of our proposed approach to
-	supporting the use of dependent types in the presence of realistic programming
-	features.
+	We extend λΠ,Σ pat with parametric polymorphism, exceptions and references in this section, attesting to the adaptability and practicality of our proposed approach to supporting the use of dependent types in the presence of realistic programming features.
 
 - 6.1 Parametric polymorphism
 	
-	We first extend the syntax of λ
-	Π,Σ
-	pat as follows:
-	types τ ::= . . . | α
-	type schemes σ ::= ∀α~. τ
-	contexts Γ ::= · | Γ, xf : σ
+	We first extend the syntax of λΠ,Σ pat as follows:
+
+		types τ ::= . . . | α
+		type schemes σ ::= ∀α~. τ
+		contexts Γ ::= · | Γ, xf : σ
+
 	where we use α to range over type variables. A c-type is now of the following form:
-	∀α. ~ Πφ.P~ ⊃ (τ ⇒ (~τ )δ(~I))Journal of Functional Programming 45
+	
+		∀α. ~ Πφ.P~ ⊃ (τ ⇒ (~τ )δ(~I))
+
 	and the typing rules (ty-var) and (ty-const) are modified as follows:
-	Γ(xf) = ∀α. ~ τ φ ` ~τ [type]
-	φ; P~; Γ ` xf : τ [α~ 7→ ~τ ]
-	(ty-var)
-	α~; φ0; P~
-	0 ` c(τ ) : (~τ0)δ(
-	~I0) φ ` ~τ [type]
-	φ ` Θ : φ0 φ; P~ |= P~
-	0[Θ] φ; P~; Γ ` e : τ [α~ 7→ ~τ ][Θ]
-	φ; P~ ; Γ ` c(e) : (~τ0[α~ 7→ ~τ ])δ(
-	~I0[Θ])
-	(ty-const)
-	We write α~; φ0; P~
-	0 ` c(τ ) : (~τ0)δ(
-	~I0) to indicate that the constant c is assigned the
-	c-type ∀α~.Πφ0.P~
-	0 ⊃ (τ ⇒ δ(
-	~I0)), and φ ` ~τ [type] to mean that φ ` τ [type] is
-	derivable for each τ in ~τ , and [α~ 7→ ~τ ] for a substitution that maps α~ = α1, . . . , αn
-	to ~τ = τ1, . . . , τn. We now need the following static subtype rule to deal with type
-	variables:
-	φ; P~ |= α ≤s
-	tp α
-	(st-sub-var)
+
+		Γ(xf) = ∀α. ~ τ φ ` ~τ [type]
+		φ; P~; Γ ` xf : τ [α~ 7→ ~τ ]
+		(ty-var)
+		α~; φ0; P~
+		0 ` c(τ ) : (~τ0)δ(~I0) φ ` ~τ [type]
+		φ ` Θ : φ0 φ; P~ |= P~
+		0[Θ] φ; P~; Γ ` e : τ [α~ 7→ ~τ ][Θ]
+		φ; P~ ; Γ ` c(e) : (~τ0[α~ 7→ ~τ ])δ(~I0[Θ])
+		(ty-const)
+
+	We write α~; φ0; P~0 ` c(τ ) : (~τ0)δ(~I0) to indicate that the constant c is assigned the c-type ∀α~.Πφ0.P~0 ⊃ (τ ⇒ δ(~I0)), and φ ` ~τ [type] to mean that φ ` τ [type] is derivable for each τ in ~τ , and [α~ 7→ ~τ ] for a substitution that maps α~ = α1, . . . , αn to ~τ = τ1, . . . , τn. We now need the following static subtype rule to deal with type variables:
+	
+		φ; P~ |= α ≤s
+		tp α
+		(st-sub-var)
+
 	In addition, the rule (st-sub-base) needs to be modified as follows:
-	φ; P~ |= τ1 =s
-	tp τ
-	0
-	1
-	· · · φ; P~ |= τm =s
-	tp τ
-	0
-	m
-	φ; P~ |= I1
-	.= I
-	0
-	1
-	· · · φ; P~ |= In
-	.= I
-	0
-	n
-	φ; P~ |= (τ1, . . . , τm)δ(I1, . . . , In) ≤s
-	tp (τ
-	0
-	1
-	, . . . , τ
-	0
-	m)δ(I
-	0
-	1
-	, . . . , I
-	0
-	n)
-	(st-sub-base)
-	where for types τ and τ
-	0
-	, τ =s
-	tp τ
-	0 means both τ ≤s
-	tp τ
-	0 and τ
-	0 ≤s
-	tp τ hold. It is
-	possible to replace τi =s
-	tp τ
-	0
-	i with τi ≤s
-	tp τ
-	0
-	i
-	(τ
-	0
-	i ≤s
-	tp τi) if δ is covariant (contravariant)
-	with respect to its i
-	th type argument. However, we do not entertain this possibility
-	in this paper (but do so in implementation).
-	The following typing rules (ty-poly) and (ty-let) are introduced for handling
-	let-polymorphism as is supported in ML:
-	φ; P~ ; Γ ` e : τ α~ # Γ
-	φ; P~; Γ ` e : ∀α. ~ τ
-	(ty-poly)
-	φ; P~ ; Γ ` e1 : σ1 φ; P~ ; Γ, x : σ1 ` e2 : σ2
-	φ; P~; Γ ` let x = e1 in e2 end : σ2
-	(ty-let)
-	Obviously, we need to associate with the rule (ty-poly) a side condition that
-	requires no free occurrences of α~ in Γ. This condition is written as α~ # Γ.
-	As usual, the type soundness of this extension is established by the subject reduction
-	theorem and the progress theorem stated as follows:
-	Theorem 6.1 (Subject Reduction)
-	Assume that D :: ∅; ∅; ∅ ` e1 : σ is derivable and e1 ,→ev e2 holds. Then ∅; ∅; ∅ `
-	e2 : σ is also derivable.
-	Theorem 6.2 (Progress)
+
+		φ; P~ |= τ1 =s
+		tp τ
+		0
+		1
+		· · · φ; P~ |= τm =s
+		tp τ
+		0
+		m
+		φ; P~ |= I1
+		.= I
+		0
+		1
+		· · · φ; P~ |= In
+		.= I
+		0
+		n
+		φ; P~ |= (τ1, . . . , τm)δ(I1, . . . , In) ≤s
+		tp (τ
+		0
+		1
+		, . . . , τ
+		0
+		m)δ(I
+		0
+		1
+		, . . . , I
+		0
+		n)
+		(st-sub-base)
+
+	where for types τ and τ0, τ =s tp τ0 means both τ ≤s tp τ 0 and τ 0 ≤s tp τ hold.
+
+	It is possible to replace τi =s tp τ0 i with τi ≤s tp τ0 i (τ0 i ≤s tp τi) if δ is covariant (contravariant) with respect to its i th type argument.
+
+	However, we do not entertain this possibility in this paper (but do so in implementation).
+
+	The following typing rules (ty-poly) and (ty-let) are introduced for handling let-polymorphism as is supported in ML:
+
+		φ; P~ ; Γ ` e : τ α~ # Γ
+		φ; P~; Γ ` e : ∀α. ~ τ
+		(ty-poly)
+		φ; P~ ; Γ ` e1 : σ1 φ; P~ ; Γ, x : σ1 ` e2 : σ2
+		φ; P~; Γ ` let x = e1 in e2 end : σ2
+		(ty-let)
+
+	Obviously, we need to associate with the rule (ty-poly) a side condition that requires no free occurrences of α~ in Γ. This condition is written as α~ # Γ.
+
+	As usual, the type soundness of this extension is established by the subject reduction theorem and the progress theorem stated as follows:
+
+	- Theorem 6.1 (Subject Reduction)
+
+		Assume that D :: ∅; ∅; ∅ ` e1 : σ is derivable and e1 ,→ev e2 holds. Then ∅; ∅; ∅ ` e2 : σ is also derivable.
+
+	- Theorem 6.2 (Progress)
+
 	Assume that ∅; ∅; ∅ ` e1 : σ is derivable. Then there are the following possibilities:
-	• e1 is a value, or46 Hongwei Xi
+
+	• e1 is a value, or
 	c(raise(v)) ,→ev raise(v)
 	hraise(v), ei ,→ev raise(v)
 	hv0, raise(v)i ,→ev raise(v)
@@ -2966,88 +3099,114 @@
 	e[θ] if match(v, p) ⇒ θ holds
 	for some p ⇒ e in ms;
 	raise(v) otherwise.
+
 	Fig. 27. Additional forms of redexes and their reducts
+
 	• e1 is in M-form, or
 	• e1 is in U-form, or
 	• e1 ,→ev e2 holds for some expression e2.
-	We omit the proofs for these two theorems, which are essentially the same as the
-	ones for Theorem 4.11 and Theorem 4.12.
+
+	We omit the proofs for these two theorems, which are essentially the same as the ones for Theorem 4.11 and Theorem 4.12.
 
 - 6.2 Exceptions
 
-	We further extend λ
-	Π,Σ
-	pat with exceptions. First, we introduce the following additional
-	syntax, where exn is the type for values representing exceptions.
-	types τ ::= . . . | exn
-	expressions e ::= . . . | raise(e) | try e with ms
-	answers ans ::= v | raise(v)
-	An answer of the form raise(v) is called a raised exception, where v is the exception
-	being raised. We also introduce in Figure 27 some new forms of ev-redexes and their
-	reducts, which are needed for propagating a raised exception to the top level. In
-	addition, we introduce a new form of evaluation context to allow a raised exception
-	to be captured (potentially):
-	evaluation contexts E ::= . . . | try E with ms
+	We further extend λΠ,Σ pat with exceptions.
+
+	First, we introduce the following additional syntax, where exn is the type for values representing exceptions.
+
+		types τ ::= . . . | exn
+		expressions e ::= . . . | raise(e) | try e with ms
+		answers ans ::= v | raise(v)
+
+	An answer of the form raise(v) is called a raised exception, where v is the exception being raised.
+
+	We also introduce in Figure 27 some new forms of ev-redexes and their reducts, which are needed for propagating a raised exception to the top level.
+
+	In addition, we introduce a new form of evaluation context to allow a raised exception to be captured (potentially):
+
+		evaluation contexts E ::= . . . | try E with ms
+
 	The following typing rules are needed for handling the newly added language constructs:
-	φ; P~; Γ ` e : exn
-	φ; P~; Γ ` raise(e) : σ
-	(ty-raise)
-	φ; P~ ; Γ ` e : τ φ; P~; Γ ` ms : exn → τ
-	φ; P~ ; Γ ` try e with ms : τ
-	(ty-try)Journal of Functional Programming 47
+
+		φ; P~; Γ ` e : exn
+		φ; P~; Γ ` raise(e) : σ
+		(ty-raise)
+		φ; P~ ; Γ ` e : τ φ; P~; Γ ` ms : exn → τ
+		φ; P~ ; Γ ` try e with ms : τ
+		(ty-try)
+
 	Again, the type soundness of this extension rests upon the following two theorems:
-	Theorem 6.3 (Subject Reduction)
-	Assume D :: ∅; ∅; ∅ ` e1 : σ e1 ,→ev e2. Then ∅; ∅; ∅ ` e2 : σ is also derivable.
-	Theorem 6.4 (Progress)
-	Assume that ∅; ∅; ∅ ` e1 : σ is derivable. Then there are the following possibilities:
-	• e1 is a value, or
-	• e1 is a raised exception, or
-	• e1 is in M-form, or
-	• e1 is in U-form, or
-	• e1 ,→ev e2 holds for some expression e2.
-	We omit the proofs for these two theorems, which are essentially the same as the
-	ones for Theorem 4.11 and Theorem 4.12.
-	Assume the existence of two exception constants Match and Undefined that are
-	assigned the c-type () ⇒ exn. We can then introduce the following evaluation rules
-	for handling expressions in M-form or U-form:
-	case v of ms ,→ev raise(Match) if v matches none of the patterns in ms.
-	cf(v) ,→ev raise(Undefined) if cf(v) is undefined.
-	Then the progress theorem can be stated as follows:
-	Theorem 6.5 (Progress)
-	Assume that ∅; ∅; ∅ ` e1 : σ is derivable. Then there are the following possibilities:
-	• e1 is a value, or
-	• e1 is a raised exception, or
-	• e1 ,→ev e2 holds for some expression e2.
-	So we can now claim that the evaluation of a well-typed program either terminates
-	with an answer, that is, a value or a raised exception, or goes on forever.
+
+	- Theorem 6.3 (Subject Reduction)
+
+		Assume D :: ∅; ∅; ∅ ` e1 : σ e1 ,→ev e2. Then ∅; ∅; ∅ ` e2 : σ is also derivable.
+
+	- Theorem 6.4 (Progress)
+
+		Assume that ∅; ∅; ∅ ` e1 : σ is derivable.
+
+		Then there are the following possibilities:
+
+		- e1 is a value, or
+		- e1 is a raised exception, or
+		- e1 is in M-form, or
+		- e1 is in U-form, or
+		- e1 ,→ev e2 holds for some expression e2.
+
+		We omit the proofs for these two theorems, which are essentially the same as the ones for Theorem 4.11 and Theorem 4.12.
+		
+		Assume the existence of two exception constants Match and Undefined that are assigned the c-type () ⇒ exn.
+
+		We can then introduce the following evaluation rules for handling expressions in M-form or U-form:
+		case v of ms ,→ev raise(Match) if v matches none of the patterns in ms.
+		cf(v) ,→ev raise(Undefined) if cf(v) is undefined.
+
+		Then the progress theorem can be stated as follows:
+
+	- Theorem 6.5 (Progress)
+
+		Assume that ∅; ∅; ∅ ` e1 : σ is derivable. Then there are the following possibilities:
+
+		- e1 is a value, or
+		- e1 is a raised exception, or
+		- e1 ,→ev e2 holds for some expression e2.
+
+		So we can now claim that the evaluation of a well-typed program either terminates with an answer, that is, a value or a raised exception, or goes on forever.
 	
 - 6.3 References
 
-	In this section, we add into λ
-	Π,Σ
-	pat another effectful programming feature: references.
-	We first introduce a unary type constructor ref that takes a type τ to form a
-	reference type (τ )ref. We need the following static subtype rule for dealing with
-	the type constructor ref:
-	φ; P~ |= τ1 ≤s
-	tp τ2 φ; P~ |= τ2 ≤s
-	tp τ1
-	φ; P~ |= (τ1)ref ≤s
-	tp (τ2)ref
-	(st-sub-ref)
-	which takes into account that ref is nonvariant on its type argument. We also
-	assume the existence of the following predefined functions ref, ! (prefix) and :=
-	(infix) with the assigned c-types:
-	ref : ∀α.(α) ⇒ (α)ref
-	! : ∀α.((α)ref) ⇒ α
-	:= : ∀α.((α)ref, α) ⇒ 148 Hongwei Xi
-	We use l to range over an infinite set of reference constants l1, l2, . . ., which one
-	may simply assume are represented as natural numbers. We use M and µ for stores
-	and store types, respectively, which are defined below as finite mappings:
-	stores M ::= [] | M[l 7→ v]
-	store types µ ::= [] | µ[l 7→ τ ]
-	Note that we do allow type variables to occur in a store type. In other words, for
-	each l ∈ dom(µ), µ(l) may contain free type variables.
+	In this section, we add into λΠ,Σ pat another effectful programming feature: references.
+
+	We first introduce a unary type constructor ref that takes a type τ to form a reference type (τ )ref.
+
+	We need the following static subtype rule for dealing with the type constructor ref:
+
+		φ; P~ |= τ1 ≤s
+		tp τ2 φ; P~ |= τ2 ≤s
+		tp τ1
+		φ; P~ |= (τ1)ref ≤s
+		tp (τ2)ref
+		(st-sub-ref)
+
+	which takes into account that ref is nonvariant on its type argument.
+
+	We also assume the existence of the following predefined functions ref, ! (prefix) and := (infix) with the assigned c-types:
+
+		ref : ∀α.(α) ⇒ (α)ref
+		! : ∀α.((α)ref) ⇒ α
+		:= : ∀α.((α)ref, α) ⇒
+
+	We use l to range over an infinite set of reference constants l1, l2, . . ., which one may simply assume are represented as natural numbers.
+
+	We use M and µ for stores and store types, respectively, which are defined below as finite mappings:
+
+		stores M ::= [] | M[l 7→ v]
+		store types µ ::= [] | µ[l 7→ τ ]
+
+	Note that we do allow type variables to occur in a store type.
+
+	In other words, for each l ∈ dom(µ), µ(l) may contain free type variables.
+
 	We say that a store M0
 	extends another store M if M(l) = M0
 	(l) for every
@@ -3060,710 +3219,730 @@
 	(l) for every l ∈ dom(µ) ⊆ dom(µ
 	0
 	).
-	Definition 6.6 (Stateful Reduction)
-	The stateful reduction relation (M1, e1) ,→ev/st (M2, e2) is defined as follows:
-	• If e1 ,→ev e2 holds, then we have (M, e1) ,→ev/st (M, e2).
-	• If e1 = E[ref(v)], then we have (M, e1) ,→ev/st (M[l 7→ v], E[hi]) for any
-	reference constant l 6∈ dom(M). So nondeterminism appears to be involved
-	in this case. This form of nondeterminism can be eliminated if we equate
-	(M, e) and (M0
-	, e
-	0
-	) whenever one can be obtained from the other by properly
-	renaming the reference constants. The precise definition of such a renaming
-	algorithm is omitted as it is not needed in this paper.
-	• If e1 = E[!l] and M(l) = v, then we have (M, e1) ,→ev/st (M, E[v]).
-	• If e1 = E[l := v] and l ∈ dom(M), then we have (M, e1) ,→ev/st (M0
-	, E[hi]),
-	where M0
-	is a store such that dom(M0
-	) = dom(M) and M0
-	(l) = v and
-	M0
-	(l
-	0
-	) = M(l
-	0
-	) for every l
-	0
-	in dom(M) that is not l.
-	As usual, we use ,→∗
-	ev/st for the reflexive and transitive closure of ,→ev/st.
-	Given an answer ans, we say that ans is observable if ans = v or ans = raise(v)
-	for some observable value v.
-	Definition 6.7
-	Given two expressions e1 and e2 in λpat extended with polymorphism, exceptions
-	and references, we say that e1 ≤dyn e2 holds if for any store M1 and any
-	context G, either (M1, G[e2]) ,→∗
-	ev/st (M2, Error) holds for some store M2, or
-	(M1, G[e1]) ,→∗
-	ev/st (M2, ans∗
-	) if and only if (M1, G[e2]) ,→∗
-	ev/st (M2, ans∗
-	), where
-	M2 ranges over stores and ans∗
-	ranges over the set of observable answers.
-	The definition of the dynamic subtype relation ≤d
-	tp (Definition 4.15) can be modified
-	according to the above definition of ≤dyn. In particular, we can readily verify that
-	Lemma 2.14 still holds (as the generate reduction relation ,→g is still defined in the
-	same manner).
-	We now outline as follows an approach to typing references, which is largely
-	based upon the one presented in (Harper, 1994). A typing judgment is now of
-	the form φ; P~; Γ `µ e : σ, and all the previous typing rules need to be modified
-	accordingly. Also, we introduce the following typing rule for assigning types to
-	reference constants:
-	µ(l) = τ
-	φ; P~ ; Γ `µ l : (τ )ref
-	(ty-ref)Journal of Functional Programming 49
-	We say that an expression e is value-equivalent if |e| ≤dyn v holds for some value
-	v. A form of value restriction is imposed by the following rules:
-	φ; P~ , P; Γ `µ e : τ e is value-equivalent
-	φ; P~; Γ `µ⊃+(e) : P ⊃ τ
-	(ty-⊃-intro)
-	φ, a : s; P~; Γ `µ e : τ e is value-equivalent
-	φ; P~ ; Γ `µ Π+(e) : Πa:s. τ
-	(ty-Π-intro)
-	φ; P~ ; Γ `µ e : τ α~ # Γ α~ # µ e is value-equivalent
-	φ; P~; Γ `µ e : ∀α~. τ
-	(ty-poly)
-	In the rule (ty-poly), α~ # µ means that there is no free occurrence of α in µ(l) for
-	any α ∈ α~, where l ranges over dom(µ). Also, we need to extend the definition of
-	evaluation contexts as follows:
-	E ::= . . . | ⊃+(E) | Π
-	+(E)
-	As an example, when applying the rule (ty-Π-intro) to an expression, we need to
-	verify that the expression must be value-equivalent. This is slightly different from
-	the usual form of value restriction(Wright, 1995) imposed, for instance, in ML. The
-	minor change is needed since the elaboration of a value may not necessarily be
-	a value. For instance, this may happen if the rule (elab-dn-up) is applied. By
-	Lemma 5.2 and Lemma 2.14, we know that the elaboration of a value is always
-	value-equivalent.
-	Given a store M and a store type µ, we write M : µ to mean that the store M
-	can be assigned the store type µ, which is formally defined as follows:
-	∅; ∅; ∅ `µ M(l) : µ(l) for every l ∈ dom(M) = dom(µ)
-	M : µ
-	(ty-store)
-	Again, the type soundness of this extension rests upon the following two theorems:
-	Theorem 6.8 (Subject Reduction)
-	Assume M1 : µ1 holds and ∅; ∅; ∅ `µ1
-	e1 : σ is derivable. If (M1, e1) ,→ev/st (M2, e2)
-	holds, then there exists a store typing µ2 that extends µ1 such that M2 : µ2 holds
-	and ∅; ∅; ∅ `µ2
-	e2 : σ is derivable.
-	Theorem 6.9 (Progress)
-	Assume that M : µ holds and ∅; ∅; ∅ `µ e : σ is derivable. Then there are the
-	following possibilities:
-	• e is a value v, or
-	• e is a raised exception raise(v), or
-	• (M, e) ,→ev/st (M0
-	, e
-	0
-	) holds for some store M0 and expression e
-	0
-	such that
-	M0
-	extends M.
-	The proofs for these two theorems are essentially the same as the ones for Theorem
-	4.11 and Theorem 4.12, and some related details can also be found in (Harper,
-	1994). In Appendix C, we provide a proof sketch for Theorem 6.8 that clearly
-	demonstrates some involvement of value restriction.50 Hongwei Xi
+
+	- Definition 6.6 (Stateful Reduction)
+
+		The stateful reduction relation (M1, e1) ,→ev/st (M2, e2) is defined as follows:
+		• If e1 ,→ev e2 holds, then we have (M, e1) ,→ev/st (M, e2).
+		• If e1 = E[ref(v)], then we have (M, e1) ,→ev/st (M[l 7→ v], E[hi]) for any
+		reference constant l 6∈ dom(M). So nondeterminism appears to be involved
+		in this case. This form of nondeterminism can be eliminated if we equate
+		(M, e) and (M0
+		, e
+		0
+		) whenever one can be obtained from the other by properly
+		renaming the reference constants. The precise definition of such a renaming
+		algorithm is omitted as it is not needed in this paper.
+
+		• If e1 = E[!l] and M(l) = v, then we have (M, e1) ,→ev/st (M, E[v]).
+		• If e1 = E[l := v] and l ∈ dom(M), then we have (M, e1) ,→ev/st (M0, E[hi]),
+		where M0
+		is a store such that dom(M0
+		) = dom(M) and M0
+		(l) = v and
+		M0
+		(l
+		0
+		) = M(l
+		0
+		) for every l
+		0
+		in dom(M) that is not l.
+		As usual, we use ,→∗
+		ev/st for the reflexive and transitive closure of ,→ev/st.
+		Given an answer ans, we say that ans is observable if ans = v or ans = raise(v)
+		for some observable value v.
+
+	- Definition 6.7
+
+		Given two expressions e1 and e2 in λpat extended with polymorphism, exceptions and references, we say that e1 ≤dyn e2 holds if for any store M1 and any
+
+		context G, either (M1, G[e2]) ,→∗
+		ev/st (M2, Error) holds for some store M2, or
+		(M1, G[e1]) ,→∗
+		ev/st (M2, ans∗
+		) if and only if (M1, G[e2]) ,→∗
+		ev/st (M2, ans∗
+		), where
+		M2 ranges over stores and ans∗
+		ranges over the set of observable answers.
+
+		The definition of the dynamic subtype relation ≤d tp (Definition 4.15) can be modified according to the above definition of ≤dyn.
+
+		In particular, we can readily verify that Lemma 2.14 still holds (as the generate reduction relation ,→g is still defined in the same manner).
+
+		We now outline as follows an approach to typing references, which is largely based upon the one presented in (Harper, 1994).
+
+		A typing judgment is now of the form φ; P~; Γ `µ e : σ, and all the previous typing rules need to be modified accordingly.
+
+		Also, we introduce the following typing rule for assigning types to reference constants:
+		
+			µ(l) = τ
+			φ; P~ ; Γ `µ l : (τ )ref
+			(ty-ref)
+
+		We say that an expression e is value-equivalent if |e| ≤dyn v holds for some value v.
+
+		A form of value restriction is imposed by the following rules:
+
+			φ; P~ , P; Γ `µ e : τ e is value-equivalent
+			φ; P~; Γ `µ⊃+(e) : P ⊃ τ
+			(ty-⊃-intro)
+			φ, a : s; P~; Γ `µ e : τ e is value-equivalent
+			φ; P~ ; Γ `µ Π+(e) : Πa:s. τ
+			(ty-Π-intro)
+			φ; P~ ; Γ `µ e : τ α~ # Γ α~ # µ e is value-equivalent
+			φ; P~; Γ `µ e : ∀α~. τ
+			(ty-poly)
+
+		In the rule (ty-poly), α~ # µ means that there is no free occurrence of α in µ(l) for any α ∈ α~, where l ranges over dom(µ).
+
+		Also, we need to extend the definition of evaluation contexts as follows:
+
+			E ::= . . . | ⊃+(E) | Π
+			+(E)
+
+		As an example, when applying the rule (ty-Π-intro) to an expression, we need to verify that the expression must be value-equivalent.
+
+		This is slightly different from the usual form of value restriction(Wright, 1995) imposed, for instance, in ML.
+
+		The minor change is needed since the elaboration of a value may not necessarily be a value.
+
+		For instance, this may happen if the rule (elab-dn-up) is applied.
+
+		By Lemma 5.2 and Lemma 2.14, we know that the elaboration of a value is always value-equivalent.
+
+		Given a store M and a store type µ, we write M : µ to mean that the store M can be assigned the store type µ, which is formally defined as follows:
+
+			∅; ∅; ∅ `µ M(l) : µ(l) for every l ∈ dom(M) = dom(µ)
+			M : µ
+			(ty-store)
+
+		Again, the type soundness of this extension rests upon the following two theorems:
+
+	- Theorem 6.8 (Subject Reduction)
+
+		Assume M1 : µ1 holds and ∅; ∅; ∅ `µ1 e1 : σ is derivable. If (M1, e1) ,→ev/st (M2, e2) holds, then there exists a store typing µ2 that extends µ1 such that M2 : µ2 holds and ∅; ∅; ∅ `µ2 e2 : σ is derivable.
+
+	- Theorem 6.9 (Progress)
+
+		Assume that M : µ holds and ∅; ∅; ∅ `µ e : σ is derivable.
+
+		Then there are the following possibilities:
+
+		- e is a value v, or
+		- e is a raised exception raise(v), or
+		- (M, e) ,→ev/st (M0, e0) holds for some store M0 and expression e0 such that M0 extends M.
+
+		The proofs for these two theorems are essentially the same as the ones for Theorem 4.11 and Theorem 4.12, and some related details can also be found in (Harper, 1994).
+
+		In Appendix C, we provide a proof sketch for Theorem 6.8 that clearly demonstrates some involvement of value restriction.
 
 - 7 Some programming examples
 
-	We have finished prototyping a language Dependent ML (DML), which essentially
-	extends ML with a form of dependent types in which type index terms are drawn
-	from the type index languages Lint and Lalg presented in Section 3.3.2 and Section
-	3.3.1, respectively. At this moment, DML has already become a part of ATS,
-	a programming language with a type system rooted in the framework Applied Type
-	System (Xi, 2004). The current implementation of ATS is available on-line (Xi,
-	2005), which includes a type-checker and a compiler (from ATS to C) and a substantial
-	library (containing more than 25K lines of code written in ATS itself).
-	When handling integer constraints, we reject nonlinear ones outrightly rather
-	than postpone them as hard constraints (Michaylov, 1992), which is planned for
-	future work. This decision of rejecting nonlinear integer constraints may seem ad
-	hoc, and it can be too restrictive, sometimes, in a situation where nonlinear constraints
-	(e.g., ∀n : int. n ∗ n ≥ 0) need to be dealt with. To address this issue,
-	an approach to combining programming with theorem proving has been proposed
-	recently (Chen & Xi, 2005a).
-	If the constraints are linear, we negate them and test for unsatisfiability. For
-	instance, the following is a sample constraint generated when an implementation
-	of binary search on arrays is type-checked:
-	φ; P~ |= l + (h − l)/2 + 1 ≤ sz
-	where
-	φ = h : int, l : int, sz : int
-	P~ = l ≥ 0, sz ≥ 0, 0 ≤ h + 1, h + 1 ≤ sz, 0 ≤ l, l ≤ sz, h ≥ l
-	The employed technique for solving linear constraints is mainly based on the FourierMotzkin
-	variable elimination approach (Dantzig & Eaves, 1973), but there are many
-	other practical methods available for this purpose such as the SUP-INF method
-	(Shostak, 1977) and the well-known simplex method. We have chosen FourierMotzkin’s
-	method mainly for its simplicity.
-	2
-	We now briefly explain this method. We use x for integer variables, a for integers,
-	and l for linear expressions. Given a set of inequalities S, we would like to show that
-	S is unsatisfiable. We fix a variable x and transform all the linear inequalities into
-	one of the two forms: l ≤ ax and ax ≤ l, where a ≥ 0 is assumed. For every pair
-	l1 ≤ a1x and a2x ≤ l2, where a1, a2 > 0, we introduce a new inequality a2l1 ≤ a1l2
-	into S, and then remove from S all the inequalities involving x. Clearly, this is a
-	sound but incomplete procedure. If x were a real variable, then the procedure would
-	also be complete.
-	In order to handle modulo arithmetic, we also perform another operation to rule
-	out non-integer solutions: we transform an inequality of form
-	a1x1 + · · · + anxn ≤ a
-	2 Recently,, we have also implemented a constraint solver based the simplex method. Our experience
-	indicates that Fourier-Motzkin’s method is almost always superior to the the simplex
-	method due to the nature of the constraints encountered in practice.Journal of Functional Programming 51
-	into
-	a1x1 + · · · + anxn ≤ a
-	0
-	,
-	where a
-	0
-	is the largest integer such that a
-	0 ≤ a and the greatest common divisor
-	of a1, . . . , an divides a
-	0
-	. The method can be extended to become both sound and
-	complete while remaining practical (see, for example, (Pugh & Wonnacott, 1992;
-	Pugh & Wonnacott, 1994)).
-	In DML, we do allow patterns in a matching clause sequence to be overlapping,
-	and sequential pattern matching is performed at run-time. This design can lead to
-	some complications in type-checking, which will be mentioned in Section 7.2. Please
-	refer to (Xi, 2003) for more details on this issue.
-	We now present some programing examples taken from a prototype implementation
-	of DML, giving the reader some concrete feel as to how dependent types can
-	actually be used to capture programming invariants in practice.
+	We have finished prototyping a language Dependent ML (DML), which essentially extends ML with a form of dependent types in which type index terms are drawn from the type index languages Lint and Lalg presented in Section 3.3.2 and Section 3.3.1, respectively.
+
+	At this moment, DML has already become a part of ATS, a programming language with a type system rooted in the framework Applied Type System (Xi, 2004).
+
+	The current implementation of ATS is available on-line (Xi, 2005), which includes a type-checker and a compiler (from ATS to C) and a substantial library (containing more than 25K lines of code written in ATS itself).
+
+	When handling integer constraints, we reject nonlinear ones outrightly rather than postpone them as hard constraints (Michaylov, 1992), which is planned for future work.
+
+	This decision of rejecting nonlinear integer constraints may seem ad hoc, and it can be too restrictive, sometimes, in a situation where nonlinear constraints (e.g., ∀n : int. n ∗ n ≥ 0) need to be dealt with.
+
+	To address this issue, an approach to combining programming with theorem proving has been proposed recently (Chen & Xi, 2005a).
+
+	If the constraints are linear, we negate them and test for unsatisfiability.
+
+	For instance, the following is a sample constraint generated when an implementation　of binary search on arrays is type-checked:
+
+		φ; P~ |= l + (h − l)/2 + 1 ≤ sz
+		where
+		φ = h : int, l : int, sz : int
+		P~ = l ≥ 0, sz ≥ 0, 0 ≤ h + 1, h + 1 ≤ sz, 0 ≤ l, l ≤ sz, h ≥ l
+
+	The employed technique for solving linear constraints is mainly based on the FourierMotzkin variable elimination approach (Dantzig & Eaves, 1973), but there are many other practical methods available for this purpose such as the SUP-INF method (Shostak, 1977) and the well-known simplex method.
+
+	We have chosen FourierMotzkin’s method mainly for its simplicity.
+
+	We now briefly explain this method.
+
+	We use x for integer variables, a for integers, and l for linear expressions.
+
+	Given a set of inequalities S, we would like to show that S is unsatisfiable.
+
+	We fix a variable x and transform all the linear inequalities into one of the two forms: l ≤ ax and ax ≤ l, where a ≥ 0 is assumed.
+
+	For every pair l1 ≤ a1x and a2x ≤ l2, where a1, a2 > 0, we introduce a new inequality a2l1 ≤ a1l2 into S, and then remove from S all the inequalities involving x.
+
+	Clearly, this is a sound but incomplete procedure.
+
+	If x were a real variable, then the procedure would also be complete.
+
+	In order to handle modulo arithmetic, we also perform another operation to rule out non-integer solutions: we transform an inequality of form
+
+		a1x1 + · · · + anxn ≤ a
+
+	Recently,, we have also implemented a constraint solver based the simplex method.
+
+	Our experience indicates that Fourier-Motzkin’s method is almost always superior to the the simplex method due to the nature of the constraints encountered in practice.
+
+		into a1x1 + · · · + anxn ≤ a0,
+		where a
+		0
+		is the largest integer such that a
+		0 ≤ a and the greatest common divisor
+		of a1, . . . , an divides a
+		0.
+
+	The method can be extended to become both sound and complete while remaining practical (see, for example, (Pugh & Wonnacott, 1992; Pugh & Wonnacott, 1994)).
+
+	In DML, we do allow patterns in a matching clause sequence to be overlapping, and sequential pattern matching is performed at run-time.
+
+	This design can lead to some complications in type-checking, which will be mentioned in Section 7.2.
+
+	Please refer to (Xi, 2003) for more details on this issue.
+	
+	We now present some programing examples taken from a prototype implementation of DML, giving the reader some concrete feel as to how dependent types can actually be used to capture programming invariants in practice.
 
 - 7.1 Arrays
 
-	Arrays are a widely used data structure in practice. We use array as a built-in
-	type constructor that takes a type τ and a natural number n to form the type
-	(τ )array(n) for arrays of size n in which each element has the type τ .
-	3 We also
-	have the built-in functions sub, update and make, which are given the following
-	c-types:
-	sub : ∀α.Πn:nat.Πi:{a : nat | a < n}. (α)array(n) ∗ int(i) ⇒ α
-	update : ∀α.Πn:nat.Πi:{a : nat | a < n}. (α)array(n) ∗ int(i) ∗ α ⇒ 1
-	make : ∀α.Πn:nat. int(n) ∗ α ⇒ (α)array(n)
-	There is no built-in function for computing the size of an array. Notice that the
-	c-type of sub indicates that the function can be applied to an array and an index
-	only if the value of the index is a natural number less than the size of the array.
-	In other words, the quantification Πn : nat.Πi : {a : nat | a < n} acts like a precondition
-	for the function sub. The c-type of update imposes a similar requirement.
-	We may, however, encounter a situation where the programmer knows or believes
-	for some reason that the value of the index is within the bounds of the array, but
-	this property is difficult or even impossible to be captured in the type system of
-	DML. In such a situation, the programmer may need to use run-time array bound
-	checks to overcome the difficulty. We now present some type-theoretical justification
-	for run-time array bound checking in DML.
-	In Figure 28, we declare a type constructor Array for forming types for arrays
-	with size information. The only value constructor Array associated with the type
-	constructor Array is assigned the following c-type:
-	∀α.Πn:nat. int(n) ∗ (α)array(n) ⇒ (α)Array(n)
-	The defined functions arraySub, arrayUpdate and makeArray correspond to the
-	3 Each valid index of an array is a natural number less than the size of the array52 Hongwei Xi
-	datatype ’a Array with nat = {n:nat} Array(n) of int(n) * ’a array(n)
-	exception Subscript
-	fun(’a) arraySub (Array(n, a), i) =
-	if (i < 0) then raise Subscript
-	else if (i >= n) then raise Subscript
-	else sub (a, i)
-	withtype {n:nat,i:int} ’a Array(n) * int(i) -> ’a
-	fun(’a) arrayUpdate (Array(n, a), i, x) =
-	if (i < 0) then raise Subscript
-	else if (i >= n) then raise Subscript
-	else update (a, i, x)
-	withtype {n:nat,i:int} ’a Array(n) * int(i) * ’a -> unit
-	fun(’a) makeArray (n, x) = Array (n, make (n, x))
-	withtype {n:nat} int(n) * ’a -> ’a Array(n)
-	fun(’a) arrayLength (Array(n, _)) = n
-	withtype {n:nat} ’a Array(n) -> int(n)
-	Fig. 28. A datatype for arrays with size information and some related functions
-	functions sub, update and make, respectively. Note that run-time array bound checks
-	are inserted in the implementation of arraySub and arrayUpdate. For an array carrying
-	size information, the function arrayLength simply extracts out the information.
-	Additional examples can be found in (Xi & Pfenning, 1998) that makes use of
-	dependent types in eliminating run-time array bound checks.
-	Clearly, the programmer now has the option to decide which subscripting (updating)
-	function should be used: sub or arraySub (update or arrayUpdate)? When
-	compared to the former, the latter is certainly less efficient and may incur a runtime
-	exception. However, in order to use the former, the programmer often needs
-	to capture more program invariants by supplying type annotations. This point is
-	shown clearly when we compare the two (essentially identical) implementations of
-	the standard binary search on integer arrays in Figure 29. In the first implementation,
-	we use the array subscripting function arraySub, which incurs run-time array
-	bound checks. In the second implementation, we instead use sub, which incurs no
-	run-time array bound checks. Clearly, the second implementation is superior to the
-	first one when either safety or efficiency is of the concern. However, the programmer
-	needs to provide a more informative type for the inner function loop in order
-	to eliminate the array bound checks. In this case, the provided type captures the
-	invariant that i ≤ j +1 ≤ n holds whenever loop is called, where i and j are integer
-	values of l and u, respectively, and n is the size of the array being searched.Journal of Functional Programming 53
-	datatype ORDER = LESS | EQUAL | GREATER
-	fun binarySearch cmp (key, Vec) = let (* require run-time bound checks *)
-	fun loop (l, u) =
-	if u < l then NONE
-	else let
-	val m = l + (u-l) / 2
-	val x = arraySub (Vec, m) (* require bound checks *)
-	in case cmp (x, key) of
-	LESS => loop (m+1, u)
-	| GREATER => loop (l, m-1)
-	| EQUAL => SOME (m)
-	end
-	withtype int * int -> int option
-	in loop (0, length Vec - 1) end
-	withtype {n:nat} (’a * ’a -> Bool) -> (’a * ’a Array(n)) -> int option
-	fun binarySearch cmp (key, Vec) = let (* require NO run-time bound checks *)
-	val Array (n, vec) = Vec
-	fun loop (l, u) =
-	if u < l then NONE
-	else let
-	val m = l + (u-l) / 2
-	val x = sub (vec, m) (* require no bound checks *)
-	in case cmp (x, key) of
-	LESS => loop (m+1, u)
-	| GREATER => loop (l, m-1)
-	| EQUAL => SOME (m)
-	end
-	withtype {i:nat,j:int | i <= j+1 <= n} int(i) * int(j) -> int option
-	in loop (0, n-1) end
-	withtype {n:nat} (’a * ’a -> Bool) -> (’a * ’a Array(n)) -> int option
-	Fig. 29. Two implementations of binary search on integer arrays in DML
+	Arrays are a widely used data structure in practice.
+
+	We use array as a built-in type constructor that takes a type τ and a natural number n to form the type (τ )array(n) for arrays of size n in which each element has the type τ.
+
+	We also have the built-in functions sub, update and make, which are given the following c-types:
+
+		sub : ∀α.Πn:nat.Πi:{a : nat | a < n}. (α)array(n) ∗ int(i) ⇒ α
+		update : ∀α.Πn:nat.Πi:{a : nat | a < n}. (α)array(n) ∗ int(i) ∗ α ⇒ 1
+		make : ∀α.Πn:nat. int(n) ∗ α ⇒ (α)array(n)
+
+	There is no built-in function for computing the size of an array.
+
+	Notice that the c-type of sub indicates that the function can be applied to an array and an index only if the value of the index is a natural number less than the size of the array.
+
+	In other words, the quantification Πn : nat.Πi : {a : nat | a < n} acts like a precondition for the function sub.
+
+	The c-type of update imposes a similar requirement.
+
+	We may, however, encounter a situation where the programmer knows or believes for some reason that the value of the index is within the bounds of the array, but this property is difficult or even impossible to be captured in the type system of DML.
+
+	In such a situation, the programmer may need to use run-time array bound checks to overcome the difficulty. We now present some type-theoretical justification for run-time array bound checking in DML.
+
+	In Figure 28, we declare a type constructor Array for forming types for arrays with size information.
+
+	The only value constructor Array associated with the type constructor Array is assigned the following c-type:
+
+		∀α.Πn:nat. int(n) ∗ (α)array(n) ⇒ (α)Array(n)
+
+	The defined functions arraySub, arrayUpdate and makeArray correspond to the 3 Each valid index of an array is a natural number less than the size of the array datatype ’a Array with nat = {n:nat} Array(n) of int(n) * ’a array(n) exception Subscript
+
+		fun(’a) arraySub (Array(n, a), i) =
+		if (i < 0) then raise Subscript
+		else if (i >= n) then raise Subscript
+		else sub (a, i)
+		withtype {n:nat,i:int} ’a Array(n) * int(i) -> ’a
+		fun(’a) arrayUpdate (Array(n, a), i, x) =
+		if (i < 0) then raise Subscript
+		else if (i >= n) then raise Subscript
+		else update (a, i, x)
+		withtype {n:nat,i:int} ’a Array(n) * int(i) * ’a -> unit
+		fun(’a) makeArray (n, x) = Array (n, make (n, x))
+		withtype {n:nat} int(n) * ’a -> ’a Array(n)
+		fun(’a) arrayLength (Array(n, _)) = n
+		withtype {n:nat} ’a Array(n) -> int(n)
+
+		Fig. 28. A datatype for arrays with size information and some related functions
+
+	functions sub, update and make, respectively.
+
+	Note that run-time array bound checks are inserted in the implementation of arraySub and arrayUpdate.
+
+	For an array carrying size information, the function arrayLength simply extracts out the information.
+
+	Additional examples can be found in (Xi & Pfenning, 1998) that makes use of dependent types in eliminating run-time array bound checks.
+
+	Clearly, the programmer now has the option to decide which subscripting (updating) function should be used: sub or arraySub (update or arrayUpdate)?
+
+	When compared to the former, the latter is certainly less efficient and may incur a runtime exception.
+
+	However, in order to use the former, the programmer often needs to capture more program invariants by supplying type annotations.
+
+	This point is shown clearly when we compare the two (essentially identical) implementations of the standard binary search on integer arrays in Figure 29.
+
+	In the first implementation, we use the array subscripting function arraySub, which incurs run-time array bound checks.
+
+	In the second implementation, we instead use sub, which incurs no run-time array bound checks.
+
+	Clearly, the second implementation is superior to the first one when either safety or efficiency is of the concern.
+
+	However, the programmer needs to provide a more informative type for the inner function loop in order to eliminate the array bound checks.
+
+	In this case, the provided type captures the invariant that i ≤ j +1 ≤ n holds whenever loop is called, where i and j are integer values of l and u, respectively, and n is the size of the array being searched.
+	
+		datatype ORDER = LESS | EQUAL | GREATER
+		fun binarySearch cmp (key, Vec) = let (* require run-time bound checks *)
+		fun loop (l, u) =
+		if u < l then NONE
+		else let
+		val m = l + (u-l) / 2
+		val x = arraySub (Vec, m) (* require bound checks *)
+		in case cmp (x, key) of
+		LESS => loop (m+1, u)
+		| GREATER => loop (l, m-1)
+		| EQUAL => SOME (m)
+		end
+		withtype int * int -> int option
+		in loop (0, length Vec - 1) end
+		withtype {n:nat} (’a * ’a -> Bool) -> (’a * ’a Array(n)) -> int option
+		fun binarySearch cmp (key, Vec) = let (* require NO run-time bound checks *)
+		val Array (n, vec) = Vec
+		fun loop (l, u) =
+		if u < l then NONE
+		else let
+		val m = l + (u-l) / 2
+		val x = sub (vec, m) (* require no bound checks *)
+		in case cmp (x, key) of
+		LESS => loop (m+1, u)
+		| GREATER => loop (l, m-1)
+		| EQUAL => SOME (m)
+		end
+		withtype {i:nat,j:int | i <= j+1 <= n} int(i) * int(j) -> int option
+		in loop (0, n-1) end
+		withtype {n:nat} (’a * ’a -> Bool) -> (’a * ’a Array(n)) -> int option
+
+		Fig. 29. Two implementations of binary search on integer arrays in DML
 
 - 7.2 Red-black trees
 
-	We now show a typical use of dependent types in capturing certain inherent invariants
-	in data structures.
-	A red-black tree (RBT) is a balanced binary tree that satisfies the following
-	conditions:
+	We now show a typical use of dependent types in capturing certain inherent invariants in data structures.
+
+	A red-black tree (RBT) is a balanced binary tree that satisfies the following conditions:
+
 	1. All leaves are marked black and all other nodes are marked either red or black;
-	2. for every node there are the same number of black nodes on every path connecting
-	the node to a leaf, and this number is called the black height of the
-	node;
+	2. for every node there are the same number of black nodes on every path connecting the node to a leaf, and this number is called the black height of the node;
 	3. the two children of every red node are black.
+
 	It is a common practice to use the RBT data structure to implement a dictionary.
-	We declare a datatype in Figure 30, which precisely captures the above three
-	properties of being a RBT.54 Hongwei Xi
-	sort color = {a:int | 0 <= a <= 1} (* sort declaration *)
-	datatype ’a rbtree (color, nat, nat) = (* color, black height, violation *)
-	E(0, 0, 0)
-	| {cl:color, cr:color, bh:nat}
-	B(0, bh+1, 0) of ’a rbtree(cl, bh, 0) * ’a * ’a rbtree(cr, bh, 0)
-	| {cl:color, cr:color, bh:nat}
-	R(1, bh, cl+cr) of ’a rbtree(cl, bh, 0) * ’a * ’a rbtree(cr, bh, 0)
-	fun restore (R(R(a, x, b), y, c), z, d) = R(B(a, x, b), y, B(c, z, d))
-	| restore (R(a, x, R(b, y, c)), z, d) = R(B(a, x, b), y, B(c, z, d))
-	| restore (a, x, R(R(b, y, c), z, d)) = R(B(a, x, b), y, B(c, z, d))
-	| restore (a, x, R(b, y, R(c, z, d))) = R(B(a, x, b), y, B(c, z, d))
-	| restore (a, x, b) = B(a, x, b)
-	withtype {cl:color, cr:color, bh:nat, vl:nat, vr:nat | vl+vr <= 1}
-	’a rbtree(cl, bh, vl) * ’a * ’a rbtree(cr, bh, vr) ->
-	[c:color] ’a rbtree(c, bh+1, 0)
-	exception ItemAlreadyExists
-	fun insert cmp (x, t) = let
-	fun ins (E) = R(E, x, E)
-	| ins (B (a, y, b)) = (
-	case cmp (x, y) of
-	LESS => restore (ins a, y, b)
-	| GREATER => restore(a, y, ins b)
-	| EQUAL => raise ItemAlreadyExists
-	)
-	| ins (R (a, y, b)) = (
-	case cmp (x, y) of
-	LESS => R (ins a, y, b)
-	| GREATER => R(a, y, ins b)
-	| EQUAL => raise ItemAlreadyExists
-	)
-	withtype {c:color, bh:nat}
-	’a rbtree(c, bh, 0) -> [c’:color, v:nat | v <= c] ’a rbtree(c’, bh, v)
-	in case ins t of R(a, y, b) => B(a, y, b) | t => t end
-	withtype {c:color, bh:nat} (’a * ’a -> ORDER) ->
-	key * ’a rbtree(c, bh, 0) -> [bh’:nat] ’a rbtree(0, bh’, 0)
-	Fig. 30. A red-black tree implementation
+
+	We declare a datatype in Figure 30, which precisely captures the above three properties of being a RBT.
+
+		sort color = {a:int | 0 <= a <= 1} (* sort declaration *)
+		datatype ’a rbtree (color, nat, nat) = (* color, black height, violation *)
+		E(0, 0, 0)
+		| {cl:color, cr:color, bh:nat}
+		B(0, bh+1, 0) of ’a rbtree(cl, bh, 0) * ’a * ’a rbtree(cr, bh, 0)
+		| {cl:color, cr:color, bh:nat}
+		R(1, bh, cl+cr) of ’a rbtree(cl, bh, 0) * ’a * ’a rbtree(cr, bh, 0)
+		fun restore (R(R(a, x, b), y, c), z, d) = R(B(a, x, b), y, B(c, z, d))
+		| restore (R(a, x, R(b, y, c)), z, d) = R(B(a, x, b), y, B(c, z, d))
+		| restore (a, x, R(R(b, y, c), z, d)) = R(B(a, x, b), y, B(c, z, d))
+		| restore (a, x, R(b, y, R(c, z, d))) = R(B(a, x, b), y, B(c, z, d))
+		| restore (a, x, b) = B(a, x, b)
+		withtype {cl:color, cr:color, bh:nat, vl:nat, vr:nat | vl+vr <= 1}
+		’a rbtree(cl, bh, vl) * ’a * ’a rbtree(cr, bh, vr) ->
+		[c:color] ’a rbtree(c, bh+1, 0)
+		exception ItemAlreadyExists
+		fun insert cmp (x, t) = let
+		fun ins (E) = R(E, x, E)
+		| ins (B (a, y, b)) = (
+		case cmp (x, y) of
+		LESS => restore (ins a, y, b)
+		| GREATER => restore(a, y, ins b)
+		| EQUAL => raise ItemAlreadyExists
+		)
+		| ins (R (a, y, b)) = (
+		case cmp (x, y) of
+		LESS => R (ins a, y, b)
+		| GREATER => R(a, y, ins b)
+		| EQUAL => raise ItemAlreadyExists
+		)
+		withtype {c:color, bh:nat}
+		’a rbtree(c, bh, 0) -> [c’:color, v:nat | v <= c] ’a rbtree(c’, bh, v)
+		in case ins t of R(a, y, b) => B(a, y, b) | t => t end
+		withtype {c:color, bh:nat} (’a * ’a -> ORDER) ->
+		key * ’a rbtree(c, bh, 0) -> [bh’:nat] ’a rbtree(0, bh’, 0)
+
+		Fig. 30. A red-black tree implementation
+
 	A sort color is declared for the type index terms representing the colors of nodes.
-	We use 0 for black and 1 for red. The type constructor rbtree is indexed with a
-	triple (c, bh, v), where c, bh, v stand for the color of the node, the black height of the
-	tree rooted at the node, and the number of color violations in the tree, respectively.
-	We record one color violation if a red node is followed by another red one, and thus
-	a valid RBT must have no color violations. Clearly, the types of value constructors
-	associated with the type constructor rbtree indicate that color violations can only
-	occur at the top node. Also, notice that a leaf, that is, E, is considered black. GivenJournal of Functional Programming 55
-	the datatype declaration and the explanation, it should be clear that the type of a
-	RBT in which all keys are of type τ is simply:
-	Σc:color.Σbh:nat. (τ )rbtree(c, bh, 0),
-	that is, a RBT is a tree that has some top node color c and some black height bh
-	but no color violations.
-	It is an involved task to implement RBT. The implementation we present in
-	Figure 30 is largely adopted from one in (Okasaki, 1998), though there are some
-	minor modifications. We explain how the insertion operation on a RBT is implemented.
-	Clearly, the invariant we intend to capture is that inserting an entry into
-	a RBT yields another RBT. In other words, we intend to declare that the insertion
-	operation has the following type:
-	∀α.(α ∗ α → Bool) → α ∗ (α)RBT → (α)RBT
+	
+	We use 0 for black and 1 for red.
+
+	The type constructor rbtree is indexed with a triple (c, bh, v), where c, bh, v stand for the color of the node, the black height of the tree rooted at the node, and the number of color violations in the tree, respectively.
+
+	We record one color violation if a red node is followed by another red one, and thus a valid RBT must have no color violations.
+
+	Clearly, the types of value constructors associated with the type constructor rbtree indicate that color violations can only occur at the top node.
+
+	Also, notice that a leaf, that is, E, is considered black.
+
+	Given the datatype declaration and the explanation, it should be clear that the type of a RBT in which all keys are of type τ is simply:
+
+		Σc:color.Σbh:nat. (τ )rbtree(c, bh, 0),
+
+	that is, a RBT is a tree that has some top node color c and some black height bh but no color violations.
+
+	It is an involved task to implement RBT.
+
+	The implementation we present in Figure 30 is largely adopted from one in (Okasaki, 1998), though there are some minor modifications. We explain how the insertion operation on a RBT is implemented.
+
+	Clearly, the invariant we intend to capture is that inserting an entry into a RBT yields another RBT.
+
+	In other words, we intend to declare that the insertion operation has the following type:
+
+		∀α.(α ∗ α → Bool) → α ∗ (α)RBT → (α)RBT
+
 	where Bool is the type for booleans and (α)RBT is defined to be:
-	Σc:color.Σbh:nat. (α)rbtree(c, bh, 0)
-	If we insert an entry into a RBT, some properties on RBT may be invalidated, and
-	the invalidated properties can then be restored through some rotation operations.
+
+		Σc:color.Σbh:nat. (α)rbtree(c, bh, 0)
+
+	If we insert an entry into a RBT, some properties on RBT may be invalidated, and the invalidated properties can then be restored through some rotation operations.
+	
 	The function restore in Figure 30 is defined for this purpose.
-	The type of restore, though long, is easy to understand. It states that this function
-	takes a tree with at most one color violation, an entry and a RBT, and returns
-	a RBT. The two trees in the argument must have the same black height bh for
-	some natural number bh and the black height of the returned RBT is bh + 1. This
-	information can be of great help for understanding the code. It is not trivial at all to
-	verify the information manually, and we could imagine that almost everyone who did
-	this would appreciate the availability of a type-checker to perform it automatically.
-	There is a substantial difference between type-checking a matching clause sequence
-	in DML and in ML. The operational semantics of ML requires that pattern
-	matching be performed sequentially, that is, the chosen pattern matching clause is
-	always the first one that matches a given value. For instance, in the definition of the
-	function restore, if the last clause is chosen at run-time, then we know the argument
-	of restore does not match any one of the clauses ahead of the last one. This must be
-	taken into account when we type-check pattern matching in DML. One approach
-	is to expand patterns into disjoint ones. For instance, the pattern (a, x, b) expands
-	into 36 patterns (pattern1, x, pattern2), where pattern1 and pattern2 range over
-	the following six patterns:
-	R(B , , B ), R(B , , E), R(E, , B ), R(E, , E), B , E
-	Unfortunately, such an expansion may lead to combinatorial explosion. An alternative
-	is to require the programmer to indicate whether such an expansion is needed.
-	Neither of these was available in the original implementation of DML, and the
-	author had to take the inconvenience to expand patterns into disjoint ones when
-	necessary. Recently, we have implemented the alternative mentioned above. For
-	instance, the last clause in the definition of restore can be written as follows:56 Hongwei Xi
-	| restore (a, x, b) == B(a, x, b)
-	where the special symbol == indicates to the type-checker that the pattern involved
-	here needs to be (automatically) expanded into ones that are disjoint from the the
-	patterns in the previous clauses. For a thorough study on the issue of type-checking
-	pattern matching clauses in DML, please refer to (Xi, 2003).
+	
+	The type of restore, though long, is easy to understand.
+
+	It states that this function takes a tree with at most one color violation, an entry and a RBT, and returns a RBT.
+
+	The two trees in the argument must have the same black height bh for some natural number bh and the black height of the returned RBT is bh + 1.
+
+	This information can be of great help for understanding the code. It is not trivial at all to verify the information manually, and we could imagine that almost everyone who did this would appreciate the availability of a type-checker to perform it automatically.
+
+	There is a substantial difference between type-checking a matching clause sequence in DML and in ML.
+
+	The operational semantics of ML requires that pattern matching be performed sequentially, that is, the chosen pattern matching clause is always the first one that matches a given value.
+
+	For instance, in the definition of the function restore, if the last clause is chosen at run-time, then we know the argument of restore does not match any one of the clauses ahead of the last one.
+
+	This must be taken into account when we type-check pattern matching in DML. One approach is to expand patterns into disjoint ones.
+
+	For instance, the pattern (a, x, b) expands into 36 patterns (pattern1, x, pattern2), where pattern1 and pattern2 range over the following six patterns:
+		
+		R(B , , B ), R(B , , E), R(E, , B ), R(E, , E), B , E
+	
+	Unfortunately, such an expansion may lead to combinatorial explosion.
+
+	An alternative is to require the programmer to indicate whether such an expansion is needed.
+
+	Neither of these was available in the original implementation of DML, and the author had to take the inconvenience to expand patterns into disjoint ones when necessary.
+
+	Recently, we have implemented the alternative mentioned above.
+
+	For instance, the last clause in the definition of restore can be written as follows:
+
+		| restore (a, x, b) == B(a, x, b)
+
+	where the special symbol == indicates to the type-checker that the pattern involved here needs to be (automatically) expanded into ones that are disjoint from the the patterns in the previous clauses.
+
+	For a thorough study on the issue of type-checking pattern matching clauses in DML, please refer to (Xi, 2003).
+	
 	The complete implementation of the insertion operation follows immediately.
-	Notice that the type of the function ins indicates that ins may return a tree with
-	one color violation if it is applied to a tree with a red top node. This violation can
-	be eliminated by replacing the top node with a black one for every returned tree
-	with a red top node.
-	Moreover, we can use an extra index to capture the size information of a RBT. If
-	we do so, we can then show that the insert function always returns a RBT of size
-	n+1 when given a RBT of size n (note that an exception is raised if the entry to be
-	inserted already exists in the tree). A complete implementation of red-black trees
-	is available on-line (Xi, 2005), which includes deletion and join operations as well.
-	Also, several examples that make use of dependent types in capturing invariants in
-	other data structures (e.g., Braun trees, random-access lists, binomial heaps) can
-	be found in (Xi, 1999).
-	We point out that it is also possible to capture the invariants of being a RBT by
-	using nested datatypes (Kahrs, 2001). This is a rather different approach as it, to a
-	large extent, employs run-time checking (in the form of pattern matching) to ensure
-	that a binary tree meets the criteria of being a red-black tree. The use of nested
-	datatypes essentially guarantees the adequacy of such run-time checking. A more
-	systematic study on making use of nested types in capturing program invariants
-	can be found in (Hinze, 2001).
+	
+	Notice that the type of the function ins indicates that ins may return a tree with one color violation if it is applied to a tree with a red top node.
+
+	This violation can be eliminated by replacing the top node with a black one for every returned tree with a red top node.
+	
+	Moreover, we can use an extra index to capture the size information of a RBT.
+
+	If we do so, we can then show that the insert function always returns a RBT of size n+1 when given a RBT of size n (note that an exception is raised if the entry to be inserted already exists in the tree).
+
+	A complete implementation of red-black trees is available on-line (Xi, 2005), which includes deletion and join operations as well.
+
+	Also, several examples that make use of dependent types in capturing invariants in other data structures (e.g., Braun trees, random-access lists, binomial heaps) can be found in (Xi, 1999).
+	
+	We point out that it is also possible to capture the invariants of being a RBT by using nested datatypes (Kahrs, 2001).
+
+	This is a rather different approach as it, to a large extent, employs run-time checking (in the form of pattern matching) to ensure that a binary tree meets the criteria of being a red-black tree.
+
+	The use of nested datatypes essentially guarantees the adequacy of such run-time checking.
+
+	A more systematic study on making use of nested types in capturing program invariants can be found in (Hinze, 2001).
 
 - 7.3 A type-preserving evaluator
 	
-	We now implement an evaluator for an object language based on the simply typed λ-
-	calculus, capturing in the type system of DML that the evaluator is type-preserving
-	at the object level. Apart form using integer expressions as type indexes in the
-	previous examples, we employ algebraic terms as type indexes in this example.
-	We use the following syntax to define a sort ty for representing simple types in
-	the object language:
-	datasort ty = Bool | Int | Arrow of (ty, ty)
-	where we assume that Bool and Int represent two simple base types ˆbool and int ˆ ,
-	respectively, and Arrow represents (the overloaded) constructor → for forming simple
-	function types. For instance, we use the term Arrow(Int, Arrow(Int,Bool)) to
-	represent the simple type int ˆ → (intˆ → ˆbool) in the object language, where ˆbool
-	and int ˆ are two simple base types and (the overloaded) → is a simple type constructor.
-	We use a form of higher-order abstract syntax (h.o.a.s) (Church, 1940;
-	Pfenning & Elliott, 1988; Pfenning, n.d.) to represent expressions in the object
-	language. In Figure 31, we declare a type constructor EXP, which takes a typeJournal of Functional Programming 57
-	datatype EXP (ty) =
-	EXPint (Int) of int
-	| EXPbool (Bool) of bool
-	| EXPadd (Int) of EXP (Int) * EXP (Int)
-	| EXPsub (Int) of EXP (Int) * EXP(Int)
-	| EXPmul(Int) of EXP (Int) * EXP (Int)
-	| EXPdiv(Int) of EXP (Int) * EXP (Int)
-	| EXPzero (Bool) of EXP (Int)
-	| {a: ty} EXPif (a) of EXP (Bool) * EXP (a) * EXP (a)
-	| {a1: ty, a2: ty} EXPlam (Arrow (a1, a2)) of (EXP (a1) -> EXP (a2))
-	| {a1: ty, a2: ty} EXPapp (a2) of (EXP (Arrow (a1, a2)), EXP (a1))
-	| {a1: ty, a2: ty} EXPlet (a2) of (EXP (a1), (EXP(a1) -> EXP(a2)))
-	| {a: ty} EXPfix (a) of (EXP (a) -> EXP (a))
-	Fig. 31. A datatype for higher-order abstract syntax
-	index term I of sort ty to form a type EXP(I) for the values that represent closed
-	expressions in the object language that can be assigned the type represented by I.
-	For example, the function λx : int ˆ .x + x in the object language is represented as
-	EXPlam(lam x. EXPadd(x, x)), which can be given the type EXP(Arrow(Int,Int)).
-	The usual factorial function can be represented as follows (in the concrete syntax
-	of DML),
-	EXPfix (lam f =>
-	EXPlam (lam x =>
-	EXPif (EXPzero (x),
-	EXPint(1),
-	EXPmul (x, EXPapp (f, EXPsub (x, EXPint(1)))))))
-	which can also be given the type EXP(Arrow(Int,Int)). We often refer to such a
-	representation as a form of typeful representation since the type of an expression
-	in the object language is now reflected in the type of the representation of the
-	expression.
-	We now implement a function evaluate in Figure 32. The function is an evaluator
-	for the object language, taking (the representation of) an object expression and
-	returning (the representation of) the value of the object expression. Notice that
-	the function is assigned the type Πa:ty. EXP(a) → EXP(a), indicating that the
-	function is type-preserving at the object level. Also, we point out that (extended)
-	type-checking in DML guarantees that no pattern matching failure can occur in
-	this example.
-	Clearly, a natural question is whether we can also implement a type-preserving
-	evaluator for an object language based on the second-order polymorphic λ-calculus
-	or system F (Girard, 1972). In order to do so, we need to go beyond algebraic terms,
-	employing λ-terms to encode polymorphic types in the object language. First we
-	extend the definition of the sort ty as follows so that universally quantified types
-	can also be represented:
-	datasort ty = ... | All of (ty -> ty)58 Hongwei Xi
-	fun evaluate (v as EXPint _) = v
-	| evaluate (v as EXPbool _) = v
-	| evaluate (EXPadd (e1, e2)) = let // no pattern matching failure
-	val EXPint (i1) = evaluate e1 and EXPint (i2) = evaluate e2
-	in EXPint (i1+i2) end
-	(* the cases for EXPsub, EXPmul, EXPdiv are omitted *)
-	| evaluate (EXPzero e) = let // no pattern matching failure
-	val EXPint (n) = evaluate e
-	in EXPbool (n=0) end
-	| evaluate (EXPif (e0, e1, e2)) = let // no pattern matching failure
-	val EXPbool (b) = evaluate e0
-	in if b then evaluate e1 else evaluate e2 end
-	| evaluate (EXPapp (e1, e2)) = let // no pattern matching failure
-	val EXPlam (f) = evaluate e1
-	in evaluate (f (evaluate e2)) end
-	(* the case for EXPlet is omitted *)
-	| evaluate (v as EXPlam _) = v
-	| evaluate (e as EXPfix f) = evaluate (f e)
-	withtype {a: ty} EXP (a) -> EXP (a)
-	Fig. 32. An implementation of a type-preserving evaluation function in DML
-	Given a term f of sort ty → ty, All(f) represents the type ∀α. τ if for each type
-	τ0, f(t) represents the type τ [α 7→ τ0] as long as t represents the type τ0. For
-	instance, All(λa.Arrow(a, Arrow(a,Int))) represents the type ∀α.α → α → int; the
-	term All(λa.(All(λb.Arrow(a, Arrow(b, a))))) represents the type ∀α.∀β.α → β →
-	α. With this strategy, we have no difficulty in implementing a type-preserving
-	evaluator for an object language based on the second-order polymorphic language
-	calculus. We have actually already done this in the programming language ATS (Xi,
-	2005). Note that the type indexes involved in this example are drawn from Lλ.
-	It is also possible to implement a type-preserving evaluator through the use of
-	first-order abstract syntax (f.o.a.s), and further details on this subject can be found
-	in (Chen & Xi, 2003; Chen et al., 2005), where some interesting typeful program
-	transformations (e.g., a call-by-value continuation-passing style (CPS) transformation
-	(Meyer & Wand, 1985; Griffin, 1990)) are studied.
-	In (Xi et al., 2003), a typeful implementation of simply typed λ-calculus based on
-	guarded recursive (g.r.) datatypes is presented. There, a g.r. datatype constructor
-	HOAS (of the kind type → type) is declared such that for each simply typed
-	λ-expression of some simple type T, its representation can be assigned the typeJournal of Functional Programming 59
-	(T)HOAS, where T is the representation of T. More precisely, T can be defined as
-	follows:
-	b = b T1 → T2 = T1 → T2
-	where each simple base type b is represented by a type b (in the implementation
-	language). For instance, the type for the representation of the simply typed expression
-	λx : int ˆ .x is (int ˆ → int ˆ )HOAS, where int ˆ is a simple base type. With
-	this representation for simply typed λ-calculus, an evaluation function of the type
-	∀α.(α)HOAS → α can be implemented. A particular advantage of this implementation
-	is that we can use native tagless values in the implementation language to
-	directly represent values of object expressions. This can be of great use in a setting
-	(e.g., meta-programming) where the object language needs to interact with the
-	implementation language (Chen & Xi, 2005b). Given that DML is a conservative
-	extension of ML, this is clearly something that cannot be achieved in DML. The
-	very reason for this is that DML does not allow type equalities like τ1
-	.= τ2 (meaning
-	both τ1 ≤ τ2 and τ2 ≤ τ1) to appear in index contexts φ. In ATS, this restriction
-	is lifted, resulting in a much more expressive type system but also a (semantically)
-	much more complicated constraint relation (on types and type indexes) (Xi, 2004).
+	We now implement an evaluator for an object language based on the simply typed λ-calculus, capturing in the type system of DML that the evaluator is type-preserving at the object level.
+
+	Apart form using integer expressions as type indexes in the previous examples, we employ algebraic terms as type indexes in this example.
+
+	We use the following syntax to define a sort ty for representing simple types in the object language:
+	
+		datasort ty = Bool | Int | Arrow of (ty, ty)
+	
+	where we assume that Bool and Int represent two simple base types ˆbool and int ˆ , respectively, and Arrow represents (the overloaded) constructor → for forming simple
+	function types. For instance, we use the term Arrow(Int, Arrow(Int,Bool)) to represent the simple type int ˆ → (intˆ → ˆbool) in the object language, where ˆbool and int ˆ are two simple base types and (the overloaded) → is a simple type constructor.
+
+	We use a form of higher-order abstract syntax (h.o.a.s) (Church, 1940; Pfenning & Elliott, 1988; Pfenning, n.d.) to represent expressions in the object language.
+
+	In Figure 31, we declare a type constructor EXP, which takes a type
+
+		datatype EXP (ty) =
+		EXPint (Int) of int
+		| EXPbool (Bool) of bool
+		| EXPadd (Int) of EXP (Int) * EXP (Int)
+		| EXPsub (Int) of EXP (Int) * EXP(Int)
+		| EXPmul(Int) of EXP (Int) * EXP (Int)
+		| EXPdiv(Int) of EXP (Int) * EXP (Int)
+		| EXPzero (Bool) of EXP (Int)
+		| {a: ty} EXPif (a) of EXP (Bool) * EXP (a) * EXP (a)
+		| {a1: ty, a2: ty} EXPlam (Arrow (a1, a2)) of (EXP (a1) -> EXP (a2))
+		| {a1: ty, a2: ty} EXPapp (a2) of (EXP (Arrow (a1, a2)), EXP (a1))
+		| {a1: ty, a2: ty} EXPlet (a2) of (EXP (a1), (EXP(a1) -> EXP(a2)))
+		| {a: ty} EXPfix (a) of (EXP (a) -> EXP (a))
+		Fig. 31. A datatype for higher-order abstract syntax
+
+	index term I of sort ty to form a type EXP(I) for the values that represent closed expressions in the object language that can be assigned the type represented by I.
+
+	For example, the function λx : int ˆ .x + x in the object language is represented as EXPlam(lam x. EXPadd(x, x)), which can be given the type EXP(Arrow(Int,Int)).
+
+	The usual factorial function can be represented as follows (in the concrete syntax of DML),
+
+		EXPfix (lam f =>
+		EXPlam (lam x =>
+		EXPif (EXPzero (x),
+		EXPint(1),
+		EXPmul (x, EXPapp (f, EXPsub (x, EXPint(1)))))))
+
+	which can also be given the type EXP(Arrow(Int,Int)).
+
+	We often refer to such a representation as a form of typeful representation since the type of an expression in the object language is now reflected in the type of the representation of the expression.
+
+	We now implement a function evaluate in Figure 32.
+
+	The function is an evaluator for the object language, taking (the representation of) an object expression and returning (the representation of) the value of the object expression. Notice that the function is assigned the type Πa:ty. EXP(a) → EXP(a), indicating that the function is type-preserving at the object level.
+
+	Also, we point out that (extended) type-checking in DML guarantees that no pattern matching failure can occur in this example.
+	
+	Clearly, a natural question is whether we can also implement a type-preserving evaluator for an object language based on the second-order polymorphic λ-calculus or system F (Girard, 1972).
+
+	In order to do so, we need to go beyond algebraic terms, employing λ-terms to encode polymorphic types in the object language.
+
+	First we extend the definition of the sort ty as follows so that universally quantified types can also be represented:
+
+		datasort ty = ... | All of (ty -> ty)
+		fun evaluate (v as EXPint _) = v
+		| evaluate (v as EXPbool _) = v
+		| evaluate (EXPadd (e1, e2)) = let // no pattern matching failure
+		val EXPint (i1) = evaluate e1 and EXPint (i2) = evaluate e2
+		in EXPint (i1+i2) end
+		(* the cases for EXPsub, EXPmul, EXPdiv are omitted *)
+		| evaluate (EXPzero e) = let // no pattern matching failure
+		val EXPint (n) = evaluate e
+		in EXPbool (n=0) end
+		| evaluate (EXPif (e0, e1, e2)) = let // no pattern matching failure
+		val EXPbool (b) = evaluate e0
+		in if b then evaluate e1 else evaluate e2 end
+		| evaluate (EXPapp (e1, e2)) = let // no pattern matching failure
+		val EXPlam (f) = evaluate e1
+		in evaluate (f (evaluate e2)) end
+		(* the case for EXPlet is omitted *)
+		| evaluate (v as EXPlam _) = v
+		| evaluate (e as EXPfix f) = evaluate (f e)
+		withtype {a: ty} EXP (a) -> EXP (a)
+
+		Fig. 32. An implementation of a type-preserving evaluation function in DML
+
+	Given a term f of sort ty → ty, All(f) represents the type ∀α. τ if for each type τ0, f(t) represents the type τ [α 7→ τ0] as long as t represents the type τ0.
+
+	For instance, All(λa.Arrow(a, Arrow(a,Int))) represents the type ∀α.α → α → int; the term All(λa.(All(λb.Arrow(a, Arrow(b, a))))) represents the type ∀α.∀β.α → β → α.
+
+	With this strategy, we have no difficulty in implementing a type-preserving evaluator for an object language based on the second-order polymorphic language calculus.
+
+	We have actually already done this in the programming language ATS (Xi, 2005).
+
+	Note that the type indexes involved in this example are drawn from Lλ.
+
+	It is also possible to implement a type-preserving evaluator through the use of first-order abstract syntax (f.o.a.s), and further details on this subject can be found in (Chen & Xi, 2003; Chen et al., 2005), where some interesting typeful program transformations (e.g., a call-by-value continuation-passing style (CPS) transformation (Meyer & Wand, 1985; Griffin, 1990)) are studied.
+
+	In (Xi et al., 2003), a typeful implementation of simply typed λ-calculus based on guarded recursive (g.r.) datatypes is presented.
+
+	There, a g.r. datatype constructor HOAS (of the kind type → type) is declared such that for each simply typed λ-expression of some simple type T, its representation can be assigned the type (T)HOAS, where T is the representation of T. More precisely, T can be defined as follows:
+
+		b = b T1 → T2 = T1 → T2
+
+	where each simple base type b is represented by a type b (in the implementation language).
+
+	For instance, the type for the representation of the simply typed expression λx : int ˆ .x is (int ˆ → int ˆ )HOAS, where int ˆ is a simple base type.
+
+	With this representation for simply typed λ-calculus, an evaluation function of the type ∀α.(α)HOAS → α can be implemented.
+
+	A particular advantage of this implementation is that we can use native tagless values in the implementation language to directly represent values of object expressions.
+
+	This can be of great use in a setting (e.g., meta-programming) where the object language needs to interact with the implementation language (Chen & Xi, 2005b). Given that DML is a conservative extension of ML, this is clearly something that cannot be achieved in DML.
+
+	The very reason for this is that DML does not allow type equalities like τ1 .= τ2 (meaning both τ1 ≤ τ2 and τ2 ≤ τ1) to appear in index contexts φ.
+
+	In ATS, this restriction is lifted, resulting in a much more expressive type system but also a (semantically) much more complicated constraint relation (on types and type indexes) (Xi, 2004).
 
 - 8 Related work
 
-	Our work falls in between full program verification, either in type theory or systems
-	such as PVS (Owre et al., 1996), and traditional type systems for programming
-	languages. When compared to verification, our system is less expressive but more
-	automatic when constraint domains with practical constraint satisfaction problems
-	are chosen. Our work can be viewed as providing a systematic and uniform language
-	interface for a verifier intended to be used as a type system during the program
-	development cycle. Since it extends ML conservatively, it can be used sparingly as
-	existing ML programs will work as before (if there is no keyword conflict).
-	Most closely related to our work is the system of indexed types developed independently
-	by Zenger in his Ph.D. Thesis (Zenger, 1998) (an earlier version of which is
-	described in (Zenger, 1997)). He worked in the context of lazy functional programming.
-	His language is simple and clean and his applications (which significantly
-	overlap with ours) are compelling. In general, his approach seems to require more
-	changes to a given Haskell program to make it amenable to checking indexed types
-	than is the case for our system and ML. This is particularly apparent in the case of
-	existentially quantified dependent types, which are tied to data constructors. This
-	has the advantage of a simpler algorithm for elaboration and type-checking than
-	ours, but the program (and not just the type) has to be (much) more explicit. For
-	instance, one may introduce the following datatype to represent the existentially
-	quantified type Σa:int. int(a):
-	datatype IntType = {a: int} Int of int (a)
+	Our work falls in between full program verification, either in type theory or systems such as PVS (Owre et al., 1996), and traditional type systems for programming languages.
+
+	When compared to verification, our system is less expressive but more automatic when constraint domains with practical constraint satisfaction problems are chosen.
+
+	Our work can be viewed as providing a systematic and uniform language interface for a verifier intended to be used as a type system during the program development cycle.
+
+	Since it extends ML conservatively, it can be used sparingly as existing ML programs will work as before (if there is no keyword conflict).
+
+	Most closely related to our work is the system of indexed types developed independently by Zenger in his Ph.D.
+
+	Thesis (Zenger, 1998) (an earlier version of which is described in (Zenger, 1997)).
+
+	He worked in the context of lazy functional programming.
+
+	His language is simple and clean and his applications (which significantly overlap with ours) are compelling.
+
+	In general, his approach seems to require more changes to a given Haskell program to make it amenable to checking indexed types than is the case for our system and ML. This is particularly apparent in the case of existentially quantified dependent types, which are tied to data constructors.
+
+	This has the advantage of a simpler algorithm for elaboration and type-checking than ours, but the program (and not just the type) has to be (much) more explicit.
+
+	For instance, one may introduce the following datatype to represent the existentially quantified type Σa:int. int(a):
+
+		datatype IntType = {a: int} Int of int (a)
+
 	where the value constructor Int is assigned the c-type Πa : int. int(a) ⇒ IntType.
-	If one also wants a type for natural numbers, then another datatype needs to be
-	introduced as follows:60 Hongwei Xi
-	datatype NatType = {a: int | a >= 0} Nat of int (a)
-	where Nat is assigned the c-type ∀a : int.a ≥ 0 ⊃ (int(a) ⇒ NatType). If types for
-	positive integers, negative integers, etc. are wanted, then corresponding datatypes
-	have to be introduced accordingly. Also, one may have to define functions between
-	these datatypes. For example, a function from NatType to IntType is needed to
-	turn natural numbers into integers. At this point, we have strong doubts about the
-	viability of such an approach to handling existentially quantified types, especially,
-	in cases where the involved type index terms are drawn from a (rich) type index
-	language such as Lint. Also, since the language in (Zenger, 1998) is pure, the issue
-	of supporting indexed types in the presence of effects is not studied there.
-	When compared to traditional type systems for programming languages, perhaps
-	the most closely related work is refinement types (Freeman & Pfenning, 1991), which
-	also aims at expressing and checking more properties of programs that are already
-	well-typed in ML, rather than admitting more programs as type-correct, which is
-	the goal of most other research studies on extending type systems. However, the
-	mechanism of refinement types is quite different and incomparable in expressive
-	power: While refinement types incorporate intersection and can thus ascribe multiple
-	types to terms in a uniform way, dependent types can express properties such as
-	“these two argument lists have the same length” which are not recognizable by tree
-	automata (the basis for type refinements). In (Dunfield, 2002), dependent types as
-	formulated in (Xi, 1998; Xi & Pfenning, 1999) are combined with refinement types
-	via regular tree grammar (Freeman & Pfenning, 1991), and this combination shows
-	that these two forms of types can coexist naturally. Subsequently, a pure type assignment
-	system that includes intersection and dependent types, as well as union
-	and existential types, is constructed in (Dunfield & Pfenning, 2003). This is a rather
-	different approach when compared with the one presented in the paper as it does
-	not employ elaboration as a central part of the development. In particular, typechecking
-	is undecidable, and the issue of undecidable type-checking is addressed
-	in (Dunfield & Pfenning, 2004), where a new reconstruction of the rules for indefinite
-	types (existential, union, empty types) using evaluation contexts is given.
-	This new reconstruction avoids elaboration and is decidable in theory. However, its
-	effectiveness in practice is yet to be substantiated. In particular, the effectiveness
-	of handling existential types through the use contextual type annotations in this
-	reconstruction requires further investigation.
-	Parent (Parent, 1995) proposed to reverse the process of extracting programs
-	from constructive proofs in Coq (Dowek et al., 1993), synthesizing proof skeletons
-	from annotated programs. Such proof skeletons contain “holes” corresponding to
-	logical propositions not unlike our constraint formulas. In order to limit the verbosity
-	of the required annotations, she also developed heuristics to reconstruct
-	proofs using higher-order unification. Our aims and methods are similar, but much
-	less general in the kind of specifications we can express. On the other hand, this allows
-	a richer source language with fewer annotations and, in practice, avoids direct
-	interaction with a theorem prover.
-	Extended ML (Sannella & Tarlecki, 1989) is proposed as a framework for theJournal of Functional Programming 61
-	formal development of programs in a pure fragment of Standard ML. The module
-	system of Extended ML can not only declare the type of a function but also the
-	axioms it satisfies. This design requires theorem proving during extended typechecking.
-	In contrast, we specify and check less information about functions, thus
-	avoiding general theorem proving.
-	Cayenne (Augustsson, 1998) is a Haskell-like language in which fully dependent
-	types are available, that is, language expressions can be used as type index objects.
-	The price for this is undecidable type-checking in Cayenne. For instance, the printf
-	in C, which is not directly typable in ML,4
-	can be made typable in Cayenne, and
-	modules can be replaced with records, but the notion of datatype refinement does
-	not exist. As a pure language, Cayenne also does not address issue of supporting
-	dependent types in the presence of effects. This clearly separates our language
-	design from that of Cayenne.
-	The notion of sized types is introduced in (Hughes et al., 1996) for proving the
-	correctness of reactive systems. Though there exist some similarities between sized
-	types and datatype refinement in DML(L) for some type index language L over
-	the domain of natural numbers, the differences are also substantial. We feel that
-	the language presented in (Hughes et al., 1996) seems too restrictive for general
-	programming as its type system can only handle (a minor variation) of primitive
-	recursion. On the other hand, the use of sized types in the correctness proofs of
-	reactive systems cannot be achieved in DML(L) at this moment.
-	Jay and Sekanina (Jay & Sekanina, 1996) have introduced a technique for array
-	bounds checking elimination based on the notion of shape types. Shape checking
-	is a kind of partial evaluation and has very different characteristics and source
-	language when compared to DML(L), where constraints are linear inequalities on
-	integers. We feel that their design is more restrictive and seems more promising for
-	languages based on iteration schema rather than general recursion.
-	A crucial feature in DML(L) that does not exist in either of the above two systems
-	is existential dependent types, or more precisely, existentially quantified dependent
-	types, which is indispensable in our experiment.
-	The work on local type inference by Pierce and Turner (Pierce & Turner, 1998),
-	which includes some empirical studies, is also based on a similar bi-directional strategy
-	for elaboration, although they are mostly concerned with the interaction between
-	polymorphism and subtyping, while we are concerned with dependent types.
-	This work is further extended by Odersky, Zenger and Zenger in their study on
-	colored local type inference (Odersky et al., 2001). However, we emphasize that the
-	use of constraints for index domains is quite different from the use of constraints
-	to model subtyping constraints (see (Sulzmann et al., 1997), for example).
-	Along a different but closely related line of research, a new notion of types called
-	guarded recursive (g.r.) datatypes are introduced (Xi et al., 2003). Also, phantom
-	types are studied in (Cheney & Hinze, 2003), which are largely identical to g.r.
-	4
-	In ML, it is possible to implement a function similar to printf, which, instead of applying to a
-	format string, applies to a function argument corresponding to a parsed format string. Please
-	see (Danvy, 1998) for further details.62 Hongwei Xi
-	datatypes. Recently, this notion of types are given the name generalized algebraic
-	datatypes (GADTs). On the syntactic level, GADTs are of great similarity to universal
-	dependent datatypes in λ
-	Π,Σ
-	pat , essentially using types as type indexes. However,
-	unlike DML-style dependent types, ML extended with GADTs is no longer a conservative
-	extension over ML as strictly more programs can be typed in the presence
-	of GADTs. On the semantic level, g.r. datatypes are a great deal more complex
-	than dependent types. At this moment, we are not aware of any model-theoretical
-	explanation of GADTs.
-	Many examples in DML(L) can also be handled in terms of GADTS. As an example,
-	suppose we want to use types to represent natural numbers; we can introduce a
-	type Z and a type constructor S of the kind type → type; for each natural number n,
-	we use S
-	n(Z) to represent n, where S
-	n means n applications of S. There are some
-	serious drawbacks with this approach. For instance, it cannot rule out forming a
-	type like S(Z∗Z), which does not represent any natural number. More importantly,
-	the programmer may need to supply proofs in a program in order for the program
-	to pass type-checking (Sheard, 2004). There are also various studies on type inference
-	addressing GADTs (Pottier & R´egis-Gianas, 2006; Jones et al., 2005), which
-	are of rather different focus and style from the elaboration in Section 5.
-	Noting the close resemblance between DML-style dependent types and the guarded
-	recursive datatypes, we immediately initiated an effort to unify these two forms of
-	types in a single framework, leading to the design and formalization of Applied Type
-	System (ATS) (Xi, 2004). Compared to λ
-	Π,Σ
-	pat , ATS is certainly much more general
-	and expressive, but it is also much more complicated, especially, semantically. For
-	instance, unlike in λ
-	Π,Σ
-	pat , the definition of type equality in ATS involves impredicativity.
-	In DML, we impose certain restrictions on the syntactic form of constraints
-	so that some effective means can be found for solving constraints automatically.
-	Evidently, this is a rather ad hoc design in its nature. In ATS (Xi, 2005), a language
-	with a type system rooted in ATS, we adopt a different design. Instead of
-	imposing syntactical restrictions on constraints, we provide a means for the programmer
-	to construct proofs to attest to the validity of constraints. In particular,
-	we accommodate a programming paradigm in ATS that enables the programmer
-	to combine programming with theorem proving (Chen & Xi, 2005a).
+
+	If one also wants a type for natural numbers, then another datatype needs to be introduced as follows:
+
+		datatype NatType = {a: int | a >= 0} Nat of int (a)
+
+	where Nat is assigned the c-type ∀a : int.a ≥ 0 ⊃ (int(a) ⇒ NatType).
+
+	If types for positive integers, negative integers, etc. are wanted, then corresponding datatypes have to be introduced accordingly. Also, one may have to define functions between these datatypes.
+
+	For example, a function from NatType to IntType is needed to turn natural numbers into integers. At this point, we have strong doubts about the viability of such an approach to handling existentially quantified types, especially, in cases where the involved type index terms are drawn from a (rich) type index language such as Lint.
+
+	Also, since the language in (Zenger, 1998) is pure, the issue of supporting indexed types in the presence of effects is not studied there.
+
+	When compared to traditional type systems for programming languages, perhaps the most closely related work is refinement types (Freeman & Pfenning, 1991), which also aims at expressing and checking more properties of programs that are already well-typed in ML, rather than admitting more programs as type-correct, which is the goal of most other research studies on extending type systems.
+
+	However, the mechanism of refinement types is quite different and incomparable in expressive power:
+
+	While refinement types incorporate intersection and can thus ascribe multiple types to terms in a uniform way, dependent types can express properties such as “these two argument lists have the same length” which are not recognizable by tree automata (the basis for type refinements).
+
+	In (Dunfield, 2002), dependent types as formulated in (Xi, 1998; Xi & Pfenning, 1999) are combined with refinement types via regular tree grammar (Freeman & Pfenning, 1991), and this combination shows that these two forms of types can coexist naturally.
+
+	Subsequently, a pure type assignment system that includes intersection and dependent types, as well as union and existential types, is constructed in (Dunfield & Pfenning, 2003).
+
+	This is a rather different approach when compared with the one presented in the paper as it does not employ elaboration as a central part of the development.
+
+	In particular, typechecking is undecidable, and the issue of undecidable type-checking is addressed in (Dunfield & Pfenning, 2004), where a new reconstruction of the rules for indefinite types (existential, union, empty types) using evaluation contexts is given.
+
+	This new reconstruction avoids elaboration and is decidable in theory.
+
+	However, its effectiveness in practice is yet to be substantiated. In particular, the effectiveness of handling existential types through the use contextual type annotations in this reconstruction requires further investigation.
+
+	Parent (Parent, 1995) proposed to reverse the process of extracting programs from constructive proofs in Coq (Dowek et al., 1993), synthesizing proof skeletons from annotated programs.
+
+	Such proof skeletons contain “holes” corresponding to logical propositions not unlike our constraint formulas.
+
+	In order to limit the verbosity of the required annotations, she also developed heuristics to reconstruct proofs using higher-order unification.
+
+	Our aims and methods are similar, but much less general in the kind of specifications we can express.
+
+	On the other hand, this allows a richer source language with fewer annotations and, in practice, avoids direct interaction with a theorem prover.
+
+	Extended ML (Sannella & Tarlecki, 1989) is proposed as a framework for the formal development of programs in a pure fragment of Standard ML.
+
+	The module system of Extended ML can not only declare the type of a function but also the axioms it satisfies.
+
+	This design requires theorem proving during extended typechecking.
+
+	In contrast, we specify and check less information about functions, thus avoiding general theorem proving.
+
+	Cayenne (Augustsson, 1998) is a Haskell-like language in which fully dependent types are available, that is, language expressions can be used as type index objects.
+
+	The price for this is undecidable type-checking in Cayenne.
+
+	For instance, the printf in C, which is not directly typable in ML, can be made typable in Cayenne, and modules can be replaced with records, but the notion of datatype refinement does not exist.
+
+	As a pure language, Cayenne also does not address issue of supporting dependent types in the presence of effects. This clearly separates our language design from that of Cayenne.
+
+	The notion of sized types is introduced in (Hughes et al., 1996) for proving the correctness of reactive systems.
+
+	Though there exist some similarities between sized types and datatype refinement in DML(L) for some type index language L over the domain of natural numbers, the differences are also substantial.
+
+	We feel that the language presented in (Hughes et al., 1996) seems too restrictive for general programming as its type system can only handle (a minor variation) of primitive recursion.
+
+	On the other hand, the use of sized types in the correctness proofs of reactive systems cannot be achieved in DML(L) at this moment.
+
+	Jay and Sekanina (Jay & Sekanina, 1996) have introduced a technique for array bounds checking elimination based on the notion of shape types.
+
+	Shape checking is a kind of partial evaluation and has very different characteristics and source language when compared to DML(L), where constraints are linear inequalities on integers.
+
+	We feel that their design is more restrictive and seems more promising for languages based on iteration schema rather than general recursion.
+
+	A crucial feature in DML(L) that does not exist in either of the above two systems is existential dependent types, or more precisely, existentially quantified dependent types, which is indispensable in our experiment.
+
+	The work on local type inference by Pierce and Turner (Pierce & Turner, 1998), which includes some empirical studies, is also based on a similar bi-directional strategy for elaboration, although they are mostly concerned with the interaction between polymorphism and subtyping, while we are concerned with dependent types.
+
+	This work is further extended by Odersky, Zenger and Zenger in their study on colored local type inference (Odersky et al., 2001).
+
+	However, we emphasize that the use of constraints for index domains is quite different from the use of constraints to model subtyping constraints (see (Sulzmann et al., 1997), for example).
+
+	Along a different but closely related line of research, a new notion of types called guarded recursive (g.r.) datatypes are introduced (Xi et al., 2003).
+
+	Also, phantom types are studied in (Cheney & Hinze, 2003), which are largely identical to g.r.
+
+	In ML, it is possible to implement a function similar to printf, which, instead of applying to a format string, applies to a function argument corresponding to a parsed format string.
+
+	Please see (Danvy, 1998) for further details.
+	
+	datatypes. Recently, this notion of types are given the name generalized algebraic datatypes (GADTs).
+
+	On the syntactic level, GADTs are of great similarity to universal dependent datatypes in λΠ,Σ pat , essentially using types as type indexes.
+
+	However, unlike DML-style dependent types, ML extended with GADTs is no longer a conservative extension over ML as strictly more programs can be typed in the presence of GADTs.
+
+	On the semantic level, g.r. datatypes are a great deal more complex than dependent types. At this moment, we are not aware of any model-theoretical explanation of GADTs.
+	
+	Many examples in DML(L) can also be handled in terms of GADTS. As an example, suppose we want to use types to represent natural numbers; we can introduce a type Z and a type constructor S of the kind type → type; for each natural number n, we use S n(Z) to represent n, where S n means n applications of S.
+
+	There are some serious drawbacks with this approach.
+
+	For instance, it cannot rule out forming a type like S(Z∗Z), which does not represent any natural number.
+
+	More importantly, the programmer may need to supply proofs in a program in order for the program to pass type-checking (Sheard, 2004).
+
+	There are also various studies on type inference addressing GADTs (Pottier & R´egis-Gianas, 2006; Jones et al., 2005), which are of rather different focus and style from the elaboration in Section 5.
+
+	Noting the close resemblance between DML-style dependent types and the guarded recursive datatypes, we immediately initiated an effort to unify these two forms of types in a single framework, leading to the design and formalization of Applied Type System (ATS) (Xi, 2004).
+
+	Compared to λΠ,Σ pat , ATS is certainly much more general and expressive, but it is also much more complicated, especially, semantically.
+
+	For instance, unlike in λΠ,Σ pat , the definition of type equality in ATS involves impredicativity.
+
+	In DML, we impose certain restrictions on the syntactic form of constraints so that some effective means can be found for solving constraints automatically.
+
+	Evidently, this is a rather ad hoc design in its nature. In ATS (Xi, 2005), a language with a type system rooted in ATS, we adopt a different design.
+
+	Instead of imposing syntactical restrictions on constraints, we provide a means for the programmer to construct proofs to attest to the validity of constraints.
+
+	In particular, we accommodate a programming paradigm in ATS that enables the programmer to combine programming with theorem proving (Chen & Xi, 2005a).
 
 - 9 Conclusion
 
-	We have presented an approach that can effectively support the use of dependent
-	types in practical programming, allowing for specification and inference of signifi-
-	cantly more precise type information and thus facilitating program error detection
-	and compiler optimization. By separating type index terms from programs, we
-	make it both natural and straightforward to accommodate dependent types in the
-	presence of realistic programming features such as (general) recursion and effects
-	(e.g., exceptions and references). In addition, we have formally established the type
-	soundness of λ
-	Π,Σ
-	pat , the core dependent type system in our development, and have
-	also justified the correctness of a set of elaboration rules, which play a crucial roleJournal of Functional Programming 63
-	in reducing (not eliminating) the amount of explicit type annotation needed in
-	practice.
-	On another front, we have finished a prototype implementation of Dependent ML
-	(DML), which essentially extends ML with a restricted form of dependent types
-	such that the type index terms are required to be integer expressions drawn from
-	the type index language Lint presented in Section 3. A variety of programming
-	examples have been constructed in support of the practicality of DML, some of
-	which are shown in Section 7.
-	Lastly, we point out that λ
-	Π,Σ
-	pat can be classified as an applied type system in the
-	framework ATS (Xi, 2004). At this moment, DML has already been fully incorporated
-	into ATS (Xi, 2005).
-	Acknowledgments The current paper is partly based on the author’s doctoral
-	dissertation (Xi, 1998) supervised by Frank Pfenning, and an extended abstract
-	of the dissertation is already in publication (Xi & Pfenning, 1999). The author
-	sincerely thanks Frank Pfenning for his suggestion of the research topic and his
-	guidance in the research conducted subsequently. In addition, the author acknowledges
-	many discussions with Chiyan Chen regarding the subject of elaboration presented
-	in Section 5 and thanks him for his efforts on proofreading a draft of paper.
-	Also, the author thanks the anonymous referees for their voluminous constructive
-	comments, which have undoubtedly raised the quality of the paper significantly.
+	We have presented an approach that can effectively support the use of dependent types in practical programming, allowing for specification and inference of signifi-cantly more precise type information and thus facilitating program error detection and compiler optimization.
+
+	By separating type index terms from programs, we make it both natural and straightforward to accommodate dependent types in the presence of realistic programming features such as (general) recursion and effects (e.g., exceptions and references).
+
+	In addition, we have formally established the type soundness of λΠ,Σ pat , the core dependent type system in our development, and have also justified the correctness of a set of elaboration rules, which play a crucial role in reducing (not eliminating) the amount of explicit type annotation needed in practice.
+
+	On another front, we have finished a prototype implementation of Dependent ML (DML), which essentially extends ML with a restricted form of dependent types such that the type index terms are required to be integer expressions drawn from the type index language Lint presented in Section 3. 
+
+	A variety of programming examples have been constructed in support of the practicality of DML, some of which are shown in Section 7.
+
+	Lastly, we point out that λΠ,Σ pat can be classified as an applied type system in the framework ATS (Xi, 2004).
+
+	At this moment, DML has already been fully incorporated into ATS (Xi, 2005).
+
+	Acknowledgments The current paper is partly based on the author’s doctoral dissertation (Xi, 1998) supervised by Frank Pfenning, and an extended abstract of the dissertation is already in publication (Xi & Pfenning, 1999).
+
+	The author sincerely thanks Frank Pfenning for his suggestion of the research topic and his guidance in the research conducted subsequently.
+
+	In addition, the author acknowledges many discussions with Chiyan Chen regarding the subject of elaboration presented in Section 5 and thanks him for his efforts on proofreading a draft of paper.
+	
+	Also, the author thanks the anonymous referees for their voluminous constructive comments, which have undoubtedly raised the quality of the paper significantly.
 	
 - References
 
@@ -3788,7 +3967,7 @@
 	Chen, Chiyan, & Xi, Hongwei. (2005b). Meta-Programming through Typeful Code Representation.
 	Journal of functional programming, 15(6), 1–39.
 	Chen, Chiyan, Shi, Rui, & Xi, Hongwei. (2005). Implementing Typeful Program Transformations.
-	Fundamenta informaticae, 69(1-2), 103–121.64 Hongwei Xi
+	Fundamenta informaticae, 69(1-2), 103–121.
 	Cheney, James, & Hinze, Ralf. (2003). Phantom Types. Technical Report CUCIS-TR2003-
 	1901. Cornell University. Available at
 	http://techreports.library.cornell.edu:8081/
@@ -3836,7 +4015,7 @@
 	Jay, C.B., & Sekanina, M. (1996). Shape checking of array programs. Tech. rept. 96.09.
 	University of Technology, Sydney, Australia.
 	Jones, Simon Peyton, Vytiniotis, Dimitrios, Weirich, Stephanie, & Washburn, Geoffrey.
-	2005 (November). Simple unification-based type inference for gadts.Journal of Functional Programming 65
+	2005 (November). Simple unification-based type inference for gadts.
 	Kahrs, Stefan. (2001). Red-black trees with types. Journal of functional programming,
 	11(4), 425–432.
 	Kreitz, Christoph, Hayden, Mark, & Hickey, Jason. (1998). A proof environment for the
@@ -3885,7 +4064,7 @@
 	Pottier, Franois, & R´egis-Gianas, Yann. 2006 (Jan.). Stratified type inference for generalized
 	algebraic data types. Pages 232–244 of: Proceedings of the 33rd ACM symposium
 	on principles of programming languages (popl’06).
-	Pugh, W., & Wonnacott, D. (1992). Eliminating false data dependences using the Omega66 Hongwei Xi
+	Pugh, W., & Wonnacott, D. (1992). Eliminating false data dependences using the Omega
 	test. Pages 140–151 of: Acm sigplan ’92 conference on programming language design
 	and implementation. ACM Press.
 	Pugh, W., & Wonnacott, D. 1994 (November). Experience with constraint-based array
@@ -3928,208 +4107,209 @@
 	Principles of Programming Languages. New Orleans, LA: ACM press.
 	Zenger, Christoph. (1997). Indexed types. Theoretical computer science, 187, 147–165.
 	Zenger, Christoph. (1998). Indizierte typen. Ph.D. thesis, Fakult¨at fur ¨ Informatik, Universit¨at
-	Karlsruhe.Journal of Functional Programming 67
-	xf ,→ g xf
-	e ,→ g e
-	0
-	c(e) ,→ g c(e
-	0
-	) hi ,→ g hi
-	e1 ,→ g e
-	0
-	1 e2 ,→ g e
-	0
-	2
-	he1, e2i ,→ g he
-	0
-	1, e
-	0
-	2i
-	e ,→ g e
-	0
-	fst(e) ,→ g fst(e
-	0
-	)
-	e ,→ g e
-	0
-	snd(e) ,→ g snd(e
-	0
-	)
-	e ,→ g e
-	0 ms ,→ g ms0
-	case e of ms ,→ g case e
-	0 of ms0
-	e ,→ g e
-	0
-	lamx. e ,→ g lamx. e
-	0
-	e1 ,→ g e
-	0
-	1 e2 ,→ g e
-	0
-	2
-	e1(e2) ,→ g e
-	0
-	1(e
-	0
-	2)
-	e ,→ g e
-	0
-	fix f. e ,→ g fix f. e
-	0
-	e1 ,→ g e
-	0
-	1 e2 ,→ g e
-	0
-	2
-	let x = e1 in e2 end ,→ g let x = e
-	0
-	1 in e
-	0
-	2 end
-	v1 ,→ g v
-	0
-	1
-	fst(hv1, v2i) ,→ g v
-	0
-	1
-	v2 ,→ g v
-	0
-	2
-	snd(hv1, v2i) ,→ g v
-	0
-	2
-	e ,→ g e
-	0
-	v ,→ g v
-	0
-	(lamx. e)(v) ,→ g e
-	0
-	[x 7→ v
-	0
-	]
-	e ,→ g e
-	0
-	fix f. e ,→ g e
-	0
-	[f 7→ fix f. e
-	0
-	]
-	e ,→ g e
-	0
-	v ,→ g v
-	0
-	let x = v in e end ,→ g e
-	0
-	[x 7→ v
-	0
-	]
-	match(v, pk) ⇒ θ ek ,→ g e
-	0
-	k θ ,→ g θ
-	0
-	case v of (p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g e
-	0
-	k[θ
-	0
-	]
-	x 6∈ FV(E) e ,→ g e
-	0 E ,→ g E
-	0
-	let x = e in E[x] end ,→ g E
-	0
-	[e
-	0
-	]
-	v ,→ g v
-	0
-	hfst(v), snd(v)i ,→ g v
-	0
-	v ,→ g v
-	0
-	lamx. v(x) ,→ g v
-	0
-	[] ,→ g []
-	E ,→ g E
-	0
-	c(E) ,→ g c(E
-	0
-	)
-	E ,→ g E
-	0
-	e ,→ g e
-	0
-	hE, ei ,→ g hE
-	0
-	, e
-	0
-	i
-	v ,→ g v
-	0 E ,→ g E
-	0
-	hv, Ei ,→ g hv
-	0
-	, E
-	0
-	i
-	E ,→ g E
-	0
-	fst(E) ,→ g fst(E
-	0
-	)
-	E ,→ g E
-	0
-	snd(E) ,→ g snd(E
-	0
-	)
-	E ,→ g E
-	0 ms ,→ g ms0
-	case E of ms ,→ g case E
-	0 of ms0
-	E ,→ g E
-	0
-	e ,→ g e
-	0
-	E(e) ,→ g E
-	0
-	(e
-	0
-	)
-	v ,→ g v
-	0 E ,→ g E
-	0
-	v(E) ,→ g v
-	0
-	(E
-	0
-	)
-	E ,→ g E
-	0
-	e ,→ g e
-	0
-	let x = E in e end ,→ g let x = E
-	0
-	in e
-	0
-	end
-	e1 ,→ g e
-	0
-	1 · · · en ,→ g e
-	0
-	n
-	(p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g (p1 ⇒ e
-	0
-	1 | · · · | pn ⇒ e
-	0
-	n)
-	θ(xf ) ,→ g θ
-	0
-	(xf ) for each xf in dom(θ) = dom(θ
-	0
-	)
-	θ ,→ g θ
-	0
-	Fig. A 1. The rules for the parallel general reduction ,→ g
+	Karlsruhe.
+
+		xf ,→ g xf
+		e ,→ g e
+		0
+		c(e) ,→ g c(e
+		0
+		) hi ,→ g hi
+		e1 ,→ g e
+		0
+		1 e2 ,→ g e
+		0
+		2
+		he1, e2i ,→ g he
+		0
+		1, e
+		0
+		2i
+		e ,→ g e
+		0
+		fst(e) ,→ g fst(e
+		0
+		)
+		e ,→ g e
+		0
+		snd(e) ,→ g snd(e
+		0
+		)
+		e ,→ g e
+		0 ms ,→ g ms0
+		case e of ms ,→ g case e
+		0 of ms0
+		e ,→ g e
+		0
+		lamx. e ,→ g lamx. e
+		0
+		e1 ,→ g e
+		0
+		1 e2 ,→ g e
+		0
+		2
+		e1(e2) ,→ g e
+		0
+		1(e
+		0
+		2)
+		e ,→ g e
+		0
+		fix f. e ,→ g fix f. e
+		0
+		e1 ,→ g e
+		0
+		1 e2 ,→ g e
+		0
+		2
+		let x = e1 in e2 end ,→ g let x = e
+		0
+		1 in e
+		0
+		2 end
+		v1 ,→ g v
+		0
+		1
+		fst(hv1, v2i) ,→ g v
+		0
+		1
+		v2 ,→ g v
+		0
+		2
+		snd(hv1, v2i) ,→ g v
+		0
+		2
+		e ,→ g e
+		0
+		v ,→ g v
+		0
+		(lamx. e)(v) ,→ g e
+		0
+		[x 7→ v
+		0
+		]
+		e ,→ g e
+		0
+		fix f. e ,→ g e
+		0
+		[f 7→ fix f. e
+		0
+		]
+		e ,→ g e
+		0
+		v ,→ g v
+		0
+		let x = v in e end ,→ g e
+		0
+		[x 7→ v
+		0
+		]
+		match(v, pk) ⇒ θ ek ,→ g e
+		0
+		k θ ,→ g θ
+		0
+		case v of (p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g e
+		0
+		k[θ
+		0
+		]
+		x 6∈ FV(E) e ,→ g e
+		0 E ,→ g E
+		0
+		let x = e in E[x] end ,→ g E
+		0
+		[e
+		0
+		]
+		v ,→ g v
+		0
+		hfst(v), snd(v)i ,→ g v
+		0
+		v ,→ g v
+		0
+		lamx. v(x) ,→ g v
+		0
+		[] ,→ g []
+		E ,→ g E
+		0
+		c(E) ,→ g c(E
+		0
+		)
+		E ,→ g E
+		0
+		e ,→ g e
+		0
+		hE, ei ,→ g hE
+		0
+		, e
+		0
+		i
+		v ,→ g v
+		0 E ,→ g E
+		0
+		hv, Ei ,→ g hv
+		0
+		, E
+		0
+		i
+		E ,→ g E
+		0
+		fst(E) ,→ g fst(E
+		0
+		)
+		E ,→ g E
+		0
+		snd(E) ,→ g snd(E
+		0
+		)
+		E ,→ g E
+		0 ms ,→ g ms0
+		case E of ms ,→ g case E
+		0 of ms0
+		E ,→ g E
+		0
+		e ,→ g e
+		0
+		E(e) ,→ g E
+		0
+		(e
+		0
+		)
+		v ,→ g v
+		0 E ,→ g E
+		0
+		v(E) ,→ g v
+		0
+		(E
+		0
+		)
+		E ,→ g E
+		0
+		e ,→ g e
+		0
+		let x = E in e end ,→ g let x = E
+		0
+		in e
+		0
+		end
+		e1 ,→ g e
+		0
+		1 · · · en ,→ g e
+		0
+		n
+		(p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g (p1 ⇒ e
+		0
+		1 | · · · | pn ⇒ e
+		0
+		n)
+		θ(xf ) ,→ g θ
+		0
+		(xf ) for each xf in dom(θ) = dom(θ
+		0
+		)
+		θ ,→ g θ
+		0
+		Fig. A 1. The rules for the parallel general reduction ,→ g
 
 - A Proof of Lemma 2.14
 
@@ -4152,7 +4332,7 @@
 	0
 	1 hold. We are to
 	employ a notion of parallel reduction (Takahashi, 1995) to complete this key step.
-	Definition A.1 (Parallel general reduction)68 Hongwei Xi
+	Definition A.1 (Parallel general reduction)
 	Given two expressions e and e
 	0
 	in λpat, we say that e g-reduces to e
@@ -4259,8 +4439,10 @@
 	0
 	, that is, e ev-reduces to e
 	0
-	in either 0 or 1 step.Journal of Functional Programming 69
-	Lemma A.5
+	in either 0 or 1 step.
+
+	- Lemma A.5
+
 	Assume that e1 and e
 	0
 	1 are two expressions in λpat such that e1 ,→ g e
@@ -4437,7 +4619,7 @@
 	ev v
 	∗
 	also holds.
-	Proof70 Hongwei Xi
+	Proof
 	The proof proceeds by induction on n, the number of steps in e ,→∗
 	ev v
 	∗
@@ -4551,7 +4733,8 @@
 	∅; ∅; ∅ ` e1 : τ
 	(ty-sub)
 	By induction hypothesis on D1, ∅; ∅; ∅ ` e2 : τ1 is derivable. Hence, ∅; ∅; ∅ ` e2 : τ
-	is also derivable.Journal of Functional Programming 71
+	is also derivable.
+
 	In the rest of the proof, we assume that the last applied rule in D is not (ty-sub).
 	Let e1 = E[e0] and e2 = E[e
 	0
@@ -4617,7 +4800,7 @@
 	0[Θ] and ∅ ` θ : Γ0[Θ] hold. By Lemma 4.7 (1), we know that
 	∅; P~
 	0[Θ]; Γ0[Θ] ` e : τ2 is derivable as τ2 contains no free occurrences of the
-	index variables declared in φ0. By Lemma 4.7 (2), we know that ∅; ∅; Γ0[Θ] `72 Hongwei Xi
+	index variables declared in φ0. By Lemma 4.7 (2), we know that ∅; ∅; Γ0[Θ] `
 	e : τ2 is derivable. By Lemma 4.7 (3), we know that ∅; ∅; ∅ ` e[θ] : τ2 is
 	derivable.
 	• e1 =⊃−(⊃+(v)) for some value v. Then D is of the following form:
@@ -4661,7 +4844,7 @@
 	D1 :: ∅; ∅; ∅ ` Σ(v) : Σa:s. τ1 D2 :: ∅, a : s; ∅; ∅, x : τ1 ` e : τ2
 	∅; ∅; ∅ ` let Σ(x) = v in e end : τ2
 	(ty-Σ-elim)
-	where τ = τ2. By Lemma 4.6, we may assume that the last rule applied in D1Journal of Functional Programming 73
+	where τ = τ2. By Lemma 4.6, we may assume that the last rule applied in D1
 	is not (ty-sub). Hence, D1 is of the following form:
 	D3 :: ∅; ∅; ∅ ` v :: τ1[a 7→ I] ∅ ` I : s
 	∅; ∅; ∅ ` Σ(v) : Σa:s. τ1
@@ -4741,18 +4924,25 @@
 	0
 	. τ [α~ 7→ α~
 	0
-	], and we are done.74 Hongwei Xi
+	], and we are done.
+
+
 	The following lemma states that evaluation not involving references is typepreserving.
+	
 	Lemma C.3
 	Assume that φ; P~; ∅ `µ e1 : σ is derivable. If e1 ,→ev e2 holds, then φ; P~ ; ∅ `µ e2 : σ
 	is also derivable.
-	Proof
+
+	- Proof
+
 	(Sketch) This proof can be handled in precisely the same manner as the proof of
 	Theorem 4.11 in Appendix B.
 	Lemma C.3 can actually be strengthened to state that evaluation not involving
 	reference creation is type-preserving.
 	We are now ready to prove Theorem 6.8.
-	Proof
+
+	- Proof
+
 	(of Theorem 6.8) (Sketch) We have the following four possibilities according to the
 	definition of ,→ev/st.
 	• e1 ,→ev e2. This case follows from Lemma C.3 immediately.
@@ -4782,7 +4972,7 @@
 	where α is some type variable. With no value restriction, the following derivation
 	can be constructed
 	D :: ∅; ∅; ∅ `[] ref(nil) : ((α)list)ref
-	∅; ∅; ∅ `[] ref(nil) : ∀α.((α)list)refJournal of Functional Programming 75
+	∅; ∅; ∅ `[] ref(nil) : ∀α.((α)list)ref
 	Certainly, we have ([], ref(nil)) ,→ev/st ([l 7→ nil], l) for any reference constant l.
 	However, there is simply no store type µ such that [l 7→ nil] : µ holds and ∅; ∅; ∅ `µ
 	l : ∀α. ((α)list)ref is also derivable. For instance, let us choose µ to be [l 7→ (α)list].
