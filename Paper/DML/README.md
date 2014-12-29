@@ -378,7 +378,6 @@
 
 	λpatの構文は、図3に示されている。
 
-
 	We use δ for base types such as int and bool and τ for types.
 
 	我々は型のint型とブールとτなどの基本型用のδを使用しています。
@@ -397,96 +396,99 @@
 
 	We use the name observable value for a closed value that does not contain a lambda expression lam x. e as its substructure.
 
--------->
-
-	我々は、ラムダ式のlam x.が含まれていない、閉じた値の名前に観察値を使用します。その基礎として、電子。
+	我々は、その基礎としてラムダ式のlam x. eが含まれていない、閉じた値の名前に観察値を使用します。
 
 	We use c for a constant, which is either a constant constructor cc or a constant function cf .
 
-	当社は、一定のコンストラクタCCまたは定数関数のCFのどちらかである定数、C言語を使用します。
+	我々は、定数コンストラクタccまたは定数関数cfのどちらかである定数、cを使用します。
 
 	Each constant c is assigned a constant type (or c-type, for short) of the form τ ⇒ δ.
 
-	各定数cは、フォーム、τ⇒δの（略して、またはC型）定数型が割り当てられます。
+	各定数cは、τ⇒δの形の（略して、またはc型）定数型が割り当てられます。
 	
 	Note that a c-type is not regarded as a (regular) type.
 
-	C型は（レギュラー）型とはみなされないことに注意してください。
+	c型は（レギュラー）型とはみなされないことに注意してください。
 
-	For each constant constructor cc assigned the type 1 ⇒ δ, we may write cc as a shorthand for cc(hi), where hi stands for the unit of the unit type 1.
+	For each constant constructor cc assigned the type 1 ⇒ δ, we may write cc as a shorthand for cc(<>), where <> stands for the unit of the unit type 1.
 
-	型1。⇒δを割り当てられた各定数コンストラクタCCのために、我々は、CCの省略形として、CCを書き込むことが（HI）、HIでユニットタイプ1の単位を表します。
+	型 1 ⇒ δ を割り当てられた各定数コンストラクタccのために、我々は、cc(<>)の省略形として、ccを書き、<>でユニット型1の単位を表します。
 
 	In the following presentation, we assume that the boolean values true and false are assigned the type 1 ⇒ bool and every integer i is assigned the type 1 ⇒ int.
 
-	以下の発表では、trueとfalseのブール値は、型1⇒ブールが割り当てられ、すべての整数iが型1⇒INTを割り当てられていることを前提としています。
+	以下の発表では、trueとfalseのbool値は、1⇒bool型が割り当てられ、すべての整数 i が1⇒int型を割り当てられていることを前提としています。
 
-	Note that we do not treat the tuple constructor h·, ·i as a special case of constructors.
+	Note that we do not treat the tuple constructor <·, ·> as a special case of constructors.
 
-	我々は、コンストラクタの特殊なケースとして、·、·私はタプルコンストラクタhを治療しないことに注意してください。
+	我々は、コンストラクタの特殊なケースとして、タプルコンストラクタ<·, ·>を扱わないことに注意してください。
 
 	Instead, we introduce tuples into λpat explicitly.
 
-	その代わりに、我々は、明示的にλpatにタプルを紹介する。
+	その代わりに、我々は、明示的にλpatにタプルを導入する。
 
 	The primary reason for this decision is that tuples are to be handled specially in Section 5, where an elaboration procedure is presented for supporting a form of partial type inference in the presence of dependent types.
 
-	この決定の主な理由は、タプルが精緻化手順は依存型の存在下で、部分的な型推論の形式をサポートするために提示されている第5節、に特別に扱われるべきであるということである。
+	このように決めた主な理由は、5章で特別に扱われていますが、タプルの詳細な手順は依存型の存在下で部分的な型推論の形式をサポートするために提示されているためです。
 
 		------------- (pat-var)
 		x ↓ τ ⇒ x : τ
 
 		------------- (pat-unit)
-		hi ↓ 1 ⇒ ∅
+		<> ↓ 1 ⇒ ∅
 
-		p1 ↓ τ1 ⇒ Γ1 p2 ↓ τ2 ⇒ Γ2
+		p1 ↓ τ1 ⇒ Γ1   p2 ↓ τ2 ⇒ Γ2
 		--------------------------- (pat-prod)
-		hp1, p2i ↓ τ1 ∗ τ2 ⇒ Γ1, Γ2
+		<p1, p2> ↓ τ1 ∗ τ2 ⇒ Γ1, Γ2
 
-		` cc(τ ) : δ p ↓ τ ⇒ Γ
+		|- cc(τ):δ    p ↓ τ ⇒ Γ
 		----------------------- (pat-const)
 		cc(p) ↓ δ ⇒ Γ
 
 		Fig. 4. The typing rules for patterns in λpat
+
 		図.4. λpatにおけるパターンの型付け規則
 
 	We use θ for a substitution, which is a finite mapping that maps lam-bound variables x to values and fix-bound variables to fixed-point expressions.
 
-	我々は、固定小数点式に値と固定し、バインドされた変数にLAM-バインドされた変数xをマッピング有限マッピングである置換、のためにθを使用しています。
+	我々は、固定小数点式に値と固定バインドされた変数にlam-バインドされた変数xをマッピングした有限マッピングである置換のためにθを使用しています。
 
 	We use [] for the empty substitution and θ[xf 7→ e] for the substitution that extends θ with a link from xf to e, where it is assumed that xf is not in the domain dom(θ) of θ.
 
-	我々は、それがXFはθのドメインDOM（θ）になっていないことを想定しているeまでXFからのリンク、とθを拡張置換のための空の置換及びθ[E→XF7]で[]を使用します。
+	我々は、それがxfはθのドメインdom(θ)になっていないことを想定しているxfからeのリンク、とθを拡張置換のための空の置換及びθ[xf 7->e]で[]を使用します。
 
 	Also, we may write [xf1 |-> e1,..., xf n |-> en] for a substitution that maps xf i to ei for 1 ≤ i ≤ n.
 
-	iがn≤1≤用EIへのI XFマップする置換のための[> EN| | - - > E1、...、XF nはXF1】また、我々は書き込むことができる。
+	また、我々は1≤i≤nの範囲でxfiからeiへの置換マップを[xf1 |-> e1,..., xf n |-> en]と書くことができます。
 
 	We omit the further details on substitution, which are completely standard.
 
-	我々は完全に標準装備されています置換に関するさらなる詳細は、省略します。
+	我々は完全に標準的な置換に関するさらなる詳細は、省略します。
 
 	Given a piece of syntax • (representing expressions, evaluation contexts, etc.), we use •[θ] for the result of applying θ to •.
 
-	（などの表現、評価コンテキストを表す）の構文•の作品、我々は•使用を考えると[θ]• する θ を適用した結果のために。
+	構文•（式や評価コンテキスト等を表す）が与えられたとき、我々はθ を• に適用した結果のために•[θ]を使用する。
 	
 	We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with one additional declaration xf : τ , where we assume that xf is not already declared in Γ.
 
-	我々は、空の文脈とΓ、XFのため∅使用：τを1追加の宣言XFとΓを拡張コンテキスト用：τ、我々はそのXFがすでにΓで宣言されていませんと仮定します。
+	我々は、空の文脈のため∅使用し、そのxfがすでにΓで宣言されていないと仮定した、Γ, xf：τを追加の宣言 xf:τでΓを拡張するコンテキスト用に使用します。
 
-	A context Γ = ∅, xf: τ1,...,xfn: τn may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. Also, we may use Γ, Γ0 for the context ∅, xf': τ1, ..., xf n : τn, xf' 1 : τ'1,..., xfn: τ n0 , where Γ = ∅, xf 1: τ1, . . . , xf n : τn and Γ0 = ∅, xf'1: τ'1,..., xf' n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
+	A context Γ = ∅, xf: τ1,...,xfn: τn may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. 
 
-	コンテキストΓ=∅、XF：τ1、...、XFN：τNもiがn≤1≤用τiはするXFIにマップ有限マッピングとして処理することができる、と我々はΓのドメインのDOM（Γ）を使用します。また、我々は、コンテキスト∅、XFのためΓ、Γ0を使用することができます'：τ1、...、XFのN：τN、XF' 1：τ'1、...、XFN：τN0と、どこΓ=∅、XF 1：τ1、。 。 。 、XFのN：τNとΓ0=∅、xf'1：τ'1、...、XF'N：τ'n'とすべての変数XF1、...、XFN、xf'1、...、XF 'N'は異なります。
+	コンテキストΓ = ∅, xf: τ1,...,xfn: τn もiがn≤1≤用τiはするXFIにマップ有限マッピングとして処理することができる、と我々はΓのドメインのDOM（Γ）を使用します。
+
+	Also, we may use Γ, Γ0 for the context ∅, xf': τ1, ..., xf n : τn, xf' 1 : τ'1,..., xfn: τ n0 , where Γ = ∅, xf 1: τ1, . . . , xf n : τn and Γ0 = ∅, xf'1: τ'1,..., xf' n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
+
+	また、我々は、コンテキスト∅、XFのためΓ、Γ0を使用することができます'：τ1、...、XFのN：τN、XF' 1：τ'1、...、XFN：τN0と、どこΓ=∅、XF 1：τ1、。 。 。 、XFのN：τNとΓ0=∅、xf'1：τ'1、...、XF'N：τ'n'とすべての変数XF1、...、XFN、xf'1、...、XF 'N'は異なります。
 
 	As a form of syntactic sugar, we may write let hx1, x2i = e1 in e2 end for the following expression:
 
-	構文糖の形として、我々は次の式のためのE2最後にHX1、X2I= E1を聞かせて書くことがあります:
+	構文糖の形として、我々は次の式のように let <x1, x2> = e1 in e2 end と書くことがあります:
 
 		let x = e1 in let x1 = fst(x) in let x2 = snd(x) in e2 end end end
 
 	where x is assumed to have no free occurrences in e1, e2.
 
-	ここで、xは、e2をe1に空き出現がないと仮定される。
+	ここで、xは、e1とe2に自由変数として出現しないと仮定します。
 
 - 2.1 Static semantics
 
