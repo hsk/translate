@@ -212,8 +212,6 @@
 
 	We address this in two steps: the first step is to define an explicitly typed (and unacceptably verbose) language for which type-checking is easily reduced to constraint satisfaction in some type index language L.
 
-	我々は2つのステップでこれに対処する：最初のステップは、型チェックが簡単にいくつかの型インデックス言語Lに満足度を制約するために還元されるために明示的に入力（および許容できないほど冗長）の言語を定義することです。
-
 	我々は2つのステップでこれに対処する：最初のステップは、型チェックが簡単にいくつかの型インデックス言語Lに満足度を制約に還元されるために明示的に入力する（受け入れ難いほど冗長な）言語を定義することです
 
 	The second step is to define an elaboration from DML(L), a slightly extended fragment of ML, to the fully explicitly typed language which preserves the standard operational semantics.
@@ -334,7 +332,7 @@
 
 	The core of the paper lies in Section 4, where a language λΠ,Σ pat is introduced that extends λpat with both universal and existential dependent types.
 
-	論文のコアは、普遍的かつexistential(実存)依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
+	論文のコアは、universal(普遍的)かつexistential(実存)依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
 
 	We also formally prove the subject reduction theorem and the progress theorem for λΠ,Σ pat , thus establishing the type soundness of λΠ,Σ pat .
 
@@ -1678,7 +1676,7 @@
 
 	We now present λΠ,Σ pat = λΠ,Σ pat (L), which is an extension of λpat with universal and existential dependent types.
 
-	我々はここで、本λΠ、普遍的でexistential(実存)的依存型とλpatの拡張であるΣパット=λΠ、Σパット（L）、。
+	我々はここで、本λΠ、universal(普遍的)でexistential(実存)的依存型とλpatの拡張であるΣパット=λΠ、Σパット（L）、。
 
 	The syntax of λΠ,Σ pat is given in Figure 12, which extends the syntax in Figure 3.
 
@@ -1719,7 +1717,7 @@
 
 	In addition, we use the names universal expressions, existential expressions, guarded expressions and asserting expressions for expressions of the forms Π+(v), Σ(e), ⊃+(v) and ∧(e), respectively.
 
-	また、我々は形の表現のために名前を普遍的な表現、existential(実存)的表現、保護された式と主張する表現を使用Π+（V）、Σ（E）、⊃+（V）と∧（e）は、それぞれ。
+	また、我々は形の表現のために名前をuniversal(普遍的)な表現、existential(実存)的表現、保護された式と主張する表現を使用Π+（V）、Σ（E）、⊃+（V）と∧（e）は、それぞれ。
 
 	----
 
