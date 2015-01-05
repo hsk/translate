@@ -26,6 +26,8 @@
 
 	我々はこの論文にいくつかの最近の、密接に関連した結果(例えば、ガードされた再帰的なデータ型(Xi et al., 2003)、Applied Type System (Xi, 2004))を組み込まない。
 
+
+
 	Type systems for functional languages can be broadly classified into those for rich, realistic programming languages such as Standard ML (Milner et al., 1997), Objective Caml (INRIA, n.d.), or Haskell (Peyton Jones et al. , 1999), and those for small, pure languages such as the ones underlying Coq (Dowek et al., 1993), NuPrl (Constable et al. , 1986), or PX (Hayashi & Nakano, 1988).
 
 	関数型言語の型システムはStandard ML（Milnerら, 1997）、Objective Caml (INRIA, n.d.)
