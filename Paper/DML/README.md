@@ -20,17 +20,16 @@
 
 	In this paper, we report some research on supporting the use of dependent types in practical programming, drawing most of the results from (Xi, 1998).
 
-	本論文では、実用的なプログラミングで依存型の使用をサポートした（Xi、1998）からの結果を最大限に生かした上でいくつかの研究を報告している。
+	本論文では、実用的なプログラミングで依存型の使用をサポートした（Xi, 1998）からの結果を最大限に生かした上でいくつかの研究を報告している。
 
 	We do not attempt to incorporate into this paper some recent, closely related results (e.g., guarded recursive datatypes (Xi et al., 2003), Applied Type System (Xi, 2004)), with which we only provide certain comparison.
 
-
-	我々はこの論文にいくつかの最近の、密接に関連した結果（例えば、ガードされた再帰的なデータ型（Xi et al., 2003）、Applied Type System （XI、2004））を組み込まない。
+	我々はこの論文にいくつかの最近の、密接に関連した結果(例えば、ガードされた再帰的なデータ型(Xi et al., 2003)、Applied Type System (Xi, 2004))を組み込まない。
 
 	Type systems for functional languages can be broadly classified into those for rich, realistic programming languages such as Standard ML (Milner et al., 1997), Objective Caml (INRIA, n.d.), or Haskell (Peyton Jones et al. , 1999), and those for small, pure languages such as the ones underlying Coq (Dowek et al., 1993), NuPrl (Constable et al. , 1986), or PX (Hayashi & Nakano, 1988).
 
-	関数型言語の型システムが広くStandard ML（Milnerら, 1997）、Objective Caml (INRIA, n.d.)
-	、またはHaskell（Peyton Jones ら、1999）などリッチな、現実的なプログラミング言語のためのものと、そしてそのようなものが根底にあるような小さな、純粋な言語のためのものCoq（Dowekら、1993）、NuPrl（Constableら、1986）、またはPX（林·中野、1988）に分類することができます
+	関数型言語の型システムはStandard ML（Milnerら, 1997）、Objective Caml (INRIA, n.d.)
+	、またはHaskell（Peyton Jones ら、1999）などの広い意味で高級で現実的なプログラミング言語のためのものと、小さくて純粋な言語Coq（Dowekら、1993）、NuPrl（Constableら、1986）、またはPX（林·中野、1988）のようなものが根底にあるものに分類することができます。
 
 	In practical programming, type-checking should be theoretically decidable as well as practically feasible for typical programs without requiring an overwhelmingly large number of type annotations.
 
@@ -46,8 +45,7 @@
 
 	Richer type theories such as the Calculus of Inductive Constructions (underlying Coq) or Martin-L¨of type theories (underlying NuPrl) allow full specifications to be formulated, which means that type-checking becomes undecidable or requires excessively verbose type annotations.
 
-
-	（コックの基礎をなす）帰納的構造の計算法または（NuPrlの基礎をなす）マーティン-L型理論など豊かな型理論は、完全な仕様が策定されることを可能にし、これは型チェックが決定不能になったり、過度に冗長な型注釈が必要なことを意味する。
+	（Coqの基礎をなす）帰納的構造の計算法または（NuPrlの基礎をなす）マーティン-L型理論など豊かな型理論は、完全な仕様が策定されることを可能にし、これは型チェックが決定不能になったり、過度に冗長な型注釈が必要なことを意味する。
 
 	It also constrains the underlying functional language to remain relatively pure, so that it is possible to effectively reason about program properties within a type theory.
 
@@ -66,15 +64,15 @@
 
 	Some progress has been made towards bridging this gap, for example, by extracting Caml programs from Coq proofs, by synthesizing proof skeletons from Caml programs (Parent, 1995), or by embedding fragments of ML into NuPrl (Kreitz et al., 1998).
 
-	いくつかの進歩が、またはNuPrlにMLのフラグメントを埋め込むことによってCamlのプログラム（親、1995）から証明骨格を合成することによって、コックプルーフからCamlのプログラムを抽出することにより、例えば、このギャップを埋めるに向かって行われている（Kreitzら、1998）。
+	いくつかの進展は、このギャップを埋めることに向けてなされたもので、例えば、Coqの証明からCamlのプログラムを抽出する、 Camlのプログラム（Parent、1995）から証明骨格を合成する、またはNuPrlにMLのフラグメントを埋め込む（Kreitzら、1998）ことによって行われている。
 
 	In this paper, we address the issue by designing a type system for practical programming that supports a restricted form of dependent types, allowing more program invariants to be captured by types.
 
-	本稿では、複数のプログラム不変量は種類によって捕獲されることを可能にする、依存型の制限された形をサポートして実用的なプログラミングのための型システムを設計することで問題を解決する。
+	本論文で、我々は、複数のプログラム不変条件はタイプによって捕獲されることを可能にする、依存型の制限された形式をサポートしている実用的なプログラミングのための型システムを設計することで問題に対処する。
 
 	We conservatively extend the type system of ML by allowing some dependencies while maintaining practical and unintrusive type-checking.
 
-	我々は、保守的に実用的とunintrusive型チェックを維持しながら、いくつかの依存関係を可能にすることにより、MLの型システムを拡張する。
+	我々は、実用的である事とunintrusive型チェックを維持しながら、いくつかの依存関係を可能にすることにより、MLの型システムを保守的に拡張する。
 
 	It will be shown that a program that is typable in the extended type system is already typable in ML.
 
@@ -86,19 +84,19 @@
 
 	It is in this sense we refer to the extended type system as a conservative extension of ML.
 
-	それは我々がMLの保守的な延長として拡張型システムを参照してください、この意味である。
+	それは我々がMLの保守的な拡張として拡張型システムを参照するという意味である。
 
 	We now present a short example from our implementation before going into further details.
 
-	我々は、ここでさらに詳細に入る前に、当社の実装から短い例を提示する。
+	我々は、ここでさらに詳細に入る前に、我々の実装から短い例を提示する。
 
 	A correct implementation of the append function on lists should return a list of length m + n when given two lists of length m and n, respectively.
 
-	リストにアペンド機能の正しい実装は長さmのリストを返す必要があります+ nは、それぞれ長さmとn、の2つのリストを与えられた時。
+	リストに追加する関数の正しい実装はそれぞれ長さmとnの2つのリストを与えられた時長さm+nのリストを返す必要があります。
 
 	This property, however, cannot be captured by the type system of ML, and the inadequacy can be remedied if we introduce a restricted form of dependent types.
 
-	このプロパティは、しかし、MLの型システムによって捕獲することができない、と我々は依存型の制限された形を導入した場合に不備が改善することができます。
+	このプロパティは、MLの型システムによってキャプチャできないが、しかし、我々が依存型の制限された形を導入した場合に不備を改善することができます。
 
 	The code in Figure 1 is written in the style of ML with a type annotation.
 
@@ -106,38 +104,36 @@
 
 	The declared type constructor list takes a type τ and a type index n (of sort int) to form a type (τ )list(n) for lists of length n in which each element is of type τ .
 
-	宣言された型のコンストラクタリストは、長さのリストのためのNの各要素の型がτのするタイプ（τ）リスト（n）を形成するための型τと（一種のINT）型インデックスnを取ります。
+	宣言された型コンストラクタリストは、型τと(種intの)型インデックスnを取りtype(τ)list(n)の形式で各要素が型τで長さnのリストです。
 
 	The value constructors associated with list are then assigned certain dependent types:
 
-	リストに関連付けられた値コンストラクタは、その後、特定の依存タイプが割り当てられています:
-
+	リストに関連付けられた値コンストラクタは、その後、特定の依存型が割り当てられています:
 
 	- The syntax nil(0) states that the list constructor nil is assigned the type ∀α.(α)list(0), that is, nil is a list of length 0.
-	- 構文はnil（0）以外では、長さが0のリストである、つまり、リストのコンストラクタnilのタイプ`∀α.(α)list(0)`が割り当てられていると述べている。
-	- The syntax {n:nat} cons(n+1) of ’a * ’a list(n) states that the list constructor cons is assigned the following type,
-	- 構文 {n:nat} cons(n+1) of ’a * ’a list(n) は、リストのコンストラクタ短所は次のタイプが割り当てられていることを述べている
+	- 構文nil(0)の状態はリストのコンストラクタはnilが型`∀α.(α)list(0)`が割り当てられていること、つまり、nilは長さ0のリストである。
 
-		
+	- The syntax `{n:nat} cons(n+1)` of `’a * ’a list(n)` states that the list constructor cons is assigned the following type,
+	- `’a * ’a list(n)` の`{n:nat} cons(n+1)` 構文は、リストのコンストラクタconsは次のタイプが割り当てられており、
 
 			∀α.Πn:nat. α ∗ (α)list(n) → (α)list(n + 1)
 
 		that is, cons yields a list of length n + 1 when given a pair consisting of an element and a list of length n.
 
-		要素と、長さnのリストのペアが与えられたとき、すなわち、短所は、長さn+1のリストを与える。
+		すなわち、要素と、長さnのリストのペアが与えられたときにconsは長さn+1のリストを与える。
 
-		We use nat for a subset sort defined as {a : int | a ≥ 0} and the syntax {n:nat} for a universal quantifier over type index variable n of the subset sort nat.
+		We use nat for a subset sort defined as `{a : int | a ≥ 0}` and the syntax `{n:nat}` for a universal quantifier over type index variable n of the subset sort nat.
 
-		ソートNATサブセットのタイプインデックス変数nにわたって普遍数量詞のために：{NAT N}と構文|：{≥0をINT}我々は一種として定義されたサブセットにNATを使用します。
+		私たちは、ソートnat部分集合のタイプインデックス変数n以上の普遍数量詞のために、ソート`{a : int | a ≥ 0}`と`{n:nat}`構文として定義された部分集合にnatを使用します。
 
 
 	The withtype clause in the definition of the function append is a type annotation, which precisely states that append returns a list of length m + n when given a pair of lists of length m and n, respectively.
 
-	関数はappendの定義でwithtype句は正確にアペンドは長さmのリストを返すことを述べ型注釈、+ nはそれぞれ長さmとnのリストの組が与えられたとき。
+	関数appendの定義でwithtype句は型注釈で、正確にそのそれぞれの長さmとnのリストの対が与えられたときに長さm + nのリストを足し合わせて返す。
 
 	The annotated type can be formally written
 
-	注釈付きのタイプは、形式的に記述することができ
+	注釈付きの型は、形式的に記述することができ、
 
 		fun (’a)
 		    filter p [] = []
@@ -155,45 +151,48 @@
 
 	which we often call a universal dependent type.
 
-	その我々はしばしばユニバーサル依存型を呼び出します。
+	我々はしばしばユニバーサル依存型を呼び出します。
 
-	In general, the programmer is responsible for assigning dependent types to value constructors associated with a declared datatype constructor; he or she is also responsible for providing type annotations against which programs are automatically checked.
+	In general, the programmer is responsible for assigning dependent types to value constructors associated with a declared datatype constructor;
+
+	一般的には、プログラマが宣言したデータ型のコンストラクタに関連付けられている値のコンストラクタに依存型を割り当てる責任がある。
+
+	he or she is also responsible for providing type annotations against which programs are automatically checked.
 	
-	一般的には、プログラマが宣言したデータ型のコンストラクタに関連付けられている値のコンストラクタに依存型を割り当てるための責任がある。彼または彼女はまた、プログラムが自動的にチェックされ、それに対して型注釈を提供する責任があります。
+	彼または彼女はまた、プログラムが自動的にチェックされ、それに対して型注釈を提供する責任があります。
 
 	Adding dependent types to ML raises a number of theoretical and pragmatic questions.
 
-	MLへの依存型を追加すると、理論的、実践的な質問の数を提起する。
+	MLへの依存型を追加は、理論的、実践的な問題がいくつか起きる。
 
 	In particular, the kind of pure type inference in ML, which is certainly desirable in practice, becomes untenable, and a large portion of the paper is devoted to addressing various issues involved in supporting a form of partial type inference.
 
-	具体的には、実際には確かに望ましいMLで純粋な型推論の種類は、支持できないなり、紙の大部分は、部分的な型推論の形式をサポートしているに関与する様々な問題に対処するに専念しています。
+	具体的には、実際には確かに望ましいMLで純粋な型推論の種類は、支持できないなり、論文の大部分は、部分的な型推論の形式をサポートしているに関与する様々な問題に対処するに専念しています。
 
 	We briefly summarize our results and design choices as follows.
 	
-	次のように我々は簡単に我々の結果と設計上の選択を要約。
+	次のように私たちは簡潔に我々の結果と設計上の選択をまとめる。
 
 	The first question that arises is the meaning of expressions with effects when they occur as type index terms.
 
-	彼らは型インデックス用語として発生したときに生じる最初の質問は効果を持つ表現の意味である。
+	最初の問題は、彼らは型インデックス項として発生したときに、その発生したが効果を持つ式の意味である。
 
 	In order to avoid the difficulty, we require that type index terms be pure.
 
-	困難を回避するために、我々は、そのタイプのインデックス用語が純粋であることが必要です。
+	困難を回避するために、我々はその型インデックス項が純粋であることが必要です。
 
 	In fact, our type system is parameterized over a pure type index language from which type index terms are drawn.
 
-	実際には、我々の型システムは、型インデックス用語が描画されるから純粋なタイプインデックス言語上のパラメータ化されている。
+	実際には、我々の型システムは、型インデックス項が書かれるから純粋な型インデックス言語上でパラメータ化されている。
 
 	We can maintain this purity and still make the connection to run-time values by using singleton types, such as int(n), which is the type for integer expressions of value equal to n.
 
-
-	我々は、この純度を維持し、まだ接続が実行時のためにそのようなnに等しい値の整数式の型であるINT（N）、などのシングルトン型を使用して値を作ることができます。
-
+	私たちは、この純度を維持し、まだそのnに等しい値の整数式の型であるint(n)などのシングルトン型を、使用して値を実行時の接続を行うことができます。
 
 	This is critical for practical applications such as static elimination of array bound checks (Xi & Pfenning, 1998).
 
-	これは、このような配列境界チェック（XI＆プフェニング、1998）の静電気除去などの実用的なアプリケーションのために重要である。
+	これは、このような配列境界チェック(Xi & Pfenning, 1998)の静的除去などの実用的なアプリケーションのために重要である。
+
 
 	The second question is the decidability and practicality of type-checking.
 
@@ -201,11 +200,13 @@
 
 	We address this in two steps: the first step is to define an explicitly typed (and unacceptably verbose) language for which type-checking is easily reduced to constraint satisfaction in some type index language L.
 
-	我々は2つのステップでこれに対処：最初のステップは、型チェックが簡単にいくつかのタイプインデックス言語Lに満足度を制約するために還元されるために明示的に入力（および許容できないほど冗長）の言語を定義することです
+	我々は2つのステップでこれに対処する：最初のステップは、型チェックが簡単にいくつかの型インデックス言語Lに満足度を制約するために還元されるために明示的に入力（および許容できないほど冗長）の言語を定義することです。
+
+	我々は2つのステップでこれに対処する：最初のステップは、型チェックが簡単にいくつかの型インデックス言語Lに満足度を制約に還元されるために明示的に入力する（受け入れ難いほど冗長な）言語を定義することです
 
 	The second step is to define an elaboration from DML(L), a slightly extended fragment of ML, to the fully explicitly typed language which preserves the standard operational semantics.
 
-	第二段階は、標準的な操作的意味論を維持し、完全に明示的に型付けされた言語に、DML（L）、MLの少し延長フラグメントから推敲を定義することです。
+	第二段階は、標準的な操作的意味論を維持し、完全に明示的に型付けされた言語に、DML（L）、MLをわずかに拡張した断片から推敲を定義することです。
 
 	The correctness of elaboration and decidability of type-checking modulo constraint satisfiability constitute the main technical contribution of this paper.
 
@@ -217,54 +218,59 @@
 
 	For this we use existential dependent types, although they introduce non-trivial technical complications into the elaboration procedure.
 
-	彼らは推敲手続きに非自明な技術的な合併症をご紹介しますが、このために我々は、実存依存型を使用します。
+	彼らは推敲手続きに非自明な技術的な複雑化を引き起こしますが、このために我々は、実存依存型を使用します。
 
 	Our experience clearly shows that existential dependent types, which are involved in nearly all the realistic examples in our experiments, are indispensable in practice.
-	
+
 	我々の経験は、明らかに、我々の実験ではほぼすべての現実的な実施例に関係している実存依存型は、実際には不可欠であることを示している。
 
 		∀α.Πm:nat. (α)list(m) → Σn:{a : nat | a ≤ m}. (α)list(n)
-
 
 	where {a : nat | a ≤ m} is a sort for natural numbers that are less than or equal to m.
 
 	ここで、{a : nat | a ≤ m} はm以下の自然数のソートです。
 
-	The type Σn:{a : nat | a ≤ m}. (α)list(n), which is for lists of length less than or equal to m, is what we call an existential dependent type.
+	The type `Σn:{a : nat | a ≤ m}. (α)list(n)`, which is for lists of length less than or equal to m, is what we call an existential dependent type.
 
-	型のΣnを：{：NAT|≤Mを}。 M以下の長さのリストのためである（α）リスト（n）は、我々は実存依存型と呼んでいるものです。
+	m以下か等しい長さのリストである型`∀α.Πm:nat. (α)list(m) → Σn:{a : nat | a ≤ m}. (α)list(n)`は、我々が実存依存型と呼んでいるものです。
 
 	The type assigned to filter simply means that the output list returned by filter cannot be longer than the input list taken by filter.
 
-	単にフィルタリングするために割り当てられたタイプは、フィルタによって返された出力リストがフィルターで撮影した入力リストよりも長くすることはできませんことを意味します。
+	単にフィルタリングするために割り当てられたタイプは、フィルタによって返された出力リストがフィルターを通した入力リストよりも長くすることはできないことを意味します。
 
 	Without existential dependent types, in order to assign a type to filter, we may have to compute in the type system the exact length of the output list returned by filter in terms of the input list and the predicate taken by filter.
 
-	実存依存型がなければ、フィルタに型を割り当てるために、我々は型システムに入力リストとフィルタが撮影した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
+	実存依存型がなければ、フィルタに型を割り当てるために、我々は型システムに入力リストとフィルタを通した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
 
 	This would most likely make the type system too complicated for practical programming.
 
-	これが最も可能性の高い実用的なプログラミングのための型システムが複雑になるだろう。
+	これはほとんどの場合実用的なプログラミングのための型システムが複雑になるだろう。
 
 	For instance, the function filter defined in Figure 2 is assigned the following types:
 
-	例えば、図2で定義された関数フィルタは、次のタイプが割り当てられます。
+	例えば、図2で定義された関数フィルタは、次の型が割り当てられます。
+
+ーーーーーーーーーーー 4
 
 	We have so far finished developing a theoretical foundation for combining dependent types with all the major features in the core of ML, including datatype declarations, higher-order functions, general recursion, polymorphism, mutable references and exceptions.
 
-	我々はこれまでに、データ型の宣言、高階関数、一般的な再帰、多型、変更可能な参照や例外を含むMLのコア内のすべての主要な機能、と依存型を組み合わせるための理論的基礎を開発の完了した。
+	我々はこれまでに、データ型の宣言、高階関数、一般的な再帰、多相型、変更可能な参照や例外を含むMLのコア内のすべての主要な機能を持つ依存型を組み合わせるための理論的基礎の開発を完了した。
 
-	We have also implemented our design for a fragment of ML that encompasses all these features. In addition, we have experimented with different constraint domains and applications.
+	We have also implemented our design for a fragment of ML that encompasses all these features.
 
-	また、これらすべての機能を包含し、MLの断片のために我々のデザインを実装しました。加えて、我々は別の制約ドメインおよびアプリケーションで実験してきた。
+	また、これらすべての機能を包含し、MLの断片のために我々のデザインを実装しました。
+
+	In addition, we have experimented with different constraint domains and applications.
+
+	加えて、我々は別の制約ドメインおよびアプリケーションで実験してきた。
 
 	Many non-trivial examples can be found in (Xi, 1999).
 
-	多くの非自明な例は（XI、1999）に記載されています
+	多くの非自明な例は(Xi、1999)に記載されています。
 
 	At this point, we suggest that the reader first take a look at the examples in Section 7 so as to obtain a sense as to what can be effectively done in DML.
 
-	この時点で、我々は、読者が最初にそう効果的にDMLで行うことができるものにとして意味が得られるように第7節の例を見てみましょうことを示唆している。
+	この時点で、我々は、読者が最初にそう効果的にDMLで行うことができるものにとして意味が得られるように7章の例を見てみてください。
 
 	In our experience, DML(L) is acceptable from the pragmatic point of view: programs can often be annotated with little internal change and type annotations are usually concise and to the point.
 
@@ -272,48 +278,53 @@
 
 	The resulting constraint simplification problems can be solved efficiently in practice once the type index language L is properly chosen.
 
-
 	型インデックス言語Lが適切に選択された後、得られた制約の簡略化の問題は、実際に効率的に解くことができる。
 
 	Also the type annotations are mechanically verified, and therefore can be fully trusted as program documentation.
 
-	また、型注釈は、機械的に検証されているため、完全にプログラムの資料として信頼することができます。
+	また、型注釈は、機械的に検証されているため、完全にプログラムドキュメントとして信頼することができます。
 
 	The form of dependent types studied in this paper is substantially different from the usual form of dependent types in Martin-L¨of’s development of constructive type theory (Martin-L¨of, 1984; Martin-L¨of, 1985).
 
-	本論文で研究依存型の形式は、建設的な型理論のマーティン-LOFの開発に依存型の通常の形と実質的に異なる（マーティン-LOF、1984;マーティン-LOF、1985）。
+	本論文で研究した依存型の形式は、建設的な型理論のマーティン-LOFが開発した依存型の通常の形と実質的に異なる(Martin-L¨of, 1984; Martin-L¨of, 1985)。
 
 	In some earlier research work (Xi, 1998; Xi & Pfenning, 1999) on which this paper is largely based, the dependent types studied in this paper are called a restricted form of dependent types.
 
-	いくつかの以前の研究作業では、この論文は、主に基づいている（西、1998年西＆プフェニング、1999）、本論文で検討依存型は、依存型の限定された形と呼ばれている。
+	いくつかの以前の研究作業では、この論文は、主に(Xi, 1998; Xi & Pfenning, 1999)に基づいており、本論文で検討する依存型は、依存型の限定された形と呼ばれている。
 
 	From now on, we may also use the name DML-style dependent types to refer to such a restricted form of dependent types.
 
-	今から、我々はまた、依存型のような制限された形を参照するために名前のDMLスタイル依存型を使用することができます。
+	今から、我々はまた、依存型のような制限された形を参照するためにDMLスタイル依存型の名前を使用することができます。
 
-	The remainder of the paper is organized as follows. In Section 2, we present as a starting point a simply typed language λpat, which essentially extends the simply typed λ-calculus with recursion and general pattern matching.
+ーーーーーーーーーーー 5
 
-	次のように論文の構成はされている。第2節では、出発点本質的に再帰と一般的なパターンマッチングと単純に型指定されたλ計算を拡張し、単純に型付けされた言語λpat、として存在する。
+	The remainder of the paper is organized as follows.
+
+	次のように論文の構成はされている。
+
+	In Section 2, we present as a starting point a simply typed language λpat, which essentially extends the simply typed λ-calculus with recursion and general pattern matching.
+
+	2章では、私たちは、単純に型付けされた言語として存在するλpatを出発点として、本質的に再帰と一般的なパターンマッチングと単純に型指定されたλ計算を拡張します。
 
 	We then formally describe in Section 3 how type index languages can be formed.
 
-	タイプインデックス言語を形成することができるどのように我々は、その後正式に第3章で説明します。
+	私たちは、その後正式に3章でタイプインデックス言語がどのように形成することができるかを説明します。
 
 	In particular, we explain how constraint relations can be properly defined in type index languages.
 
-	特に、我々は、制約関係が正しくタイプインデックス言語で定義することができる方法について説明。
+	特に、我々は、制約関係が正しく型インデックス言語で定義することが可能な方法について説明します。
 
 	The core of the paper lies in Section 4, where a language λΠ,Σ pat is introduced that extends λpat with both universal and existential dependent types.
 
-	紙のコアは、普遍的かつ実存依存型の両方を持つλpat拡張言語λΠ、Σパットが導入された第4節、にある。
+	論文のコアは、普遍的かつ実存依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
 
 	We also formally prove the subject reduction theorem and the progress theorem for λΠ,Σ pat , thus establishing the type soundness of λΠ,Σ pat .
 
-	我々はまた、正式にこのようにλΠ、Σパットのタイプの健全性を確立し、対象の減少定理とλΠの進行状況定理、Σのパットを証明する。
+	我々はまた、正式にこのようにλΠ,Σpatのタイプの健全性を確立し、対象還元定理(subect reduction定理)とλΠ,ΣpatのProgress定理を証明する。
 
 	In Section 5, we introduce an external language DML0 designed for the programmer to construct programs that can be elaborated into λΠ,Σ pat .
 
-	第5節では、我々はλΠ、Σのパットに合成することができるプログラムを構築するために、プログラマのために設計された外部言語DML0をご紹介します。
+	5章では、我々はλΠ,Σ pat に合成することができるプログラムを構築するために、プログラマのために設計された外部言語DML0をご紹介します。
 
 	We present a set of elaboration rules and then justify these rules by proving that they preserve the dynamic semantics of programs.
 
@@ -321,11 +332,13 @@
 
 	In support of the practicality of λΠ,Σ pat , we extend λΠ,Σ pat in Section 6 with parametric polymorphism (as is supported in ML), exceptions and references.
 
-	λΠ、Σのパットの実用性のサポートでは、我々はλΠ、（MLでサポートされていたように）パラメトリック多型と6節でΣパット、例外と参照を拡張します。
+	λΠ, Σ patの実用性のサポートでは、我々は、λΠ,Σ patを6章で（MLでサポートされていたように）パラメトリック多相型、例外と参照で拡張します。
 
-	Also, we present some interesting examples in Section 7 to give the reader a feel as to how dependent types can be
+------->
 
-	また、我々は、依存型ができますどのように読者に感じを与えるために第7節では、いくつかの興味深い例を提示
+	Also, we present some interesting examples in Section 7 to give the reader a feel as to how dependent types can be used in practice to capture program invariants.
+
+	また、我々は、プログラムの不変条件を捕捉するために、実際にどのように依存型を使用できるかの感じを読者に与えるために7章でいくつかの興味深い例を提示する。
 
 		base types    δ ::= bool | int | . . .
 		types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
@@ -340,13 +353,9 @@
 
 	Fig. 3. The syntax for λpat
 
-	used in practice to capture program invariants.
-
-	プログラム不変量をキャプチャするために実際に使用される。
-
 	We mention some closely related work in Section 8 and then conclude.
 
-	我々は、第8章のいくつかの密接に関連した仕事を言及してから結論付けている。
+	我々は、8章でいくつかの関連研究に言及し結論を述べる。
 
 - 2 λpat: A starting point
 
@@ -430,24 +439,6 @@
 
 	このように決めた主な理由は、5章で特別に扱われていますが、タプルの詳細な手順は依存型の存在下で部分的な型推論の形式をサポートするために提示されているためです。
 
-		------------- (pat-var)
-		x ↓ τ ⇒ x : τ
-
-		------------- (pat-unit)
-		<> ↓ 1 ⇒ ∅
-
-		p1 ↓ τ1 ⇒ Γ1   p2 ↓ τ2 ⇒ Γ2
-		--------------------------- (pat-prod)
-		<p1, p2> ↓ τ1 ∗ τ2 ⇒ Γ1, Γ2
-
-		|- cc(τ):δ    p ↓ τ ⇒ Γ
-		----------------------- (pat-const)
-		cc(p) ↓ δ ⇒ Γ
-
-		Fig. 4. The typing rules for patterns in λpat
-
-		図.4. λpatにおけるパターンの型付け規則
-
 	We use θ for a substitution, which is a finite mapping that maps lam-bound variables x to values and fix-bound variables to fixed-point expressions.
 
 	我々は、固定小数点式に値と固定バインドされた変数にlam-バインドされた変数xをマッピングした有限マッピングである置換のためにθを使用しています。
@@ -498,15 +489,33 @@
 
 	Given a pattern p and a type τ , we can derive a judgment of the form p ↓ τ ⇒ Γ with the rules in Figure 4, which reads that checking pattern p against type τ yields a context Γ.
 
-	パターンpと型τを考えると、我々は、型τに対してパターンpをチェックするコンテキストΓが得られること読み込む図4のルールを持つフォームP↓のτの⇒Γ、の判断を導き出すことができます。
+	パターンpと型τを考えると、我々は、型τに対してパターンpをチェックするコンテキストΓが得られること読み込む図4のルールを持つ`p ↓ τ ⇒ Γ`の形の判断を導出することができます。
+
+		------------- (pat-var)
+		x ↓ τ ⇒ x : τ
+
+		------------- (pat-unit)
+		<> ↓ 1 ⇒ ∅
+
+		p1 ↓ τ1 ⇒ Γ1   p2 ↓ τ2 ⇒ Γ2
+		--------------------------- (pat-prod)
+		<p1, p2> ↓ τ1 ∗ τ2 ⇒ Γ1, Γ2
+
+		|- cc(τ):δ    p ↓ τ ⇒ Γ
+		----------------------- (pat-const)
+		cc(p) ↓ δ ⇒ Γ
+
+		Fig. 4. The typing rules for patterns in λpat
+
+		図.4. λpatにおけるパターンの型付け規則
 
 	Note that the rule (pat-prod) is unproblematic since p1 and p2 cannot share variables.
 
 	p1およびp2は、変数を共有することができないので、ルール(pat-prod)は問題がないことに注意してください。
 
-	Also note that we write ` cc(τ ) : δ in the rule (pat-const) to indicate that cc is a constant constructor of c-type τ ⇒ δ.
+	Also note that we write |- cc(τ ) : δ in the rule (pat-const) to indicate that cc is a constant constructor of c-type τ ⇒ δ.
 
-	そのCCはC型τの定数コンストラクタはδを⇒であることを示すために、ルール（PAT-定数）でδ：また、我々は`CC（τ）を書くことに注意してください。
+	そのCCはC型τの定数コンストラクタはδを⇒であることを示すために、ルール（pat-const）でδ：また、我々は|-CC（τ）を書くことに注意してください。
 
 	As an example, let us assume that intlist is a base type, and nil and cons are constructors of c-types 1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively; then the following judgments
 
@@ -514,54 +523,54 @@
 
 		Γ(xf) = τ
 		------------- (ty-var)
-		Γ ` xf : τ
+		Γ |- xf : τ
 
-		` c(τ ) : δ Γ ` e : τ
+		|- c(τ ) : δ Γ |- e : τ
 		--------------------- (ty-const)
-		Γ ` c(e) : δ
+		Γ |- c(e) : δ
 
 		----------- (ty-unit)
-		Γ ` hi : 1
+		Γ |- hi : 1
 
-		Γ ` e1 : τ1 Γ ` e2 : τ2
+		Γ |- e1 : τ1 Γ |- e2 : τ2
 		----------------------- (ty-prod)
-		Γ ` he1, e2i : τ1 ∗ τ2
+		Γ |- he1, e2i : τ1 ∗ τ2
 
-		Γ ` e : τ1 ∗ τ2
+		Γ |- e : τ1 ∗ τ2
 		--------------- (ty-fst)
-		Γ ` fst(e) : τ1
+		Γ |- fst(e) : τ1
 
-		Γ ` e : τ1 ∗ τ2
+		Γ |- e : τ1 ∗ τ2
 		--------------- (ty-snd)
-		Γ ` snd(e) : τ2
+		Γ |- snd(e) : τ2
 
-		p ↓ τ1 ⇒ Γ1 Γ, Γ1 ` e : τ2
+		p ↓ τ1 ⇒ Γ1 Γ, Γ1 |- e : τ2
 		-------------------------- (ty-clause)
-		Γ ` p ⇒ e : τ1 → τ2
+		Γ |- p ⇒ e : τ1 → τ2
 
-		Γ ` pi ⇒ ei : τ1 → τ2 for i = 1, . . . , n
+		Γ |- pi ⇒ ei : τ1 → τ2 for i = 1, . . . , n
 		------------------------------------------ (ty-clause-seq)
-		Γ ` (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
+		Γ |- (p1 ⇒ e1 | · · · | pn ⇒ en) : τ1 → τ2
 
-		Γ ` e : τ1 Γ ` ms : τ1 → τ2
+		Γ |- e : τ1 Γ |- ms : τ1 → τ2
 		--------------------------- (ty-case)
-		Γ ` case e of ms : τ2
+		Γ |- case e of ms : τ2
 
-		Γ, x : τ1 ` e : τ2
+		Γ, x : τ1 |- e : τ2
 		--------------------- (ty-lam)
-		Γ ` lamx. e : τ1 → τ2
+		Γ |- lamx. e : τ1 → τ2
 
-		Γ ` e1 : τ1 → τ2 Γ ` e2 : τ1
+		Γ |- e1 : τ1 → τ2 Γ |- e2 : τ1
 		---------------------------- (ty-app)
-		Γ ` e1(e2) : τ2
+		Γ |- e1(e2) : τ2
 
-		Γ, f : τ ` e : τ
+		Γ, f : τ |- e : τ
 		---------------- (ty-fix)
-		Γ ` fix f. e : τ
+		Γ |- fix f. e : τ
 
-		Γ ` e1 : τ1 Γ, x : τ1 ` e2 : τ2
+		Γ |- e1 : τ1 Γ, x : τ1 |- e2 : τ2
 		------------------------------- (ty-let)
-		Γ ` let x = e1 in e2 end : τ2
+		Γ |- let x = e1 in e2 end : τ2
 
 		Fig. 5. The typing rules for expressions in λpat
 
@@ -570,7 +579,7 @@
 
 	are derivable:
 
-	導出以下のとおりです。
+	の導出は以下のとおりです:
 
 		cons (hx, xsi) ↓ intlist ⇒ x : int, xs : intlist
 		cons (hx, nil(hi)i) ↓ intlist ⇒ x : int
@@ -605,13 +614,13 @@
 
 	- Lemma 2.1 (Thinning)
 
-		Assume D :: Γ ` e : τ .
+		Assume D :: Γ |- e : τ .
 	
-		D :: Γ ` e : τ を想定。
+		D :: Γ |- e : τ を想定。
 
-		Then there is a derivation D0:: Γ, xf : τ0 ` e : τ such that height(D) = height(D0), where τ0 is any well-formed type.
+		Then there is a derivation D0:: Γ, xf : τ0 |- e : τ such that height(D) = height(D0), where τ0 is any well-formed type.
 
-		その後、派生D0::Γ、XFがある：E`τ0：τよう高さ（D）=高さτ0は任意の整形タイプです（D0）、。
+		その後、派生D0::Γ、XFがある：E|-τ0：τよう高さ（D）=高さτ0は任意の整形タイプです（D0）、。
 
 		The following lemma indicates a close relation between the type of a closed value and the form of the value.
 
@@ -623,7 +632,7 @@
 
 	- Lemma 2.2 (Canonical Forms)
 
-		Assume that ∅ ` v : τ is derivable.
+		Assume that ∅ |- v : τ is derivable.
 
 		1. If τ = δ for some base type δ, then v is of the form cc(v0), where cc is a constant constructor assigned a c-type of the form τ0 ⇒ δ.
 		2. If τ = 1, then v is hi.
@@ -646,9 +655,9 @@
 
 		だから、C-タイプを導入する正確な目的は、フォームのラメxのその値だけを保証することです。 eはフォームτ1→τ2のタイプを割り当てることができます。
 
-		Given Γ, Γ0 and θ, we write Γ ` θ : Γ0 to indicate that Γ ` θ(xf) : Γ0(xf) is derivable for each xf in dom(θ) = dom(Γ0).
+		Given Γ, Γ0 and θ, we write Γ |- θ : Γ0 to indicate that Γ |- θ(xf) : Γ0(xf) is derivable for each xf in dom(θ) = dom(Γ0).
 
-		Γ、Γ0を考えると、θ、我々はΓは`θ書く：Γ0（XF）はDOM（θ）= DOMの各XF（Γ0）のために誘導可能である：Γ0はΓは`θ（XF）があることを示すために。
+		Γ、Γ0を考えると、θ、我々はΓは|-θ書く：Γ0（XF）はDOM（θ）= DOMの各XF（Γ0）のために誘導可能である：Γ0はΓは|-θ（XF）があることを示すために。
 
 		The following lemma is often given the name Substitution Lemma, which is needed in the proof of Theorem 2.8, the Subject Reduction Theorem for λpat.
 
@@ -656,13 +665,13 @@
 
 	- Lemma 2.3 (Substitution)
 
-		Assume that Γ ` θ : Γ0 holds.
+		Assume that Γ |- θ : Γ0 holds.
 
-		Γ0が成り立つ：Γ`θがあるとします。
+		Γ0が成り立つ：Γ|-θがあるとします。
 
-		If Γ, Γ0 ` e : τ is derivable, then Γ ` e[θ] : τ is also derivable.
+		If Γ, Γ0 |- e : τ is derivable, then Γ |- e[θ] : τ is also derivable.
 
-		τ導出され、その後Γ`E [θ]：Γ、Γ0` eがあればτも誘導可能である。
+		τ導出され、その後Γ|-E [θ]：Γ、Γ0|- eがあればτも誘導可能である。
 
 - 2.2 Dynamic semantics
 
@@ -832,39 +841,45 @@
 
 		これは正確にλpatのタイプの健全性である。
 
-- 2.3 Type soundness
+- 2.3 Type soundness 型健全性
 
 	We are now ready to state the subject reduction theorem for λpat, which implies that the evaluation of a well-typed expression in λpat does not alter the type of the expression.
 
-	現在λpatではよく型付けされた式の評価が式の型を変更しないことを意味しているλpatの件名削減定理を、明記する準備が整いました。
+	現在λpatではwell-typedな式の評価が式の型を変更しないことを意味しているλpatの対象還元定理(subject reduction theorem)を、明記する準備が整いました。
 
 	For each constant function cf of c-type τ ⇒ δ, if ∅ ` v : τ is derivable and c(v) is defined to be v0, then we require that ∅ ` v0 : δ be also derivable.
 
-	τ導出であり、cは、（V）はV0であると定義され、その後、我々は∅`V0があることを必要とする、：：導出もなけれδ∅` vがあれば、C型τの各定数関数のCFの場合は、δ。⇒。
+	`∅ |- v : τ`は導出可能であり、`c(v)`が、`v0`であると定義されている場合は、c-type `τ ⇒ δ` の各定数関数のcfのために、私たちは`∅ |- v0 : δ`が導き出せるもあることを必要とする。
 
 	In other words, we require that each constant function meet its specification, that is, the c-type assigned to it.
 
-	言い換えれば、我々は、各定数関数、すなわち、c-型が割り当てられ、その仕様を満たしていることを必要とする。
+	言い換えれば、我々は、各定数関数、すなわち、`c-type`が割り当てられ、その仕様を満たしていることを必要とする。
 
 	- Theorem 2.8 (Subject Reduction)
-	
-		Assume that ∅ ` e1 : τ is derivable and e1 ,→ev e2 holds. Then ∅ ` e2 : τ is also derivable.
+	- 定理 2.8 (対称還元)
 
-		τ保持し、→EV E2導出およびE1です：E1は`∅と仮定します。その後∅`e2は：τも誘導可能である。
+		Assume that ∅ |- e1 : τ is derivable and e1 ,→ev e2 holds.
+
+		`∅ |- e1 : τ`を導出可能で、`e1,->ev e2`を保持すると仮定します。
+
+		Then `∅ |- e2 : τ` is also derivable.
+
+		その後`∅ |- e2 : τ`も導出可能である。
 
 		Lemma 2.3 is used in the proof of Theorem 2.8.
 
 		補題2.3は定理2.8の証明に使用されている。
 
 	- Theorem 2.9 (Progress)
+	- 定理 2.9 (推移)
 
-		Assume that ∅ ` e1 : τ is derivable.
+		Assume that `∅ |- e1 : τ` is derivable.
 
-		τ誘導可能である：E1は`∅と仮定します。
+		`∅ |- e1 : τ`が導出出来ると仮定します。
 
 		Then there are only four possibilities:
 
-		その後、4つだけの可能性がある。
+		その後、4つのみの可能性がある:
 
 		- e1 is a value, or
 		- e1 is in M-form, or
@@ -873,34 +888,33 @@
 
 		Note that it is implied here that e1 cannot be in E-form.
 
-		それはE1は、E-形態であることができないことをここで暗示されていることに注意してください。
+		e1は、E-formであることができないことをここで暗黙的に示されていることに注意してください。
 
 		Lemma 2.2 is needed in the proof of Theorem2.9.
 
-
-		補題2.2はTheorem2.9の証明で必要とされる。
+		補題2.2はTheorem2.9の証明で必要とされる:
 
 		By Theorem 2.8 and Theorem 2.9, we can readily claim that for a well-typed closed expression e, either e evaluates to a value, or e evaluates to an expression in M-form, or e evaluates to an expression in U-form, or e evaluates forever.
 
-		定理2.8と定理2.9により、我々は容易に十分に型付けされたクローズド式eのため、どちらかEが値に評価される、またはEはM-形で表現と評価された、または電子は、U-形で式に評価されていることを主張することができ、またはeは永遠に評価します。
+		定理2.8と定理2.9により、我々は容易にwell-typedな型付けされ閉じられた式eのため、eが値に評価されるか、eはM-formで表現と評価されるか、またはeは、U-form で式に評価されているか、またはeは永遠に評価されることのいずれかを主張することができます。
 
 		In particular, it is guaranteed that e ,→∗ ev Error can never happen for any well-typed expression e in λpat.
 
-		特に、E、→* EVエラーがλpatで任意のよく型付けされた式eのために決して起こらないことが保証されている。
+		特に、`e, →* ev` エラー が λpat内の任意のwell-typedな式eのために決して起こらないことが保証されている。
 
 - 2.4 Operational equivalence
 
 	We will present an elaboration procedure in Section 5, which maps a program written in an external language into one in an internal language.
 
-	我々は、内部の言語で一つに外部言語で書かれたプログラムをマッピング節5に推敲手順を紹介します。
+	私たちは、5章でその内部言語で一つに外部言語で書かれたプログラムをマップする詳細な手順を紹介します。
 
 	We will need to show that the elaboration of a program preserves the operational semantics of the program.
 
-	我々は、プログラムの精緻化は、プログラムの操作的意味を保持していることを示す必要があります。
+	我々は、プログラムの詳細化は、プログラムの操作的意味を保持していることを示す必要があります。
 
 	For this purpose, we first introduce the notion of general contexts as follows:
 
-	次のように、この目的のために、まず一般的なコンテキストの概念を導入する。
+	この目的のために、まず一般的なコンテキストの概念を次のように導入します:
 
 		general contexts G ::=
 			[] | c(G) | hG, ei | he, Gi | fst(G) | snd(G) | lam x. G | G(e) | e(G) |
@@ -910,34 +924,28 @@
 
 	Given a general context G and an expression e, G[e] stands for the expression obtained from replacing with e the hole [] in G.
 
-	一般的な文脈Gおよび式eを考えると、Gは、[E]はG.で電子とホール[]に置き換えるから得られる発現の略
+	一般的な文脈Gおよび式eを考えると、G[e]はG内のeとホール[]の置換で得られた式を意味する。
 
 	We emphasize that this replacement may capture free variables in e.
 
-	我々は、この置換はEで自由変数を取り込むことができることを強調。
+	我々は、この置換はe内の自由変数を取り込むことができることを強調する。
 
 	For instance, G[x] = lamx. x if G = lam x. [].
 
-	例えば、G [X]= lamx。 X Gは=ラメxの場合。 []。
+	例えば、G = lam x. []の場合 G[x]= lamx. x です。
 
 	The notion of operational equivalence can then be defined as follows.
 
-	次のように運用等価の概念は、次に定義することができる。
+	次のように運用等価の概念は、次のように定義することができる。
 
 	- Definition 2.10
+	- 定義 2.10
 
 		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 is operationally equivalent to e2 if the following holds.
 
-		二つの式E1を考えると自由変数を含むことができるλpat、中E2、我々はe1は以下が保持している場合E2に操作上等価であると言う。
+		二つの式e1と自由変数を含むことができるλpat中のe2を考えると、以下が保持している場合は我々はe1はe2に操作上等価であると言います。
 
-		• Given any context G, G[e1] ,→∗
-		ev v
-		∗ holds if and only if G[e2] ,→∗
-		ev v
-		∗
-		, where
-		v
-		∗
+		• Given any context G, G[e1] ,→∗ ev v∗ holds if and only if G[e2] ,→∗ ev v∗ , where v∗
 
 		ranges over EMUV, that is, the union of EMU and the set of observable values.
 
@@ -960,21 +968,15 @@
 		このかなり厄介な問題に対処するために、我々はλpatの式に≤dyn反射的かつ推移的な関係を紹介する。
 
 	- Definition 2.11
+	- 定義 2.11
 
 		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 ≤dyn e2 holds if for any context G,
 
 		二つの式E1を考えると自由変数を含むことができるλpatでE2、我々は、E1≤dynE2はG任意のコンテキストのための場合、保持していることを言う
 
-		• either G[e2] ,→∗
-		ev Error holds, or
-		• G[e1] ,→∗
-		ev v
-		∗
-		if and only if G[e2] ,→∗
-		ev v
-		∗
-		, where v
-		∗
+		• either G[e2] ,→∗ ev Error holds, or
+		• G[e1] ,→∗ ev v∗ if and only if G[e2] ,→∗ ev v∗, where v∗
+
 		ranges over EMUV, that is, the union of EMU and the set of observable values.
 
 		つまり、EMUVの上の範囲、EMUの労働組合と観測可能な値のセット。
@@ -1058,23 +1060,24 @@
 
 		We now mention a lemma as follows:
 
-		次のように我々は現在、補題に言及：
+		我々は今次のように補題に言及します：
 
 	- Lemma 2.14
 
 		Given two expressions e and e0 in λpat that may contain free variables, e ,→∗ g e0 implies e0 ≤dyn e.
 
-		、二つの式eと自由変数、Eを含むことができるλpatでE0を考える→* GのE0は、E0の≤dynEを意味します。
+		二つの式 eと自由変数を含むことができるλpatでe0を考えるとき `e, →* g e0`は、e0 ≤ dyn e を意味します。
 
 	- Proof
+	- 証明
 
 		A (lengthy) proof of the lemma is given in Appendix A.
 
-		補題の（長い）証明は付録Aに記載されている
+		補題の（長い）証明は付録Aに記載されています。
 
 		This lemma is to be of important use in Section 5, where we need to establish that the dynamic semantics of a program cannot be altered by elaboration.
 
-		この補題は、我々はプログラムの動的な意味論を精緻化することによって変更することができないことを確立する必要がある第5節、中の重要な用途であることがある。
+		この補題は、我々はプログラムの動的な意味論を精緻化することによって変更することができないことを確立する必要があり、5章中で重要な役割りを持つ。
 
 - 3 Type index language
 
