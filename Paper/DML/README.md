@@ -232,11 +232,11 @@
 
 	For this we use existential dependent types, although they introduce non-trivial technical complications into the elaboration procedure.
 
-	彼らは推敲手続きに非自明な技術的な複雑化を引き起こしますが、このために我々は、実存依存型を使用します。
+	彼らは推敲手続きに非自明な技術的な複雑化を引き起こしますが、このために我々は、existential(実存)依存型を使用します。
 
 	Our experience clearly shows that existential dependent types, which are involved in nearly all the realistic examples in our experiments, are indispensable in practice.
 
-	我々の経験は、明らかに、我々の実験ではほぼすべての現実的な実施例に関係している実存依存型は、実際には不可欠であることを示している。
+	我々の経験は、明らかに、我々の実験ではほぼすべての現実的な実施例に関係しているexistential(実存)依存型は、実際には不可欠であることを示している。
 
 		∀α.Πm:nat. (α)list(m) → Σn:{a : nat | a ≤ m}. (α)list(n)
 
@@ -246,7 +246,7 @@
 
 	The type `Σn:{a : nat | a ≤ m}. (α)list(n)`, which is for lists of length less than or equal to m, is what we call an existential dependent type.
 
-	m以下か等しい長さのリストである型`∀α.Πm:nat. (α)list(m) → Σn:{a : nat | a ≤ m}. (α)list(n)`は、我々が実存依存型と呼んでいるものです。
+	m以下か等しい長さのリストである型`Σn:{a : nat | a ≤ m}. (α)list(n)`は、我々がexistential(実存)依存型と呼んでいるものです。
 
 	The type assigned to filter simply means that the output list returned by filter cannot be longer than the input list taken by filter.
 
@@ -254,7 +254,7 @@
 
 	Without existential dependent types, in order to assign a type to filter, we may have to compute in the type system the exact length of the output list returned by filter in terms of the input list and the predicate taken by filter.
 
-	実存依存型がなければ、フィルタに型を割り当てるために、我々は型システムに入力リストとフィルタを通した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
+	existential(実存)依存型がなければ、フィルタに型を割り当てるために、我々は型システムに入力リストとフィルタを通した述語の面でフィルタによって返された出力リストの正確な長さを計算する必要があります。
 
 	This would most likely make the type system too complicated for practical programming.
 
@@ -334,7 +334,7 @@
 
 	The core of the paper lies in Section 4, where a language λΠ,Σ pat is introduced that extends λpat with both universal and existential dependent types.
 
-	論文のコアは、普遍的かつ実存依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
+	論文のコアは、普遍的かつexistential(実存)依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
 
 	We also formally prove the subject reduction theorem and the progress theorem for λΠ,Σ pat , thus establishing the type soundness of λΠ,Σ pat .
 
@@ -1668,7 +1668,7 @@
 
 	In this section, we introduce both universal and existential dependent types into the type system of λpat, leading to the design of a programming language schema λΠ,Σ pat (L) that parameterizes over a given type index language L.
 
-	このセクションでは、与えられたタイプのインデックス言語L.上のパラメータ化プログラミング言語スキーマλΠ、Σパット（L）の設計につながる、λpatの型システムに両方のユニバーサルと実存依存型を導入
+	このセクションでは、与えられたタイプのインデックス言語L.上のパラメータ化プログラミング言語スキーマλΠ、Σパット（L）の設計につながる、λpatの型システムに両方のユニバーサルとexistential(実存)依存型を導入
 
 - 4.1 Syntax
 
@@ -1678,7 +1678,7 @@
 
 	We now present λΠ,Σ pat = λΠ,Σ pat (L), which is an extension of λpat with universal and existential dependent types.
 
-	我々はここで、本λΠ、普遍的で実存的依存型とλpatの拡張であるΣパット=λΠ、Σパット（L）、。
+	我々はここで、本λΠ、普遍的でexistential(実存)的依存型とλpatの拡張であるΣパット=λΠ、Σパット（L）、。
 
 	The syntax of λΠ,Σ pat is given in Figure 12, which extends the syntax in Figure 3.
 
@@ -1711,7 +1711,7 @@
 
 	We use the names universal (dependent) types, existential (dependent) types, guarded types and asserting types for types of the forms Πa:s. τ , Σa:s. τ , P ⊃ τ and P ∧ τ , respectively.
 
-	我々は、フォームπAの種類の名前のユニバーサル（依存）の種類、実存（依存）のタイプ、保護されたタイプと主張するタイプを使用します。■。 τ、ΣA：S。それぞれτ、P⊃τとP∧τ、。
+	我々は、フォームπAの種類の名前のユニバーサル（依存）の種類、existential(実存)（依存）のタイプ、保護されたタイプと主張するタイプを使用します。■。 τ、ΣA：S。それぞれτ、P⊃τとP∧τ、。
 
 	Note that the type constructor ∧ is asymmetric.
 
@@ -1719,7 +1719,7 @@
 
 	In addition, we use the names universal expressions, existential expressions, guarded expressions and asserting expressions for expressions of the forms Π+(v), Σ(e), ⊃+(v) and ∧(e), respectively.
 
-	また、我々は形の表現のために名前を普遍的な表現、実存的表現、保護された式と主張する表現を使用Π+（V）、Σ（E）、⊃+（V）と∧（e）は、それぞれ。
+	また、我々は形の表現のために名前を普遍的な表現、existential(実存)的表現、保護された式と主張する表現を使用Π+（V）、Σ（E）、⊃+（V）と∧（e）は、それぞれ。
 
 	----
 
