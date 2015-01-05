@@ -250,7 +250,6 @@
 
 	例えば、図2で定義された関数フィルタは、次の型が割り当てられます。
 
-ーーーーーーーーーーー 4
 
 	We have so far finished developing a theoretical foundation for combining dependent types with all the major features in the core of ML, including datatype declarations, higher-order functions, general recursion, polymorphism, mutable references and exceptions.
 
@@ -296,8 +295,6 @@
 
 	今から、我々はまた、依存型のような制限された形を参照するためにDMLスタイル依存型の名前を使用することができます。
 
-ーーーーーーーーーーー 5
-
 	The remainder of the paper is organized as follows.
 
 	次のように論文の構成はされている。
@@ -333,8 +330,6 @@
 	In support of the practicality of λΠ,Σ pat , we extend λΠ,Σ pat in Section 6 with parametric polymorphism (as is supported in ML), exceptions and references.
 
 	λΠ, Σ patの実用性のサポートでは、我々は、λΠ,Σ patを6章で（MLでサポートされていたように）パラメトリック多相型、例外と参照で拡張します。
-
-------->
 
 	Also, we present some interesting examples in Section 7 to give the reader a feel as to how dependent types can be used in practice to capture program invariants.
 
