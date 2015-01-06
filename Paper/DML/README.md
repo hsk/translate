@@ -513,7 +513,7 @@
 
 	We use p for patterns and require that a variable occur at most once in a pattern.
 
-	我々は、パターン用のpを使用し、変数がパターン内に最大1回出現していることが必要です。
+	我々は、パターン列で、変数がパターン内に最大1回出現していることが必要なpを使用します。
 
 	Given a pattern p and a type τ , we can derive a judgment of the form p ↓ τ ⇒ Γ with the rules in Figure 4, which reads that checking pattern p against type τ yields a context Γ.
 
@@ -541,13 +541,17 @@
 
 	p1およびp2は、変数を共有することができないので、ルール(pat-prod)は問題がないことに注意してください。
 
-	Also note that we write |- cc(τ ) : δ in the rule (pat-const) to indicate that cc is a constant constructor of c-type τ ⇒ δ.
+	Also note that we write |- cc(τ) : δ in the rule (pat-const) to indicate that cc is a constant constructor of c-type τ ⇒ δ.
 
-	そのCCはC型τの定数コンストラクタはδを⇒であることを示すために、ルール（pat-const）でδ：また、我々は|-CC（τ）を書くことに注意してください。
+	また、我々はccはc-type τ ⇒ δの定数コンストラクタであることを示すために、ルール(pat-const) を|- cc(τ) : δ と書くことに注意してください
 
-	As an example, let us assume that intlist is a base type, and nil and cons are constructors of c-types 1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively; then the following judgments
+	As an example, let us assume that intlist is a base type, and nil and cons are constructors of c-types 1 ⇒ intlist and int ∗ intlist ⇒ intlist, respectively;
 
-	例として、我々はそのintlistがベース型であり、ゼロと短所がC-種類それぞれ1⇒のintlistとINT* intlist。⇒intlist、のコンストラクタであると仮定しましょう。次の判決
+	例として、我々はintlistがベース型であり、nilとconsがそれぞれc-type 1 ⇒ intlistと int * intlist ⇒ intlist のコンストラクタであると仮定し;
+
+	then the following judgments
+
+	次の判決
 
 		Γ(xf) = τ
 		------------- (ty-var)
@@ -620,45 +624,45 @@
 
 	The rule (ty-clause) is for assigning types to clauses.
 
-	（TY-句）ルールが句に型を割り当てるためです。
+	ルール(ty-clause)はclausesに型を割り当てます。
 
 	Generally speaking, a clause p ⇒ e can be assigned the type τ1 → τ2 if e can be assigned the type τ2 under the assumption that p is given the type τ1.
 
-	一般的に言えば、句のp⇒eはタイプを割り当てることができるτ1→τ2電子は、p型のτ1が与えられているという仮定の下型τ2を割り当てることができる場合。
+	一般的に言えば、clause p ⇒ e はタイプτ1→τ2を割り当てることができます、ただしpに型τ1が与えられているという仮定の下でeに型τ2を割り当てることができる場合。
 
 	----
 
 	In the following presentation, given some form of judgment J, we use D :: J for a derivation of J.
 
-	判定J何らかの形の所与の次のプレゼンテーションでは、我々は、Jの導出D:: Jを使用
+	次のプレゼンテーションでは、判定Jの形が与えられた場合、我々は、Jの導出D:: Jを使用する。
 
 	The structure of a derivation D is a tree, and we use height(D) for its height, which is defined as usual.
 
-	派生Dの構造は木であり、我々はいつものように定義され、その高さ、のために高さ（D）を使用します。
+	導出Dは木構造であり、我々はその高さを通常通りに定義されたheight(D)を使用します。
 
 	----
 
 	The following standard lemma simply reflects that extra assumptions can be discarded in intuitionistic reasoning.
 
-	次の標準補題は単に余分な仮定がbeJournalは関数型プログラミングの9は直観主義的推論に廃棄されたことを反映している。
+	次の標準補題は単に余分な仮定が直観的推論に廃棄され得ることを反映している。
 
 	It is needed, for instance, in the proof of Lemma 2.3, the Substitution Lemma for λpat.
 
-	それは、補題2.3、λpatの置換補題の証明では、例えば、必要とされる。
+	それは、例えば、補題2.3の λpatの置換補題の証明で、必要とされる。
 
 	- Lemma 2.1 (Thinning)
 
 		Assume D :: Γ |- e : τ .
 	
-		D :: Γ |- e : τ を想定。
+		D :: Γ |- e : τ と仮定する。
 
 		Then there is a derivation D0:: Γ, xf : τ0 |- e : τ such that height(D) = height(D0), where τ0 is any well-formed type.
 
-		その後、派生D0::Γ、XFがある：E|-τ0：τよう高さ（D）=高さτ0は任意の整形タイプです（D0）、。
+		次に、height(D) = height(D0)のような導出D0:: Γ, xf : τ0 |- e : τがある、ただしτ0は任意のwell-formedな型です。
 
 		The following lemma indicates a close relation between the type of a closed value and the form of the value.
 
-		次の補題は、閉じた値の型と値の形の間には密接な関係を示している。
+		次の補題は、閉じた値の型と値の形の間には密接な閉じた関係を示している。
 
 		This lemma is needed to establish Theorem 2.9, the Progress Theorem for λpat.
 
@@ -668,46 +672,53 @@
 
 		Assume that ∅ |- v : τ is derivable.
 
+		∅ |- v : τが導出可能であると仮定する。
+
 		1. If τ = δ for some base type δ, then v is of the form cc(v0), where cc is a constant constructor assigned a c-type of the form τ0 ⇒ δ.
-		2. If τ = 1, then v is hi.
-		3. If τ = τ1 ∗ τ2 for some types τ1 and τ2, then v is of the form hv1, v2i.
+		2. If τ = 1, then v is <>.
+		3. If τ = τ1 ∗ τ2 for some types τ1 and τ2, then v is of the form <v1, v2>.
 		4. If τ = τ1 → τ2 for some types τ1 and τ2, then v is of the form lam x. e.
+
+		1. もしもδが基本型でτ = δならばvはcc(v0)でccはτ0⇒δの形のc-typeが割り当てられた定数コンストラクタです。
+		2. もしも τ = 1 ならば v は <> です。
+		3. もしも τ1 と τ2が型で τ = τ1 ∗ τ2 ならば v は <v1, v2>の型です。
+		4. もしも τ1 と τ2が型で τ = τ1 → τ2 ならば v は lam x. eの型です。
 
 		Note the need for c-types in the proof of Lemma 2.2 when the last case is handled.
 
-		最後のケースが処理されるとき補題2.2の証明におけるc-タイプの必要性を注意してください。
+		最後のケースが処理されるとき補題2.2の証明におけるc-typeが必要である事に注意してください。
 
 		If c-types are not introduced, then a (primitive) constant function needs to be assigned a type of the form τ1 → τ2 for some τ1 and τ2.
 
-		のc型が導入されない場合は、（プリミティブ）定数関数は、いくつかのτ1とτ2のフォームτ1→τ2のタイプを割り当てる必要がある。
+		もしものc-typesが導入されない場合は、（プリミティブな）定数関数は、τ1とτ2が型のときのτ1→τ2の形の型を割り当てる必要がある。
 
 		As a consequence, we can no longer claim that a value of the type τ1 → τ2 for some τ1 and τ2 must be of the form lamx. e as the value may also be a constant function. 
 
-		結果として、我々はもはや一部τ1とτ2の型τ1→τ2の値がフォームlamxでなければならないと主張することはできません。値として電子も一定関数であってもよい。
+		結果として、我々はもはや値も一定関数とすることができるようにτ1とτ2が型のときの型τ1→τ2の値がlam x. eの形でなければならないと主張することができません。
 
 		So the precise purpose of introducing c-types is to guarantee that only a value of the form lam x. e can be assigned a type of the form τ1 → τ2.
 
-		だから、C-タイプを導入する正確な目的は、フォームのラメxのその値だけを保証することです。 eはフォームτ1→τ2のタイプを割り当てることができます。
+		だから、c-typesを導入する正確な目的は、lam x. e形の値のみがτ1→τ2の形の型を割り当てることができることを保証することです。
 
 		----
 
 		Given Γ, Γ0 and θ, we write Γ |- θ : Γ0 to indicate that Γ |- θ(xf) : Γ0(xf) is derivable for each xf in dom(θ) = dom(Γ0).
 
-		Γ、Γ0を考えると、θ、我々はΓは|-θ書く：Γ0（XF）はDOM（θ）= DOMの各XF（Γ0）のために誘導可能である：Γ0はΓは|-θ（XF）があることを示すために。
+		Γ, Γ0 と Θ を考えると、我々はΓ：Γ0（xf）は各xfでdom(θ)= dom(Γ0) を誘導可能である事を示す為にΓ |-θ : Γ0 と書く。
 
 		The following lemma is often given the name Substitution Lemma, which is needed in the proof of Theorem 2.8, the Subject Reduction Theorem for λpat.
 
-		次の補題は、多くの場合、定理2.8、λpatための件名削減定理の証明で必要とされる名置換補題を、与えられている。
+		次の補題はしばしば、代入補題(Substitution Lemma)の名前が与えられ、これは定理2.8の証明、λpatための(Subject Reduction 定理)対象還元定理で必要とされる。
 
 	- Lemma 2.3 (Substitution)
 
 		Assume that Γ |- θ : Γ0 holds.
 
-		Γ0が成り立つ：Γ|-θがあるとします。
+		Γ |- θ : Γ0があると仮定する。		
 
 		If Γ, Γ0 |- e : τ is derivable, then Γ |- e[θ] : τ is also derivable.
 
-		τ導出され、その後Γ|-E [θ]：Γ、Γ0|- eがあればτも誘導可能である。
+		もしΓ, Γ0 |- e : τが導出されるならば、その後Γ |- e[θ] : τが導出出来る。
 
 - 2.2 Dynamic semantics
 
