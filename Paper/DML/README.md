@@ -419,11 +419,11 @@
 
 	A lam-bound variable is considered a value but a fix-bound variable is not.
 
-	lam-バインドされた変数は、値と考えたがfix-バインド変数はありません。
+	lam-バインドされた変数は、値とみなされるがfix-バインド変数はありません。
 
 	We use the name observable value for a closed value that does not contain a lambda expression lam x. e as its substructure.
 
-	我々は、その基礎としてラムダ式のlam x. eが含まれていない、閉じた値の名前に観察値を使用します。
+	我々は、その基礎としてラムダ式のlam x. eが含まれていない、閉じた値の名前に観察可能な値を使用します。
 
 	We use c for a constant, which is either a constant constructor cc or a constant function cf .
 
@@ -461,17 +461,18 @@
 
 	----
 
+
 	We use θ for a substitution, which is a finite mapping that maps lam-bound variables x to values and fix-bound variables to fixed-point expressions.
 
-	我々は、固定小数点式に値と固定バインドされた変数にlam-バインドされた変数xをマッピングした有限マッピングである置換のためにθを使用しています。
+	我々は、lam-bound変数xから値へ、fix-bound変数から固定小数点式へマッピングする有限の写像である置換のためθを使用します。
 
 	We use [] for the empty substitution and θ[xf 7→ e] for the substitution that extends θ with a link from xf to e, where it is assumed that xf is not in the domain dom(θ) of θ.
 
-	我々は、それがxfはθのドメインdom(θ)になっていないことを想定しているxfからeのリンク、とθを拡張置換のための空の置換及びθ[xf 7->e]で[]を使用します。
+	我々は、空の置換に[]を使用し、xfからeまでのリンクをθを拡張した置換のためにθ[xf 7 → e]使用し、ここでのxfはθのドメインのdom(θ)に登録されていないものとする。
 
 	Also, we may write [xf1 |-> e1,..., xf n |-> en] for a substitution that maps xf i to ei for 1 ≤ i ≤ n.
 
-	また、我々は1≤i≤nの範囲でxfiからeiへの置換マップを[xf1 |-> e1,..., xf n |-> en]と書くことができます。
+	また、我々は1≤i≤nの範囲でxfiからeiへマップの置換を[xf1 |-> e1,..., xf n |-> en]と書くことができます。
 
 	We omit the further details on substitution, which are completely standard.
 
@@ -480,26 +481,27 @@
 	Given a piece of syntax • (representing expressions, evaluation contexts, etc.), we use •[θ] for the result of applying θ to •.
 
 	構文•（式や評価コンテキスト等を表す）が与えられたとき、我々はθ を• に適用した結果のために•[θ]を使用する。
-	
+
 	----
 
 	We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with one additional declaration xf : τ , where we assume that xf is not already declared in Γ.
 
-	我々は、空の文脈のため∅使用し、そのxfがすでにΓで宣言されていないと仮定した、Γ, xf：τを追加の宣言 xf:τでΓを拡張するコンテキスト用に使用します。
+	我々は、空のコンテキストに対して∅使用し、xfがすでにΓで宣言されていないと仮定して一つの追加の宣言xf : τでΓを拡張したコンテキストΓ, xf : τを使用します。
 
-	A context Γ = ∅, xf: τ1,...,xfn: τn may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. 
 
-	コンテキストΓ = ∅, xf: τ1,...,xfn: τn もiがn≤1≤用τiはするXFIにマップ有限マッピングとして処理することができる、と我々はΓのドメインのDOM（Γ）を使用します。
+	A context `Γ = ∅, xf: τ1,...,xfn: τn` may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. 
 
-	Also, we may use Γ, Γ0 for the context ∅, xf': τ1, ..., xf n : τn, xf' 1 : τ'1,..., xfn: τ n0 , where Γ = ∅, xf 1: τ1, . . . , xf n : τn and Γ0 = ∅, xf'1: τ'1,..., xf' n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
+	コンテキスト`Γ = ∅, xf: τ1,...,xfn: τn`はまた1 ≤ i ≤ nの範囲でxfi から τi への有限のマッピングとして処理することができ、そして我々はΓのドメインのdom(Γ)を使用します。
 
-	また、我々は、コンテキスト∅、XFのためΓ、Γ0を使用することができます'：τ1、...、XFのN：τN、XF' 1：τ'1、...、XFN：τN0と、どこΓ=∅、XF 1：τ1、。 。 。 、XFのN：τNとΓ0=∅、xf'1：τ'1、...、XF'N：τ'n'とすべての変数XF1、...、XFN、xf'1、...、XF 'N'は異なります。
+	Also, we may use Γ, Γ' for the context ∅, xf': τ1, ..., xfn : τn, xf'1 : τ'1,..., xf'n: τ'n , where Γ = ∅, xf 1: τ1,..., xfn : τn' and Γ' = ∅, xf'1: τ'1,..., xf'n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
+
+	また、我々は、コンテキスト∅,xf': τ1, ..., xfn : τn, xf'1 : τ'1,..., xf'n: τ'nでΓ, Γ'を使用することができ、ここで Γ = ∅, xf 1: τ1,..., xfn : τn' で Γ' = ∅, xf'1: τ'1,..., xf'n: τ'n' で全ての変数 xf1,...,xfn,xf'1,...,xf'n' は異なります。
 
 	----
 
-	As a form of syntactic sugar, we may write let hx1, x2i = e1 in e2 end for the following expression:
+	As a form of syntactic sugar, we may write let <x1, x2> = e1 in e2 end for the following expression:
 
-	構文糖の形として、我々は次の式のように let <x1, x2> = e1 in e2 end と書くことがあります:
+	構文糖の形として、我々は次の式の事を let <x1, x2> = e1 in e2 end と書くことがあります:
 
 		let x = e1 in let x1 = fst(x) in let x2 = snd(x) in e2 end end end
 
