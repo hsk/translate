@@ -390,12 +390,12 @@
 
 			base types    δ ::= bool | int | . . .
 			types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
-			patterns      p ::= x | f | hi | hp1, p2i | cc(p)
+			patterns      p ::= x | f | hi | <p1, p2> | cc(p)
 			matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
 			constants     c ::= cc | cf
-			expressions   e ::= xf | c(e) | hi | he1, e2i | fst(e) | snd(e) | case e of ms |
-			                    lamx. e | e1(e2) | fix f. e | let x = e1 in e2 end
-			values        v ::= x | cc(v) | hi | hv1, v2i | lamx. e
+			expressions   e ::= xf | c(e) | hi | <e1, e2> | fst(e) | snd(e) | case e of ms |
+			                    lam x. e | e1(e2) | fix f. e | let x = e1 in e2 end
+			values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
 			contexts      Γ ::= · | Γ, xf : τ
 			substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
 
@@ -509,7 +509,7 @@
 
 	ここで、xは、e1とe2に自由変数として出現しないと仮定します。
 
-- 2.1 Static semantics
+- 2.1 Static semantics 静的意味論
 
 	We use p for patterns and require that a variable occur at most once in a pattern.
 
@@ -566,7 +566,7 @@
 
 		Γ |- e1 : τ1 Γ |- e2 : τ2
 		----------------------- (ty-prod)
-		Γ |- he1, e2i : τ1 ∗ τ2
+		Γ |- <e1, e2> : τ1 ∗ τ2
 
 		Γ |- e : τ1 ∗ τ2
 		--------------- (ty-fst)
@@ -692,9 +692,9 @@
 
 		もしものc-typesが導入されない場合は、（プリミティブな）定数関数は、τ1とτ2が型のときのτ1→τ2の形の型を割り当てる必要がある。
 
-		As a consequence, we can no longer claim that a value of the type τ1 → τ2 for some τ1 and τ2 must be of the form lamx. e as the value may also be a constant function. 
+		As a consequence, we can no longer claim that a value of the type τ1 → τ2 for some τ1 and τ2 must be of the form lam x. e as the value may also be a constant function. 
 
-		結果として、我々はもはや値も一定関数とすることができるようにτ1とτ2が型のときの型τ1→τ2の値がlam x. eの形でなければならないと主張することができません。
+		結果として、我々はもはや値も定数関数とすることができるようにτ1とτ2が型のときの型τ1→τ2の値がlam x. eの形でなければならないと主張することができません。
 
 		So the precise purpose of introducing c-types is to guarantee that only a value of the form lam x. e can be assigned a type of the form τ1 → τ2.
 
@@ -720,207 +720,231 @@
 
 		もしΓ, Γ0 |- e : τが導出されるならば、その後Γ |- e[θ] : τが導出出来る。
 
-- 2.2 Dynamic semantics
+- 2.2 Dynamic semantics 動的意味論
 
 	We assign dynamic semantics to expressions in λpat through the use of evaluation contexts defined as follows.
 
-	我々は次のように定義された評価コンテキストを使用することによりλpatにおける式への動的なセマンティクスを割り当てる。
+	我々は次のように定義された評価コンテキストを使用することによりλpatにおける式への動的な意味論を割り当てる。
 
 	----
 
 	- Definition 2.4 (Evaluation Contexts)
 	- 定義2.4（評価コンテキスト）
 
-			evaluation contexts E ::= [] | c(E) | hE, ei | hv, Ei | fst(E) | snd(E) |
-			case E of ms | E(e) | v(E) | let x = E in e end
+			evaluation contexts E ::= [] | c(E) | <E, e> | <v, E> | fst(E) | snd(E) |
+				case E of ms | E(e) | v(E) | let x = E in e end
 
 		We use FV(E) for the set of free variables xf in E.
 
-		我々は、Eにおける自由変数のXFのセットFV（E）を使用します
+		我々は、Eにおける自由変数のxfの集合 FV(E)を使用します。
 
 		Note that every evaluation context contains exactly one hole [] in it.
 
-		すべての評価コンテキストがそれに正確に一つの穴[]が含まれていることに注意してください。
+		すべての評価コンテキストが明らかに一つの空の[]が含まれていることに注意してください。
 
 		Given an evaluation context E and an expression e, we use E[e] for the expression obtained from replacing the hole [] in E with e.
 
-		評価コンテキストEと式eを考えると、我々が使用するE [E]の穴を交換から得られた発現のために[] EとE中。
+		評価コンテキストEと式eを考えると、我々はE中で空の[]とeの置換から得られた式のためにE[e]を使用する。
 
 		As the hole [] in no evaluation context can appear in the scope of a lam-binder or a fix-binder, there is no issue of capturing free variables in such a replacement.
 
-		無評価コンテキストの穴[]は、LAM-バインダーまたはFIX-バインダーのスコープに表示できるように、このような交換に自由変数をキャプチャは問題ありません。
-
-			match(v, x) ⇒ [x 7→ v]
-			(mat-var)
-			match(hi, hi) ⇒ [] (mat-unit)
-			match(v1, p1) ⇒ θ1 match(v2, p2) ⇒ θ2
-			match(hv1, v2i, hp1, p2i) ⇒ θ1 ∪ θ2
-			(mat-prod)
-			match(v, p) ⇒ θ
-			match(c(v), c(p)) ⇒ θ
-			(mat-const)
-
-		Fig. 6. The pattern matching rules for λpat
-
-		図6.λpatためのルールのパターンマッチング
+		無評価コンテキストの空の[]は、lam-binderまたはfix-binderのスコープに現れるているように、そのような置き換えに自由変数をキャプチャする問題はありません。
 
 		----
 
+			----------------------------------------(mat-var)
+			match(v, x) ⇒ [x 7→ v]
+
+			----------------------------------------(mat-unit)
+			match(hi, hi) ⇒ []
+
+			match(v1, p1) ⇒ θ1    match(v2, p2) ⇒ θ2
+			----------------------------------------(mat-prod)
+			match(<v1, v2>, <p1, p2>) ⇒ θ1 ∪ θ2
+
+			match(v, p) ⇒ θ
+			----------------------------------------(mat-const)
+			match(c(v), c(p)) ⇒ θ
+
+		Fig. 6. The pattern matching rules for λpat
+
+		図6.λpat用パターンマッチングルール
+
 		Given a pattern p and a value v, a judgment of the form match(v, p) ⇒ θ, which means that matching a value v against a pattern p yields a substitution for the variables in p, can be derived through the application of the rules in Figure 6.
 
-		パターンpに対する値vに一致するページ内の変数の置換を生じることを意味するパターンpと値v、フォーム一致の判定（V、P）θを⇒を、所与のアプリケーションを介して誘導することができる図6のルール。
-		
-		Note that the rule (mat-prod) is unproblematic because p1 and p2 can share no common variables as hp1, p2i is a pattern.
+		パターンpと値vが与えられると、match(v, p) ⇒ θの形の判断は、パターンpに対する値vに一致するページ内の変数の置換を生じることを意味し、図6のルールを適用して導き出すことができる。
 
-		P1およびP2はHP1として共通の変数を共有することはできませんので、ルール（マット-PROD）は問題がないことに注意してください、P2Iはパターンです。
+		Note that the rule (mat-prod) is unproblematic because p1 and p2 can share no common variables as <p1, p2> is a pattern.
+
+		ルール(mat-prod）はp1およびp2が<p1、p2>などの共通の変数を共有することはできないので、問題がないパターンであることに注意してください。
 
 	- Definition 2.5
 	- 定義2.5
 	
 		We define evaluation redexes (or ev-redex, for short) and their reducts in λpat as follows:
 
-		次のように我々は、評価redexes（またはEV-可約式、ショート用）とλpatでの縮約を定義します。	
+		次のように我々は、evalution redexes(評価簡約)（または短く書くとev-redex）とλpatでの還元を定義します。	
 
-		• fst(hv1, v2i) is an ev-redex, and its reduct is v1.
-		• snd(hv1, v2i) is an ev-redex, and its reduct is v2.
-		• (lam x. e)(v) is an ev-redex, and its reduct is e[x 7→ v].
-		• fix f. e is an ev-redex, and its reduct is e[f 7→ fix f. e].
-		• let x = v in e end is an ev-redex, and its reduct is e[x 7→ v].
-		• case v of (p1 ⇒ e1 | · · · | pn ⇒ en) is an ev-redex if match(v, pk) ⇒ θ is derivable for some 1 ≤ k ≤ n, and its reduct is ek[θ].
-		• cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined to be some value v0.
+		- fst(<v1, v2>) is an ev-redex, and its reduct is v1.
+		- fst(<v1, v2>)は評価簡約で還元はv1です。
+		- snd(<v1, v2>) is an ev-redex, and its reduct is v2.
+		- fst(<v1, v2>)は評価簡約で還元はv2です。
+		- (lam x. e)(v) is an ev-redex, and its reduct is e[x → v].
+		- (lam x. e)(v)は評価簡約で還元はe[x → v]です。
+		- fix f. e is an ev-redex, and its reduct is e[f → fix f. e].
+		- fix f. e は評価簡約で還元は e[f → fix f. e]です。
+		- let x = v in e end is an ev-redex, and its reduct is e[x → v].
+		- let x = v in e end は評価簡約で、還元はe[x → v]です。
+		- case v of (p1 ⇒ e1 | · · · | pn ⇒ en) is an ev-redex if match(v, pk) ⇒ θ is derivable for some 1 ≤ k ≤ n, and its reduct is ek[θ].
+		- case v of (p1 ⇒ e1 | · · · | pn ⇒ en) は 1 ≤ k ≤ nで match(v, pk) ⇒ θ が導出される場合の評価簡約で還元は ek[θ]です。
+		- cf(v) is an ev-redex if (1) v is an observable value and (2) cf(v) is defined to be some value v0.
 
-		In this case, the reduct of cf(v) is v0.
-		この場合、CFの縮約(reduct)（v）はV0である。
+			In this case, the reduct of cf(v) is v0.
+		- cf(v)はvが観察可能な値でかつcf(v)が値v0と定義するとき評価簡約です。
 
-		Note that a value is observable if it does not contain any lambda expression lamx. e as its substructure.
+			この場合、cf(v)の還元(reduct)はv0である。
+
+		Note that a value is observable if it does not contain any lambda expression lam x. e as its substructure.
 		
 		それは、その下部構造などの任意のラムダ式のlam x.e が含まれていない場合、値が観測可能であることに注意してください。
 
+		値がその下部構造として、任意のラムダ式のlamxeが含まれていない場合に値が観察可能なであることに注意してください。
+
 		The one-step evaluation relation ,→ev is defined as follows:
-		以下の通りのev→ワンステップ評価関係が定義される：
+
+		ワンステップ評価関係→evが以下のように定義される:
 
 		We write e1 ,→ev e2 if e1 = E[e] for some evaluation context E and ev-redex e, and e2 = E[e0], where e0 is a reduct of e.
 
-		我々は、E1、→EV E2書くとE0はEの縮約(reduct)であるいくつかの評価コンテキストEとEV-可約式E、とe2= E [E0]、のためのE1= E[E]が。
+		我々は評価コンテキストEと評価簡約 eのe1 = E[e]でe2=E[e0]でe0がeの還元の場合にe1, →ev e2と書く。
+
 
 		We use ,→∗ ev for the reflexive and transitive closure of ,→ev and say that e1 ev-reduces (or evaluates) to e2 if e1 ,→∗ ev e2 holds.
 
-		我々は、EV→、の反射的と推移閉包のために→* EV、使用して保持→* EV E2、E1場合にE1のE2にEVは-削減（または評価する）と言う。
+		我々は、,→evの反射的推移的閉包のために,→* evを使用して`e1 ,→* ev e2`の場合にe1をe2にev-還元する（または評価する）と言う。
 
 		There is certain amount of nondeterminism in the evaluation of expressions: case v of ms may reduce to e[θ] for any clause p ⇒ e in ms such that match(v, p) ⇒ θ is derivable.
 
-		非決定性の一定量は、式の評価にあります：MSの場合Vは、MS内の任意の句pは⇒Eの[θ]メールにそのようなマッチ（V、P）は、θが導出可能である⇒ことを減らすことができる。
+		非決定性の一定量は、式の評価にあります：case v of ms は、ms内の任意の句p⇒eのe[θ]にそのようなmatch(v,p)⇒θが導出可能であると還元することができる。
 
 		This form of nondeterminism can cause various complications, which we want to avoid in the first place.
 
-		非決定性のこの形式は、我々は最初の場所で避けたいさまざまな合併症を引き起こす可能性があります。
+		非決定性のこの形式は、我々が最初の箇所では避けたいさまざまな複雑化を引き起こす可能性があります。
 
-		In this paper, we require that the patterns p1, . . . , pn in a matching clause sequence (p1 ⇒ e1 | · · · | pn ⇒ en) be disjoint, that is, for 1 ≤ i 6= j ≤ n, there are no values v that can match both pi and pj .
+		In this paper, we require that the patterns p1, ..., pn in a matching clause sequence (p1 ⇒ e1 | ··· | pn ⇒ en) be disjoint, that is, for 1 ≤ i |= j ≤ n, there are no values v that can match both pi and pj .
 
-		本稿では、パターンがP1いる必要があります。 。 。 、マッチング句シーケンスのpn（P1。⇒e1は|···| PN⇒JA）1≤I 6= Jの≤nについて、PIとPJの両方を一致させることができない値Vが存在しない、つまり、互いに素である。
+		本論文では、マッチング句シーケンスの(p1⇒e1 |···| pn⇒en)内でパターンp1,...,pnが互いに素である必要があり、つまり、1 ≤ i |= j ≤ n について、piとpjの両方を一致させることができない値vは存在しない。
 
 		----
 
 		In the actual implementation, we do allow overlapping patterns in a matching clause sequence, and we avoid nondeterminism by performing pattern matching in a deterministic sequential manner.
 
-		実際の実装では、関数型プログラミング11のジャーナルは、我々は、一致する句シーケンスでパターンの重複が可能か、と我々は決定論順次パターンマッチングを実行することによって、非決定性を避ける。
+		実際の実装では、我々はマッチングのクロージャシーケンスでパターンの重複が可能で、決定論順次パターンマッチングを実行することによって、我々は非決定性を避ける。
 
 		We could certainly do the same in the theoretical development, but this may complicate the evaluation of open programs, that is, programs containing free variables.
 
-		我々は確かに理論的な発展に同じ行うことができますが、これは開いているプログラムの評価を複雑にする、それは自由な変数を含むプログラムは、です。
+		我々は確かに理論的な発展に同じ事を行うことができますが、これは開いているプログラム(それはつまり、自由な変数を含むプログラム)の評価を複雑にする。
 
 		For instance, let e1 and e2 be the following expressions case cons(x, xs) of (nil ⇒ true | x 0 ⇒ false) and case x of (nil ⇒
 		true | x 0 ⇒ false), respectively.
 
-		例えば、E1せ、E2は（nil以外の真⇒| X 0⇒偽）の以下の式ケース短所（X、XS）であること（NILの⇒のXとケース
-		真|それぞれx偽0⇒）、。
+		例えば、e1 と e2 はそれぞれ以下の式、case cons（x, xs）of (nil⇒true| x 0⇒false) と case x of (nil -> true | x 0 -> false)であるとする。
 
 		Clearly, we should evaluate e1 to false, but we should not evaluate e2 to false as we do not know whether x matches nil or not.
 
-		明らかに、我々はfalseにE1を評価する必要がありますが、我々は、Xがnilかどう一致するかどうかわからないように、我々はfalseにE2を評価するべきではありません。
+		明らかに、我々はe1をfalseに評価する必要がありますが、我々は、xがnilかどう一致するかどうかわからないように、我々はe2をfalseに評価するべきではありません。
 
 		This complication is simply avoided when patterns in a matching clause sequence are required to be disjoint.
 
-		マッチング句シーケンスのパターンが互いに素であることが要求される場合、この合併症は、単純に回避される。
+		マッチングクロージャシーケンスのパターンが互いに素であることが要求されれば、この複雑化は、単純に回避される。
 
 		----
 
 		The meaning of a judgment of the form p ↓ τ ⇒ Γ is captured precisely by following lemma.
 		
-		フォームのp↓τの判断の意味は、Γが補題に追従して正確に捕捉される⇒。
+		p ↓ τ -> Γ の形式の判断の意味は、以下の補題で正確に捉えられる。
 
 	- Lemma 2.6
 	
-		Assume that the typing judgment ∅ ` v : τ is derivable. If p ↓ τ ⇒ Γ and match(v, p) ⇒ θ are derivable, then ∅ ` θ : Γ holds.
+		Assume that the typing judgment ∅ |- v : τ is derivable.
+
+		型判断 ∅ |- v : τが導出可能と仮定する。
+
+		If p ↓ τ ⇒ Γ and match(v, p) ⇒ θ are derivable, then ∅ |- θ : Γ holds.
+
+		p ↓ τ ⇒ Γ と match(v, p) ⇒ θ が導出されるなら、∅ |- θ : Γである。
 
 	- Definition 2.7
 	- 定義2.7
 
 		We introduce some forms to classify closed expressions in λpat.
 
-		我々は、λpatで、閉じた表現を分類するためにいくつかのフォームをご紹介します。
+		我々は、λpatで、閉じた式を分類するためにいくつかの形式を紹介する。
 
 		Given a closed expression e in λpat, which may or may not be well-typed,
 
-		または十分に型付けされてもされなくてもよいλpatで、閉じた式eが与えられると、
-		
-		• e is in V-form if e is a value.
-		• e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So if e is in R-form, then it can be evaluated further.
-		• e is in M-form if e = E[case v of ms] such that case v of ms is not an ev-redex. This is a case where pattern matching fails because none of the involved patterns match v.
-		• e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division by zero is such a case.
-		• e is in E-form otherwise. We will prove that this is a case that can never occur during the evaluation of a well-typed program.
-		
-		We introduce three symbols Error, Match and Undefined, and use EMU for the set {Error,Match, Undefined} and EMUV for the union of EMU and the set of observable values. We write e ,→∗
-		ev Error, e ,→∗
-		ev Match and e ,→∗
-		ev Undefined
-		if e ,→∗
-		ev e
-		0
-		for some e
-		0
-		in E-form, M-form and U-form, respectively.
+		λpat内で閉じているか、またはwell-typedではなくてもよい式eが与えられると、
+	
+		- e is in V-form if e is a value.
+		- eはV-formにはいる、ただしeが値。
+		- e is in R-form if e = E[e0] for some evaluation context E and ev-redex e0. So if e is in R-form, then it can be evaluated further.
+		- eはR-formに入る、ただし評価コンテキストEと評価還元e0でe=E[e0]。もしeがR-formに入っているなら、これは将来評価される事が出来る。 
+		- e is in M-form if e = E[case v of ms] such that case v of ms is not an ev-redex. This is a case where pattern matching fails because none of the involved patterns match v.
+		- `case v of ms`がev-redexではないような`e = E[case v of ms]`の場合、eはM-formです。これは、関連パターンのどれもvと一致しないので、パターンマッチングが失敗した場合である。
+		- e is in U-form if e = E[cf(v)] and cf(v) is undefined. For instance, division by zero is such a case.
+		- `e= E[cf(v)]`でcf(v)が定義されていない場合、eはU-formである。例えば、ゼロで割ったようなケースです。
+		- e is in E-form otherwise. We will prove that this is a case that can never occur during the evaluation of a well-typed program.
+		- それ以外はeはE-formです。私たちは、これがwell-typedなプログラムの評価の中に現れることはできないケースであることを証明します。
+
+		We introduce three symbols Error, Match and Undefined, and use EMU for the set {Error,Match, Undefined} and EMUV for the union of EMU and the set of observable values.
+
+		我々は、3つのシンボル、エラー、マッチと未定義を導入し、EMU(集合{Error、Match、Undefined})とEMUV(EMUと観察可能な値の集合の和集合)を使用する。
+
+		We write e ,→∗ ev Error, e ,→∗ ev Match and e ,→∗ ev Undefined if e ,→∗ ev e0 for some e0 in E-form, M-form and U-form, respectively.
+
+
+		我々は`e ,→∗ ev e0`の  e0 が E-form, M-form か U-form ならば それぞれ`e ,→∗ ev Error`、 `e ,→∗ ev Match` または `e ,→∗ ev Undefined`と書く。
 
 		----
 
-		It can be readily checked that the evaluation of a (not necessarily well-typed) program in λpat may either continue forever or reach an expression in V-form, Mform, U-form, or E-form.
+		It can be readily checked that the evaluation of a (not necessarily well-typed) program in λpat may either continue forever or reach an expression in V-form, M-form, U-form, or E-form.
 
-		それは容易になりλpatでの評価（必ずしも十分に型付けされた）プログラムは永遠に継続するか、V-形、Mform、U-フォーム、またはE-形で式に達する可能性がどちらかことを確認することができます。
+		それは容易にλpatで（必ずしもwell-typedではない）プログラムが永遠に続けるか、V型、M型、U型、またはE型での発現に到達することができるいずれかの評価をチェックすることができる。
 
 		We will show that an expression in E-form can never be encountered if the evaluation starts with a well-typed program in λpat.
 
-		我々は、評価がλpatではよく型付けされたプログラムで始まる場合は、E-形で式に遭遇することはできませんと表示されます。
+		我々は、評価がλpatではwell typedなプログラムで始まる場合は、E-formで式に遭遇することはできないことが分かります。
 
 		This is precisely the type soundness of λpat.
 
-		これは正確にλpatのタイプの健全性である。
+		これが正確なλpatのタイプの健全性である。
 
 - 2.3 Type soundness 型健全性
 
 	We are now ready to state the subject reduction theorem for λpat, which implies that the evaluation of a well-typed expression in λpat does not alter the type of the expression.
 
-	現在λpatではwell-typedな式の評価が式の型を変更しないことを意味しているλpatの対象還元定理(subject reduction theorem)を、明記する準備が整いました。
+	これでλpatでwell-typedな式の評価が式の型を変更しないことを意味しているλpatの対象還元定理(subject reduction theorem)を、明記する準備が整いました。
 
 	----
 
-	For each constant function cf of c-type τ ⇒ δ, if ∅ ` v : τ is derivable and c(v) is defined to be v0, then we require that ∅ ` v0 : δ be also derivable.
+	For each constant function cf of c-type τ ⇒ δ, if ∅ |- v : τ is derivable and c(v) is defined to be v0, then we require that ∅ |- v0 : δ be also derivable.
 
-	`∅ |- v : τ`は導出可能であり、`c(v)`が、`v0`であると定義されている場合は、c-type `τ ⇒ δ` の各定数関数のcfのために、私たちは`∅ |- v0 : δ`が導き出せるもあることを必要とする。
+	c-type `τ ⇒ δ` の各定数関数cfで、もし`∅ |- v : τ`は導出可能で、`c(v)`が`v0`であると定義されている場合は、私たちは`∅ |- v0 : δ`が導出可能であることが必要である。
 
 	In other words, we require that each constant function meet its specification, that is, the c-type assigned to it.
 
-	言い換えれば、我々は、各定数関数、すなわち、`c-type`が割り当てられ、その仕様を満たしていることを必要とする。
+	言い換えれば、我々は各定数関数でその仕様を満たしている(すなわち、`c-type`が割り当てられる)ことを必要とする。
 
 	- Theorem 2.8 (Subject Reduction)
 	- 定理 2.8 (対称還元)
 
 		Assume that ∅ |- e1 : τ is derivable and e1 ,→ev e2 holds.
 
-		`∅ |- e1 : τ`を導出可能で、`e1,->ev e2`を保持すると仮定します。
+		`∅ |- e1 : τ`を導出可能で、`e1,->ev e2`であると仮定します。
 
 		Then `∅ |- e2 : τ` is also derivable.
 
-		その後`∅ |- e2 : τ`も導出可能である。
+		すると`∅ |- e2 : τ`も導出可能である。
 
 		Lemma 2.3 is used in the proof of Theorem 2.8.
 
@@ -935,12 +959,19 @@
 
 		Then there are only four possibilities:
 
-		その後、4つのみの可能性がある:
+		すると、4つのうちいずれかの可能性がある:
+
 
 		- e1 is a value, or
 		- e1 is in M-form, or
 		- e1 is in U-form, or
 		- e1 ,→ev e2 holds for some expression e2.
+
+
+		- e1 が値か
+		- e1 がM-formか
+		- e1 が U-formか
+		- e1,→ev e2 がe2式を保持している
 
 		Note that it is implied here that e1 cannot be in E-form.
 
@@ -954,17 +985,17 @@
 
 		By Theorem 2.8 and Theorem 2.9, we can readily claim that for a well-typed closed expression e, either e evaluates to a value, or e evaluates to an expression in M-form, or e evaluates to an expression in U-form, or e evaluates forever.
 
-		定理2.8と定理2.9により、我々は容易にwell-typedな型付けされ閉じられた式eのため、eが値に評価されるか、eはM-formで表現と評価されるか、またはeは、U-form で式に評価されているか、またはeは永遠に評価されることのいずれかを主張することができます。
+		定理2.8と定理2.9により、我々はすぐにeが値に評価されるか、eがM-formな式と評価されるか、またはeがU-form な式に評価されるか、またはeは永遠に評価されることのいずれかをwell-typedな型付けされ閉じた式eに対して主張することができます。
 
 		In particular, it is guaranteed that e ,→∗ ev Error can never happen for any well-typed expression e in λpat.
 
 		特に、`e, →* ev` エラー が λpat内の任意のwell-typedな式eのために決して起こらないことが保証されている。
 
-- 2.4 Operational equivalence
+- 2.4 Operational equivalence 操作的等価
 
 	We will present an elaboration procedure in Section 5, which maps a program written in an external language into one in an internal language.
 
-	私たちは、5章でその内部言語で一つに外部言語で書かれたプログラムをマップする詳細な手順を紹介します。
+	私たちは、5章で一つの外部言語で書かれたプログラムを内部言語にマップする詳細な手順を紹介します。
 
 	We will need to show that the elaboration of a program preserves the operational semantics of the program.
 
@@ -982,212 +1013,275 @@
 
 	Given a general context G and an expression e, G[e] stands for the expression obtained from replacing with e the hole [] in G.
 
-	一般的な文脈Gおよび式eを考えると、G[e]はG内のeとホール[]の置換で得られた式を意味する。
+	一般的な文脈Gおよび式eを考えると、G[e]はG内のeと空の[]の置換で得られた式を意味する。
 
 	We emphasize that this replacement may capture free variables in e.
 
 	我々は、この置換はe内の自由変数を取り込むことができることを強調する。
 
-	For instance, G[x] = lamx. x if G = lam x. [].
+	For instance, G[x] = lam x. x if G = lam x. [].
 
-	例えば、G = lam x. []の場合 G[x]= lamx. x です。
+	例えば、G = lam x. []の場合 G[x]= lam x. x です。
 
 	The notion of operational equivalence can then be defined as follows.
 
-	次のように運用等価の概念は、次のように定義することができる。
+	次のように操作的等価の概念は、次のように定義することができる。
 
 	- Definition 2.10
 	- 定義 2.10
 
 		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 is operationally equivalent to e2 if the following holds.
 
-		二つの式e1と自由変数を含むことができるλpat中のe2を考えると、以下が保持している場合は我々はe1はe2に操作上等価であると言います。
+		二つの式e1と自由変数を含むことができるλpat中のe2を考えると、我々は以下が保持している場合、e1はe2に操作上等価であると言います。
 
-		- Given any context G, G[e1] ,→∗ ev v∗ holds if and only if G[e2] ,→∗ ev v∗ , where v∗ ranges over EMUV, that is, the union of EMU and the set of observable values.
+		- Given any context G, G[e1] ,→∗ev v∗ holds if and only if G[e2] ,→∗ev v∗ , where v∗ ranges over EMUV, that is, the union of EMU and the set of observable values.
+
+
+		- 任意のコンテキストGを考えると、G[e2] ,→∗ev v∗の場合にのみG[e1] ,→∗ev v∗を保持している。ここでv*はEMUV上の範囲である、つまり、EMUの和集合と観察可能な値の集合です。
+
 
 		We write e1 ∼= e2 if e1 is operationally equivalent to e2, which is clearly an equivalence relation.
+
+		我々は e1がe2と操作的等価であり、明らかに同値関係である場合 e1 ~= e2 と書く。
 
 		----
 
 		Unfortunately, this operational equivalence relation is too strong to suit our purpose.
 
-		The reason can be explained with a simple example. Suppose we have a program lamx : int ∗ int. x in which the type int ∗ int is provided by the programmer;
+		残念ながら、この作動同値関係は、我々の目的に適合するには強すぎる。
+
+		The reason can be explained with a simple example.
+
+		その理由は単純な例で説明することができる。
+
+		Suppose we have a program lam x : int ∗ int. x in which the type int ∗ int is provided by the programmer;
+
+		我々はlam x : int ∗ int. x 中でプログラマによってint* int型が提供されたプログラムがあるとする。
 
 		for some reason (to be made clear later), we may elaborate the program into the following one:
 
-			e = lamx. let hx1, x2i = x in hx1, x2i end
+		何らかの理由（次で明らかにされる）で、我々は以下の１つのプログラムを詳細に記述することがあります。
 
-		Note that if we erase the type int ∗ int in the original program, we obtain the expression lamx. x, which is not operationally equivalent to e; for instance they are distinguished by the simple context G = [](hi).
+			e = lam x. let <x1, x2> = x in <x1, x2> end
 
-		我々は、元のプログラムで型にint * int型を消去した場合、我々は表現lamxを得ることに注意してください。 X、Eに操作上等価でされていない。例えば、それらは、単純なコンテキストG=[]（ハイ）で区別される。
+		Note that if we erase the type int ∗ int in the original program, we obtain the expression lam x. x, which is not operationally equivalent to e;
+
+
+		我々は、元のプログラムで型にint * int型を消去した場合、我々はeと操作上等価ではない式lam x. xを得ることに注意してください。 
+	
+		for instance they are distinguished by the simple context G = [](<>).
+
+		例えば、それらは、単純なコンテキストG=[](<>)で区別される。
 
 		To address this rather troublesome issue, we introduce a reflexive and transitive relation ≤dyn on expressions in λpat.
 
-		このかなり厄介な問題に対処するために、我々はλpatの式に≤dyn反射的かつ推移的な関係を紹介する。
+		このかなり厄介な問題に対処するために、我々はλpatの式で反射的推移的な関係≤dynを紹介する。
 
 	- Definition 2.11
 	- 定義 2.11
 
 		Given two expressions e1 and e2 in λpat, which may contain free variables, we say that e1 ≤dyn e2 holds if for any context G,
 
-		二つの式E1を考えると自由変数を含むことができるλpatでE2、我々は、E1≤dynE2はG任意のコンテキストのための場合、保持していることを言う
+		二つの式e1とλpat内の自由変数を含むことができるe2を考えると、我々は、任意のコンテキストGで以下の条件を満たしている場合、e1 ≤dyn e2 が成り立つ
 
-		- either G[e2] ,→∗ ev Error holds, or
-		- G[e1] ,→∗ ev v∗ if and only if G[e2] ,→∗ ev v∗, where v∗ ranges over EMUV, that is, the union of EMU and the set of observable values.
+		- either G[e2] ,→∗ev Error holds, or
+		- G[e2] ,→∗ev Errorが成り立つ、または
+		- G[e1] ,→∗ev v∗ if and only if G[e2] ,→∗ ev v∗, where v∗ ranges over EMUV, that is, the union of EMU and the set of observable values.
 
-		つまり、EMUVの上の範囲、EMUの労働組合と観測可能な値のセット。
+		- G[e2] ,→∗ev v*の場合にのみG[e1] ,→∗ ev v∗、v*はEMV上の範囲で、つまり、EMUと観測可能な値の集合の和集合である。
 
 		It is straightforward to verify the reflexivity and transitivity of ≤dyn.
 
-		それは≤dynの反射性と推移性を検証することは簡単である。
+		これは≤dynの反射性と推移性を検証することは簡単である。
 
-	- Corollary 2.12
+	- Corollary 2.12 系 2.12
 
-		Assume that e1 ≤dyn e2 holds. For any context G such that G[e2] is a closed welltyped expression in λpat, G[e1] evaluates to v ∗ if and only if G[e2] evaluates to v∗, where v∗ ranges over EMUV.
+		Assume that e1 ≤dyn e2 holds.
 
-	- Proof
+		e1 ≤dyn e2 が成り立つ事を仮定する。
 
-		This simply follows the definition of ≤dyn and Theorem 2.9. □
+		For any context G such that G[e2] is a closed welltyped expression in λpat, G[e1] evaluates to v∗ if and only if G[e2] evaluates to v∗, where v∗ ranges over EMUV.
 
-		これは、単に≤dynと定理2.9の定義を以下の通り。
+		任意のコンテキストGで、v*がEMUVの上の範囲で、G[e2]がv*に評価されている場合にのみG[e1]がv*に評価されるとき、G[e2]がλpat内の閉じたwell-typedな式である。
+
+		- Proof
+
+			This simply follows the definition of ≤dyn and Theorem 2.9. □
+
+			これは、単に以下の通り≤dynの定義と定理2.9。
 
 		----
 
 		In other words, e1 ≤dyn e2 implies that e1 and e2 are operationally indistinguishable in a typed setting.
 
-		つまり、E1≤dynE2ではe1とe2が型付き設定で操作上区別できないことを意味している。
+		つまり、e1 ≤dyn e2ではe1とe2が型付けされた場合において操作上見分けがつかないことを意味している。
 
 		We now present an approach to establishing the relation ≤dyn in certain special cases.
 
-		我々は現在、特定の特別な場合には関係≤dynの確立へのアプローチを提示する。
+		我々は今、特定の特別な場合の関係≤dynの確立へのアプローチを提示する。
 
-	- Definition 2.13
+	- Definition 2.13 定義 2.13
 
 		We define general redexes (or g-redexes, for short) and their reducts in λpat as follows:
 
+		次のように私たちは、一般的なredexes（略してg-redexes）とλpatでの縮約を定義します。
+
 		- An ev-redex is a g-redex, and the reduct of the ev-redex is also the reduct of the g-redex.
+
+		- ev-redexはg-redexで、ev-redexの縮約もg-redexの縮約です。
+
 		- let x = e in E[x] end is a g-redex if x has no free occurrences in E, and its reduct is E[e].
 
-		- hfst(v), snd(v)i is a g-redex and its reduct is v.
+		- xがE内で自由に出現する事がなく、その縮約がE[e]の場合、`let x = e in E[x] end`がg-redexです。
 
-			index signatures S ::= ∅ | S, C : (s1, . . . , sn) ⇒ s
-			index base sorts b ::= bool | . . .
-			index sorts s ::= b | s1 ∗ s2 | s1 → s2
-			index terms I ::= a | C(I1, . . . , In) | hI1, I2i | π1(I) | π2(I) |
-			λa : s. I | I1(I2)
-			index contexts φ ::= ∅ | φ, a : s
-			index substitutions Θ ::= [] | Θ[a 7→ I]
+		- <fst(v), snd(v)> is a g-redex and its reduct is v.
+
+		- <fst(v), snd(v)>はg-redexでその縮約はvです。
+
+				index signatures S ::= ∅ | S, C : (s1, . . . , sn) ⇒ s
+				index base sorts b ::= bool | . . .
+				index sorts s ::= b | s1 ∗ s2 | s1 → s2
+				index terms I ::= a | C(I1, . . . , In) | hI1, I2i | π1(I) | π2(I) |
+				λa : s. I | I1(I2)
+				index contexts φ ::= ∅ | φ, a : s
+				index substitutions Θ ::= [] | Θ[a 7→ I]
 
 		- Fig. 7. The syntax for a generic type index language
+		- 図7. ジェネリック型のインデックス言語の構文
 
 				φ(a) = s
-				φ ` a : s
-				(st-var)
-				S(C) = (s1, . . . , sn) ⇒ s φ ` Ik : sk for 1 ≤ k ≤ n
-				φ ` C(I1, . . . , In) : s
-				(st-const)
-				φ ` I1 : s1 φ ` I2 : s2
-				φ ` hI1, I2i : s1 ∗ s2
-				(st-prod)
-				φ ` I : s1 ∗ s2
-				φ ` π1(I) : s1
-				(st-fst) φ ` I : s1 ∗ s2
-				φ ` π2(I) : s2
-				(st-snd)
-				φ, a : s1 ` I : s2
-				φ ` λa : s1. I : s1 → s2
-				(st-lam)
-				φ ` I1 : s1 → s2 φ ` I2 : s1
-				φ ` I1(I2) : s2
-				(st-app)
+				--------------- (st-var)
+				φ |- a : s
+
+				S(C) = (s1, . . . , sn) ⇒ s φ |- Ik : sk for 1 ≤ k ≤ n
+				------------------------------------------------------ (st-const)
+				φ |- C(I1, . . . , In) : s
+
+				φ |- I1 : s1 φ |- I2 : s2
+				------------------------- (st-prod)
+				φ |- hI1, I2i : s1 ∗ s2
+
+				φ |- I : s1 ∗ s2
+				-----------------(st-fst)
+				φ |- π1(I) : s1
+				
+				φ |- I : s1 ∗ s2
+				-----------------(st-snd)
+				φ |- π2(I) : s2
+
+				φ, a : s1 |- I : s2
+				--------------------------(st-lam)
+				φ |- λa : s1. I : s1 → s2
+
+				φ |- I1 : s1 → s2 φ |- I2 : s1
+				------------------------------(st-app)
+				φ |- I1(I2) : s2
 
 		- Fig. 8. The sorting rules for type index terms
 
-		- lamx. v(x) is a g-redex and its reduct is v.
+		- 図8. 型インデックス用項の種付けルール
 
-		We write e1 ,→g e2 if e1 = G[e] for some general context G and g-redex e, and e2 = G[e0], where e0 is a reduct of e. We use ,→∗ g for the reflexive and transitive closure of ,→g and say that e1 g-reduces to e2 if e1 ,→∗ g e2 holds.
+		- lam x. v(x) is a g-redex and its reduct is v.
+		- lam x. v(x) は　g−redexでありその縮約はvである。
 
-		我々は、E1、→G E2書くE1= G [E]場合E0はEの縮約であるいくつかの一般的な文脈GおよびG-可約式E、とe2= G [E0]、のために。我々は→gを、の反射的と推移閉包のために、→* Gを使用して、→* GのE2が保持して、E1場合にE1のE2にgは-軽減言う。
+		We write e1 ,→g e2 if e1 = G[e] for some general context G and g-redex e, and e2 = G[e0], where e0 is a reduct of e.
+
+		e1= G[E]で、いくつかの一般的な文脈GおよびG-redex e かつ、e2= G[e0]のとき(e0はeの縮約)、我々はe1,→e e2と書く。
+
+		We use ,→∗ g for the reflexive and transitive closure of ,→g and say that e1 g-reduces to e2 if e1 ,→∗ g e2 holds.
+
+		我々は,→*gの反射的推移閉包のために,→*gを使用し、かつ、e1, →*g e2が成り立つとき、e1はe2にg-reducesされる。
 
 		We now mention a lemma as follows:
 
-		我々は今次のように補題に言及します：
+		我々は今、次のように補題に言及します：
 
-	- Lemma 2.14
+	- Lemma 2.14 補題 2.14
 
 		Given two expressions e and e0 in λpat that may contain free variables, e ,→∗ g e0 implies e0 ≤dyn e.
 
-		二つの式 eと自由変数を含むことができるλpatでe0を考えるとき `e, →* g e0`は、e0 ≤ dyn e を意味します。
+		二つの式 eと自由変数を含むことができるλpatでe0を考えるとき、 `e, →*g e0`は、`e0 ≤ dyn e` を意味します。
 
-	- Proof
-	- 証明
+		- Proof
+		- 証明
 
-		A (lengthy) proof of the lemma is given in Appendix A.
+			A (lengthy) proof of the lemma is given in Appendix A.
 
-		補題の（長い）証明は付録Aに記載されています。
+			補題の（長い）証明は付録Aに記載されています。
 
 		----
 
 		This lemma is to be of important use in Section 5, where we need to establish that the dynamic semantics of a program cannot be altered by elaboration.
 
-		この補題は、我々はプログラムの動的な意味論を精緻化することによって変更することができないことを確立する必要があり、5章中で重要な役割りを持つ。
+		この補題は5章で重要な役割りを果たすので、我々はプログラムの動的な意味論を精緻化することによって変更することができないことを確立する必要があります。
 
 - 3 Type index language
 
 	We are to enrich λpat with a restricted form of dependent types.
 
-	我々は、依存型の制限された形でλpat豊かにするである。
+	我々は、依存型の制限された形でλpatを強化を行う。
 
 	The enrichment is to parameterize over a type index language from which type index terms are drawn.
 
-	濃縮は、タイプの索引語が描画されるからタイプインデックスの言語を上にパラメータ化することです。
+	強化事項は、記述された型インデックス項から型インデックス言語上でパラメータ化することです。
 
+		------------------------------------(reg-true)
 		φ; P~ |= true
-		(reg-true)
+		
+		------------------------------------(reg-false)
 		φ; P~ , false |= P
-		(reg-false)
+		
 		φ; P~ |= P0
+		------------------------------------(reg-var-thin)
 		φ, a : s; P~ |= P0
-		(reg-var-thin)
-		φ ` P : bool φ; P~ |= P0
+		
+		φ |- P : bool φ; P~ |= P0
+		------------------------------------(reg-prop-thin)
 		φ; P~ , P |= P0
-		(reg-prop-thin)
-		φ, a : s; P~ |= P φ ` I : s
+		
+		φ, a : s; P~ |= P φ |- I : s
+		------------------------------------(reg-subst)
 		φ; P~ [a 7→ I] |= P[a 7→ I]
-		(reg-subst)
+		
 		φ; P~ |= P0 φ; P~ , P0 |= P1
+		------------------------------------(reg-cut)
 		φ; P~ |= P1
-		(reg-cut)
-		φ ` I : s
-		φ; P~ |= I
-		.
-		=s I
-		(reg-eq-refl)
-		φ;P~ |= I1
-		.=s I2
-		φ;P~ |= I2
-		.
-		=s I1
-		(reg-eq-symm)
-		φ; P~ |= I1
-		.=s I2 φ; P~ |= I2
-		.=s I3
-		φ; P~ |= I1
-		.=s I3
-		(reg-eq-tran)
+		
+		φ |- I : s
+		------------------------------------(reg-eq-refl)
+		φ; P~ |= I .=s I
+		
+		φ;P~ |= I1 .=s I2
+		------------------------------------(reg-eq-symm)
+		φ;P~ |= I2 .=s I1
+
+		φ; P~ |= I1 .=s I2 φ; P~ |= I2.=s I3
+		------------------------------------(reg-eq-tran)
+		φ; P~ |= I1 .=s I3
 
 		Fig. 9. The regularity rules
 
 	In this section, we show how a generic type index language L can be formed and then present some concrete examples of type index languages. 
 
+	このセクションでは、ジェネリック型のインデックス言語Lが形成され、次いでタイプインデックス言語のいくつかの具体的な例を提示する方法を示しています。
+
 	For generality, we will include both tuples and functions in L.
+
+	一般性のために、我々は、Lの両方のタプルや機能が含まれます。
 
 	However, we emphasize that a type index language can but does not necessarily have to support tuples or functions.
 
+	しかし、我々はタイプインデックス言語は必ずしもタプルや機能をサポートする必要がないことを強調している。
+
 	----
 
-	The generic type index language L itself is typed. In order to avoid potential confusion, we call the types in L type index sorts (or sorts, for short).
+	The generic type index language L itself is typed.
 
+	ジェネリック型のインデックス言語L自体が型付けされている。
+
+	In order to avoid potential confusion, we call the types in L type index sorts (or sorts, for short).
+
+	混乱を避けるために、我々は、Lタイプインデックスソート(略して、またはソート)内の型を呼び出す。
 
 	fig 7.
 
@@ -1195,7 +1289,9 @@
 		C: constant sort = c-sort = (s1, . . ., sn) -> b 
 
 	We use a for index variables and C for constants, which are either constant functions or constant constructors.
-	
+
+	我々はインデックス変数か、Cの生成ための定数関数や定数コンストラクタを使用します。
+
 	Each constant is assigned a constant sort (or c-sort, for short) of the form (s1, . . . , sn) ⇒ b, which means that C(I1, . . . , In) is an index term of sort b if Ii are of sorts si for i = 1, . . . , n.
 
 
@@ -1245,9 +1341,9 @@
 
 	We may also write φ; P~ |= P~0 to mean that　φ; P~ |= P0 holds for each P0 in P~0.
 
-	我々はまた、（ φ ; P~ | = P~0 ）と書くことが（ φ ; P~ | = P0） ことを意味していて P~0の各P0についても同様である。
+	我々はまた、（ φ ; P~ | = P~0 ）と書くことが（ φ ; P~ | = P0） ことを意味していて、P~0の各P0についても同様である。
 
-	We say that a constraint relation φ; P~ |= P0 is　regular if all the regularity rules in Figure 9 are valid, that is, the conclusion of a　regularity rule holds whenever all the premises of the regularity rule do.
+	We say that a constraint relation φ; P~ |= P0 is regular if all the regularity rules in Figure 9 are valid, that is, the conclusion of a regularity rule holds whenever all the premises of the regularity rule do.
 
 	図9のすべての規則性の規則が有効であるか|; （ = P0 P 〜 φ ）それは、規則性ルールの結論は規則性ルールのすべての施設が行うたびに保持され、規則的である我々は、制約関係があることを言う。
 
@@ -1415,7 +1511,7 @@
 
 	We write η : φ if η(a) ∈ Dφ(a) holds for each a ∈ dom(η) = dom(φ).
 
-	An interpretation M = h{Ds}s∈sort, Ii of S, which is the signature associated with L, is a model for L if there exists a (partial) binary function VM such that for each assignment η satisfying η : φ for some φ and each index term I, VM(η, I) is properly defined such that VM(η, I) ∈ Ds holds whenever φ ` I : s is derivable for some sort s, and the following conditions are also met:
+	An interpretation M = h{Ds}s∈sort, Ii of S, which is the signature associated with L, is a model for L if there exists a (partial) binary function VM such that for each assignment η satisfying η : φ for some φ and each index term I, VM(η, I) is properly defined such that VM(η, I) ∈ Ds holds whenever φ |- I : s is derivable for some sort s, and the following conditions are also met:
 
 	1. VM(η, a) = η(a) for each a ∈ dom(η), and
 	2. VM(η, C(I1, . . . , In)) = I(C)(VM(η, I1), . . . , VM(η, In)), and
@@ -1897,7 +1993,7 @@
 		hi ↓ 1 ⇒ (∅; ∅; ∅)
 		(pat-unit)
 		p1 ↓ τ1 ⇒ (φ1; P~1; Γ1) p2 ↓ τ2 ⇒ (φ2; P~2; Γ2)
-		hp1, p2i ↓ τ1 ∗ τ2 ⇒ (φ1, φ2; P~1, P~2; Γ1, Γ2)
+		<p1, p2> ↓ τ1 ∗ τ2 ⇒ (φ1, φ2; P~1, P~2; Γ1, Γ2)
 		(pat-prod)
 		φ0; P~0 ` cc(τ ) : δ(I1, . . . , In) p ↓ τ ⇒ (φ; P~ ; Γ)
 		cc(p) ↓ δ(I
@@ -1947,7 +2043,7 @@
 		φ ` Γ [ctx]
 		φ; P~ ; Γ ` hi : 1
 		(ty-unit) φ; P~ ; Γ ` e1 : τ1 φ;P~ ; Γ ` e2 : τ2
-		φ; P~ ; Γ ` he1, e2i : τ1 ∗ τ2
+		φ; P~ ; Γ ` <e1, e2> : τ1 ∗ τ2
 		(ty-prod)
 		φ; P~ ; Γ ` e : τ1 ∗ τ2
 		φ; P~ ; Γ ` fst(e) : τ1
@@ -2184,7 +2280,7 @@
 
 		1. If τ = δ(~I) for some type family δ, then v is of the form cc(v0), where cc is a constant constructor assigned a c-type of the form Πφ.P~ ⊃ (τ0 ⇒ δ(~I0)).
 		2. If τ = 1, then v is hi.
-		3. If τ = τ1 ∗ τ2, then v is of the form hv1, v2i.
+		3. If τ = τ1 ∗ τ2, then v is of the form <v1, v2>.
 		4. If τ = τ1 → τ2, then v is of the form lamx. e.
 		5. If τ = P ⊃ τ0, then v is of the form ⊃+(v0).
 		6. If τ = Πa:s. τ0, then v is of the form Π+(v0).
@@ -2414,7 +2510,7 @@
 			|c(e)| = c(|e|)
 			|case e of (p1 ⇒ e1 | . . . | pn ⇒ en)| = case |e| of (p1 ⇒ |e1| | . . . | pn ⇒ |en|)
 			|hi| = hi
-			|he1, e2i| = h|e1|, |e2|i
+			|<e1, e2>| = h|e1|, |e2|i
 			|fst(e)| = fst(|e|)
 			|snd(e)| = snd(|e|)
 			|lam x. e| = lamx. |e|
@@ -2765,7 +2861,7 @@
 		↑ τ2 ⇒ e2
 		φ;P~ ; Γ ` he1
 		, e2
-		i ↑ τ1 ∗ τ2 ⇒ he1, e2i
+		i ↑ τ1 ∗ τ2 ⇒ <e1, e2>
 		(elab-up-prod)
 		φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
 		φ;P~ ; Γ ` fst(e) ↑ τ1 ⇒ fst(e)
@@ -2828,7 +2924,7 @@
 		↓ τ2 ⇒ e2
 		φ; P~ ; Γ ` he1
 		, e2
-		i ↓ τ1 ∗ τ2 ⇒ he1, e2i
+		i ↓ τ1 ∗ τ2 ⇒ <e1, e2>
 		(elab-dn-prod)
 		φ;P~ ; Γ, x : τ1 ` e ↓ τ2 ⇒ lamx. e
 		φ;P~ ; Γ ` lamx. e ↓ τ1 → τ2 ⇒ lamx. e
@@ -4263,7 +4359,7 @@
 		1 e2 ,→ g e
 		0
 		2
-		he1, e2i ,→ g he
+		<e1, e2> ,→ g he
 		0
 		1, e
 		0
@@ -4313,13 +4409,13 @@
 		v1 ,→ g v
 		0
 		1
-		fst(hv1, v2i) ,→ g v
+		fst(<v1, v2>) ,→ g v
 		0
 		1
 		v2 ,→ g v
 		0
 		2
-		snd(hv1, v2i) ,→ g v
+		snd(<v1, v2>) ,→ g v
 		0
 		2
 		e ,→ g e
@@ -4911,17 +5007,17 @@
 	We skip all other cases except the most interesting one where E = [], that is,
 	e1 is a redex and e2 is the reduct of e1. In this case, we proceed by inspecting the
 	structure of D.
-	• e1 = fst(hv1, v2i) and e2 = v1. Then D is of the following form:
-	D1 :: ∅; ∅; ∅ ` hv1, v2i : τ1 ∗ τ2
-	∅; ∅; ∅ ` fst(hv1, v2i) : τ1
+	• e1 = fst(<v1, v2>) and e2 = v1. Then D is of the following form:
+	D1 :: ∅; ∅; ∅ ` <v1, v2> : τ1 ∗ τ2
+	∅; ∅; ∅ ` fst(<v1, v2>) : τ1
 	(ty-fst)
 	where τ = τ1. By Lemma 4.6, we may assume that the last rule applied in D1
 	is not (ty-sub). Hence, D1 is of the following form:
 	∅; ∅; ∅ ` v1 : τ1 ∅; ∅; ∅ ` v2 : τ2
-	∅; ∅; ∅ ` hv1, v2i : τ1 ∗ τ2
+	∅; ∅; ∅ ` <v1, v2> : τ1 ∗ τ2
 	(ty-prod)
 	and therefore ∅; ∅; ∅ ` e2 : τ1 is derivable as e2 = v1.
-	• e1 = snd(hv1, v2i) and e2 = v2. This case is symmetric to the previous one.
+	• e1 = snd(<v1, v2>) and e2 = v2. This case is symmetric to the previous one.
 	• e1 = (lamx. e)(v) and e2 = e[x 7→ v]. Then D is of the following form:
 	D1 :: ∅; ∅; ∅ ` lam x. e : τ1 → τ2 ∅; ∅; ∅ ` v : τ1
 	∅; ∅; ∅ ` (lamx. e)(v) : τ2
