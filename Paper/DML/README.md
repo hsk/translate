@@ -1,6 +1,7 @@
 - [Abstract](0.Abstract.md)
 - [1 Introduction](1.Introduction.md)
 - [2 λpat: A starting point](2.λpat_A_starting_point.md)
+- [2.4 Operational equivalence](2.4.Operational_equivalence.md)
 - [3 Type index language](3.Type_index_language.md)
 - [4 λ Π,Σ pat : Extending λpat with dependent types](4.λ_Π,Σ_pat_Extending_λpat_with_dependent_types.md)
 - [5 Elaboration](5.Elaboration.md)
@@ -8,3 +9,4 @@
 - [7 Some programming examples](7.Some_programming_examples.md)
 - [8 Related work](8.Related_work.md)
 - [9 Conclusion](9.Conclusion.md)
+- [A Proof of Lemma 2.14](A_Proof_of_Lemma_2.14.md)
