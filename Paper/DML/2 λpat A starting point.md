@@ -1,4 +1,4 @@
-- 2 λpat: A starting point
+# 2 λpat: A starting point
 
   [](
   We introduce a simply typed programming language λpat, which essentially extends the simply typed λ-calculus with pattern matching.
@@ -20,16 +20,16 @@
 
   - Fig. 3. The syntax for λpat
 
-        base types    δ ::= bool | int | . . .
-        types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
-        patterns      p ::= x | f | hi | <p1, p2> | cc(p)
-        matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
-        constants     c ::= cc | cf
-        expressions   e ::= xf | c(e) | hi | <e1, e2> | fst(e) | snd(e) | case e of ms |
-                            lam x. e | e1(e2) | fix f. e | let x = e1 in e2 end
-        values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
-        contexts      Γ ::= · | Γ, xf : τ
-        substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
+          base types    δ ::= bool | int | . . .
+          types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
+          patterns      p ::= x | f | hi | <p1, p2> | cc(p)
+          matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
+          constants     c ::= cc | cf
+          expressions   e ::= xf | c(e) | hi | <e1, e2> | fst(e) | snd(e) | case e of ms |
+                              lam x. e | e1(e2) | fix f. e | let x = e1 in e2 end
+          values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
+          contexts      Γ ::= · | Γ, xf : τ
+          substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
 
   [](
   The syntax of λpat is given in Figure 3.
