@@ -82,7 +82,7 @@
 		---------------------------------------------------------------------(dy-sub-Σ-r)
 		φ; P~ |- Σ(∧n(E)) : τ ≤ Σa:sˆ. τ'
 
-		Fig. 21. The dynamic subtype rules in λΠ,Σ pat.
+	Fig. 21. The dynamic subtype rules in λΠ,Σ pat.
 
 	there are n occurrences of ⊃ +, and ∧n(·) for ∧(...(∧(·))...), where there are n occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end, and let Σ(∧n+1(x)) = e1 in e2 end for the following expression: let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end, where n ranges over natural numbers.
 

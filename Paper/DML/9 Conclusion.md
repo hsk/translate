@@ -387,4 +387,5 @@
 		)
 		θ ,→ g θ
 		0
-		Fig. A 1. The rules for the parallel general reduction ,→ g
+
+	Fig. A 1. The rules for the parallel general reduction ,→ g

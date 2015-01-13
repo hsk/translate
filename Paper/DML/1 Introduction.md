@@ -37,7 +37,8 @@ It also constrains the underlying functional language to remain relatively pure,
 	  | append (cons (x, xs), ys) = cons (x, append (xs, ys))
 	withtype {m:nat,n:nat} ’a list(m) * ’a list(n) -> ’a list(m+n)
 
-	Fig. 1. An introductory example: appending lists
+[](Fig. 1. An introductory example: appending lists)
+図 1. 導入例: リストへの追加
 
 ----
 
@@ -105,7 +106,8 @@ The annotated type can be formally written)
 	  | filter p (x :: xs) = if p (x) then x :: filter p xs else filter p xs
 	withtype {m:nat} ’a list (m) -> [n:nat | n <= m] ’a list (n)
 
-	Fig. 2. Another introductory example: filtering lists
+[](Fig. 2. Another introductory example: filtering lists)
+図 2. もう一つの導入例：フィルタリングリスト
 
 [](as follows:)
 

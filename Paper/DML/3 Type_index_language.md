@@ -1,11 +1,11 @@
 - 3 Type index language
 
+	[](
 	We are to enrich λpat with a restricted form of dependent types.
-
-	我々は、依存型の制限された形でλpatを強化を行う。
-
 	The enrichment is to parameterize over a type index language from which type index terms are drawn.
+	)
 
+	我々は、依存型の制限された形でλpatを強化します。
 	強化事項は、記述された型インデックス項から型インデックス言語上でパラメータ化することです。
 
 		------------------------------------(reg-true)
@@ -42,28 +42,27 @@
 		------------------------------------(reg-eq-tran)
 		φ; P~ |= I1 .=s I3
 
-		Fig. 9. The regularity rules
+	[](Fig. 9. The regularity rules)
+	図9. 正則ルール
 
+	[](
 	In this section, we show how a generic type index language L can be formed and then present some concrete examples of type index languages. 
+	For generality, we will include both tuples and functions in L.
+	However, we emphasize that a type index language can but does not necessarily have to support tuples or functions.
+	)
 
 	このセクションでは、ジェネリック型のインデックス言語Lが形成され、次いでタイプインデックス言語のいくつかの具体的な例を提示する方法を示しています。
-
-	For generality, we will include both tuples and functions in L.
-
 	一般性のために、我々は、Lの両方のタプルや機能が含まれます。
-
-	However, we emphasize that a type index language can but does not necessarily have to support tuples or functions.
-
 	しかし、我々はタイプインデックス言語は必ずしもタプルや機能をサポートする必要がないことを強調している。
 
 	----
 
+	[](
 	The generic type index language L itself is typed.
+	In order to avoid potential confusion, we call the types in L type index sorts (or sorts, for short).
+	)
 
 	ジェネリック型のインデックス言語L自体が型付けされている。
-
-	In order to avoid potential confusion, we call the types in L type index sorts (or sorts, for short).
-
 	混乱を避けるために、我々は、Lタイプインデックスソート(略して、またはソート)内の型を呼び出す。
 
 	fig 7.
@@ -104,12 +103,12 @@
 
 	----
 
+	[](
 	We may write φ |- P~ : bool to mean that φ |- P : bool is derivable for every P in P~.
+	In addition, we may use φ |- Θ : φ0 to indicate that φ |- Θ(a) : φ0(a) holds for each a in dom(Θ) = dom(φ0).
+	)
 
 	BOOLがP内のすべてのP〜のために誘導可能である：P - |それはφ意味するBOOL：P〜 - |我々は、φを書き込むことができる。
-
-	In addition, we may use φ |- Θ : φ0 to indicate that φ |- Θ(a) : φ0(a) holds for each a in dom(Θ) = dom(φ0).
-
 	また、我々はφを使用することがあります| - Θ：φ0はそれがφを示すために| - Θ（A）：φ0（a）の各AのDOM（Θ）= DOM（φ0）についても同様である。
 
 
