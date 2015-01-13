@@ -20,16 +20,16 @@
 
   - Fig. 3. The syntax for λpat
 
-      base types    δ ::= bool | int | . . .
-      types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
-      patterns      p ::= x | f | hi | <p1, p2> | cc(p)
-      matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
-      constants     c ::= cc | cf
-      expressions   e ::= xf | c(e) | hi | <e1, e2> | fst(e) | snd(e) | case e of ms |
-                          lam x. e | e1(e2) | fix f. e | let x = e1 in e2 end
-      values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
-      contexts      Γ ::= · | Γ, xf : τ
-      substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
+        base types    δ ::= bool | int | . . .
+        types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
+        patterns      p ::= x | f | hi | <p1, p2> | cc(p)
+        matching clause seq. ms ::= (p1 ⇒ e1 | · · · | pn ⇒ en)
+        constants     c ::= cc | cf
+        expressions   e ::= xf | c(e) | hi | <e1, e2> | fst(e) | snd(e) | case e of ms |
+                            lam x. e | e1(e2) | fix f. e | let x = e1 in e2 end
+        values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
+        contexts      Γ ::= · | Γ, xf : τ
+        substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
 
   [](
   The syntax of λpat is given in Figure 3.
@@ -97,7 +97,6 @@
   We use ∅ for the empty context and Γ, xf : τ for the context that extends Γ with one additional declaration xf : τ , where we assume that xf is not already declared in Γ.
   A context `Γ = ∅, xf: τ1,...,xfn: τn` may also be treated as a finite mapping that maps xfi to τi for 1 ≤ i ≤ n, and we use dom(Γ) for the domain of Γ. 
   Also, we may use Γ, Γ' for the context ∅, xf': τ1, ..., xfn : τn, xf'1 : τ'1,..., xf'n: τ'n , where Γ = ∅, xf 1: τ1,..., xfn : τn' and Γ' = ∅, xf'1: τ'1,..., xf'n: τ'n' and all variables xf1,...,xfn,xf'1,...,xf'n' are distinct.
-
   )
 
   我々は、空のコンテキストに対して∅使用し、xfがすでにΓで宣言されていないと仮定して一つの追加の宣言xf : τでΓを拡張したコンテキストΓ, xf : τを使用します。
