@@ -18,7 +18,7 @@
 
   ----
 
-  ## Fig. 3. The syntax for λpat
+## Fig. 3. The syntax for λpat
 
     base types    δ ::= bool | int | . . .
     types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
