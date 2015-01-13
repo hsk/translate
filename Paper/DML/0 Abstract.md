@@ -11,4 +11,4 @@ In particular, this design makes it both natural and straightforward to accommod
 本論文の主要な貢献は、効果的に実践的なプログラミングの依存型の使用をサポートすることができる、我々の言語設計にあります。
 特に、このデザインは、それが自然で簡単にこのような参照や例外などの効果の存在下での依存タイプに対応することができます。
 
-- 次へ : [1 Introduction](1.Introduction.md)
+- 次へ : [1 Introduction](1 Introduction.md)

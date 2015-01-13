@@ -1,4 +1,4 @@
-- [Abstract](0.Abstract.md)
+- [Abstract](0 Abstract.md)
 
 # 1 Introduction
 
@@ -259,4 +259,4 @@ We mention some closely related work in Section 8 and then conclude.
 また、我々は、プログラムの不変条件を捕捉するために、実際にどのように依存型を使用できるかの感じを読者に与えるために7章でいくつかの興味深い例を提示する。
 我々は、8章でいくつかの関連研究に言及し結論を述べる。
 
-- 次へ : [2 λpat: A starting point](2.λpat_A_starting_point.md)
+- 次へ : [2 λpat: A starting point](2 λpat A starting point.md)
