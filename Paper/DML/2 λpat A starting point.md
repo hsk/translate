@@ -18,9 +18,7 @@
 
   ----
 
-[](## Fig. 3. The syntax for λpat)
 
-## 図3. λpat構文
 
     base types    δ ::= bool | int | . . .
     types         τ ::= δ | 1 | τ1 ∗ τ2 | τ1 → τ2
@@ -32,6 +30,9 @@
     values        v ::= x | cc(v) | hi | <v1, v2> | lam x. e
     contexts      Γ ::= · | Γ, xf : τ
     substitutions θ ::= [] | θ[x 7→ v] | θ[f 7→ e]
+
+  [](## Fig. 3. The syntax for λpat)
+  図3. λpat構文
 
   [](
   The syntax of λpat is given in Figure 3.
