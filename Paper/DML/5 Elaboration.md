@@ -1,37 +1,25 @@
 - 5 Elaboration
 
 	We have so far presented an explicitly typed language λΠ,Σ pat .
-
 	This presentation has a serious drawback from the point of view of a programmer:
-
 	One may quickly be overwhelmed with the need for writing types when programming in such a setting.
-
 	It then becomes apparent that it is necessary to provide an external language DML0 together with a mapping from DML0 to the internal language λΠ,Σ pat , and we call such a mapping elaboration.
-
 	We may also use the phrase type-checking loosely to mean elaboration, sometimes.
 
 	----
 
 	We are to introduce a set of rules to perform elaboration.
-
 	The elaboration process itself is nondeterministic.
-
 	Nonetheless, we can guarantee based on Theorem 5.3 that if e in DML0 can be elaborated into e in λΠ,Σ pat , then e and e are operationally equivalent.
-
 	In other words, elaboration cannot alter the dynamic semantics of a program.
-
 	This is what we call the soundness of elaboration, which is considered a major contribution of the paper.
-
 	We are to perform elaboration with bi-directional strategy that casually resembles the one adopted by Pierce and Turner in their study on local type inference (Pierce & Turner, 1998), where the primary focus is on the interaction between polymorphism and subtyping.
 
 	----
 
 	We present the syntax for DML0 in Figure 20, which is rather similar to that of λΠ,Σ pat .
-
 	In general, it should not be difficult to relate the concrete syntax used in our program examples to the formal syntax of DML0.
-
 	We now briefly explain as to how some concrete syntax can be used to provide type annotations for functions.
-
 	We essentially support two forms of type annotations for functions, both of which are given below:
 	
 		fun succ1 (x) = x + 1
@@ -40,478 +28,72 @@
 		fun succ2 {a:int | a >= 0} (x: int(a)): int(a+1) = x + 1
 
 	The first form of annotation allows the programmer to easily read out the type of the annotated function while the second form makes it more convenient to handle a case where the body of a function needs to access some bound type index variables in the type annotation.
-
 	The concrete syntax for the definition of succ1 translates into the following formal syntax,
 
-		fix f : τ. λa : s. ˆ lamx : int(a).(x + 1 : int(a + 1))
+		fix f : τ. λa : sˆ. lamx : int(a).(x + 1 : int(a + 1))
 
 	where sˆ = {a : int | a ≥ 0}, and so does the concrete syntax for the definition of succ2.
-
 	As an example, both forms of annotation are involved in the following program, which computes the length of a given list:
 
 		fun length {n:nat} (xs: ’a list n): int n =
-		let // this is a tail-recursive implementation
-		fun aux xs j = case xs of
-		| nil => j
-		| cons (_, xs) => aux xs (j+1)
-		withtype {i:nat, j:nat | i+j=n} ’a list i -> int j -> int n
-		in
-		aux xs 0
-		end
+			let // this is a tail-recursive implementation
+				fun aux xs j = case xs of
+				| nil => j
+				| cons (_, xs) => aux xs (j+1)
+				withtype {i:nat, j:nat | i+j=n} ’a list i -> int j -> int n
+			in
+				aux xs 0
+			end
 
 	Note that the type index variable n is used in the type annotation for the inner auxiliary function aux .
 
 	----
 
-	In the following presentation, we may use ⊃ + n (·) for ⊃ +(. . .(⊃ +(·)). . .), where
+	In the following presentation, we may use ⊃ + n (·) for ⊃ +(...(⊃ +(·))...), where
 
-		φ; P~ |= I1
-		.
-		= I
-		0
-		1 · · · φ; P~ |= In
-		.
-		= I
-		0
-		n
-		φ;P~ ` [] : δ(I1, . . . , In) ≤ δ(I
-		0
-		1, . . . , I
-		0
-		n)
-		(dy-sub-base)
-		φ; P~ ` [] : 1 ≤ 1
-		(dy-sub-unit)
-		φ; P~ ; x1 : τ1, x2 : τ2 ` hx1, x2i ↓ τ ⇒ e
-		φ;P~ ` let hx1, x2i = [] in e end : τ1 ∗ τ2 ≤ τ
-		(dy-sub-prod)
-		φ;P~ ; x : τ, x1 : τ1 ` x(x1) ↓ τ2 ⇒ e
-		φ; P~ ` let x = [] in lamx1. e end : τ ≤ τ1 → τ2
-		(dy-sub-fun)
-		sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
-		0
-		φ; P~ ` Π
-		+(⊃
-		+
-		n (E)) : τ ≤ Πa:sˆ. τ
-		0
-		(dy-sub-Π-r)
-		sˆ = {a : s | P1, . . . , Pn} φ, a : s; P~ , P1, . . . , Pn ` E : τ ≤ τ
-		0
-		φ; P~ ` let Σ(∧n(x)) = [] in E[x] end : Σa:s. ˆ τ ≤ τ
-		0
-		(dy-sub-Σ-l)
-		sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ [a 7→ I] ≤ τ
-		0
-		φ; P~ ` E[⊃
-		−
-		n (Π−([]))] : Πa:sˆ. τ ≤ τ
-		0
-		(dy-sub-Π-l)
-		sˆ = {a : s | P1, . . . , Pn} φ ` I : sˆ φ; P~ ` E : τ ≤ τ
-		0
-		[a 7→ I]
-		φ; P~ ` Σ(∧n(E)) : τ ≤ Σa:sˆ. τ
-		0
-		(dy-sub-Σ-r)
+		φ; P~ |= I1.= I'1 ··· φ; P~ |= In.= I'n
+		---------------------------------------------------------------------(dy-sub-base)
+		φ;P~ |- [] : δ(I1, ..., In) ≤ δ(I'1, ..., I'n)
+
+		---------------------------------------------------------------------(dy-sub-unit)
+		φ; P~ |- [] : 1 ≤ 1
+
+		φ; P~ ; x1 : τ1, x2 : τ2 |- hx1, x2i ↓ τ ⇒ e
+		---------------------------------------------------------------------(dy-sub-prod)
+		φ;P~ |- let hx1, x2i = [] in e end : τ1 ∗ τ2 ≤ τ
+
+		φ;P~ ; x : τ, x1 : τ1 |- x(x1) ↓ τ2 ⇒ e
+		---------------------------------------------------------------------(dy-sub-fun)
+		φ; P~ |- let x = [] in lamx1. e end : τ ≤ τ1 → τ2
+
+		sˆ = {a : s | P1, ..., Pn} φ, a : s; P~ , P1, ..., Pn |- E : τ ≤ τ'
+		---------------------------------------------------------------------(dy-sub-Π-r)
+		φ; P~ |- Π+(⊃+ n (E)) : τ ≤ Πa:sˆ. τ'
+
+		sˆ = {a : s | P1, ..., Pn} φ, a : s; P~ , P1, ..., Pn |- E : τ ≤ τ'
+		---------------------------------------------------------------------(dy-sub-Σ-l)
+		φ; P~ |- let Σ(∧n(x)) = [] in E[x] end : Σa:s. ˆ τ ≤ τ'
+
+		sˆ = {a : s | P1, ..., Pn} φ |- I : sˆ φ; P~ |- E : τ [a |→ I] ≤ τ'
+		---------------------------------------------------------------------(dy-sub-Π-l)
+		φ; P~ |- E[⊃− n (Π−([]))] : Πa:sˆ. τ ≤ τ'
+
+		sˆ = {a : s | P1, ..., Pn} φ |- I : sˆ φ; P~ |- E : τ ≤ τ' [a |→ I]
+		---------------------------------------------------------------------(dy-sub-Σ-r)
+		φ; P~ |- Σ(∧n(E)) : τ ≤ Σa:sˆ. τ'
+
 		Fig. 21. The dynamic subtype rules in λΠ,Σ pat.
 
-	there are n occurrences of ⊃ +, and ∧n(·) for ∧(. . .(∧(·)). . .), where there are n occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end, and let Σ(∧n+1(x)) = e1 in e2 end for the following expression: let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end, where n ranges over natural numbers.
+	there are n occurrences of ⊃ +, and ∧n(·) for ∧(...(∧(·))...), where there are n occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end, and let Σ(∧n+1(x)) = e1 in e2 end for the following expression: let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end, where n ranges over natural numbers.
 
 	- Proposition 5.1
 
 		We have |let x = e1 in e2 end| ≤dyn |let Σ(∧n(x)) = e1 in e2 end|.
 
-	- Proof
+		- Proof
 
-		This immediately follows from Lemma 2.14 and the observation that
+			This immediately follows from Lemma 2.14 and the observation that
 
-			|let Σ(∧n(x)) = e1 in e2 end| ,→∗g |let x = e1 in e2 end|
+				|let Σ(∧n(x)) = e1 in e2 end| ,→∗g |let x = e1 in e2 end|
 
-		holds. □
-
-- 5.1 The judgments and rules for elaboration
-
-	We introduce a new form of judgment φ; P~ ` E : τ1 ≤ τ2, which we call dynamic subtype judgment.
-
-	We may write φ; P~ ` τ1 ≤ τ2 to mean φ; P~ ` E : τ1 ≤ τ2 for some evaluation context E.
-
-	The rules for deriving such a new form of judgment are given in Figure 21.
-
-	We are to establish that if φ; P~ ` E : τ ≤ τ0 is derivable, then φ; P~ |= E : τ ≤d tp τ0 holds, that is, for any expression e of type τ , E[e] can be assigned the type τ0 and |e| ≤dyn |E[e]| holds.
-
-	----
-
-	There is another new form of judgment φ; P~; Γ ` e ↓ τ ⇒ e involved in the rule (dy-sub-prod) and the rule (dy-sub-fun), and the rules for deriving such a judgment, which we call analysis elaboration judgment, are to be presented next.
-	
-	----
-
-	We actually have two forms of elaboration judgments involved in the process of elaborating expressions from DML0 to λΠ,Σ pat .
-
-	- A synthesis elaboration judgment is of the form φ; P~; Γ ` e ↑ τ ⇒ e, which means that given φ, P~ , Γ and e, we can find a type τ and an expression e such that φ; P~ ; Γ ` e : τ is derivable and |e| ≤dyn |e| holds.
-		Intuitively, τ can be thought of as being synthesized through an inspection on the structure of e.
-	- An analysis elaboration judgment is of the form φ; P~ ; Γ ` e ↓ τ ⇒ e, which means that given φ; P~ ; Γ, e and τ , we can find an expression e such that φ; P~; Γ ` e : τ is derivable and |e| ≤dyn |e| holds.
-	
-	We use |e| for the erasure of an expression e in DML0, which is obtained from erasing in e all occurrences of the markers Π+(·), Π−(·), ⊃ +(·), ⊃ −(·), Σ(·) and ∧(·).
-
-	The erasure function is formally defined in Figure 24.
-
-	----
-
-	The rules for deriving synthesis and analysis elaboration judgments are given in Figure 22 and Figure 23, respectively.
-
-	Note that there are various occasions where the two forms of elaboration judgments meet.
-
-	For instance, when using the rule (elab-up-app-1) to elaborate e1(e2), we may first synthesize a type τ1 → τ2 for e1 and then check e2 against τ1.
-
-	----
-
-	We next present some explanation on the elaboration rules.
-
-	First and foremost, we emphasize that many elaboration rules are not syntax-directed.
-
-	If in a case there are two or more elaboration rules applicable, the actual elaboration procedure should determine (based on some implementation strategies) which elaboration rule is to be chosen.
-
-	We are currently not positioned to argue which implementation strategies are better than others, though we shall mention some key points about the strategies we have implemented.
-
-	Given that the elaboration is not a form of pure type inference,1 it is difficult to even formalize the question as to whether an implementation of the elaboration is complete or not.
-	
-- 5.2 Some explanation on synthesis elaboration rules
-
-	The rules for synthesis elaboration judgments are presented in Figure 22.
-
-	The purpose of the rules (elab-up-Π-elim-1) and (elab-up-Π-elim-2) is for eliminating Π quantifiers.
-
-	For instance, let us assume that we are elaborating an expression e1 (e2), and a type of the form Πa : s. ˆ τ is already synthesized for e1; then we need to apply the rule (elab-up-Π-elim-1) so as to eliminate the Π quantifier in
-
-
-	----
-
-	1 By pure type inference, we refer to the question that asks whether a given expression in λpat is typable in λΠ,Σ pat , that is, whether a given expression in λpat can be the erasure of some typable expression in λΠ,Σ pat .
-
-		sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
-		φ; P~ ; Γ ` e ↑ τ [a 7→ I] ⇒⊃−
-		n (Π−(e))
-		(elab-up-Π-elim-1)
-		sˆ = {a : s | P1, . . . , Pn} φ;P~ ` I : sˆ φ; P~ ; Γ ` e ↑ Πa:sˆ. τ ⇒ e
-		φ;P~ ; Γ ` e[I] ↑ τ [a 7→ I] ⇒⊃−
-		n (Π−(e))
-		(elab-up-Π-elim-2)
-		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ ` e ↑ τ ⇒ e
-		φ;P~ ; Γ ` λa : s. ˆ e ↑ Πa:s. ˆ τ ⇒ Π+(⊃
-		+
-		n (e))
-		(elab-up-Π-intro)
-		φ;P~ ; Γ ` e ↓ τ ⇒ e
-		φ; P~ ; Γ ` (e : τ ) ↑ τ ⇒ e
-		(elab-up-anno)
-		φ ` Γ [ctx] Γ(xf ) = τ
-		φ; P~ ; Γ ` xf ↑ τ ⇒ xf
-		(elab-up-var)
-		φ0; P~0 ` c(τ0) : δ(I~0) φ ` Θ : φ0 φ |= P~0[Θ] φ;P~ ; Γ ` e ↓ τ0[Θ] ⇒ e
-		φ; P~ ; Γ ` c(e) ↑ δ(I~0[Θ]) ⇒ c(e)
-		(elab-up-const)
-		φ;P~ ; Γ ` e1
-		↑ τ1 ⇒ e1 φ;P~ ; Γ ` e2
-		↑ τ2 ⇒ e2
-		φ;P~ ; Γ ` he1
-		, e2
-		i ↑ τ1 ∗ τ2 ⇒ <e1, e2>
-		(elab-up-prod)
-		φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
-		φ;P~ ; Γ ` fst(e) ↑ τ1 ⇒ fst(e)
-		(elab-up-fst)
-		φ;P~ ; Γ ` e ↑ τ1 ∗ τ2 ⇒ e
-		φ;P~ ; Γ ` snd(e) ↑ τ2 ⇒ snd(e)
-		(elab-up-snd)
-		φ; P~ ; Γ, x : τ1 ` e ↑ τ2 ⇒ lamx. e
-		φ;P~ ; Γ ` lamx : τ1. e ↑ τ1 → τ2 ⇒ lamx. e
-		(elab-up-lam)
-		φ;P~ ; Γ ` e1
-		↑ τ1 → τ2 ⇒ e1 φ;P~ ; Γ ` e2
-		↓ τ1 ⇒ e2
-		φ;P~ ; Γ ` e1
-		(e2
-		) ↑ τ2 ⇒ e1(e2)
-		(elab-up-app-1)
-		φ;P~ ; Γ ` e1
-		↑ τ ⇒ e1 φ;P~ ; Γ ` e2
-		↑ τ1 ⇒ e2
-		φ;P~ ; x1 : τ, x2 : τ1 ` x1(x2) ↑ τ2 ⇒ e
-		φ; P~ ; Γ ` e1
-		(e2
-		) ↑ τ2 ⇒ let x1 = e1 in let x2 = e2 in e end end
-		(elab-up-app-2)
-		φ;P~ ; Γ, f : τ ` e ↓ τ ⇒ e
-		φ;P~ ; Γ ` fix f : τ. e ↑ τ ⇒ fix f. e
-		(elab-up-fix)
-		φ;P~ ; Γ ` e1
-		↑ τ1 ⇒ e1 φ;P~ ; Γ, x : τ1 ` e2
-		↑ τ2 ⇒ e2
-		φ;P~ ; Γ ` let x = e1
-		in e2
-		end ↑ τ2 ⇒ let x = e1 in e2 end
-		(elab-up-let)
-		φ;P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↑ τ ⇒ e
-		φ;P~ ; Γ, x : τ1 ∗ τ2 ` e ↑ τ ⇒ let hx1, x2i = x in e end
-		(elab-up-prod-left)
-		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ ,P1, . . . ,Pn; Γ, x : τ1 ` e ↑ τ2 ⇒ e
-		φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↑ Σa:s. ˆ τ2 ⇒ let Σ(∧n(x)) = x in Σ(∧n(e)) end
-		(elab-up-Σ-left)
-
-		Fig. 22. The rules for synthesis elaboration from DML0 to λΠ,Σ pat
-
-	Πa : s. ˆ τ ; we continue to do so until the synthesized type for e1 does not begin with a Π quantifier. 
-
-	In some (rare) occasions, the programmer may write e[I] to indicate an explicit elimination of a Π quantifier, and the rule (elab-up-Π-elim-2) is designed for this purpose.
-
-	----
-
-	The rule (elab-up-anno) turns a need for a synthesis elaboration judgment into
-	
-		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ ` e ↓ τ ⇒ e
-		φ; P~ ; Γ ` e ↓ Πa:s. ˆ τ ⇒ Π+(⊃
-		+
-		n (e))
-		(elab-dn-Π-intro)
-		φ;P~ ; Γ ` e1
-		↓ τ1 ⇒ e1 φ;P~ ; Γ ` e2
-		↓ τ2 ⇒ e2
-		φ; P~ ; Γ ` he1
-		, e2
-		i ↓ τ1 ∗ τ2 ⇒ <e1, e2>
-		(elab-dn-prod)
-		φ;P~ ; Γ, x : τ1 ` e ↓ τ2 ⇒ lamx. e
-		φ;P~ ; Γ ` lamx. e ↓ τ1 → τ2 ⇒ lamx. e
-		(elab-dn-lam)
-		p ↓ τ1 ⇒ (φ0;P~0; Γ0) φ, φ0;P~ ,P~0; Γ, Γ0 ` e ↓ τ2 ⇒ e
-		φ; P~ ; Γ ` (p ⇒ e) ↓ (τ1 → τ2) ⇒ (p ⇒ e)
-		(elab-dn-clause)
-		φ; P~ ; Γ ` (pi ⇒ ei
-		) ↓ (τ1 → τ2) ⇒ (pi ⇒ ei) for 1 ≤ i ≤ n
-		ms = (p1 ⇒ e1
-		| . . . | pn ⇒ en
-		) ms = (p1 ⇒ e1 | . . . | pn ⇒ en)
-		φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
-		(elab-dn-clause-seq)
-		φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ; Γ ` ms ↓ τ1 → τ2 ⇒ ms
-		φ; P~ ; Γ ` case e of ms ↓ τ2 ⇒ case e of ms
-		(elab-dn-case)
-		φ;P~ ; Γ ` e ↑ τ1 ⇒ e φ;P~ ` E : τ1 ≤ τ2
-		φ;P~ ; Γ ` e ↓ τ2 ⇒ E[e]
-		(elab-dn-up)
-		φ; P~ ; Γ, x1 : τ1, x2 : τ2 ` e[x 7→ hx1, x2i] ↓ τ ⇒ e
-		φ; P~ ; Γ, x : τ1 ∗ τ2 ` e ↓ τ ⇒ let hx1, x2i = x in e end
-		(elab-dn-prod-left)
-		sˆ = {a : s | P1, . . . ,Pn} φ, a : s;P~ , P1, . . . , Pn; Γ, x : τ1 ` e ↓ τ2 ⇒ e
-		φ;P~ ; Γ, x : Σa:s. ˆ τ1 ` e ↓ τ2 ⇒ let Σ(∧n(x)) = x in e end
-		(elab-dn-Σ-left)
-
-	- Fig. 23. The rules for analysis elaboration from DML0 to λ
-
-		Π,Σ
-		pat
-		|xf | = xf
-		|c(e)| = c(|e|)
-		|case e of (p1 ⇒ e1
-		| . . . | pn ⇒ en
-		)| = case |e| of (p1 ⇒ |e1
-		| | . . . | pn ⇒ |en
-		|)
-		|hi| = hi
-		|he1
-		, e2
-		i| = h|e1
-		|, |e2
-		|i
-		|fst(e)| = fst(|e|)
-		|snd(e)| = snd(|e|)
-		|lam x. e| = lamx. |e|
-		|lam x : τ. e| = lamx. |e|
-		|e1
-		(e2
-		)| = |e1
-		|(|e2
-		|)
-		|fix f : τ. e| = fix f. |e|
-		|let x = e1
-		in e2
-		end| = let x = |e1
-		| in |e2
-		| end
-		|(e : τ )| = |e|
-		|λa : sˆ. e| = |e|
-		|e[I]| = |e|
-
-	- Fig. 24. The erasure function on expressions in DML0
-
-		τ1 = Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
-		τ2(a) = int(a) → Σa2 :nat. int(a2)
-		τ3 = Σa2 :nat. int(a2)
-		e1 = ⊃−(Π−(f))(1)
-		e2 = ⊃−(Π−(x1))
-		e3 = let Σ(∧(x2)) = x2 in ⊃−(Π−(x1))(x2) end
-		e4 = let x1 = f in let x2 = e1 in e3 end end
-		D0 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ1 ⇒ f
-		(elab-up-var)
-		D0 ∅; ∅ ` 1 : nat
-		D1 :: ∅; ∅; ∅, f : τ1 ` f ↑ τ2(1) ⇒⊃−(Π−(f))
-		(elab-up-Π-elim-1)
-		D2 :: ∅; ∅; ∅, f : τ1 ` 1 ↑ int(1) ⇒ 1
-		(elab-up-const)
-		D1
-		D2
-		∅; ∅ |= 1
-		.= 1
-		∅; ∅ ` [] : int(1) ≤ int(1)
-		(dy-sub-base)
-		∅; ∅; ∅, f : τ1 ` 1 ↓ int(1) ⇒ 1
-		(elab-dn-up)
-		D3 :: ∅; ∅; ∅, f : τ1 ` f(1) ↑ τ3 ⇒ e1
-		(elab-up-app-1)
-		D4 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ1 ⇒ x1
-		(elab-up-var)
-		D4 ∅, a2 : int; ∅, a2 ≥ 0 ` a2 : nat
-		D5 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1 ↑ τ2(a2) ⇒ e2
-		(elab-up-Π-elim-1)
-		D6 :: ∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
-		(elab-up-var)
-		D5
-		D6
-		∅, a2 : int; ∅, a2 ≥ 0 |= a2
-		.
-		= a2
-		∅, a2 : int; ∅, a2 ≥ 0 ` [] : int(a2) ≤ int(a2)
-		(dy-sub-base)
-		∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
-		(elab-dn-up)
-		∅, a2 : int; ∅, a2 ≥ 0; ∅, x1 : τ1, x2 : int(a2) ` x1(x2) ↑ τ3 ⇒ e2(x2)
-		(elab-up-app-1)
-		D7 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` x1(x2) ↑ Σa:nat. τ3 ⇒ e3
-		(elab-up-Σ-left)
-		D0 D3 D7
-		D8 :: ∅; ∅; ∅, x1 : τ1, x2 : τ3 ` f(f(1)) ↑ Σa:nat. τ3 ⇒ e4
-		(elab-up-app-2)
-
-	- Fig. 25. An example of elaboration
-
-	a need for an analysis elaboration judgment.
-
-	For instance, we may encounter a situation where we need to synthesize a type for some expression lamx. e; however, there is no rule for such a synthesis as the involved expression is a lam-expression; to address the issue, the programmer may provide a type annotation by writing (lamx. e : τ ) instead; synthesizing a type for (lamx. e : τ ) is then reduced to analyzing whether lam x. e can be assigned the type τ .
-
-	----
-
-	The rule (elab-up-app-1) is fairly straightforward. When synthesizing a type for e1(e2), we can first synthesize a type for e1; if the type is of the form τ1 → τ2, we can then analyze whether e2 can be assigned the type τ1; if the analysis succeeds, then we claim that the type τ2 is synthesized for e2.
-
-	----
-
-	The rule (elab-up-app-2) is rather intricate but of great importance in practice, and we provide some explanation for it. When synthesizing a type for e1(e2), we may first synthesize a type τ for e1 that is not of the form τ1 → τ2; for instance, τ may be a universally quantified type; if this is the case, we can next synthesize a type for e2 and then apply the rule (elab-up-app-2). Let us now see a concrete example involving (elab-up-app-2). Suppose that f is given the following type:
-
-		Πa1 :nat. int(a1) → Σa2 :nat. int(a2)
-		where nat = {a : int | a ≥ 0}, and we need to elaborate the expression f(1).
-
-	By applying the rule (elab-Π-elim-1) we can synthesize the type int(1) → Σa2 : nat. int(a2) for f; then we can analyze that 1 has the type int(1) and thus synthesize
-	the type Σa2 :nat. int(a2) for f(1); note that f(1) elaborates into ⊃ −(Π−(f))(1), which can be assigned the type Σa2 : nat. int(a2).
-
-	Now suppose that we need to elaborate the expression f(f(1)).
-
-	If we simply synthesize a type of the form int(I) → Σa2 :nat. int(a2) for the first occurrence of f in f(f(1)), then the elaboration for f(f(1)) cannot succeed as it is impossible to elaborate f(1) into an expression in λΠ,Σ pat of the type int(I) for any type index I.
-
-	With the rule (elab-up-app-2), we are actually able to elaborate f(f(1)) into the following expression e in λΠ,Σ pat :
-
-		let x1 = f in let x2 =⊃−(Π−(f))(1) in e
-		0 end end
-		where e
-		0 = let Σ(∧(x2)) = x2 in ⊃ −(Π−(x1))(x2) end.
-
-	Please find that the entire elaboration is formally carried out in Figure 25.
-
-	Clearly, the erasure of e is operationally equivalent to f(f(1)).
-
-	----
-
-	The rules (elab-up-prod-left) and (elab-up-Σ-left) are for simplifying the types assigned to variables in a dynamic context. In practice, we apply these rules during elaboration whenever possible.
-
-- 5.3 Some explanation on analysis elaboration rules
-	
-	The rules for analysis elaboration judgments are presented in Figure 23.
-
-	For instance, if e = he1, e2 i and τ = hτ1, τ2i, then the rule (elab-dn-prod) reduces the question whether e can be assigned the type τ to the questions whether ei can be assigned the types τi for i = 1, 2. Most of analysis elaboration rules are straightforward.
-	
-	In the rule (elab-dn-up), we see that the three forms of judgments (dynamic subtype judgment, synthesis elaboration judgment and analysis elaboration judgment) meet.
-
-	This rule simply means that when analyzing whether an expression e can be given a type τ2, we may first synthesize a type τ1 for e and then show that τ1 is a dynamic subtype of τ2 (by showing that E : τ1 ≤ τ2 is derivable for some evaluation context E).
-
-	In practice, we apply the rule (elab-dn-up) only if all other analysis elaboration rules are inapplicable.
-
-	----
-
-	We now show some actual use of analysis elaboration rules by presenting in Figure 26 a derivation of the following judgment for some E:
-	
-		∅; ∅ ` E : Nat ∗ Nat ≤ Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
-
-	where Nat = Σa : nat. int(a). In this derivation, we assume the existence of a
-
-		τ0 = int(a1) ∗ int(a2)
-		τ1 = Σa2 :nat. int(a1) ∗ int(a2)
-		τ2 = Σa1 :nat.Σa2 :nat. int(a1) ∗ int(a2)
-		φ1 = ∅, a1 : int
-		φ2 = ∅, a1 : int, a2 : int
-		P~1 = ∅, a1 ≥ 0
-		P~2 = ∅, a1 ≥ 0, a2 ≥ 0
-		E0 = Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
-		e1 = E0[hx1, x2i]
-		e2 = let Σ(∧(x2)) = x2 in e1 end
-		e3 = let Σ(∧(x1)) = x1 in e2 end
-		E = let hx1, x2i = [] in e3 end
-		D1 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x1 ↑ int(a1) ⇒ x1
-		(elab-var-up)
-		D2 :: φ2;P~2; x1 : int(a1), x2 : int(a2) ` x2 ↑ int(a2) ⇒ x2
-		(elab-var-up)
-		D1
-		φ2; P~2 |= a1
-		.
-		= a1
-		φ2; P~2 ` [] : int(a1) ≤ int(a1)
-		D3 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x1 ↓ int(a1) ⇒ x1
-		(elab-dn-up)
-		D2
-		φ2; P~2 |= a2
-		.= a2
-		φ2; P~2 ` [] : int(a2) ≤ int(a2)
-		D4 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` x2 ↓ int(a2) ⇒ x2
-		(elab-dn-up)
-		D3 D4
-		D5 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ0 ⇒ hx1, x2i
-		(elab-dn-prod)
-		D5 D0 :: φ2;P~2 ` E0 : τ0 ≤ τ2
-		D6 :: φ2; P~2; x1 : int(a1), x2 : int(a2) ` hx1, x2i ↓ τ2 ⇒ e1
-		(elab-dn-up)
-		φ1; P~1; x1 : int(a1), x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e2
-		(elab-dn-Σ-left)
-		∅; ∅; x1 : Nat, x2 : Nat ` hx1, x2i ↓ τ2 ⇒ e3
-		(elab-dn-Σ-left)
-		D7 :: ∅; ∅ ` E : Nat ∗ Nat ≤ τ2
-		(dy-sub-prod)
-
-	- Fig. 26. Another example of elaboration
-
-	derivation D0 :: φ2; P~2 ` E0 : τ0 ≤ τ2 for the following evaluation context E0:
-
-		Σ(∧(Σ(∧(let hx1, x2i = [] in hx1, x2i end))))
-
-	which can be readily constructed.
-
-	----
-
-	As another example, the interested reader can readily derive the following judgment for some E:
-
-		∅; ∅ ` E : Πa:int. int(a) → int(a) ≤ Int → Int
-
-	where Int = Σa : int. int(a).
-
-	Therefore, we can always use a function of the type
-
-		Πa:int. int(a) → int(a) as a function of the type Int → Int.
-	
-
+			holds. □
