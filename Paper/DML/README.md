@@ -19,7 +19,7 @@ Boston University
 - ○ [3.1 Regular constraint relation](3.1 Regular constraint relation.md)
 - ○ [3.2 Models for type index languages](3.2 Models for type index languages.md)
 - △ [3.3 Some examples of type index languages](3.3 Some examples of type index languages.md)
-- [ ] [4 λ Π,Σ pat : Extending λpat with dependent types](4 λ Π,Σ pat Extending λpat with dependent types.md)
+- ○ [4 λ Π,Σ pat : Extending λpat with dependent types](4 λ Π,Σ pat Extending λpat with dependent types.md)
 - [ ] [4.1 Syntax](4.1 Syntax.md)
 - [ ] [4.2 Static semantics](4.2 Static semantics.md)
 - [ ] [4.3 Dynamic semantics](4.3 Dynamic semantics.md)
