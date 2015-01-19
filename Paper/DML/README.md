@@ -23,7 +23,7 @@ Boston University
 - △ [4.1 Syntax](4.1 Syntax.md)
 - x [4.2 Static semantics](4.2 Static semantics.md)
 - x [4.3 Dynamic semantics](4.3 Dynamic semantics.md)
-- [ ] [4.4 Type soundness](4.4 Type soundness.md)
+- x [4.4 Type soundness](4.4 Type soundness.md)
 - x [4.5 Type index erasure](4.5 Type index erasure.md)
 - x [4.6 Dynamic subtype relation](4.6 Dynamic subtype relation.md)
 - x [4.7 A restricted form of dependent types](4.7 A restricted form of dependent types.md)
