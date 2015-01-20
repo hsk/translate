@@ -74,7 +74,7 @@
 	図7にL言語の構文を示します。
 	我々は基本種にbを使います。
 	具体的には、booleanの値の基本種boolがあります。
-	私たちは定数関数と定数コンストラクタの定数用にインデックス変数とCを使用します。
+	我々は定数関数と定数コンストラクタの定数用にインデックス変数とCを使用します。
 	[](
 	Each constant is assigned a constant sort (or c-sort, for short) of the form (s1, . . . , sn) ⇒ b, 
 	which means that C(I1, . . . , In) is an index term of sort b if Ii are of sorts si for i = 1, . . . , n.

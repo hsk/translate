@@ -92,7 +92,7 @@ The value constructors associated with list are then assigned certain dependent 
 	We use nat for a subset sort defined as `{a : int | a ≥ 0}` and the syntax `{n:nat}` for a universal quantifier over type index variable n of the subset sort nat.)
 
 	すなわち、要素と、長さnのリストのペアが与えられたときにconsは長さn+1のリストを与える。
-	私たちは、ソートnat部分集合のタイプインデックス変数n以上の普遍数量詞のために、ソート`{a : int | a ≥ 0}`と`{n:nat}`構文として定義された部分集合にnatを使用します。
+	我々は、ソートnat部分集合のタイプインデックス変数n以上の普遍数量詞のために、ソート`{a : int | a ≥ 0}`と`{n:nat}`構文として定義された部分集合にnatを使用します。
 
 
 [](The withtype clause in the definition of the function append is a type annotation, which precisely states that append returns a list of length m + n when given a pair of lists of length m and n, respectively.
@@ -132,7 +132,7 @@ We briefly summarize our results and design choices as follows.)
 
 MLへの依存型を追加は、理論的、実践的な問題がいくつか起きる。
 具体的には、実際には確かに望ましいMLで純粋な型推論の種類は、支持できないなり、論文の大部分は、部分的な型推論の形式をサポートしているに関与する様々な問題に対処するに専念しています。
-次のように私たちは簡潔に我々の結果と設計上の選択をまとめる。
+次のように我々は簡潔に我々の結果と設計上の選択をまとめる。
 
 ----
 
@@ -145,7 +145,7 @@ This is critical for practical applications such as static elimination of array 
 最初の問題は、彼らは型インデックス項として発生したときに、その発生したが効果を持つ式の意味である。
 困難を回避するために、我々はその型インデックス項が純粋であることが必要です。
 実際には、我々の型システムは、型インデックス項が書かれるから純粋な型インデックス言語上でパラメータ化されている。
-私たちは、この純度を維持し、まだそのnに等しい値の整数式の型であるint(n)などのシングルトン型を、使用して値を実行時の接続を行うことができます。
+我々は、この純度を維持し、まだそのnに等しい値の整数式の型であるint(n)などのシングルトン型を、使用して値を実行時の接続を行うことができます。
 これは、このような配列境界チェック(Xi & Pfenning, 1998)の静的除去などの実用的なアプリケーションのために重要である。
 
 ----
@@ -240,8 +240,8 @@ The core of the paper lies in Section 4, where a language λΠ,Σ pat is introdu
 )
 
 次のように論文の構成はされている。
-2章では、私たちは、単純に型付けされた言語として存在するλpatを出発点として、本質的に再帰と一般的なパターンマッチングと単純に型指定されたλ計算を拡張します。
-私たちは、その後正式に3章でタイプインデックス言語がどのように形成することができるかを説明します。
+2章では、我々は、単純に型付けされた言語として存在するλpatを出発点として、本質的に再帰と一般的なパターンマッチングと単純に型指定されたλ計算を拡張します。
+我々は、その後正式に3章でタイプインデックス言語がどのように形成することができるかを説明します。
 特に、我々は、制約関係が正しく型インデックス言語で定義することが可能な方法について説明します。
 論文のコアは、universal(普遍的)かつexistential(実存)依存型の両方を持つλpat拡張言語λΠ,Σpatが導入された4章です。
 [](

@@ -10,10 +10,10 @@
 	If the constraints are linear, we negate them and test for unsatisfiability.
 	For instance, the following is a sample constraint generated when an implementation　of binary search on arrays is type-checked:
 
-	私たちはそれぞれ、本質的にタイプインデックスの用語はリントとLalgは3.3.2項及び3.3.1項に提示タイプインデックス言語から描かれる依存型の形でMLを拡張言語依存ML（DML）を、プロトタイピング終了した。
+	我々はそれぞれ、本質的にタイプインデックスの用語はリントとLalgは3.3.2項及び3.3.1項に提示タイプインデックス言語から描かれる依存型の形でMLを拡張言語依存ML（DML）を、プロトタイピング終了した。
 	この時点で、DMLはすでにATS、フレームワーク応用型システム（XI、2004）に根ざし型システムを使用したプログラミング言語の一部となっています。
 	ATSの現在の実装では、オンラインで入手可能です型チェッカおよび（CへのATSから）コンパイラと（ATS自体に書かれたコードの以上の25Kの行を含む）の実質的なライブラリが含まれて（西、2005）、。
-	整数制約を扱うとき、私たちは、非線形なものを拒否outrightlyのではなく、将来の仕事のために計画されているハードの制約（Michaylov、1992）、としてそれらを延期する。
+	整数制約を扱うとき、我々は、非線形なものを拒否outrightlyのではなく、将来の仕事のために計画されているハードの制約（Michaylov、1992）、としてそれらを延期する。
 	非線形整数制約を拒絶するのこの決定は、アドホックに見えるかもしれません、それは非線形制約状況では、時々、あまりにも限定的であってもよい（例えば、∀n：int型のn* n個≥0）に対処する必要がある。
 	この問題に対処するために、定理証明を使用したプログラミングを組み合わせることへのアプローチが提案されている（チェン·西、2005A）。
 	制約条件が線形である場合、我々は充足不能性のためにそれらとテストを否定。
@@ -34,9 +34,9 @@
 	We use x for integer variables, a for integers, and l for linear expressions.
 	Given a set of inequalities S, we would like to show that S is unsatisfiable.
 
-	私たちは、そのシンプルさのために主にFourierMotzkinの方法を選択しました。
-	私たちは、ここで簡単に、この方法を説明します。
-	私たちは、リニア式の整数変数のX、整数の、およびlを使用しています。
+	我々は、そのシンプルさのために主にFourierMotzkinの方法を選択しました。
+	我々は、ここで簡単に、この方法を説明します。
+	我々は、リニア式の整数変数のX、整数の、およびlを使用しています。
 	不平等の集合Sを考えると、我々はSが充足不能であることを示したいと思います。
 
 	We fix a variable x and transform all the linear inequalities into one of the two forms: l ≤ ax and ax ≤ l, where a ≥ 0 is assumed.
@@ -45,7 +45,7 @@
 	If x were a real variable, then the procedure would also be complete.
 	In order to handle modulo arithmetic, we also perform another operation to rule out non-integer solutions: we transform an inequality of form
 
-	私たちは、変数xを固定し、二つの形式のいずれかにすべての線形不等式を変換する：Lの≤斧と斧≤Lを、≥0が想定されます。
+	我々は、変数xを固定し、二つの形式のいずれかにすべての線形不等式を変換する：Lの≤斧と斧≤Lを、≥0が想定されます。
 	すべてのペアについては、L1≤A1XとA2X≤L2、A1は、A2>0は、我々はSからXに関連するすべての不平等を削除した後≤a1l2 Sにa2l1新しい不平等を導入し、どこで。
 	明らかに、これは音が、不完全な手順である。
 	xが実数変数だった場合は、手順も完了することになる。
@@ -79,4 +79,4 @@
 	DMLでは、マッチング句シーケンスのパターンが重複することを可能にするか、および順次パターンマッチングを実行時に実行される。
 	この設計は、7.2節で述べる型チェックでいくつかの合併症につながることができます。
 	この問題の詳細については、（XI、2003）を参照してください。
-	私たちは現在、実際に、実際にプログラミングする不変量をキャプチャするために使用することができるかに依存するタイプにように読者にいくつかの具体的な感触を与えて、DMLのプロトタイプ実装から取られたいくつかのプログラミングの例を提示する。
+	我々は現在、実際に、実際にプログラミングする不変量をキャプチャするために使用することができるかに依存するタイプにように読者にいくつかの具体的な感触を与えて、DMLのプロトタイプ実装から取られたいくつかのプログラミングの例を提示する。
