@@ -30,7 +30,7 @@ Boston University
 - ○ [4.4 Type soundness](4.4 Type soundness.md)
 - ○ [4.5 Type index erasure](4.5 Type index erasure.md)
 - ○ [4.6 Dynamic subtype relation](4.6 Dynamic subtype relation.md)
-- x [4.7 A restricted form of dependent types](4.7 A restricted form of dependent types.md)
+- △ [4.7 A restricted form of dependent types](4.7 A restricted form of dependent types.md)
 
 - x [5 Elaboration](5 Elaboration.md)
 - x [5.1 The judgments and rules for elaboration](5.1 The judgments and rules for elaboration.md)
