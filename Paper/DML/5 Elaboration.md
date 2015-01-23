@@ -7,9 +7,9 @@
 	It then becomes apparent that it is necessary to provide an external language DML0 together with a mapping from DML0 to the internal language λΠ,Σ pat , and we call such a mapping elaboration.
 	We may also use the phrase type-checking loosely to mean elaboration, sometimes.
 
-	我々はこれまでに、明示的に型付けされた言語λΠ、Σのパットを提示している。
+	我々はこれまでに、明示的に型付けされた言語 `λΠ,Σ pat` を提示しています。
 	このプレゼンテーションでは、プログラマの観点から重大な欠点があります：
-	一つは、すぐにそのような設定でプログラミングする際に型を書き込むための必要性に圧倒かもしれません。
+	一つは、すぐにそのような環境でプログラミングする際に型を書き込むための必要性に圧倒されるかもしれません。
 	それはそれは内部言語λΠ、ΣのパットにDML0からのマッピングと一緒に外付けの言語DML0を提供することが必要であることが明らかになり、我々はこのようなマッピング精緻化を呼び出します。
 	また、時には、フレーズ型チェック精緻を意味する緩くを使用してもよい。
 
@@ -26,7 +26,7 @@
 	精緻化プロセス自体は非決定的である。
 	それにもかかわらず、我々はDML0でeはλΠ、Σのパットで電子に精緻化することができれば、その後、Eとeは操作上同等であることを定理5.3に基づいて保証することができます。
 	言い換えれば、精緻化は、プログラムの動的な意味論を変更することはできません。
-	これは、紙の主要な貢献を考えられている推敲の健全性を、呼んでいます。
+	これは、論文の主要な貢献を考えられている推敲の健全性と呼んでいます。
 	我々は何気なく主な焦点は、多型とサブタイプ間の相互作用にあるローカル型推論（ピアース·ターナー、1998）、上の彼らの研究ではピアースとターナーによって採択いずれかのような双方向の戦略に推敲を実行することである。
 
 	----
@@ -74,7 +74,7 @@
 
 	Note that the type index variable n is used in the type annotation for the inner auxiliary function aux .
 
-	タイプインデックス変数nが内側補助機能のAUX用の型注釈で使用されていることに注意してください。
+	型インデックス変数nが内側補助機能のAUX用の型注釈で使用されていることに注意してください。
 
 
 	----
@@ -116,7 +116,7 @@
 
 	Fig. 21. The dynamic subtype rules in λΠ,Σ pat.
 	
-	イチジク。λΠ、Σパット21.動的なサブタイプのルール。
+	図 21. λ,Π pat の動的サブタイプルール
 
 	there are n occurrences of ⊃ +, and ∧n(·) for ∧(...(∧(·))...), where there are n occurrences of ∧, and let Σ(∧0(x)) = e1 in e2 end for let Σ(x) = e1 in e2 end, and let Σ(∧n+1(x)) = e1 in e2 end for the following expression: let Σ(∧n(x)) = (let ∧ (x) = e1 in x end) in e2 end, where n ranges over natural numbers.
 
@@ -127,17 +127,17 @@
 
 		We have |let x = e1 in e2 end| ≤dyn |let Σ(∧n(x)) = e1 in e2 end|.
 	
-		| E2の最後にしましょうΣ（∧n（X））= E1|≤dyn| E2の最後には、X = E1を聞かせて|我々は持っている。
+		`|let x = e1 in e2 end| ≤dyn |let Σ(∧n(x)) = e1 in e2 end|` である。
 
 		- Proof
 		- 証明
 
 			This immediately follows from Lemma 2.14 and the observation that
 			
-			これはすぐに補題2.14と観察から、以下のこと
+			これはすぐに補題2.14と観察から、以下のことが
 
 				|let Σ(∧n(x)) = e1 in e2 end| ,→∗g |let x = e1 in e2 end|
 
 			holds. □
 
-			成り立つ。 □
+			成り立ちます。 □
