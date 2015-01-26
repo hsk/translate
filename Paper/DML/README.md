@@ -37,11 +37,11 @@ Boston University
 - ○ [5.2 Some explanation on synthesis elaboration rules](5.2 Some explanation on synthesis elaboration rules.md)
 - ○ [5.3 Some explanation on analysis elaboration rules](5.3 Some explanation on analysis elaboration rules.md)
 - ○ [5.4 The soundness of elaboration](5.4 The soundness of elaboration.md)
-- x [5.5 Implementing elaboration](5.5 Implementing elaboration.md)
+- ○ [5.5 Implementing elaboration](5.5 Implementing elaboration.md)
 
-- x [6 Extensions](6 Extensions.md)
-- x [6.1 Parametric polymorphism](6.1 Parametric polymorphism.md)
-- x [6.2 Exceptions](6.2 Exceptions.md)
+- ○ [6 Extensions](6 Extensions.md)
+- ○ [6.1 Parametric polymorphism](6.1 Parametric polymorphism.md)
+- ○ [6.2 Exceptions](6.2 Exceptions.md)
 - x [6.3 References](6.3 References.md)
 
 - x [7 Some programming examples](7 Some programming examples.md)
