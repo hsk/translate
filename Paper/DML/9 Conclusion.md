@@ -1,10 +1,17 @@
 - 9 Conclusion
+- 9 まとめ
 
 	We have presented an approach that can effectively support the use of dependent types in practical programming, allowing for specification and inference of signifi-cantly more precise type information and thus facilitating program error detection and compiler optimization.
+
+	私たちは、効果的に仕様とsignifi - cantlyより正確な型情報の推論とそのプログラムエラー検出およびコンパイラの最適化を容易にするためにできるように、実用的なプログラミングで依存型の使用をサポートすることができますアプローチを提示している。
 
 	By separating type index terms from programs, we make it both natural and straightforward to accommodate dependent types in the presence of realistic programming features such as (general) recursion and effects (e.g., exceptions and references).
 
 	In addition, we have formally established the type soundness of λΠ,Σ pat , the core dependent type system in our development, and have also justified the correctness of a set of elaboration rules, which play a crucial role in reducing (not eliminating) the amount of explicit type annotation needed in practice.
+
+	プログラムからタイプインデックス用語を分離することで、我々はそれが自然とそのような（一般）再帰と効果（例えば、例外および参照）のような現実的なプログラミング機能の存在下で依存型に対応するために簡単な両方作る。
+
+	さらに、我々は正式にλΠ 、 Σパット、私たちの開発の中核依存型システムのタイプの健全性を確立している、とも（しない排除する）減らすのに重要な役割を果たして推敲ルールのセット、の正しさを正当化している実際に必要な明示的な型注釈の量。
 
 	On another front, we have finished a prototype implementation of Dependent ML (DML), which essentially extends ML with a restricted form of dependent types such that the type index terms are required to be integer expressions drawn from the type index language Lint presented in Section 3. 
 
@@ -14,6 +21,14 @@
 
 	At this moment, DML has already been fully incorporated into ATS (Xi, 2005).
 
+	別の面では、本質的に依存型の制限された形でMLを拡張依存ML （ DML） 、のプロトタイプ実装を終えたようなタイプの索引語は、セクションで提示タイプインデックス言語リントから引き出された整数表現であることが要求されていることを3 。
+
+	プログラミングの例の様々なセクション7に示されているそのうちのいくつかのDML 、の実用性をサポートするために構築されている。
+
+	最後に、私たちはλΠ 、 ΣのパットがフレームワークATS （XI 、 2004）で適用された型システムに分類することができると指摘している。
+
+	この時点で、 DMLは、すでに完全にATS （西、 2005 ）に組み込まれている。
+
 	Acknowledgments The current paper is partly based on the author’s doctoral dissertation (Xi, 1998) supervised by Frank Pfenning, and an extended abstract of the dissertation is already in publication (Xi & Pfenning, 1999).
 
 	The author sincerely thanks Frank Pfenning for his suggestion of the research topic and his guidance in the research conducted subsequently.
@@ -21,6 +36,14 @@
 	In addition, the author acknowledges many discussions with Chiyan Chen regarding the subject of elaboration presented in Section 5 and thanks him for his efforts on proofreading a draft of paper.
 	
 	Also, the author thanks the anonymous referees for their voluminous constructive comments, which have undoubtedly raised the quality of the paper significantly.
+
+	一部は著者の博士論文フランクプフェニング監修（XI 、 1998） 、および論文のアブストラクトに現在の紙ベースと謝辞は、出版物（XI ＆プフェニング、 1999）に既にある。
+
+	研究テーマの彼の提案とその後に行われた研究での彼の指導のために著者心から感謝フランクプフェニング。
+
+	また、著者は論文の草稿を校正上の彼の努力については、セクション5と感謝彼に提示精緻化の主題に関するChiyanチェンとの多くの議論を認めるものです。
+
+	また、著者のおかげで持っている彼らの膨大な建設的なコメントの匿名レフェリーは、間違いなく大幅に紙の質を上げた。
 
 - References
 
