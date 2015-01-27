@@ -42,9 +42,9 @@ Boston University
 - ○ [6 Extensions](6 Extensions.md)
 - ○ [6.1 Parametric polymorphism](6.1 Parametric polymorphism.md)
 - ○ [6.2 Exceptions](6.2 Exceptions.md)
-- x [6.3 References](6.3 References.md)
+- ○ [6.3 References](6.3 References.md)
 
-- x [7 Some programming examples](7 Some programming examples.md)
+- △ [7 Some programming examples](7 Some programming examples.md)
 - x [7.1 Arrays](7.1 Arrays.md)
 - x [7.2 Red-black trees](7.2 Red-black trees.md)
 - x [7.3 A type-preserving evaluator](7.3 A type-preserving evaluator)
