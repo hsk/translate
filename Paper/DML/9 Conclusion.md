@@ -3,7 +3,7 @@
 
 	We have presented an approach that can effectively support the use of dependent types in practical programming, allowing for specification and inference of signifi-cantly more precise type information and thus facilitating program error detection and compiler optimization.
 
-	私たちは、効果的に仕様とsignifi - cantlyより正確な型情報の推論とそのプログラムエラー検出およびコンパイラの最適化を容易にするためにできるように、実用的なプログラミングで依存型の使用をサポートすることができますアプローチを提示している。
+	私たちは、効果的に仕様とsignifi - cantlyより正確な型情報の推論とそのプログラムエラー検出およびコンパイラの最適化を容易にするためにできるように、実用的なプログラミングで依存型の使用をサポートすることができますアプローチを提示しています。
 
 	By separating type index terms from programs, we make it both natural and straightforward to accommodate dependent types in the presence of realistic programming features such as (general) recursion and effects (e.g., exceptions and references).
 
@@ -11,25 +11,31 @@
 
 	プログラムからタイプインデックス用語を分離することで、我々はそれが自然とそのような（一般）再帰と効果（例えば、例外および参照）のような現実的なプログラミング機能の存在下で依存型に対応するために簡単な両方作る。
 
-	さらに、我々は正式にλΠ 、 Σパット、私たちの開発の中核依存型システムのタイプの健全性を確立している、とも（しない排除する）減らすのに重要な役割を果たして推敲ルールのセット、の正しさを正当化している実際に必要な明示的な型注釈の量。
+	さらに、我々は正式に λΠ,Σ pat、私たちの開発の中核依存型システムのタイプの健全性を確立している、とも（しない排除する）減らすのに重要な役割を果たして推敲ルールのセット、の正しさを正当化している実際に必要な明示的な型注釈の量。
+
+	----
 
 	On another front, we have finished a prototype implementation of Dependent ML (DML), which essentially extends ML with a restricted form of dependent types such that the type index terms are required to be integer expressions drawn from the type index language Lint presented in Section 3. 
 
 	A variety of programming examples have been constructed in support of the practicality of DML, some of which are shown in Section 7.
 
+	別の面では、本質的に依存型の制限された形でMLを拡張 Dependent ML(DML) 、のプロトタイプ実装を終えたようなタイプの索引語は、セクションで提示タイプインデックス言語リントから引き出された整数表現であることが要求されていることを3 。
+
+	プログラミングの例の様々なセクション7に示されているそのうちのいくつかのDML 、の実用性をサポートするために構築されています。
+
+	----
+
 	Lastly, we point out that λΠ,Σ pat can be classified as an applied type system in the framework ATS (Xi, 2004).
 
 	At this moment, DML has already been fully incorporated into ATS (Xi, 2005).
 
-	別の面では、本質的に依存型の制限された形でMLを拡張依存ML （ DML） 、のプロトタイプ実装を終えたようなタイプの索引語は、セクションで提示タイプインデックス言語リントから引き出された整数表現であることが要求されていることを3 。
+	最後に、私たちは λΠ,Σ pat がフレームワークATS (Xi, 2004) で適用された型システムに分類することができると指摘しています。
 
-	プログラミングの例の様々なセクション7に示されているそのうちのいくつかのDML 、の実用性をサポートするために構築されている。
+	この時点で、 DMLは、すでに完全にATS (Xi, 2005) に組み込まれています。
 
-	最後に、私たちはλΠ 、 ΣのパットがフレームワークATS （XI 、 2004）で適用された型システムに分類することができると指摘している。
+- Acknowledgments
 
-	この時点で、 DMLは、すでに完全にATS （西、 2005 ）に組み込まれている。
-
-	Acknowledgments The current paper is partly based on the author’s doctoral dissertation (Xi, 1998) supervised by Frank Pfenning, and an extended abstract of the dissertation is already in publication (Xi & Pfenning, 1999).
+	The current paper is partly based on the author’s doctoral dissertation (Xi, 1998) supervised by Frank Pfenning, and an extended abstract of the dissertation is already in publication (Xi & Pfenning, 1999).
 
 	The author sincerely thanks Frank Pfenning for his suggestion of the research topic and his guidance in the research conducted subsequently.
 
@@ -37,13 +43,13 @@
 	
 	Also, the author thanks the anonymous referees for their voluminous constructive comments, which have undoubtedly raised the quality of the paper significantly.
 
-	一部は著者の博士論文フランクプフェニング監修（XI 、 1998） 、および論文のアブストラクトに現在の紙ベースと謝辞は、出版物（XI ＆プフェニング、 1999）に既にある。
+	一部は著者の博士論文フランクプフェニング監修（XI 、 1998） 、および論文のアブストラクトに現在の紙ベースと謝辞は、出版物（XI ＆プフェニング、 1999）に既にあります。
 
 	研究テーマの彼の提案とその後に行われた研究での彼の指導のために著者心から感謝フランクプフェニング。
 
 	また、著者は論文の草稿を校正上の彼の努力については、セクション5と感謝彼に提示精緻化の主題に関するChiyanチェンとの多くの議論を認めるものです。
 
-	また、著者のおかげで持っている彼らの膨大な建設的なコメントの匿名レフェリーは、間違いなく大幅に紙の質を上げた。
+	また、著者のおかげで持っている彼らの膨大な建設的なコメントの匿名のレフェリーは、間違いなく大幅に紙の質を上げました。
 
 - References
 
@@ -210,205 +216,130 @@
 	Zenger, Christoph. (1998). Indizierte typen. Ph.D. thesis, Fakult¨at fur ¨ Informatik, Universit¨at
 	Karlsruhe.
 
-		xf ,→ g xf
-		e ,→ g e
-		0
-		c(e) ,→ g c(e
-		0
-		) hi ,→ g hi
-		e1 ,→ g e
-		0
-		1 e2 ,→ g e
-		0
-		2
-		<e1, e2> ,→ g he
-		0
-		1, e
-		0
-		2i
-		e ,→ g e
-		0
-		fst(e) ,→ g fst(e
-		0
-		)
-		e ,→ g e
-		0
-		snd(e) ,→ g snd(e
-		0
-		)
-		e ,→ g e
-		0 ms ,→ g ms0
-		case e of ms ,→ g case e
-		0 of ms0
-		e ,→ g e
-		0
-		lamx. e ,→ g lamx. e
-		0
-		e1 ,→ g e
-		0
-		1 e2 ,→ g e
-		0
-		2
-		e1(e2) ,→ g e
-		0
-		1(e
-		0
-		2)
-		e ,→ g e
-		0
-		fix f. e ,→ g fix f. e
-		0
-		e1 ,→ g e
-		0
-		1 e2 ,→ g e
-		0
-		2
-		let x = e1 in e2 end ,→ g let x = e
-		0
-		1 in e
-		0
-		2 end
-		v1 ,→ g v
-		0
-		1
-		fst(<v1, v2>) ,→ g v
-		0
-		1
-		v2 ,→ g v
-		0
-		2
-		snd(<v1, v2>) ,→ g v
-		0
-		2
-		e ,→ g e
-		0
-		v ,→ g v
-		0
-		(lamx. e)(v) ,→ g e
-		0
-		[x 7→ v
-		0
-		]
-		e ,→ g e
-		0
-		fix f. e ,→ g e
-		0
-		[f 7→ fix f. e
-		0
-		]
-		e ,→ g e
-		0
-		v ,→ g v
-		0
-		let x = v in e end ,→ g e
-		0
-		[x 7→ v
-		0
-		]
-		match(v, pk) ⇒ θ ek ,→ g e
-		0
-		k θ ,→ g θ
-		0
-		case v of (p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g e
-		0
-		k[θ
-		0
-		]
-		x 6∈ FV(E) e ,→ g e
-		0 E ,→ g E
-		0
-		let x = e in E[x] end ,→ g E
-		0
-		[e
-		0
-		]
-		v ,→ g v
-		0
-		hfst(v), snd(v)i ,→ g v
-		0
-		v ,→ g v
-		0
-		lamx. v(x) ,→ g v
-		0
-		[] ,→ g []
-		E ,→ g E
-		0
-		c(E) ,→ g c(E
-		0
-		)
-		E ,→ g E
-		0
-		e ,→ g e
-		0
-		hE, ei ,→ g hE
-		0
-		, e
-		0
-		i
-		v ,→ g v
-		0 E ,→ g E
-		0
-		hv, Ei ,→ g hv
-		0
-		, E
-		0
-		i
-		E ,→ g E
-		0
-		fst(E) ,→ g fst(E
-		0
-		)
-		E ,→ g E
-		0
-		snd(E) ,→ g snd(E
-		0
-		)
-		E ,→ g E
-		0 ms ,→ g ms0
-		case E of ms ,→ g case E
-		0 of ms0
-		E ,→ g E
-		0
-		e ,→ g e
-		0
-		E(e) ,→ g E
-		0
-		(e
-		0
-		)
-		v ,→ g v
-		0 E ,→ g E
-		0
-		v(E) ,→ g v
-		0
-		(E
-		0
-		)
-		E ,→ g E
-		0
-		e ,→ g e
-		0
-		let x = E in e end ,→ g let x = E
-		0
-		in e
-		0
-		end
-		e1 ,→ g e
-		0
-		1 · · · en ,→ g e
-		0
-		n
-		(p1 ⇒ e1 | · · · | pn ⇒ en) ,→ g (p1 ⇒ e
-		0
-		1 | · · · | pn ⇒ e
-		0
-		n)
-		θ(xf ) ,→ g θ
-		0
-		(xf ) for each xf in dom(θ) = dom(θ
-		0
-		)
-		θ ,→ g θ
-		0
 
-	Fig. A 1. The rules for the parallel general reduction ,→ g
+		----------
+		xf ,→g xf
+
+		e ,→g e'
+		---------------
+		c(e) ,→g c(e') 
+
+		----------
+		<> ,→g <>
+
+		e1 ,→g e1'    e2 ,→g e2'
+		------------------------
+		<e1, e2> ,→g <e1', e2'>
+		
+		e ,→g e'
+		-----------------------
+		fst(e) ,→g fst(e')
+
+		e ,→g e'
+		-----------------------
+		snd(e) ,→g snd(e')
+
+		e ,→g e'   ms ,→g ms'
+		-------------------------------
+		case e of ms ,→g case e' of ms'
+
+		e ,→g e'
+		-------------------------
+		lamx. e ,→g lamx. e'
+
+		e1 ,→g e1'   e2 ,→g e2'
+		--------------------------
+		e1(e2) ,→g e1'(e2')
+
+		e ,→g e'
+		----------------------
+		fix f. e ,→g fix f. e'
+
+		e1 ,→g e'1 e2 ,→g e'2
+		-----------------------------------------------
+		let x = e1 in e2 end ,→g let x = e'1 in e'2 end
+
+		v1 ,→g v'1
+		--------------------------
+		fst(<v1, v2>) ,→g v'1
+
+		v2 ,→g v'2
+		--------------------------
+		snd(<v1, v2>) ,→g v'2
+
+		e ,→g e'   v ,→g v'
+		--------------------------
+		(lamx. e)(v) ,→g e'[x |→ v']
+
+		e ,→g e'
+		----------------------------
+		fix f. e ,→g e'[f |→ fix f. e']
+
+		e ,→g e'     v ,→g v'
+		----------------------------------
+		let x = v in e end ,→g e'[x |→ v']
+
+		match(v, pk) ⇒ θ   ek ,→g ek'   θ ,→g θ'
+		-----------------------------------------------------
+		case v of (p1 ⇒ e1 | · · · | pn ⇒ en) ,→g ek'[θ']
+
+		x /∈ FV(E) e ,→g e' E ,→g E'
+		---------------------------------
+		let x = e in E[x] end ,→g E'[e']
+
+		v ,→g v'
+		-----------------------
+		<fst(v), snd(v)> ,→g v'
+
+		v ,→g v'
+		-----------------------
+		lamx. v(x) ,→g v'
+
+		---------
+		[] ,→g []
+
+		E ,→g E'
+		--------------
+		c(E) ,→g c(E')
+
+		E ,→g E'   e ,→g e'
+		--------------------
+		<E, e> ,→g <E', e'>
+
+		v ,→g v'    E ,→g E'
+		--------------------
+		<v, E> ,→g <v', E'>
+
+		E ,→g E'
+		------------------
+		fst(E) ,→g fst(E')
+
+		E ,→g E'
+		------------------
+		snd(E) ,→g snd(E')
+
+		E ,→g E'               ms ,→g ms'
+		---------------------------------
+		case E of ms  ,→g  case E' of ms'
+
+		E ,→g E'   e ,→g e'
+		-------------------
+		E(e) ,→g E'(e')
+
+		v ,→g v'   E ,→g E'
+		-------------------
+		v(E) ,→g v'(E')
+
+		E ,→g E'    e ,→g e'
+		-------------------------------------------
+		let x = E in e end ,→g let x = E' in e' end
+
+		e1 ,→g e1'   ···   en ,→g en'
+		-------------------------------------------------------------
+		(p1 ⇒ e1 | ··· | pn ⇒ en) ,→g (p1 ⇒ e1' | ··· | pn ⇒ en')
+
+		θ(xf ) ,→g θ'(xf) for each xf in dom(θ) = dom(θ')
+		---------------------------------------------------
+		θ ,→g θ'
+
+	Fig. A 1. The rules for the parallel general reduction ,→g
