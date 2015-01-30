@@ -44,7 +44,7 @@ Boston University
 - ○ [6.2 Exceptions](6.2 Exceptions.md)
 - ○ [6.3 References](6.3 References.md)
 
-- △ [7 Some programming examples](7 Some programming examples.md)
+- ○ [7 Some programming examples](7 Some programming examples.md)
 - x [7.1 Arrays](7.1 Arrays.md)
 - x [7.2 Red-black trees](7.2 Red-black trees.md)
 - x [7.3 A type-preserving evaluator](7.3 A type-preserving evaluator)
@@ -54,3 +54,48 @@ Boston University
 - [ ] [9 Conclusion](9 Conclusion.md)
 
 - [ ] [A Proof of Lemma 2.14](A Proof of Lemma 2.14.md)
+
+
+## lexicon 用語集
+
+とりあえず、統一しよう
+
+- Elaboration 推敲
+	- エラボレーション
+	- 使いやすくするみたいなニュアンスっぽいのだけどいちお推敲って書いてます。
+	- エラボレーションってかいた方が良いのかも
+
+- Syntax 構文
+	- シンタックス
+
+- soundness 健全性
+	- サウンドネス
+- Extention
+	- エクステンション
+	- 拡張
+	- 拡張で良いよなぁ
+- dependent type 依存型
+	- ディペンデントタイプ
+- reference 参照
+	- リファレンス
+- erasure 消去
+	- イレイジャ
+	- Javaでイレイジャってあるようなのでイレイジャの方がいい気がして来た。
+- judgment 判断
+	- ジャッジメント
+- constraint 制約
+	- コンストレイント
+- the reflexive and transitive closure 反射的推移的閉包
+— On the other hand 一方
+- In other words いいかえれば
+- Assume A. then B. Aと仮定する。そのときB。
+	- 証明するときに使う
+- Proof 証明
+	- プルーフ
+	- □ 証明終わり
+- Theorem 定理
+- Lemma 補題
+- Define 定義 
+- following 以下の
+	- ... following ... : とコロンと一緒に使う事が多い。
+- object language 対象言語
